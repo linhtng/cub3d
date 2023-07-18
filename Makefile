@@ -16,12 +16,16 @@ CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
 
-SRC = 
+SRC = cub3D_main.c \
+	cub3D_utils.c
 
+SRCFD = srcs/
+OBJSFD = objs/
+SRCS	= $(addprefix $(SRCFD), $(SRC))
 OBJ = $(SRC:.c=.o)
-HEADERS = include/cub3D.h
+OBJS = $(addprefix $(OBJSFD),$(OBJ))
 
-HEADER_PATH = ./include
+HEADER_PATH = -I ./includes
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
@@ -31,19 +35,18 @@ LIBS = -Llibft -lft
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
+$(OBJSFD)%.o: $(SRCFD)%.c
+	@mkdir -p $(OBJSFD)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
-%.o : %.c
-	$(CC) $(CFLAGS) $(HEADER_PATH) -I $(LIBFT_PATH) -c $< -o $@
-
-$(OBJ) : $(HEADERS)
+$(NAME) : $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(LIBS) $(LINKS) $^ -o $@
 
 $(LIBFT) :
 	make -C $(LIBFT_PATH)
 
 clean :
-	rm -f $(OBJ)
+	rm -rf $(OBJSFD)
 	make fclean -C $(LIBFT_PATH)
 
 fclean : clean
