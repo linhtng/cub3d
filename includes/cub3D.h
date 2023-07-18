@@ -19,15 +19,27 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-typedef struct s_mapdata
+typedef struct s_texture
+{
+	char	*id;
+	char	*path;
+}	t_texture;
+
+typedef struct s_scene
 {
 	int			lines;
 	int			columns;
-}	t_mapdata;
+	char		**map;
+	t_texture	*texture;
+	int			*floor_color;
+	int			*ceiling_color;
+}	t_scene;
 
 /* cub3D_utils */
 void	correct_extension(const char *argv, int fd);
 void	clean_exit(char *message);
+int		count_occurences(char *str, char c);
+int		ft_is_dir(const char *path);
 
 #endif
 

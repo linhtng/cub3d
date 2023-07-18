@@ -17,7 +17,8 @@ CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
 
 SRC = cub3D_main.c \
-	cub3D_utils.c
+	cub3D_utils.c \
+	cub3D_map.c \
 
 SRCFD = srcs/
 OBJSFD = objs/

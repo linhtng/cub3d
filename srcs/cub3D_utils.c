@@ -18,6 +18,47 @@ void	clean_exit(char *message)
 	exit(EXIT_FAILURE);
 }
 
+// helper that checks whether the path is a directory
+int	ft_is_dir(const char *path)
+{
+	struct stat	stat_buf;
+
+	if (stat(path, &stat_buf) != 0)
+		return (0);
+	return (S_ISDIR(stat_buf.st_mode));
+}
+
+int	count_occurences(char *str, char c)
+{
+	int	count;
+	int	i;
+
+	if (!str)
+		return (0);
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
 void	correct_extension(const char *argv, int fd)
 {
 	size_t		len;
