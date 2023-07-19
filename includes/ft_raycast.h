@@ -35,7 +35,9 @@ typedef struct s_cubed
 {
 	void				*mlx;
 	void				*window;
-	struct 	s_img_data	*img;
+	struct s_img_data	*img;
+	struct s_vector		player;
+	struct s_img_data	*player_img;
 } 				t_cubed;
 
 typedef	struct s_bham_info
