@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:34:03 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:41:59 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	my_put_line_v(t_img_data *data, t_vector *start, int len)
 	}
 	start->y = y;
 }
-//too many args for this one
-void	my_put_grid(t_img_data *data, t_vector *start, int	sq_size, int len, int height)
+void	my_put_grid(t_img_data *data, t_vector *start, int len, int height)
 {
 	int	i;
 	t_vector	line_loc;
@@ -63,12 +62,12 @@ void	my_put_grid(t_img_data *data, t_vector *start, int	sq_size, int len, int he
 	line_loc.x = start->x;
 	line_loc.y = start->y;
 	line_loc.color = 0x00FF0F;
-	my_put_line_h(data, start, len * sq_size);
-	my_put_line_v(data, start, height * sq_size);
+	my_put_line_h(data, start, len * CELL_SIZE);
+	my_put_line_v(data, start, height * CELL_SIZE);
 	while (i < height)
 	{
-		line_loc.y += sq_size;
-		my_put_line_h(data, &line_loc, len * sq_size);
+		line_loc.y += CELL_SIZE;
+		my_put_line_h(data, &line_loc, len * CELL_SIZE);
 		i++;
 	}
 	i = 0;
@@ -76,8 +75,8 @@ void	my_put_grid(t_img_data *data, t_vector *start, int	sq_size, int len, int he
 	line_loc.y = start->y;
 	while ( i < len)
 	{
-		line_loc.x += sq_size;
-		my_put_line_v(data, &line_loc, height * sq_size);
+		line_loc.x += CELL_SIZE;
+		my_put_line_v(data, &line_loc, height * CELL_SIZE);
 		i++;
 	}
 }

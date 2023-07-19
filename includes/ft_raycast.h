@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:34:18 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:42:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_bresenham(t_vector one, t_vector two, t_cubed *cubed);
 void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 void	my_put_line_h(t_img_data *data, t_vector *start, int len);
 void	my_put_line_v(t_img_data *data, t_vector *start, int len);
-void	my_put_grid(t_img_data *data, t_vector *start, int	sq_size, int len, int height);//change args
+void	my_put_grid(t_img_data *data, t_vector *start, int len, int height);//change args
 void	my_put_square(t_img_data *data, t_vector start, int len);
 
 /* key hook handling */
