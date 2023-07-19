@@ -6,11 +6,12 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:42:26 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:53:14 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
+#include "libft.h"
 // // [4][5]
 // char **MAP_1 = {
 // 	"11111",
@@ -80,7 +81,12 @@ void	draw_minimap(t_cubed *cubed)
 	start.y = 0;
 	start.color = 0x00FF00;
 	my_put_grid(&img, &start, 5, 4);
-	my_put_square(&img, cubed->player, 10);
-	
+	//draw player
+	cubed->player_img->img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);//
+	cubed->player_img->addr = mlx_get_data_addr(cubed->player_img->img, &(cubed->player_img->bits_per_pixel), &(cubed->player_img->line_length),  &(cubed->player_img->endian));
+	ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//createes transparent
+	my_put_square(cubed->player_img, cubed->player, 10);
+	//render order?
 	mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);
 }
