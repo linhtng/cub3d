@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_raycast.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
+/*   Updated: 2023/07/19 18:25:32 by jebouche         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FT_RAYCAST_H
 # define FT_RAYCAST_H
@@ -52,5 +63,10 @@ typedef	struct s_bham_info
 void	draw_minimap(t_cubed *cubed);
 void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 void	ft_bresenham(t_vector one, t_vector two, t_cubed *cubed);
+
+/* key hook handling */
+int		handle_press(int key_code, t_cubed *cubed);
+
+
 
 #endif
