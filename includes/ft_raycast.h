@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:25:32 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:26:28 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_bresenham(t_vector one, t_vector two, t_cubed *cubed);
 /* key hook handling */
 int		handle_press(int key_code, t_cubed *cubed);
 
-
+/* program exit functions */
+int		mlx_close(t_cubed *cubed, int exit_code, char *exit_msg);
 
 #endif
