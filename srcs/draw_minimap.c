@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:31:35 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:40:30 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	draw_minimap(t_cubed *cubed)
 	start.x = 0;
 	start.y = 0;
 	// start.color = 0xFFFF00;//
-	// my_put_square(&img, &start, 32);
+	// my_put_square(&img, &start, CELL_SIZE);
 	while (i < 4)//for hardcoded example
 	{
 		j = 0;
@@ -63,23 +63,23 @@ void	draw_minimap(t_cubed *cubed)
 				start.color = 0x666666;
 			else
 			{
-				start.color = 0x666666;//yellow
-				cubed->player.y = i * 32;
-				cubed->player.x = j * 32;
-				cubed->player.color = 0xFFFF00;
+				start.color = 0x666666;//gray
+				cubed->player.y = i * CELL_SIZE;
+				cubed->player.x = j * CELL_SIZE;
+				cubed->player.color = 0xFFFF00;//yellow
 			}
-			my_put_square(&img, start, 32);
+			my_put_square(&img, start, CELL_SIZE);
 			j++;
-			start.x += 32;
+			start.x += CELL_SIZE;
 		}
 		start.x = 0;
-		start.y += 32;
+		start.y += CELL_SIZE;
 		i++;
 	}
 	start.x = 0;
 	start.y = 0;
 	start.color = 0x00FF00;
-	my_put_grid(&img, &start, 32, 5, 4);
+	my_put_grid(&img, &start, CELL_SIZE, 5, 4);
 	my_put_square(&img, cubed->player, 10);
 	
 	mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
