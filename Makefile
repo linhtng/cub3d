@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/07/19 18:16:09 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/19 18:35:21 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ LINKS = -lmlx -framework OpenGL -framework AppKit
 
 SRC := ray_cast_main.c \
 		 ft_bresenham.c \
-		 draw_minimap.c
+		 draw_minimap.c \
+		 drawing_utils1.c \
+		 ft_mlx_close.c \
+		 handle_press.c \
 
 SRCFD = srcs/
 OBJSFD = objs/
