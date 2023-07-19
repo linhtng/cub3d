@@ -15,7 +15,6 @@ int	main(int argc, char **argv)
 {
 	int				fd;
 	t_scene	    	scene;
-	char			**map;
 
 	if (argc == 2)
 	{
@@ -25,10 +24,11 @@ int	main(int argc, char **argv)
 		if (fd == -1)
 			clean_exit("File cannot be opened.\n");
 		correct_extension(argv[1], fd);
-		ft_bzero(&scene, sizeof(t_scene));
-		map = get_valid_map(fd, &scene);
-		if (map)
-			game_init(map, scene);
+		ft_memset(&scene, 0, sizeof(t_scene));
+		ft_memset(&scene.elems, 0, sizeof(t_elem));
+		if (valid_map(fd, &scene))
+			print_arr(scene.array);
+		close(fd);
 	}
 	else
 		printf("Number of parameters must be 1.\n");

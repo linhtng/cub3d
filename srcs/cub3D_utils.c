@@ -59,6 +59,16 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
+int	arr_len(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+		i++;
+	return (i);
+}
+
 void	correct_extension(const char *argv, int fd)
 {
 	size_t		len;
