@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:40:30 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:42:26 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_minimap(t_cubed *cubed)
 	start.x = 0;
 	start.y = 0;
 	start.color = 0x00FF00;
-	my_put_grid(&img, &start, CELL_SIZE, 5, 4);
+	my_put_grid(&img, &start, 5, 4);
 	my_put_square(&img, cubed->player, 10);
 	
 	mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
