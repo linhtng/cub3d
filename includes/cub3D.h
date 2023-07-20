@@ -27,7 +27,7 @@ typedef struct s_elem
 	char	*west;
 	int		floor_colors[3];
 	int		ceiling_colors[3];
-	int		elem_num;
+	int		filled_elem;
 }	t_elem;
 
 typedef struct s_scene
@@ -36,8 +36,7 @@ typedef struct s_scene
 	int			width;
 	char		**array;
 	t_elem		elems;
-	int			*floor_color;
-	int			*ceiling_color;
+	int			err_flag;
 }	t_scene;
 
 /* cub3D_utils */
@@ -49,10 +48,11 @@ int		arr_len(char **arr);
 void	free_arr(char **arr);
 
 /* cub3D_map */
-int	valid_map(int fd, t_scene *scene);
+int		get_map(int fd, t_scene *scene);
 
 /* cub3D_debug */
 void	print_arr(char **arr);
+void	print_scene(t_scene *scene);
 
 #endif
 

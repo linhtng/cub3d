@@ -26,11 +26,11 @@ int	main(int argc, char **argv)
 		correct_extension(argv[1], fd);
 		ft_memset(&scene, 0, sizeof(t_scene));
 		ft_memset(&scene.elems, 0, sizeof(t_elem));
-		if (valid_map(fd, &scene))
-			print_arr(scene.array);
-		close(fd);
+		if (get_map(fd, &scene))
+			print_scene(&scene);
 	}
 	else
 		printf("Number of parameters must be 1.\n");
+	free(scene.array);
 	return (0);
 }

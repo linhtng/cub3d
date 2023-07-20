@@ -9,48 +9,31 @@
 /*   Updated: 2022/10/29 15:50:27 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-static int	overflow(long result, int sign)
-{
-	int	overflow_res;
-
-	overflow_res = 1;
-	if ((result * sign) > 2147483648)
-		overflow_res = -1;
-	if ((result * sign) < -2147483648)
-		overflow_res = 0;
-	return (overflow_res);
-}
-
-static int	ft_isspace(int c)
-{
-	return (c == '\t' || c == '\v'
-		|| c == '\f' || c == '\r' || c == '\n' || c == ' ');
-}
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
-	int		digit_nr;
 	long	result;
-	int		sign;
 
-	digit_nr = 0;
 	result = 0;
-	sign = 1;
 	while (ft_isspace(*str))
 		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
+	if (*str == '+')
 		str++;
-	}
-	while (*str >= '0' && *str <= '9' && digit_nr < 10)
+	while (*str)
 	{
+		if (!ft_isdigit(*str))
+			break ;
 		result = result * 10 + *str - '0';
-		digit_nr++;
 		str++;
 	}
-	if (overflow(result, sign) != 1)
-		result = overflow(result, sign);
-	return (result * sign);
+	if (*str && ft_isspace(*str))
+	{
+		while (ft_isspace(*str))
+			str++;
+	}
+	if (!*str)
+		return (result);
+	else
+		return (-1);
 }
