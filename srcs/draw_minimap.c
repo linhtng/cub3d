@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/20 10:44:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:43:34 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,34 @@ void	draw_player(t_cubed *cubed, t_scene *scene)
 	cubed->player_img->img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);//
 	cubed->player_img->addr = mlx_get_data_addr(cubed->player_img->img, &(cubed->player_img->bits_per_pixel), &(cubed->player_img->line_length),  &(cubed->player_img->endian));
 	ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//creates transparent
-	player_loc = cubed->player;
-	direction = scene->map[cubed->player.y / CELL_SIZE][cubed->player.x / CELL_SIZE];
+	player_loc = cubed->player.location;
+	direction = scene->map[cubed->player.location.y / CELL_SIZE][cubed->player.location.x / CELL_SIZE];
 	printf("PLAYER CHARACTER IS: %c\n", direction);
 	if (direction == 'N')
 	{
 		player_loc.y -= 10;
+		cubed->player.direction = 90.0f;
 		my_put_line_v(cubed->player_img, &player_loc, 10);
 	}
 	if (direction == 'S')
 	{
 		player_loc.y += 10;
+		cubed->player.direction = 270.0f;
 		my_put_line_v(cubed->player_img, &player_loc, 10);
 	}
 	if (direction == 'E')
 	{
 		player_loc.x += 10;
+		cubed->player.direction = 0.0f;
 		my_put_line_h(cubed->player_img, &player_loc, 10);
 	}
 	if (direction == 'W')
 	{
 		player_loc.x -= 10;
+		cubed->player.direction = 180.0f;
 		my_put_line_h(cubed->player_img, &player_loc, 10);
 	}
-	my_put_square(cubed->player_img, cubed->player, 10);
+	my_put_square(cubed->player_img, cubed->player.location, 10);
 }
 
 void	draw_minimap(t_cubed *cubed, t_scene *scene)
@@ -95,9 +99,9 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 			else
 			{
 				start.color = 0x666666;//gray
-				cubed->player.y = i * CELL_SIZE;
-				cubed->player.x = j * CELL_SIZE;
-				cubed->player.color = 0xFFFF00;//yellow
+				cubed->player.location.y = i * CELL_SIZE;
+				cubed->player.location.x = j * CELL_SIZE;
+				cubed->player.location.color = 0xFFFF00;//yellow
 			}
 			my_put_square(&img, start, CELL_SIZE);
 			j++;
@@ -113,6 +117,10 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	my_put_grid(&img, &start, scene->columns, scene->lines);
 	//draw player
 	draw_player(cubed, scene);
+	shoot_one_ray_horizontal(cubed, scene, 60.0f);//
+	shoot_one_ray_horizontal(cubed, scene, 115.0f);//
+	shoot_one_ray_horizontal(cubed, scene, 189.0f);//
+	shoot_one_ray_horizontal(cubed, scene, 287.0f);//
 	//render order?
 	mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);
