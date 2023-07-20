@@ -6,12 +6,14 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:53:14 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:44:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "libft.h"
+#include "cub3D.h"
+
 // // [4][5]
 // char **MAP_1 = {
 // 	"11111",
@@ -30,21 +32,49 @@
 // 	"1111111111"
 // };
 
-void	draw_minimap(t_cubed *cubed)
+void	draw_player(t_cubed *cubed, t_scene *scene)
 {
-// [4][5]
-	char *MAP_1[4] = {
-		"11111",
-		"10001",
-		"1N001",
-		"11111"
-	};
+	t_vector	player_loc;
+	char		direction;
+
+	cubed->player_img->img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);//
+	cubed->player_img->addr = mlx_get_data_addr(cubed->player_img->img, &(cubed->player_img->bits_per_pixel), &(cubed->player_img->line_length),  &(cubed->player_img->endian));
+	ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//creates transparent
+	player_loc = cubed->player;
+	direction = scene->map[cubed->player.y / CELL_SIZE][cubed->player.x / CELL_SIZE];
+	printf("PLAYER CHARACTER IS: %c\n", direction);
+	if (direction == 'N')
+	{
+		player_loc.y -= 10;
+		my_put_line_v(cubed->player_img, &player_loc, 10);
+	}
+	if (direction == 'S')
+	{
+		player_loc.y += 10;
+		my_put_line_v(cubed->player_img, &player_loc, 10);
+	}
+	if (direction == 'E')
+	{
+		player_loc.x += 10;
+		my_put_line_h(cubed->player_img, &player_loc, 10);
+	}
+	if (direction == 'W')
+	{
+		player_loc.x -= 10;
+		my_put_line_h(cubed->player_img, &player_loc, 10);
+	}
+	my_put_square(cubed->player_img, cubed->player, 10);
+}
+
+void	draw_minimap(t_cubed *cubed, t_scene *scene)
+{
 
 	t_img_data img;
 	int i;
 	int j;
 	t_vector start;
 
+	// cubed->img->img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);//segfaults???
 	img.img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &(img.bits_per_pixel), &(img.line_length),  &(img.endian));
 	cubed->img = &img;
@@ -53,14 +83,14 @@ void	draw_minimap(t_cubed *cubed)
 	start.y = 0;
 	// start.color = 0xFFFF00;//
 	// my_put_square(&img, &start, CELL_SIZE);
-	while (i < 4)//for hardcoded example
+	while (i < scene->lines)//for hardcoded example
 	{
 		j = 0;
-		while (j < 5)
+		while (j < scene->columns)
 		{
-			if (MAP_1[i][j] == '1')
+			if (scene->map[i][j] == '1')
 				start.color = 0xFF0000;//red
-			else if (MAP_1[i][j] == '0')
+			else if (scene->map[i][j] == '0')
 				start.color = 0x666666;
 			else
 			{
@@ -80,12 +110,9 @@ void	draw_minimap(t_cubed *cubed)
 	start.x = 0;
 	start.y = 0;
 	start.color = 0x00FF00;
-	my_put_grid(&img, &start, 5, 4);
+	my_put_grid(&img, &start, scene->columns, scene->lines);
 	//draw player
-	cubed->player_img->img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);//
-	cubed->player_img->addr = mlx_get_data_addr(cubed->player_img->img, &(cubed->player_img->bits_per_pixel), &(cubed->player_img->line_length),  &(cubed->player_img->endian));
-	ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//createes transparent
-	my_put_square(cubed->player_img, cubed->player, 10);
+	draw_player(cubed, scene);
 	//render order?
 	mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);

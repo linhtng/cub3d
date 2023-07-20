@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/20 10:04:06 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:19:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <stdlib.h>
 /* for write */
 # include <unistd.h> 
+
+# include "cub3D.h"//
 
 # define CELL_SIZE 32
 # define WIN_WIDTH 1920
@@ -71,8 +73,10 @@ typedef	struct s_bham_info
 	int				d2;
 }				t_bham_info;
 
-void	draw_minimap(t_cubed *cubed);
-void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
+/* draw minimap */
+void	draw_minimap(t_cubed *cubed, t_scene *scene);
+
+/* ft_bresenham.c */
 void	ft_bresenham(t_vector one, t_vector two, t_cubed *cubed);
 
 /* drawing_utils1 */
