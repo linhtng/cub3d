@@ -6,13 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 16:44:58 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:57:19 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 
-static int		ft_abs(int val)
+int		ft_abs(int val)
 {
 	if (val < 0)
 		return (val * -1);
@@ -40,7 +40,7 @@ void	ft_bresenham(t_vector one, t_vector two, t_cubed *cubed)
 	set_up_bresenham(&line_info, &one, &two);
 	while (42)
 	{
-		my_mlx_pixel_put(cubed->img, one.x, one.y, 0x00FF00);
+		my_mlx_pixel_put(cubed->img, one.x, one.y, one.color);
 		if (one.x == two.x && one.y == two.y)
 			break ;
 		line_info.d2 = line_info.decision * 2;
