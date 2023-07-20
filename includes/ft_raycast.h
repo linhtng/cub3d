@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/19 18:42:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:04:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@
 # define CELL_SIZE 32
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+
+enum	e_keys
+{
+	FORWARD = 13,
+	BACK = 1,
+	LEFT = 0,
+	RIGHT = 2,
+	TURN_LEFT = 123,
+	TURN_RIGHT = 124,
+	ESC = 53
+};
 
 typedef struct s_vector
 {
