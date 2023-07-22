@@ -18,6 +18,8 @@ int	ft_atoi(const char *str)
 	result = 0;
 	while (ft_isspace(*str))
 		str++;
+	if (!*str)
+		return (-1);
 	if (*str == '+')
 		str++;
 	while (*str)

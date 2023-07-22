@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:35:28 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/18 16:35:38 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/22 20:59:47 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "cub3D.h"
 
-void	clean_exit(char *message)
+int	err_msg(char *message)
 {
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	exit(EXIT_FAILURE);
+	printf("Error\n");
+	printf("%s\n", message);
+	return (ERROR);
 }
 
 // helper that checks whether the path is a directory
@@ -69,16 +70,14 @@ int	arr_len(char **arr)
 	return (i);
 }
 
-void	correct_extension(const char *argv, int fd)
+int	correct_extension(const char *argv, char *ending)
 {
 	size_t		len;
 	const char	*extension;
 
 	len = ft_strlen(argv);
-	extension = ft_strnstr(argv, ".cub", len);
-	if (!extension || ft_strlen(extension) != 4)
-	{
-        close(fd);
-        clean_exit("Map must have .cub extension\n");
-    }
+	extension = ft_strnstr(argv, ending, len);
+	if (!extension || ft_strncmp(extension, ending, ft_strlen(ending) + 1))
+        return(0);
+	return (1);
 }
