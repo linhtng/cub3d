@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/07/22 20:31:12 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/07/24 19:12:59 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@ NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
+CDEBUG = -g3 -fsanitize=address
 
 SRC = cub3D_main.c \
 	cub3D_utils.c \
 	cub3D_map.c \
+	cub3D_map_elems.c \
 	cub3D_debug.c \
 
 SRCFD = srcs/
@@ -39,10 +41,10 @@ all : $(NAME)
 
 $(OBJSFD)%.o: $(SRCFD)%.c
 	@mkdir -p $(OBJSFD)
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) $(CDEBUG) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBS) $(LINKS) $^ -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $(LIBS) $(LINKS) $^ -o $@
 
 $(LIBFT) :
 	make -C $(LIBFT_PATH)

@@ -6,21 +6,34 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/22 21:01:17 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:29:30 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int check_input_file(char *argv, int fd)
+int check_input_file(char *argv, int fd, char *extension)
 {
     if (fd == -1)
-        return (err_msg("File cannot be opened."));
+        return (err_msg(2, argv, "File cannot be opened."));
 	if (ft_is_dir(argv))
-		return (err_msg("Argument can't be a dir."));
-	if (!correct_extension(argv, ".cub"))
-        return (err_msg("Map must have .cub extension."));
+		return (err_msg(2, argv, "Argument can't be a dir."));
+	if (!correct_extension(argv, extension))
+        return (err_msg(2, argv, "Invalid file extension"));
     return (1);
+}
+
+void	init_scene(t_scene *scene)
+{
+	ft_memset(scene, 0, sizeof(t_scene));
+	ft_memset(&scene->elems, 0, sizeof(t_elem));
+	ft_memset(&scene->map, 0, sizeof(t_map));
+	scene->elems.north = NULL;
+	scene->elems.south = NULL;
+	scene->elems.east = NULL;
+	scene->elems.west = NULL;
+	scene->array = NULL;
+	scene->map.array = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -31,18 +44,17 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		if (check_input_file(argv[1], fd) == ERROR)
+		if (check_input_file(argv[1], fd, ".cub") == ERROR)
 		{
 			close(fd);
 			return (EXIT_FAILURE);
 		}
-		ft_memset(&scene, 0, sizeof(t_scene));
-		ft_memset(&scene.elems, 0, sizeof(t_elem));
-		if (get_map(fd, &scene) == ERROR)
+		init_scene(&scene);
+		if (get_map(fd, &scene) != ERROR)
 			print_scene(&scene);
+		free(scene.array);
 	}
 	else
 		printf("Number of parameters must be 1.\n");
-	free(scene.array);
 	return (0);
 }
