@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/20 17:43:34 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:22:29 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,13 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	//draw player
 	draw_player(cubed, scene);
 	shoot_one_ray_horizontal(cubed, scene, 60.0f);//
+	shoot_one_ray_vertical(cubed, scene, 60.0f);//
 	shoot_one_ray_horizontal(cubed, scene, 115.0f);//
+	shoot_one_ray_vertical(cubed, scene, 115.0f);//
 	shoot_one_ray_horizontal(cubed, scene, 189.0f);//
+	shoot_one_ray_vertical(cubed, scene, 189.0f);//
 	shoot_one_ray_horizontal(cubed, scene, 287.0f);//
+	shoot_one_ray_vertical(cubed, scene, 287.0f);//
 	//render order?
 	mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);
