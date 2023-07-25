@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/24 16:50:29 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:41:27 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 			else
 			{
 				start.color = 0x666666;//gray
-				cubed->player.location.y = i * CELL_SIZE;
-				cubed->player.location.x = j * CELL_SIZE;
+				cubed->player.location.y = i * CELL_SIZE + CELL_SIZE / 2;
+				cubed->player.location.x = j * CELL_SIZE + CELL_SIZE / 2;
 				cubed->player.location.color = 0xFFFF00;//yellow
 			}
 			my_put_square(&img, start, CELL_SIZE);
@@ -119,10 +119,10 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	draw_player(cubed, scene);
 	shoot_one_ray_horizontal(cubed, scene, 60.0f);//
 	shoot_one_ray_vertical(cubed, scene, 60.0f);//
-	shoot_one_ray_horizontal(cubed, scene, 115.0f);//
-	shoot_one_ray_vertical(cubed, scene, 115.0f);//
-	shoot_one_ray_horizontal(cubed, scene, 189.0f);//
-	shoot_one_ray_vertical(cubed, scene, 189.0f);//
+	shoot_one_ray_horizontal(cubed, scene, 125.0f);//
+	shoot_one_ray_vertical(cubed, scene, 125.0f);//
+	shoot_one_ray_horizontal(cubed, scene, 196.0f);//
+	shoot_one_ray_vertical(cubed, scene, 196.0f);//
 	shoot_one_ray_horizontal(cubed, scene, 287.0f);//
 	shoot_one_ray_vertical(cubed, scene, 287.0f);//
 	//render order?
