@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 18:38:08 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:42:07 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle)
 		ray.grid.x = (int)ray.map.x / CELL_SIZE;
 		ray.grid.y = (int)ray.map.y / CELL_SIZE;
 		printf("GRID XY: %f, %f DOF: %i\n", ray.grid.x, ray.grid.y, ray.dof);
-		if (ray.grid.y >= 0 && (ray.grid.x < scene->columns && ray.grid.y < scene->lines && scene->map[(int)ray.grid.y][(int)ray.grid.x] == '1')) //(ray.grid.x < 0 || ray.grid.y < 0 || ray.grid.x > scene->columns || ray.grid.y < scene->lines)
+		if (ray.grid.x >= 0 && ray.grid.y >= 0 && (ray.grid.x < scene->columns && ray.grid.y < scene->lines && scene->map[(int)ray.grid.y][(int)ray.grid.x] == '1')) //(ray.grid.x < 0 || ray.grid.y < 0 || ray.grid.x > scene->columns || ray.grid.y < scene->lines)
 			ray.dof = MAX_DOF;
 		else
 		{
