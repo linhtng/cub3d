@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 13:50:37 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:08:15 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define WIN_HEIGHT 1080
 # define PROJECTION_WIDTH 320
 # define PROJECTION_HEIGHT 200
+# define MAX_DOF 8
 
 enum	e_keys
 {
