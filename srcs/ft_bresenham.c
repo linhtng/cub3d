@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/20 14:57:19 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:50:15 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,42 @@ int		ft_abs(int val)
 
 static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, t_vector *two)
 {
-	line_info->deltas.x = ft_abs(two->x - one->x);
-	line_info->deltas.y = ft_abs(two->y - one->y) * -1;
+	line_info->deltas.x = ft_abs((int) two->x - (int) one->x);
+	line_info->deltas.y = ft_abs((int) two->y - (int) one->y) * -1;
 	line_info->x_slope = 1;
-	if (one->x > two->x)
+	if ((int) one->x > (int) two->x)
 		line_info->x_slope = -1;
 	line_info->y_slope = 1;
-	if (one->y > two->y)
+	if ((int) one->y > (int) two->y)
 		line_info->y_slope = -1;
-	line_info->decision = line_info->deltas.x + line_info->deltas.y;
+	line_info->decision = (int) line_info->deltas.x + (int) line_info->deltas.y;
 	line_info->d2 = line_info->decision * 2;
 }
 
-void	ft_bresenham(t_vector one, t_vector two, t_cubed *cubed)
+void	ft_bresenham(t_vector one, t_vector two, t_img_data *img)
 {
 	t_bham_info line_info;
 
 	set_up_bresenham(&line_info, &one, &two);
 	while (42)
 	{
-		my_mlx_pixel_put(cubed->img, one.x, one.y, one.color);
-		if (one.x == two.x && one.y == two.y)
+		my_mlx_pixel_put(img, one.x, one.y, one.color);
+		if ((int) one.x == (int) two.x && (int) one.y == (int) two.y)
 			break ;
 		line_info.d2 = line_info.decision * 2;
-		if (line_info.d2 >= line_info.deltas.y)
+		if (line_info.d2 >= (int) line_info.deltas.y)
 		{
 			if (one.x == two.x)
 				break ;
-			line_info.decision += line_info.deltas.y;
+			line_info.decision += (int) line_info.deltas.y;
 			one.x += line_info.x_slope;
 		}
-		if (line_info.d2 <= line_info.deltas.x)
+		if (line_info.d2 <= (int) line_info.deltas.x)
 		{
-			if (one.y == two.y)
+			if ((int) one.y == (int) two.y)
 				break ;
-			line_info.decision += line_info.deltas.x;
-			one.y += line_info.y_slope;
+			line_info.decision += (int) line_info.deltas.x;
+			one.y += (int) line_info.y_slope;
 		}
 	}
 }
