@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/24 14:58:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:50:37 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ enum	e_keys
 //change to floats?
 typedef struct s_vector
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 	int	color;
 }				t_vector;
 
@@ -63,7 +63,8 @@ typedef struct s_player
 {
 	struct s_vector		location;
 	// struct s_img_data	*player_img;
-	float				direction;
+	float				angle;
+	struct s_vector		d;
 	float				distance_to_pane;// calculate based on field of vison and projection pane dimensions
 	float				height;
 }				t_player;
@@ -96,20 +97,22 @@ typedef struct s_raycast
 
 typedef struct s_ray_calc
 {
-	struct s_vector	dir_modifier;//
-	struct s_vector	map_intersection;
-	struct s_vector	grid_intersection;
+	struct s_vector	dir_modifier;//remove?
+	struct s_vector	map;
+	struct s_vector	grid; //move to hit check function only?
+	float			tan;
+	float			cotan;
 	float			h_distance;
 	float			v_distance;
-	float			x_inc;
-	float			y_inc;
+	struct s_vector	vd;
+	struct s_vector	hd;
 }					t_ray_calc;
 
 /* draw minimap */
 void	draw_minimap(t_cubed *cubed, t_scene *scene);
 
 /* ft_bresenham.c */
-void	ft_bresenham(t_vector one, t_vector two, t_cubed *cubed);
+void	ft_bresenham(t_vector one, t_vector two, t_img_data *img);
 int		ft_abs(int val);
 
 /* drawing_utils1 */
@@ -128,5 +131,7 @@ int		mlx_close(t_cubed *cubed, int exit_code, char *exit_msg);
 /* calculate_rays.c */
 void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle);
 void	shoot_one_ray_vertical(t_cubed *cubed, t_scene *scene, float angle);
+float	deg_to_rad(float degrees);
+float	correct_degrees(float degrees);
 
 #endif
