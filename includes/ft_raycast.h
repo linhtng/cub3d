@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 14:08:15 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:41:54 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_player
 
 typedef struct s_cubed
 {
+	struct s_scene		*scene;
 	void				*mlx;
 	void				*window;
 	struct s_img_data	*img;
@@ -98,13 +99,14 @@ typedef struct s_raycast
 
 typedef struct s_ray_calc
 {
-	struct s_vector	dir_modifier;//remove?
+	float			angle;
+	int				dof;
 	struct s_vector	map;
 	struct s_vector	grid; //move to hit check function only?
 	float			tan;
 	float			cotan;
-	float			h_distance;
-	float			v_distance;
+	float			h_distance;//?
+	float			v_distance;//?
 	struct s_vector	vd;
 	struct s_vector	hd;
 }					t_ray_calc;
