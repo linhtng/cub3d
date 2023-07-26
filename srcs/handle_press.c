@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 13:51:27 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:08:03 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	turn_player(t_cubed *cubed, int key_code)
 	
 	if (key_code == TURN_LEFT)
 	{
-		cubed->player.angle = correct_degrees(cubed->player.angle - 5);//turn 5 deg at a time
+		cubed->player.angle = correct_degrees(cubed->player.angle - 1);//turn 5 deg at a time
 	}
 	else
 	{
-		cubed->player.angle = correct_degrees(cubed->player.angle + 5);//turn 5 deg at a time	
+		cubed->player.angle = correct_degrees(cubed->player.angle + 1);//turn 5 deg at a time	
 	}
 	cubed->player.d.x = cos(deg_to_rad(cubed->player.angle)) * 5;
 	cubed->player.d.y = sin(deg_to_rad(cubed->player.angle)) * 5;
@@ -40,6 +40,9 @@ void	turn_player(t_cubed *cubed, int key_code)
 	temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 	temp.y = cubed->player.location.y + cubed->player.d.y * 5;
 	ft_bresenham(cubed->player.location, temp, cubed->player_img);
+	printf("PLAYER ANGLE: %f\n", cubed->player.angle);//
+	// shoot_one_ray_horizontal(cubed, cubed->scene, cubed->player.angle);//
+	shoot_one_ray_vertical(cubed, cubed->scene, cubed->player.angle);//
 	refresh_images(cubed);
 }
 
