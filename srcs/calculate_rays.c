@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 17:48:56 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:38:08 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle)
 	t_ray_calc ray;
 
 	ray.angle = angle;
-	ray.dof = 0;
 	ray.cotan = 1.0 / tan(deg_to_rad(ray.angle));//or cotan???
 	if (sin(deg_to_rad(ray.angle)) > 0.001) //looking down ray.angle > 180
 	{
@@ -56,16 +55,17 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle)
 	{
 		ray.map.x = cubed->player.location.x;
 		ray.map.y = cubed->player.location.y;
-		ray.dof = 8;
+		ray.dof = MAX_DOF;
 	}
 	//check hit wall
+	ray.dof = 0;
 	while (ray.dof < MAX_DOF)
 	{
 		ray.grid.x = (int)ray.map.x / CELL_SIZE;
 		ray.grid.y = (int)ray.map.y / CELL_SIZE;
 		printf("GRID XY: %f, %f DOF: %i\n", ray.grid.x, ray.grid.y, ray.dof);
 		if (ray.grid.y >= 0 && (ray.grid.x < scene->columns && ray.grid.y < scene->lines && scene->map[(int)ray.grid.y][(int)ray.grid.x] == '1')) //(ray.grid.x < 0 || ray.grid.y < 0 || ray.grid.x > scene->columns || ray.grid.y < scene->lines)
-			ray.dof = 8;
+			ray.dof = MAX_DOF;
 		else
 		{
 			ray.map.x += ray.hd.x;
@@ -85,7 +85,6 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_scene *scene, float angle)
 	t_ray_calc ray;
 
 	ray.angle = angle;
-	ray.dof = 0;
 	ray.tan = tan(deg_to_rad(ray.angle));
 	if (cos(deg_to_rad(ray.angle)) < -0.001) //looking left?
 	{
@@ -108,6 +107,7 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_scene *scene, float angle)
 		ray.dof = MAX_DOF;
 	}
 	//check hit wall
+	ray.dof = 0;
 	while (ray.dof < MAX_DOF)
 	{
 		ray.grid.x = (int)ray.map.x / CELL_SIZE;
