@@ -19,10 +19,11 @@ void	print_scene(t_scene *scene)
 
 	i = 0;
 	print_arr(scene->array);
+	print_arr(scene->map.array);
 	printf("NO: %s\n", scene->elems.north);
 	printf("SO: %s\n", scene->elems.south);
 	printf("WE: %s\n", scene->elems.west);
 	printf("EA: %s\n", scene->elems.east);
-	printf("floor color: %d, %d, %d\n", scene->elems.floor_colors[0], scene->elems.floor_colors[1], scene->elems.floor_colors[2]);
-	printf("ceiling color: %d, %d, %d\n", scene->elems.ceiling_colors[0], scene->elems.ceiling_colors[1], scene->elems.ceiling_colors[2]);
+	printf("floor color: %d, %d, %d\n", scene->elems.fl_colors[0], scene->elems.fl_colors[1], scene->elems.fl_colors[2]);
+	printf("ceiling color: %d, %d, %d\n", scene->elems.c_colors[0], scene->elems.c_colors[1], scene->elems.c_colors[2]);
 }

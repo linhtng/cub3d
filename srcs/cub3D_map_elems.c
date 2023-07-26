@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/24 20:24:39 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:47:12 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,30 @@ static int	get_texture(t_scene *scene, char *elem_id, char *texture, int len)
 	return (ret);
 }
 
-static int	get_rgb_color(t_scene *scene, char **color_arr, int id, char *scene_line)
+static int	get_rgb_color(t_scene *scene, char **color, int id, char *line)
 {
 	int	i;
 
 	i = 0;
 	if (id == FLOOR)
 	{
-		scene->elems.floor_colors[0] = ft_atoi(&(color_arr[0])[1]);
-		scene->elems.floor_colors[1] = ft_atoi(color_arr[1]);
-		scene->elems.floor_colors[2] = ft_atoi(color_arr[2]);
-		scene->elems.floor_colors[3]++;
+		scene->elems.fl_colors[0] = ft_atoi(&(color[0])[1]);
+		scene->elems.fl_colors[1] = ft_atoi(color[1]);
+		scene->elems.fl_colors[2] = ft_atoi(color[2]);
+		scene->elems.fl_colors[3]++;
 	}
 	if (id == CEILING)
 	{
-		scene->elems.ceiling_colors[0] = ft_atoi(&(color_arr[0])[1]);
-		scene->elems.ceiling_colors[1] = ft_atoi(color_arr[1]);
-		scene->elems.ceiling_colors[2] = ft_atoi(color_arr[2]);
-		scene->elems.ceiling_colors[3]++;
+		scene->elems.c_colors[0] = ft_atoi(&(color[0])[1]);
+		scene->elems.c_colors[1] = ft_atoi(color[1]);
+		scene->elems.c_colors[2] = ft_atoi(color[2]);
+		scene->elems.c_colors[3]++;
 	}
 	while (i < 3)
 	{
-		if (scene->elems.floor_colors[i] < 0 || scene->elems.floor_colors[i] > 255
-			|| scene->elems.ceiling_colors[i] < 0 || scene->elems.ceiling_colors[i] > 255)
-			return (err_msg(2, scene_line, "Floor/ceiling color invalid."));
+		if (scene->elems.fl_colors[i] < 0 || scene->elems.fl_colors[i] > 255
+			|| scene->elems.c_colors[i] < 0 || scene->elems.c_colors[i] > 255)
+			return (err_msg(2, line, "Floor/ceiling color invalid."));
 		i++;
 	}
 	return (1);
@@ -97,9 +97,9 @@ static int	get_scene_color(t_scene *scene, char *scene_line)
 	color_arr = ft_split(scene_line, ',');
 	if (!color_arr || arr_len(color_arr) != 3)
 		return (err_msg(2, "Invalid color info.", scene_line));
-	if (color_arr[0][0] == 'F' && !scene->elems.floor_colors[3])
+	if (color_arr[0][0] == 'F' && !scene->elems.fl_colors[3])
 		ret = get_rgb_color(scene, color_arr, FLOOR, scene_line);
-	else if (color_arr[0][0] == 'C' && !scene->elems.ceiling_colors[3])
+	else if (color_arr[0][0] == 'C' && !scene->elems.c_colors[3])
 		ret = get_rgb_color(scene, color_arr, CEILING, scene_line);
 	free_arr(color_arr);
 	return (ret);
@@ -117,7 +117,6 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 	if (!single_elem || !ft_strchr("NOSWEAFC", single_elem[0][0]))
 	{
 		scene->err_flag = 1;
-		//printf("%s\n", single_elem[0]);
 		return (0);
 	}
 	ret = 0;

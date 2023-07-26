@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/07/24 19:12:59 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/07/26 20:28:22 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = cub3D_main.c \
 	cub3D_utils.c \
 	cub3D_map.c \
 	cub3D_map_elems.c \
+	cub3D_map_content.c \
 	cub3D_debug.c \
 
 SRCFD = srcs/

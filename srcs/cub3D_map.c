@@ -6,13 +6,13 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/24 20:35:55 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:48:02 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static char	*get_scene_string(int fd)
+static char	*get_scene_string(t_scene *scene, int fd)
 {
 	char	*buf;
 	char	*raw_str;
@@ -23,6 +23,7 @@ static char	*get_scene_string(int fd)
 	buf = get_next_line(fd);
 	while (buf)
 	{
+		scene->len++;
 		raw_str = ft_strjoin(raw_str, buf);
 		if (!raw_str)
 		{
@@ -40,17 +41,36 @@ static char	*get_scene_string(int fd)
 	return (trimmed_str);
 }
 
-/* int	get_map_content(char **scene_arr, t_scene *scene, int i)
+static int	get_scene_arr(t_scene *scene, char *scene_str, int len)
 {
-	while (ft_isemptystr(scene_arr[i]))
-		i++;
-	while (scene_arr[i])
-	{
-		if (!ft_isdigit)
-	}
-} */
+	char	*endl;
+	char	*begin;
+	char	**arr;
 
-int	get_map_elems(char **scene_arr, t_scene *scene)
+	endl = ft_strchr(scene_str, '\n');
+	begin = scene_str;
+	arr = scene->array;
+	while (endl)
+	{
+		*arr = ft_substr(scene_str, (size_t) (begin - scene_str), (size_t)(endl++ - begin));
+		if (!*arr)
+			return (err_msg(1, "Malloc err when getting the scene_arr."));
+		scene->len++;
+		arr++;
+		begin = endl;
+		endl = ft_strchr(begin, '\n');
+	}
+	if (begin)
+	{
+		*arr = ft_substr(scene_str, (size_t) (begin - scene_str), (size_t)(&scene_str[len] - begin));
+		if (!*arr)
+			return (err_msg(1, "Malloc err when getting the scene_arr."));
+		scene->len++;
+	}
+	return (1);
+}
+
+static int	get_map_elems(char **scene_arr, t_scene *scene)
 {
 	int		i;
 
@@ -65,47 +85,45 @@ int	get_map_elems(char **scene_arr, t_scene *scene)
 			if (scene->err_flag)
 				return (err_msg(2, "line where err encountered:", scene_arr[i])); //debug, del later
 			break ;
-			//return (ERROR);
-			//return (err_msg(1, "Scene element(s) invalid and/or missing."));
 		}
 		i++;
 	}
 	if (scene->elems.filled_elem != 6)
 		return (err_msg(1, "Missing element(s) from the scene file."));
-	//printf("%s\n", scene_arr[i]);
-	scene->map.array = &scene_arr[i + 1];
-	printf("Scene map arr:\n");
-	print_arr(scene->map.array);
-	//get_map_content();
-	return (1);
+	while (ft_isemptystr(scene_arr[i + 1]))
+		i++;
+	return (get_map_content(&scene_arr[i + 1], scene, i + 1));
 }
 
-int	get_map(int fd, t_scene *scene)
+int	get_scene_data(int fd, t_scene *scene)
 {
 	char	*scene_str;
 	char	**scene_arr;
-	//int		arr_len;	
+	int		ret;
 
-	scene_str = get_scene_string(fd);
+	ret = -1;
+	scene_str = get_scene_string(scene, fd);
 	close(fd);
 	if (!scene_str)
-		return(err_msg(1, "Emty map/Malloc err when getting the scene string."));
-	scene_arr = ft_split(scene_str, '\n');
-	if (!scene_arr)
+		return (err_msg(1, "Emty map/Malloc err when getting the scene str."));
+	scene_arr = (char **) ft_calloc(scene->len + 1, sizeof(char *));
+	if (scene_arr)
 	{
+		scene->array = scene_arr;
+		scene->len = 0;
+		ret = get_scene_arr(scene, scene_str, ft_strlen(scene_str));
 		free(scene_str);
-		return (err_msg(1, "Failed to get the scene array."));
-	}
-	free(scene_str);
-	scene->array = scene_arr;
-	if (get_map_elems(scene_arr, scene) == ERROR || scene->err_flag)
-		return (ERROR);
+		if (ret == 1)
+		{
+			if (get_map_elems(scene->array, scene) == ERROR || scene->err_flag)
+				return (ERROR);
+		}
 	/* if (!valid_elem(scene_arr, scene) || !valid_map_content(scene_arr, scene))
 	{
 		free_arr(scene_arr);
 		printf("Error\nInvalid map\n");
 		return (0);
 	} */
-	return (1);
+	}
+	return (ret);
 }
-

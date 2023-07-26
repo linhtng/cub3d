@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/24 20:09:19 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:30:33 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_elem
 	char	*south;
 	char	*east;
 	char	*west;
-	int		floor_colors[4];
-	int		ceiling_colors[4];
+	int		fl_colors[4];
+	int		c_colors[4];
 	int		filled_elem;
 }	t_elem;
 
@@ -61,10 +61,13 @@ int		arr_len(char **arr);
 void	free_arr(char **arr);
 
 /* cub3D_map */
-int		get_map(int fd, t_scene *scene);
+int		get_scene_data(int fd, t_scene *scene);
 
 /* cub3D_map_elems */
 int		get_scene_elem(t_scene *scene, char *scene_line);
+
+/* cub3D_map_content */
+int		get_map_content(char **scene_arr, t_scene *scene, int i);
 
 /* cub3D_debug */
 void	print_arr(char **arr);

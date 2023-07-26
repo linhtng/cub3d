@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:35:28 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/24 16:46:48 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:42:11 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ int	correct_extension(const char *argv, char *ending)
 	len = ft_strlen(argv);
 	extension = ft_strnstr(argv, ending, len);
 	if (!extension || ft_strncmp(extension, ending, ft_strlen(ending) + 1))
-        return(0);
+		return (0);
 	return (1);
 }

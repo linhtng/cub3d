@@ -6,21 +6,21 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/24 20:29:30 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:32:10 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int check_input_file(char *argv, int fd, char *extension)
+int	check_input_file(char *argv, int fd, char *extension)
 {
-    if (fd == -1)
-        return (err_msg(2, argv, "File cannot be opened."));
+	if (fd == -1)
+		return (err_msg(2, argv, "File cannot be opened."));
 	if (ft_is_dir(argv))
 		return (err_msg(2, argv, "Argument can't be a dir."));
 	if (!correct_extension(argv, extension))
-        return (err_msg(2, argv, "Invalid file extension"));
-    return (1);
+		return (err_msg(2, argv, "Invalid file extension"));
+	return (1);
 }
 
 void	init_scene(t_scene *scene)
@@ -38,8 +38,8 @@ void	init_scene(t_scene *scene)
 
 int	main(int argc, char **argv)
 {
-	int				fd;
-	t_scene	    	scene;
+	int		fd;
+	t_scene	scene;
 
 	if (argc == 2)
 	{
@@ -50,9 +50,11 @@ int	main(int argc, char **argv)
 			return (EXIT_FAILURE);
 		}
 		init_scene(&scene);
-		if (get_map(fd, &scene) != ERROR)
+		if (get_scene_data(fd, &scene) != ERROR)
 			print_scene(&scene);
-		free(scene.array);
+			//print_arr(scene.array);
+		free_arr(scene.array);
+		free_arr(scene.map.array);
 	}
 	else
 		printf("Number of parameters must be 1.\n");
