@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 11:01:17 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:12:39 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define PROJECTION_WIDTH 320
 # define PROJECTION_HEIGHT 200
 # define MAX_DOF 8
+# define FOV 60
 
 enum	e_keys
 {
@@ -138,5 +139,6 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, float angle);
 void	shoot_one_ray_vertical(t_cubed *cubed, float angle);
 float	deg_to_rad(float degrees);
 float	correct_degrees(float degrees);
+void	cast_rays(t_cubed *cubed);
 
 #endif

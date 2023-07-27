@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 11:01:05 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:17:42 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,17 +115,27 @@ void	shoot_one_ray_vertical(t_cubed *cubed, float angle)
 	cubed->player.location.color = 0x000FFF;//
 	ft_bresenham(cubed->player.location, ray.v_map, cubed->player_img);//
 }
-// void	cast_rays(t_cubed *cubed)
-// {
-// 	// initialize info
-// 	t_ray_calc ray;
+void	cast_rays(t_cubed *cubed)
+{
+	// initialize info
+	t_ray_calc ray;
+	// float	angle_inc = FOV / PROJECTION_WIDTH;//
+	int		rays_drawn;
 
-// 	while ( all rays not cast )
-// 	{
-// 		//find v hit
-// 		//find h hit
-// 		//get shortest
-// 		//use that to draw on map
-// 		//do next ray
-// 	}
-// }
+	ray.angle = correct_degrees(cubed->player.angle - FOV / 2);
+	// float	end_angle = correct_degrees(cubed->player.angle + FOV / 2);
+	rays_drawn = 0;
+	while ( rays_drawn < 10 ) //PROJECTION_WIDTH
+	{
+		printf("CAST A RAY!\n");
+		shoot_one_ray_horizontal(cubed, ray.angle);//
+		shoot_one_ray_vertical(cubed, ray.angle);//
+		//find v hit
+		//find h hit
+		//get shortest
+		//use that to draw on map
+		//do next ray
+		ray.angle += 10;//angle_inc;
+		rays_drawn++;
+	}
+}
