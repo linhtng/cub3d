@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 12:50:01 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:46:13 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ float	deg_to_rad(float degrees)
 	float	radians;
 
 	radians  = degrees * (M_PI / 180);
-	// printf("DEG: %f, RAD: %f", degrees, radians);//printed with correct values
 	return (radians);
 }
 
@@ -53,9 +52,6 @@ void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *off
 }
 void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 {
-	// t_ray_calc ray;
-
-	// ray.angle = angle;
 	ray->cotan = 1.0 / tan(deg_to_rad(ray->angle));//or cotan???
 	if (sin(deg_to_rad(ray->angle)) > 0.001) //looking down ray.angle > 180
 	{
@@ -78,17 +74,12 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 		ray->dof = MAX_DOF;
 	}
 	check_hit_wall(cubed, &ray->h_grid, &ray->h_map, &ray->hd);
-	// cubed->player.location.color = 0xFFFFFF;//
-	// ft_bresenham(cubed->player.location, ray->h_map, cubed->player_img);//
 }
 
 
 
 void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 {
-	// t_ray_calc ray;
-
-	// ray.angle = angle;
 	ray->tan = tan(deg_to_rad(ray->angle));
 	if (cos(deg_to_rad(ray->angle)) < -0.001) //looking left?
 	{
@@ -110,10 +101,7 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 		ray->v_map.y = cubed->player.location.y;
 		ray->dof = MAX_DOF;
 	}
-	//check hit wall
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
-	// cubed->player.location.color = 0x000FFF;//
-	// ft_bresenham(cubed->player.location, ray->v_map, cubed->player_img);//
 }
 
 float	get_distance(t_vector *player, t_vector *wall_hit)
