@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 18:42:07 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:55:14 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,57 @@ float	deg_to_rad(float degrees)
 	// printf("DEG: %f, RAD: %f", degrees, radians);//printed with correct values
 	return (radians);
 }
+
+void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *offset)
+{
+	int dof;
+
+	dof = 0;
+	while (dof < MAX_DOF)
+	{
+		grid->x = (int)map->x / CELL_SIZE;
+		grid->y = (int)map->y / CELL_SIZE;
+		if (grid->y >= 0  && grid->x  >= 0 && grid->x < cubed->scene->columns && grid->y < cubed->scene->lines && cubed->scene->map[(int)grid->y][(int)grid->x] == '1')
+			dof = MAX_DOF;
+		else
+		{
+			map->x += offset->x;
+			map->y += offset->y;
+			dof++;
+		}
+	}
+}
 void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle)
 {
+	scene = (void *) scene;
 	t_ray_calc ray;
 
 	ray.angle = angle;
 	ray.cotan = 1.0 / tan(deg_to_rad(ray.angle));//or cotan???
 	if (sin(deg_to_rad(ray.angle)) > 0.001) //looking down ray.angle > 180
 	{
-		ray.map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE - 0.00001;
-		ray.map.x = cubed->player.location.x + ((cubed->player.location.y - ray.map.y) * ray.cotan);
+		ray.h_map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE - 0.00001;
+		ray.h_map.x = cubed->player.location.x + ((cubed->player.location.y - ray.h_map.y) * ray.cotan);
 		ray.hd.y = -CELL_SIZE;
 		ray.hd.x = -ray.hd.y * ray.cotan;
 	}
 	else if (sin(deg_to_rad(ray.angle)) < -0.001) //looking up ray.angle < 180
 	{
-		ray.map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
-		ray.map.x = cubed->player.location.x + ((cubed->player.location.y - ray.map.y) * ray.cotan);
+		ray.h_map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
+		ray.h_map.x = cubed->player.location.x + ((cubed->player.location.y - ray.h_map.y) * ray.cotan);
 		ray.hd.y = CELL_SIZE;
 		ray.hd.x = -ray.hd.y * ray.cotan;		
 	}
 	else //will not hit a horizontal if (ray.angle == 0 || ray.angle == 180)
 	{
-		ray.map.x = cubed->player.location.x;
-		ray.map.y = cubed->player.location.y;
+		ray.h_map.x = cubed->player.location.x;
+		ray.h_map.y = cubed->player.location.y;
 		ray.dof = MAX_DOF;
 	}
 	//check hit wall
-	ray.dof = 0;
-	while (ray.dof < MAX_DOF)
-	{
-		ray.grid.x = (int)ray.map.x / CELL_SIZE;
-		ray.grid.y = (int)ray.map.y / CELL_SIZE;
-		printf("GRID XY: %f, %f DOF: %i\n", ray.grid.x, ray.grid.y, ray.dof);
-		if (ray.grid.x >= 0 && ray.grid.y >= 0 && (ray.grid.x < scene->columns && ray.grid.y < scene->lines && scene->map[(int)ray.grid.y][(int)ray.grid.x] == '1')) //(ray.grid.x < 0 || ray.grid.y < 0 || ray.grid.x > scene->columns || ray.grid.y < scene->lines)
-			ray.dof = MAX_DOF;
-		else
-		{
-			ray.map.x += ray.hd.x;
-			ray.map.y += ray.hd.y;
-			(ray.dof)++;
-		}
-	}
+	check_hit_wall(cubed, &ray.h_grid, &ray.h_map, &ray.hd);
 	cubed->player.location.color = 0xFFFFFF;//
-	ft_bresenham(cubed->player.location, ray.map, cubed->player_img);//
+	ft_bresenham(cubed->player.location, ray.h_map, cubed->player_img);//
 }
 
 
@@ -88,41 +95,40 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_scene *scene, float angle)
 	ray.tan = tan(deg_to_rad(ray.angle));
 	if (cos(deg_to_rad(ray.angle)) < -0.001) //looking left?
 	{
-		ray.map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE - 0.00001;
-		ray.map.y = cubed->player.location.y + ((cubed->player.location.x - ray.map.x) * ray.tan);
+		ray.v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE - 0.00001;
+		ray.v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray.v_map.x) * ray.tan);
 		ray.vd.x = -CELL_SIZE;
 		ray.vd.y = -ray.vd.x * ray.tan;
 	}
 	else if (cos(deg_to_rad(ray.angle)) > 0.001) //looking right?
 	{
-		ray.map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
-		ray.map.y = cubed->player.location.y + ((cubed->player.location.x - ray.map.x) * ray.tan);
+		ray.v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
+		ray.v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray.v_map.x) * ray.tan);
 		ray.vd.x = CELL_SIZE;
 		ray.vd.y = -ray.vd.x * ray.tan;		
 	}
 	else //will not hit a horizontal if (ray.angle == 0 || ray.angle == 180)
 	{
-		ray.map.x = cubed->player.location.x;
-		ray.map.y = cubed->player.location.y;
+		ray.v_map.x = cubed->player.location.x;
+		ray.v_map.y = cubed->player.location.y;
 		ray.dof = MAX_DOF;
 	}
 	//check hit wall
-	ray.dof = 0;
-	while (ray.dof < MAX_DOF)
-	{
-		ray.grid.x = (int)ray.map.x / CELL_SIZE;
-		ray.grid.y = (int)ray.map.y / CELL_SIZE;
-		printf("GRID XY: %f, %f DOF: %i\n", ray.grid.x, ray.grid.y, ray.dof);
-	
-		if (ray.grid.y >= 0  && ray.grid.x  >= 0 && ray.grid.x < scene->columns && ray.grid.y < scene->lines && scene->map[(int)ray.grid.y][(int)ray.grid.x] == '1')
-			ray.dof = MAX_DOF;
-		else
-		{
-			ray.map.x += ray.vd.x;
-			ray.map.y += ray.vd.y;
-			(ray.dof)++;
-		}
-	}
+	check_hit_wall(cubed, &ray.v_grid, &ray.v_map, &ray.vd);
 	cubed->player.location.color = 0x000FFF;//
-	ft_bresenham(cubed->player.location, ray.map, cubed->player_img);//
+	ft_bresenham(cubed->player.location, ray.v_map, cubed->player_img);//
 }
+// void	cast_rays(t_cubed *cubed)
+// {
+// 	// initialize info
+// 	t_ray_calc ray;
+
+// 	while ( all rays not cast )
+// 	{
+// 		//find v hit
+// 		//find h hit
+// 		//get shortest
+// 		//use that to draw on map
+// 		//do next ray
+// 	}
+// }

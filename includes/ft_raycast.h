@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 16:41:54 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:37:51 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,10 @@ typedef struct s_ray_calc
 {
 	float			angle;
 	int				dof;
-	struct s_vector	map;
-	struct s_vector	grid; //move to hit check function only?
+	struct s_vector	h_map;
+	struct s_vector	h_grid; //move to hit check function only?
+	struct s_vector	v_map;
+	struct s_vector	v_grid;
 	float			tan;
 	float			cotan;
 	float			h_distance;//?
