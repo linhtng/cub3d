@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 11:17:42 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:30:58 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,13 @@ void	cast_rays(t_cubed *cubed)
 {
 	// initialize info
 	t_ray_calc ray;
-	// float	angle_inc = FOV / PROJECTION_WIDTH;//
+	float	angle_inc = (float) FOV / (float) PROJECTION_WIDTH;//
 	int		rays_drawn;
 
 	ray.angle = correct_degrees(cubed->player.angle - FOV / 2);
 	// float	end_angle = correct_degrees(cubed->player.angle + FOV / 2);
 	rays_drawn = 0;
-	while ( rays_drawn < 10 ) //PROJECTION_WIDTH
+	while ( rays_drawn < PROJECTION_WIDTH ) //
 	{
 		printf("CAST A RAY!\n");
 		shoot_one_ray_horizontal(cubed, ray.angle);//
@@ -135,7 +135,7 @@ void	cast_rays(t_cubed *cubed)
 		//get shortest
 		//use that to draw on map
 		//do next ray
-		ray.angle += 10;//angle_inc;
+		ray.angle += angle_inc;
 		rays_drawn++;
 	}
 }
