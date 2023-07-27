@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/25 20:47:12 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/27 21:35:38 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 	if (!single_elem || !ft_strchr("NOSWEAFC", single_elem[0][0]))
 	{
 		scene->err_flag = 1;
-		return (0);
+		return (err_msg(1, "Invalid element info."));
 	}
 	ret = 0;
 	info_num = arr_len(single_elem);

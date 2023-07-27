@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/26 20:48:02 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/27 21:30:32 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ static char	*get_scene_string(t_scene *scene, int fd)
 	return (trimmed_str);
 }
 
-static int	get_scene_arr(t_scene *scene, char *scene_str, int len)
+static int	get_scene_arr(t_scene *scene, char *str, int len)
 {
 	char	*endl;
 	char	*begin;
 	char	**arr;
 
-	endl = ft_strchr(scene_str, '\n');
-	begin = scene_str;
+	endl = ft_strchr(str, '\n');
+	begin = str;
 	arr = scene->array;
 	while (endl)
 	{
-		*arr = ft_substr(scene_str, (size_t) (begin - scene_str), (size_t)(endl++ - begin));
+		*arr = ft_substr(str, (int)(begin - str), (int)(endl++ - begin));
 		if (!*arr)
 			return (err_msg(1, "Malloc err when getting the scene_arr."));
 		scene->len++;
@@ -62,7 +62,7 @@ static int	get_scene_arr(t_scene *scene, char *scene_str, int len)
 	}
 	if (begin)
 	{
-		*arr = ft_substr(scene_str, (size_t) (begin - scene_str), (size_t)(&scene_str[len] - begin));
+		*arr = ft_substr(str, (int)(begin - str), (int)(&str[len] - begin));
 		if (!*arr)
 			return (err_msg(1, "Malloc err when getting the scene_arr."));
 		scene->len++;
@@ -82,17 +82,19 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 		scene->elems.filled_elem += get_scene_elem(scene, scene_arr[i]);
 		if (scene->elems.filled_elem == 6 || scene->err_flag)
 		{
-			if (scene->err_flag)
-				return (err_msg(2, "line where err encountered:", scene_arr[i])); //debug, del later
+			i++;
 			break ;
 		}
 		i++;
 	}
 	if (scene->elems.filled_elem != 6)
 		return (err_msg(1, "Missing element(s) from the scene file."));
-	while (ft_isemptystr(scene_arr[i + 1]))
+	while (scene_arr[i] && ft_isemptystr(scene_arr[i]))
 		i++;
-	return (get_map_content(&scene_arr[i + 1], scene, i + 1));
+	scene->map.height = scene->len - i;
+	if (scene->map.height < 3)
+		return (err_msg(1, "Map content less than 3 lines."));
+	return (get_map_content(&scene_arr[i], scene, i));
 }
 
 int	get_scene_data(int fd, t_scene *scene)
@@ -118,12 +120,6 @@ int	get_scene_data(int fd, t_scene *scene)
 			if (get_map_elems(scene->array, scene) == ERROR || scene->err_flag)
 				return (ERROR);
 		}
-	/* if (!valid_elem(scene_arr, scene) || !valid_map_content(scene_arr, scene))
-	{
-		free_arr(scene_arr);
-		printf("Error\nInvalid map\n");
-		return (0);
-	} */
 	}
 	return (ret);
 }

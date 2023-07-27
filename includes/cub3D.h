@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/26 20:30:33 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/27 21:13:04 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,20 @@ typedef struct s_map
 	char		**array;
 }	t_map;
 
+typedef struct s_player
+{
+	int			pos_y;
+	int			pos_x;
+	char		spawn;
+}	t_player;
+
 typedef struct s_scene
 {
 	int			len;
 	char		**array;
 	t_map		map;
 	t_elem		elems;
+	t_player	player;
 	int			err_flag;
 }	t_scene;
 
@@ -68,6 +76,9 @@ int		get_scene_elem(t_scene *scene, char *scene_line);
 
 /* cub3D_map_content */
 int		get_map_content(char **scene_arr, t_scene *scene, int i);
+
+/* cub3D_map_valid */
+int		valid_walls(t_scene *scene, char **map);
 
 /* cub3D_debug */
 void	print_arr(char **arr);

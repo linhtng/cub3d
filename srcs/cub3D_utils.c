@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:35:28 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/25 20:42:11 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:08:15 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,15 @@ void	free_arr(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i] != NULL)
+	if (arr)
 	{
-		free(arr[i]);
-		i++;
+		while (arr[i] != NULL)
+		{
+			free(arr[i]);
+			i++;
+		}
+		free(arr);
 	}
-	free(arr);
 }
 
 int	arr_len(char **arr)

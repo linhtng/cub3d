@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/26 20:32:10 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:28:45 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_scene(t_scene *scene)
 	ft_memset(scene, 0, sizeof(t_scene));
 	ft_memset(&scene->elems, 0, sizeof(t_elem));
 	ft_memset(&scene->map, 0, sizeof(t_map));
+	ft_memset(&scene->player, 0, sizeof(t_player));
 	scene->elems.north = NULL;
 	scene->elems.south = NULL;
 	scene->elems.east = NULL;

@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/07/26 20:28:22 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/07/27 21:39:51 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC = cub3D_main.c \
 	cub3D_map.c \
 	cub3D_map_elems.c \
 	cub3D_map_content.c \
-	cub3D_debug.c \
+	cub3D_map_valid.c \
+	debug.c \
 
 SRCFD = srcs/
 OBJSFD = objs/
