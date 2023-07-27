@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 18:24:56 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:18:30 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	turn_player(t_cubed *cubed, int key_code)
 	temp.y = cubed->player.location.y + cubed->player.d.y * 5;
 	ft_bresenham(cubed->player.location, temp, cubed->player_img);
 	printf("PLAYER ANGLE: %f\n", cubed->player.angle);//
-	shoot_one_ray_horizontal(cubed, cubed->scene, cubed->player.angle);//
-	shoot_one_ray_vertical(cubed, cubed->scene, cubed->player.angle);//
+	cast_rays(cubed);
+	// shoot_one_ray_horizontal(cubed, cubed->player.angle);//
+	// shoot_one_ray_vertical(cubed, cubed->player.angle);//
 	refresh_images(cubed);
 }
 
