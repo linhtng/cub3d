@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 10:55:14 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:01:05 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *off
 		}
 	}
 }
-void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle)
+void	shoot_one_ray_horizontal(t_cubed *cubed, float angle)
 {
-	scene = (void *) scene;
 	t_ray_calc ray;
 
 	ray.angle = angle;
@@ -78,7 +77,6 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle)
 		ray.h_map.y = cubed->player.location.y;
 		ray.dof = MAX_DOF;
 	}
-	//check hit wall
 	check_hit_wall(cubed, &ray.h_grid, &ray.h_map, &ray.hd);
 	cubed->player.location.color = 0xFFFFFF;//
 	ft_bresenham(cubed->player.location, ray.h_map, cubed->player_img);//
@@ -86,9 +84,8 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle)
 
 
 
-void	shoot_one_ray_vertical(t_cubed *cubed, t_scene *scene, float angle)
+void	shoot_one_ray_vertical(t_cubed *cubed, float angle)
 {
-	scene = (void *) scene;
 	t_ray_calc ray;
 
 	ray.angle = angle;

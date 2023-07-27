@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 10:37:51 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:01:17 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ int		handle_press(int key_code, t_cubed *cubed);
 int		mlx_close(t_cubed *cubed, int exit_code, char *exit_msg);
 
 /* calculate_rays.c */
-void	shoot_one_ray_horizontal(t_cubed *cubed, t_scene *scene, float angle);
-void	shoot_one_ray_vertical(t_cubed *cubed, t_scene *scene, float angle);
+void	shoot_one_ray_horizontal(t_cubed *cubed, float angle);
+void	shoot_one_ray_vertical(t_cubed *cubed, float angle);
 float	deg_to_rad(float degrees);
 float	correct_degrees(float degrees);
 
