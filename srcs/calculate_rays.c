@@ -6,13 +6,12 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 13:46:13 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:09:01 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "cub3D.h"
-
 
 float	correct_degrees(float degrees)
 {
@@ -73,10 +72,9 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 		ray->h_map.y = cubed->player.location.y;
 		ray->dof = MAX_DOF;
 	}
+	//don't do check hit wall if MAX_DOF set?
 	check_hit_wall(cubed, &ray->h_grid, &ray->h_map, &ray->hd);
 }
-
-
 
 void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 {
@@ -101,6 +99,7 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 		ray->v_map.y = cubed->player.location.y;
 		ray->dof = MAX_DOF;
 	}
+	//don't do check hit wall if MAX_DOF set?
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
 
