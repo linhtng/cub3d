@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 11:30:58 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:50:01 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,69 +51,81 @@ void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *off
 		}
 	}
 }
-void	shoot_one_ray_horizontal(t_cubed *cubed, float angle)
+void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 {
-	t_ray_calc ray;
+	// t_ray_calc ray;
 
-	ray.angle = angle;
-	ray.cotan = 1.0 / tan(deg_to_rad(ray.angle));//or cotan???
-	if (sin(deg_to_rad(ray.angle)) > 0.001) //looking down ray.angle > 180
+	// ray.angle = angle;
+	ray->cotan = 1.0 / tan(deg_to_rad(ray->angle));//or cotan???
+	if (sin(deg_to_rad(ray->angle)) > 0.001) //looking down ray.angle > 180
 	{
-		ray.h_map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE - 0.00001;
-		ray.h_map.x = cubed->player.location.x + ((cubed->player.location.y - ray.h_map.y) * ray.cotan);
-		ray.hd.y = -CELL_SIZE;
-		ray.hd.x = -ray.hd.y * ray.cotan;
+		ray->h_map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE - 0.00001;
+		ray->h_map.x = cubed->player.location.x + ((cubed->player.location.y - ray->h_map.y) * ray->cotan);
+		ray->hd.y = -CELL_SIZE;
+		ray->hd.x = -ray->hd.y * ray->cotan;
 	}
-	else if (sin(deg_to_rad(ray.angle)) < -0.001) //looking up ray.angle < 180
+	else if (sin(deg_to_rad(ray->angle)) < -0.001) //looking up ray.angle < 180
 	{
-		ray.h_map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
-		ray.h_map.x = cubed->player.location.x + ((cubed->player.location.y - ray.h_map.y) * ray.cotan);
-		ray.hd.y = CELL_SIZE;
-		ray.hd.x = -ray.hd.y * ray.cotan;		
+		ray->h_map.y = ((int)cubed->player.location.y / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
+		ray->h_map.x = cubed->player.location.x + ((cubed->player.location.y - ray->h_map.y) * ray->cotan);
+		ray->hd.y = CELL_SIZE;
+		ray->hd.x = -ray->hd.y * ray->cotan;		
 	}
 	else //will not hit a horizontal if (ray.angle == 0 || ray.angle == 180)
 	{
-		ray.h_map.x = cubed->player.location.x;
-		ray.h_map.y = cubed->player.location.y;
-		ray.dof = MAX_DOF;
+		ray->h_map.x = cubed->player.location.x;
+		ray->h_map.y = cubed->player.location.y;
+		ray->dof = MAX_DOF;
 	}
-	check_hit_wall(cubed, &ray.h_grid, &ray.h_map, &ray.hd);
-	cubed->player.location.color = 0xFFFFFF;//
-	ft_bresenham(cubed->player.location, ray.h_map, cubed->player_img);//
+	check_hit_wall(cubed, &ray->h_grid, &ray->h_map, &ray->hd);
+	// cubed->player.location.color = 0xFFFFFF;//
+	// ft_bresenham(cubed->player.location, ray->h_map, cubed->player_img);//
 }
 
 
 
-void	shoot_one_ray_vertical(t_cubed *cubed, float angle)
+void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 {
-	t_ray_calc ray;
+	// t_ray_calc ray;
 
-	ray.angle = angle;
-	ray.tan = tan(deg_to_rad(ray.angle));
-	if (cos(deg_to_rad(ray.angle)) < -0.001) //looking left?
+	// ray.angle = angle;
+	ray->tan = tan(deg_to_rad(ray->angle));
+	if (cos(deg_to_rad(ray->angle)) < -0.001) //looking left?
 	{
-		ray.v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE - 0.00001;
-		ray.v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray.v_map.x) * ray.tan);
-		ray.vd.x = -CELL_SIZE;
-		ray.vd.y = -ray.vd.x * ray.tan;
+		ray->v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE - 0.00001;
+		ray->v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray->v_map.x) * ray->tan);
+		ray->vd.x = -CELL_SIZE;
+		ray->vd.y = -ray->vd.x * ray->tan;
 	}
-	else if (cos(deg_to_rad(ray.angle)) > 0.001) //looking right?
+	else if (cos(deg_to_rad(ray->angle)) > 0.001) //looking right?
 	{
-		ray.v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
-		ray.v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray.v_map.x) * ray.tan);
-		ray.vd.x = CELL_SIZE;
-		ray.vd.y = -ray.vd.x * ray.tan;		
+		ray->v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
+		ray->v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray->v_map.x) * ray->tan);
+		ray->vd.x = CELL_SIZE;
+		ray->vd.y = -ray->vd.x * ray->tan;		
 	}
 	else //will not hit a horizontal if (ray.angle == 0 || ray.angle == 180)
 	{
-		ray.v_map.x = cubed->player.location.x;
-		ray.v_map.y = cubed->player.location.y;
-		ray.dof = MAX_DOF;
+		ray->v_map.x = cubed->player.location.x;
+		ray->v_map.y = cubed->player.location.y;
+		ray->dof = MAX_DOF;
 	}
 	//check hit wall
-	check_hit_wall(cubed, &ray.v_grid, &ray.v_map, &ray.vd);
-	cubed->player.location.color = 0x000FFF;//
-	ft_bresenham(cubed->player.location, ray.v_map, cubed->player_img);//
+	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
+	// cubed->player.location.color = 0x000FFF;//
+	// ft_bresenham(cubed->player.location, ray->v_map, cubed->player_img);//
+}
+
+float	get_distance(t_vector *player, t_vector *wall_hit)
+{
+	float a;
+	float b;
+	float c;
+
+	a = player->x - wall_hit->x;
+	b = player->y - wall_hit->y;
+	c = sqrt((a * a) + (b * b));
+	return (c);
 }
 void	cast_rays(t_cubed *cubed)
 {
@@ -123,16 +135,23 @@ void	cast_rays(t_cubed *cubed)
 	int		rays_drawn;
 
 	ray.angle = correct_degrees(cubed->player.angle - FOV / 2);
-	// float	end_angle = correct_degrees(cubed->player.angle + FOV / 2);
 	rays_drawn = 0;
+	cubed->player.location.color = 0x000FFF;//
 	while ( rays_drawn < PROJECTION_WIDTH ) //
 	{
 		printf("CAST A RAY!\n");
-		shoot_one_ray_horizontal(cubed, ray.angle);//
-		shoot_one_ray_vertical(cubed, ray.angle);//
-		//find v hit
-		//find h hit
+		shoot_one_ray_horizontal(cubed, &ray);//
+		shoot_one_ray_vertical(cubed, &ray);//
 		//get shortest
+		ray.h_distance = get_distance(&cubed->player.location, &ray.h_map);
+		ray.v_distance = get_distance(&cubed->player.location, &ray.v_map);
+		if (ray.h_distance < ray.v_distance)
+			ft_bresenham(cubed->player.location, ray.h_map, cubed->player_img);////draw h
+		else
+			ft_bresenham(cubed->player.location, ray.v_map, cubed->player_img);////draw v
+		
+		printf("HORIZONTAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.h_map));
+		printf("VERTICAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.v_map));
 		//use that to draw on map
 		//do next ray
 		ray.angle += angle_inc;
