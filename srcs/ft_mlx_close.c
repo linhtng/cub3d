@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 13:30:50 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:00:27 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 	// 	mlx_destroy_image(cubed->mlx, cubed->img->img);
 	// 	free(cubed->img);
 	// }
-	if (cubed->player_img)
-	{
-		mlx_destroy_image(cubed->mlx, cubed->player_img->img);
-		free(cubed->player_img);
-	}
-		if (cubed->window)
+	// if (cubed->player_img)
+	// {
+	// 	mlx_destroy_image(cubed->mlx, cubed->player_img->img);
+	// 	free(cubed->player_img);
+	// }
+	if (cubed->window)
 	{
 		mlx_destroy_window(cubed->mlx, cubed->window);
 		cubed->window = NULL;
