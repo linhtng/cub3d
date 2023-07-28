@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 12:10:41 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:19:23 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,23 @@ typedef struct s_player
 	float				height;
 }				t_player;
 
+typedef struct s_raycast
+{
+	struct s_img_data	*r_img;
+	float				center_of_projection;
+	float				angle_between_rays;
+	float				distances[PROJECTION_WIDTH];//maybe don't care about this until you are finding the intersections
+}			t_raycast;
+
 typedef struct s_cubed
 {
 	struct s_scene		*scene;
+	struct t_raycast	*raycast_info;
 	void				*mlx;
 	void				*window;
-	struct s_img_data	*img;
+	struct s_img_data	*img;//for minimap currently
 	struct s_player		player;
-	struct s_img_data	*player_img;
+	struct s_img_data	*player_img;//player and rays drawn to this for minimap
 } 				t_cubed;
 
 typedef	struct s_bham_info
@@ -91,12 +100,6 @@ typedef	struct s_bham_info
 }				t_bham_info;
 
 
-typedef struct s_raycast
-{
-	float	center_of_projection;
-	float	angle_between_rays;
-	float	distances[PROJECTION_WIDTH];//maybe don't care about this until you are finding the intersections
-}			t_raycast;
 
 typedef struct s_ray_calc
 {
@@ -140,5 +143,7 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray);
 float	deg_to_rad(float degrees);
 float	correct_degrees(float degrees);
 void	cast_rays(t_cubed *cubed);
+
+/* draw_raycast_view.c */
 
 #endif
