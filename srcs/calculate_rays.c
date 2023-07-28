@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/27 15:09:01 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:23:39 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void	cast_rays(t_cubed *cubed)
 {
 	// initialize info
 	t_ray_calc ray;
-	float	angle_inc = (float) FOV / (float) PROJECTION_WIDTH;//
 	int		rays_drawn;
 
 	ray.angle = correct_degrees(cubed->player.angle - FOV / 2);
@@ -141,7 +140,7 @@ void	cast_rays(t_cubed *cubed)
 		printf("VERTICAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.v_map));
 		//use that to draw on map
 		//do next ray
-		ray.angle += angle_inc;
+		ray.angle += cubed->raycast_info->angle_between_rays;
 		rays_drawn++;
 	}
 }
