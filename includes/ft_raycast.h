@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 11:01:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:31:02 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,6 @@ void	cast_rays(t_cubed *cubed);
 
 /* draw_raycast_view.c */
 void	draw_background(t_cubed *cubed);
+void	draw_view(t_cubed *cubed, float dist, int x, char side);
 
 #endif
