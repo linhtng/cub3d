@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/07/20 14:42:09 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/28 11:01:48 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC := ray_cast_main.c \
 		 ft_mlx_close.c \
 		 handle_press.c \
 		 calculate_rays.c \
+		 draw_raycast_view.c \
 
 SRCFD = srcs/
 OBJSFD = objs/

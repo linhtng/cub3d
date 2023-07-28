@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 10:26:47 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:01:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_vector
 	float	y;
 	int	color;
 }				t_vector;
-//do I want to save the dimensions of the img to check when putting pixels?
+
 typedef struct s_img_data
 {
 	void		*img;
@@ -58,6 +58,8 @@ typedef struct s_img_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			width;
+	int			height;
 }				t_img_data;
 
 /* struct to track location and direction of player*/
@@ -74,6 +76,7 @@ typedef struct s_player
 typedef struct s_raycast
 {
 	struct s_img_data	*r_img;
+	struct s_img_data	*background_img;
 	struct s_vector		center_of_projection;
 	float				angle_between_rays;
 	float				distances[PROJECTION_WIDTH];//maybe don't care about this until you are finding the intersections
@@ -145,5 +148,6 @@ float	correct_degrees(float degrees);
 void	cast_rays(t_cubed *cubed);
 
 /* draw_raycast_view.c */
+void	draw_background(t_cubed *cubed);
 
 #endif
