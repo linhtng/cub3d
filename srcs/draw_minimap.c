@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 10:53:54 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:15:45 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,48 +32,14 @@
 // 	"1111111111"
 // };
 
-void	draw_player(t_cubed *cubed, t_scene *scene)
-{
-	t_vector	player_loc;
-	char		direction;
-
-	// cubed->player_img->img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);//
-	// cubed->player_img->addr = mlx_get_data_addr(cubed->player_img->img, &(cubed->player_img->bits_per_pixel), &(cubed->player_img->line_length),  &(cubed->player_img->endian));
-	ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//creates transparent
-	player_loc = cubed->player.location;
-	direction = scene->map[(int) cubed->player.location.y / CELL_SIZE][(int) cubed->player.location.x / CELL_SIZE];
-	printf("PLAYER CHARACTER IS: %c\n", direction);
-	if (direction == 'N')
-	{
-		player_loc.y -= 10;
-		cubed->player.angle = 90.0f;
-		my_put_line_v(cubed->player_img, &player_loc, 10);
-	}
-	if (direction == 'S')
-	{
-		player_loc.y += 10;
-		cubed->player.angle = 270.0f;
-		my_put_line_v(cubed->player_img, &player_loc, 10);
-	}
-	if (direction == 'E')
-	{
-		player_loc.x += 10;
-		cubed->player.angle = 0.0f;
-		my_put_line_h(cubed->player_img, &player_loc, 10);
-	}
-	if (direction == 'W')
-	{
-		player_loc.x -= 10;
-		cubed->player.angle = 180.0f;
-		my_put_line_h(cubed->player_img, &player_loc, 10);
-	}
-	my_put_square(cubed->player_img, cubed->player.location, 10);
-}
-
 void	setup_player(t_cubed *cubed, int i, int j, char dir)
 {
 	t_vector temp;
+	t_vector start;
 
+	start.x  = 0;
+	start.y = 0;
+	start.color = 0x00;
 	cubed->player.location.y = i * CELL_SIZE + CELL_SIZE / 2;
 	cubed->player.location.x = j * CELL_SIZE + CELL_SIZE / 2;
 	cubed->player.location.color = 0xFFFF00;//yellow
@@ -90,7 +56,8 @@ void	setup_player(t_cubed *cubed, int i, int j, char dir)
 	cubed->player.distance_to_pane = 0;//TODO setup use for distance to pane
 	cubed->player.height = 0;//TODO setup use for player height
 	//draw inital dir and loc
-	ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);
+	ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
+	// my_put_rectangle(cubed->player_img, start, WIN_WIDTH, WIN_HEIGHT);
 	my_put_square(cubed->player_img, cubed->player.location, 10);
 	temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 	temp.y = cubed->player.location.y + cubed->player.d.y * 5;
@@ -146,14 +113,6 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 
 	//draw player
 	// draw_player(cubed, scene);
-	// shoot_one_ray_horizontal(cubed, scene, 60.0f);//
-	// shoot_one_ray_vertical(cubed, scene, 60.0f);//
-	// shoot_one_ray_horizontal(cubed, scene, 125.0f);//
-	// shoot_one_ray_vertical(cubed, scene, 125.0f);//
-	// shoot_one_ray_horizontal(cubed, scene, 196.0f);//
-	// shoot_one_ray_vertical(cubed, scene, 196.0f);//
-	// shoot_one_ray_horizontal(cubed, scene, 287.0f);//
-	// shoot_one_ray_vertical(cubed, scene, 287.0f);//
 	//render order?
 	// mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
 	// mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);

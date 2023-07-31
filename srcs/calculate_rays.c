@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 16:31:51 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:40:05 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	cast_rays(t_cubed *cubed)
 	ray.angle = correct_degrees(cubed->player.angle - FOV / 2);
 	rays_drawn = 0;
 	cubed->player.location.color = 0x000FFF;//
-	ft_memset(cubed->raycast_info->r_img->addr, 0x00FFFFFF, PROJECTION_WIDTH * PROJECTION_HEIGHT);//creates transparent
+	ft_memset(cubed->raycast_info->r_img->addr, 0x00FFFFFF, PROJECTION_WIDTH * PROJECTION_HEIGHT * (cubed->raycast_info->r_img->bits_per_pixel / 8));//creates transparent
 	while ( rays_drawn < PROJECTION_WIDTH ) //
 	{
 		printf("CAST A RAY!\n");
@@ -135,12 +135,12 @@ void	cast_rays(t_cubed *cubed)
 		if (ray.h_distance < ray.v_distance)
 		{
 			ft_bresenham(cubed->player.location, ray.h_map, cubed->player_img);////draw h
-			draw_view(cubed, ray.h_distance, rays_drawn, 'h');
+			draw_view(cubed, ray.h_distance, PROJECTION_WIDTH - rays_drawn, 'h');
 		}
 		else
 		{
 			ft_bresenham(cubed->player.location, ray.v_map, cubed->player_img);////draw v
-			draw_view(cubed, ray.v_distance, rays_drawn, 'v');
+			draw_view(cubed, ray.v_distance, PROJECTION_WIDTH - rays_drawn, 'v');
 		}
 		
 		printf("HORIZONTAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.h_map));

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 16:31:02 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:39:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	my_put_line_h(t_img_data *data, t_vector *start, int len);
 void	my_put_line_v(t_img_data *data, t_vector *start, int len);
 void	my_put_grid(t_img_data *data, t_vector *start, int len, int height);//change args
 void	my_put_square(t_img_data *data, t_vector start, int len);
+void	my_put_rectangle(t_img_data *data, t_vector start, int len, int height);
 
 /* key hook handling */
 int		handle_press(int key_code, t_cubed *cubed);

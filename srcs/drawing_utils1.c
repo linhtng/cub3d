@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 10:32:22 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:38:07 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,18 @@ void	my_put_square(t_img_data *data, t_vector start, int len)
 	{
 		my_put_line_v(data, &start, len);
 		start.x++;
+		i++;
+	}
+}
+void	my_put_rectangle(t_img_data *data, t_vector start, int len, int height)
+{
+	int	i;
+
+	i = 0;
+	while (i < height)
+	{
+		my_put_line_h(data, &start, len);
+		start.y++;
 		i++;
 	}
 }

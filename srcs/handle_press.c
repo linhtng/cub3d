@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 15:49:50 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:36:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	turn_player(t_cubed *cubed, int key_code)
 	cubed->player.d.x = cos(deg_to_rad(cubed->player.angle)) * 5;
 	cubed->player.d.y = sin(deg_to_rad(cubed->player.angle)) * 5;
 	//redraw
-	ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//createes transparent
+	ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
+	// ft_memset(cubed->player_img->addr, 0x00, WIN_WIDTH * WIN_HEIGHT);//createes transparent
 	my_put_square(cubed->player_img, cubed->player.location, 10);
 	temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 	temp.y = cubed->player.location.y + cubed->player.d.y * 5;
@@ -60,7 +61,8 @@ int	handle_press(int key_code, t_cubed *cubed)
 	{
 		printf("player whould go forward\n");
 		cubed->player.location.y -= 5;
-		ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//createes transparent
+		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
+		// ft_memset(cubed->player_img->addr, 0x00, WIN_WIDTH * WIN_HEIGHT);//createes transparent
 		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
@@ -72,7 +74,8 @@ int	handle_press(int key_code, t_cubed *cubed)
 	{
 		printf("player whould go left\n");
 		cubed->player.location.x -= 5;
-		ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//createes transparent
+		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
+		// ft_memset(cubed->player_img->addr, 0x00, WIN_WIDTH * WIN_HEIGHT);//createes transparent
 		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
@@ -85,7 +88,8 @@ int	handle_press(int key_code, t_cubed *cubed)
 	{
 		printf("player whould go backward\n");
 		cubed->player.location.y += 5;
-		ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//createes transparent
+		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
+		// ft_memset(cubed->player_img->addr, 0x00, WIN_WIDTH * WIN_HEIGHT);//createes transparent
 		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
@@ -98,7 +102,8 @@ int	handle_press(int key_code, t_cubed *cubed)
 	{
 		printf("player whould go right\n");
 		cubed->player.location.x += 5;
-		ft_memset(cubed->player_img->addr, 0x00FFFFFF, WIN_WIDTH * WIN_HEIGHT);//createes transparent
+		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
+		// ft_memset(cubed->player_img->addr, 0x00, WIN_WIDTH * WIN_HEIGHT);//createes transparent
 		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
