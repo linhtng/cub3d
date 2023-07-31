@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/31 14:40:05 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:53:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,16 +135,16 @@ void	cast_rays(t_cubed *cubed)
 		if (ray.h_distance < ray.v_distance)
 		{
 			ft_bresenham(cubed->player.location, ray.h_map, cubed->player_img);////draw h
-			draw_view(cubed, ray.h_distance, PROJECTION_WIDTH - rays_drawn, 'h');
+			draw_view(cubed, ray.h_distance * cos(deg_to_rad(ray.angle - cubed->player.angle)), PROJECTION_WIDTH - rays_drawn, 'h');
 		}
 		else
 		{
 			ft_bresenham(cubed->player.location, ray.v_map, cubed->player_img);////draw v
-			draw_view(cubed, ray.v_distance, PROJECTION_WIDTH - rays_drawn, 'v');
+			draw_view(cubed, ray.v_distance * cos(deg_to_rad(ray.angle - cubed->player.angle)), PROJECTION_WIDTH - rays_drawn, 'v');
 		}
 		
-		printf("HORIZONTAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.h_map));
-		printf("VERTICAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.v_map));
+		// printf("HORIZONTAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.h_map));
+		// printf("VERTICAL DISTANCE: %f\n", get_distance(&cubed->player.location, &ray.v_map));
 		//use that to draw on map
 		//do next ray
 		ray.angle += cubed->raycast_info->angle_between_rays;
