@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/31 14:53:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:54:55 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	cast_rays(t_cubed *cubed)
 	ft_memset(cubed->raycast_info->r_img->addr, 0x00FFFFFF, PROJECTION_WIDTH * PROJECTION_HEIGHT * (cubed->raycast_info->r_img->bits_per_pixel / 8));//creates transparent
 	while ( rays_drawn < PROJECTION_WIDTH ) //
 	{
-		printf("CAST A RAY!\n");
+		// printf("CAST A RAY!\n");
 		shoot_one_ray_horizontal(cubed, &ray);//
 		shoot_one_ray_vertical(cubed, &ray);//
 		//get shortest
