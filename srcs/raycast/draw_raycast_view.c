@@ -10,7 +10,7 @@ void	draw_background(t_cubed *cubed)
 	start.x = 0;
 	start.y = 0;
 	start.color = *cubed->scene->ceiling_color;
-	while ((int) start.y < PROJECTION_HEIGHT) // +1?
+	while ((int) start.y < PROJECTION_HEIGHT)
 	{
 		if ((int) start.y > PROJECTION_HEIGHT / 2)
 			start.color = *cubed->scene->floor_color;

@@ -6,29 +6,12 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 18:57:04 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:44:00 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "cub3D.h"
-
-float	correct_degrees(float degrees)
-{
-	if (degrees < 0)
-		degrees += 360;
-	else if (degrees >= 360)
-		degrees -= 360;
-	return (degrees);
-}
-
-float	deg_to_rad(float degrees)
-{
-	float	radians;
-
-	radians  = degrees * (M_PI / 180);
-	return (radians);
-}
 
 void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *offset)
 {
@@ -77,14 +60,14 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 {
 	ray->tan = tan(deg_to_rad(ray->angle));
-	if (cos(deg_to_rad(ray->angle)) < -0.001) //looking left?
+	if (cos(deg_to_rad(ray->angle)) < -0.001) //looking left
 	{
 		ray->v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE - 0.00001;
 		ray->v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray->v_map.x) * ray->tan);
 		ray->vd.x = -CELL_SIZE;
 		ray->vd.y = -ray->vd.x * ray->tan;
 	}
-	else if (cos(deg_to_rad(ray->angle)) > 0.001) //looking right?
+	else if (cos(deg_to_rad(ray->angle)) > 0.001) //looking right
 	{
 		ray->v_map.x = ((int)cubed->player.location.x / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
 		ray->v_map.y = cubed->player.location.y + ((cubed->player.location.x - ray->v_map.x) * ray->tan);
