@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/27 16:28:45 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/03 20:32:09 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	init_scene(t_scene *scene)
 	scene->elems.west = NULL;
 	scene->array = NULL;
 	scene->map.array = NULL;
+	scene->map.flood = NULL;
+	scene->map.visited = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -56,6 +58,8 @@ int	main(int argc, char **argv)
 			//print_arr(scene.array);
 		free_arr(scene.array);
 		free_arr(scene.map.array);
+		free_arr(scene.map.flood);
+		free_arr(scene.map.visited);
 	}
 	else
 		printf("Number of parameters must be 1.\n");

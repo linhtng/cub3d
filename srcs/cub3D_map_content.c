@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/27 21:34:04 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/03 20:25:27 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ static int	lay_space_holder(char *map_line)
 	while (i < len)
 	{
 		if (map_line[i] == ' ')
-			map_line[i] = '_';
+			map_line[i] = SPACE;
 		i++;
 	}
 	return (1);
 }
 
-static int	player_pos_valid(char **map, t_player player)
+static int	player_pos_valid(char **map, t_player player, char block)
 {
-	if (map[player.pos_y][player.pos_x + 1] == '1'
-		&& map[player.pos_y + 1][player.pos_x] == '1'
-		&& map[player.pos_y][player.pos_x - 1] == '1'
-		&& map[player.pos_y - 1][player.pos_x] == '1')
-		return (err_msg(1, "Player is surround by walls and can't moved."));
+	if (map[player.pos_y][player.pos_x + 1] == block
+		&& map[player.pos_y + 1][player.pos_x] == block
+		&& map[player.pos_y][player.pos_x - 1] == block
+		&& map[player.pos_y - 1][player.pos_x] == block)
+		return (err_msg(1, "Invalid postion. Player can't moved from here."));
 	return (1);
 }
 
@@ -56,9 +56,10 @@ static int	create_map(t_scene *scene, char **scene_arr)
 	line = 0;
 	while (line < scene->map.height)
 	{
-		map[line] = ft_strdup(scene_arr[line]);
+		map[line] = (char *) ft_calloc(scene->map.width + 1, sizeof(char));
 		if (!map[line])
 			return (err_msg(1, "Malloc err when getting the map content."));
+		ft_memmove(map[line], scene_arr[line], ft_strlen(scene_arr[line]));
 		if (lay_space_holder(map[line]) == ERROR)
 			return (ERROR);
 		line++;
@@ -112,7 +113,10 @@ int	get_map_content(char **scene_arr, t_scene *scene, int i)
 		return (err_msg(1, "Map missing empty space and/or player."));
 	if (create_map(scene, scene_arr) == ERROR)
 		return (ERROR);
-	if (valid_walls(scene, scene->map.array) == ERROR)
+	if (valid_walls(scene, scene->map.array) == ERROR
+		|| player_pos_valid(scene->map.array, scene->player, '1') == ERROR
+		|| player_pos_valid(scene->map.array, scene->player, SPACE) == ERROR)
 		return (ERROR);
-	return (player_pos_valid(scene->map.array, scene->player));
+	check_island(scene, scene->map.array);
+	return (1);
 }

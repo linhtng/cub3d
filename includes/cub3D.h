@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/27 21:13:04 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/03 20:24:13 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ERROR -1
 # define FLOOR 1
 # define CEILING 2
+# define SPACE '_'
 
 typedef struct s_elem
 {
@@ -40,6 +41,8 @@ typedef struct s_map
 	int			height;
 	int			width;
 	char		**array;
+	char		**flood;
+	char		**visited;
 }	t_map;
 
 typedef struct s_player
@@ -79,6 +82,7 @@ int		get_map_content(char **scene_arr, t_scene *scene, int i);
 
 /* cub3D_map_valid */
 int		valid_walls(t_scene *scene, char **map);
+int		check_island(t_scene *scene, char **map);
 
 /* cub3D_debug */
 void	print_arr(char **arr);
