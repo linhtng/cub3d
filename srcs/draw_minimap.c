@@ -6,31 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/31 14:15:45 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:37:29 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "libft.h"
 #include "cub3D.h"
-
-// // [4][5]
-// char **MAP_1 = {
-// 	"11111",
-// 	"10001",
-// 	"1N001",
-// 	"11111"
-// };
-// // [7][10]
-// char **MAP_2 = {
-// 	"1111111111",
-// 	"1000000001",
-// 	"1N00000001",
-// 	"1000111111",
-// 	"1000000001",
-// 	"1000000001",
-// 	"1111111111"
-// };
 
 void	setup_player(t_cubed *cubed, int i, int j, char dir)
 {
@@ -70,16 +52,10 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	int j;
 	t_vector start;
 
-	// cubed->img->img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);//segfaults???
-	// img.img = mlx_new_image(cubed->mlx, WIN_WIDTH, WIN_HEIGHT);
-	// img.addr = mlx_get_data_addr(img.img, &(img.bits_per_pixel), &(img.line_length),  &(img.endian));
-	// cubed->img = &img;
 	i = 0;
 	start.x = 0;
 	start.y = 0;
-	// start.color = 0xFFFF00;//
-	// my_put_square(&img, &start, CELL_SIZE);
-	while (i < scene->lines)//for hardcoded example
+	while (i < scene->lines)
 	{
 		j = 0;
 		while (j < scene->columns)
@@ -93,9 +69,6 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 				start.color = 0x666666;//gray
 				printf("PLAYER DRAWN\n");
 				setup_player(cubed, i, j, scene->map[i][j]);//
-				// cubed->player.location.y = i * CELL_SIZE + CELL_SIZE / 2;
-				// cubed->player.location.x = j * CELL_SIZE + CELL_SIZE / 2;
-				// cubed->player.location.color = 0xFFFF00;//yellow
 			}
 			my_put_square(cubed->img, start, CELL_SIZE);
 			j++;
@@ -110,10 +83,4 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	start.y = 0;
 	start.color = 0x00FF00;
 	my_put_grid(cubed->img, &start, scene->columns, scene->lines);
-
-	//draw player
-	// draw_player(cubed, scene);
-	//render order?
-	// mlx_put_image_to_window(cubed->mlx, cubed->window, img.img, 0, 0);
-	// mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);
 }
