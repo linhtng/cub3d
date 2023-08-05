@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 18:53:33 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:44:44 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,13 @@ void	cast_rays(t_cubed *cubed);
 /* draw_raycast_view.c */
 void	draw_background(t_cubed *cubed);
 void	draw_view(t_cubed *cubed, float dist, int x, char side);
+
+/* ft_images */
+t_img_data	*get_new_image(t_cubed *cubed, int width, int height);
+
+/* utils_2.c */
+float	deg_to_rad(float degrees);
+float	correct_degrees(float degrees);
+int		ft_abs(int val);
 
 #endif
