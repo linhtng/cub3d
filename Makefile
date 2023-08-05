@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/05 19:54:51 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/05 20:05:49 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ DIR_DUP     = mkdir -p $(@D)
 # 	cub3D_map.c \
 
 SRC := ray_cast_main.c \
-		 ft_bresenham.c \
+		 drawing_utils/ft_bresenham.c \
 		 draw_minimap.c \
-		 drawing_utils1.c \
+		 drawing_utils/drawing_utils1.c \
 		 ft_mlx_close.c \
 		 handle_press.c \
 		 raycast/calculate_rays.c \
