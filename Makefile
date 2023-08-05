@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/07/28 11:01:48 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/05 19:54:51 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
 
+DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \
 # 	cub3D_utils.c \
 # 	cub3D_map.c \
@@ -27,8 +28,11 @@ SRC := ray_cast_main.c \
 		 drawing_utils1.c \
 		 ft_mlx_close.c \
 		 handle_press.c \
-		 calculate_rays.c \
-		 draw_raycast_view.c \
+		 raycast/calculate_rays.c \
+		 raycast/draw_raycast_view.c \
+		 ft_images.c \
+		 utils_2.c \
+		 
 
 SRCFD = srcs/
 OBJSFD = objs/
@@ -52,6 +56,7 @@ all : $(NAME)
 
 $(OBJSFD)%.o: $(SRCFD)%.c
 	@mkdir -p $(OBJSFD)
+	$(DIR_DUP)
 	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(NAME) : $(OBJS) $(LIBFT)
