@@ -6,18 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/26 13:50:15 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:43:58 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
-
-int		ft_abs(int val)
-{
-	if (val < 0)
-		return (val * -1);
-	return (val);
-}
 
 static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, t_vector *two)
 {
