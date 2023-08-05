@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/31 11:39:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:53:33 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 /* for write */
 # include <unistd.h> 
 
-# include "cub3D.h"//
+# include "cub3D.h"// take out once the combine happens
 
 # define CELL_SIZE 32
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define PROJECTION_WIDTH 320
-# define PROJECTION_HEIGHT 200
+# define PROJECTION_WIDTH 1366
+# define PROJECTION_HEIGHT 768
 # define MAX_DOF 8
 # define FOV 60
 
