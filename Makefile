@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/06 19:13:37 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/06 19:40:29 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC := ray_cast_main.c \
 		 draw_minimap.c \
 		 drawing_utils/drawing_utils1.c \
 		 ft_mlx_close.c \
-		 handle_press.c \
+		 events/handle_press.c \
 		 raycast/calculate_rays.c \
 		 raycast/draw_raycast_view.c \
 		 ft_images.c \

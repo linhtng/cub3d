@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 20:12:59 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:37:09 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,16 @@ void	turn_player(t_cubed *cubed, int key_code)
 		cubed->player.angle = correct_degrees(cubed->player.angle - 1);//turn 5 deg at a time	
 	}
 	cubed->player.d.x = cos(deg_to_rad(cubed->player.angle)) * 5;
-	cubed->player.d.y = sin(deg_to_rad(cubed->player.angle)) * 5;
+	cubed->player.d.y = -sin(deg_to_rad(cubed->player.angle)) * 5;
 	//redraw
 	ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
 	my_put_square(cubed->player_img, cubed->player.location, 10);
 	temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 	temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-	ft_bresenham(cubed->player.location, temp, cubed->player_img);
 	printf("PLAYER ANGLE: %f\n", cubed->player.angle);//
 	cast_rays(cubed);
+	cubed->player.location.color = 0xFFFFFF;
+	ft_bresenham(cubed->player.location, temp, cubed->player_img);
 	refresh_images(cubed);
 }
 
@@ -64,8 +65,9 @@ int	handle_press(int key_code, t_cubed *cubed)
 		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
 		cast_rays(cubed);
+		cubed->player.location.color = 0xFFFFFF;
+		ft_bresenham(cubed->player.location, temp, cubed->player_img);
 		refresh_images(cubed);
 	}
 	if (key_code == LEFT)
@@ -76,8 +78,9 @@ int	handle_press(int key_code, t_cubed *cubed)
 		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
 		cast_rays(cubed);
+		cubed->player.location.color = 0xFFFFFF;
+		ft_bresenham(cubed->player.location, temp, cubed->player_img);
 		refresh_images(cubed);
 
 	}
@@ -86,10 +89,12 @@ int	handle_press(int key_code, t_cubed *cubed)
 		printf("player whould go backward\n");
 		cubed->player.location.y += 5;
 		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
+		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
+		cubed->player.location.color = 0xFFFFFF;
 		cast_rays(cubed);
+		ft_bresenham(cubed->player.location, temp, cubed->player_img);
 		refresh_images(cubed);
 
 	}
@@ -101,8 +106,9 @@ int	handle_press(int key_code, t_cubed *cubed)
 		my_put_square(cubed->player_img, cubed->player.location, 10);
 		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
 		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
 		cast_rays(cubed);
+		cubed->player.location.color = 0xFFFFFF;
+		ft_bresenham(cubed->player.location, temp, cubed->player_img);
 		refresh_images(cubed);
 	}
 	
