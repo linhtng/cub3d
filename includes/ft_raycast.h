@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/06 19:14:58 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:44:28 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ void	draw_view(t_cubed *cubed, float dist, int x, char side);
 
 /* ft_images */
 t_img_data	*get_new_image(t_cubed *cubed, int width, int height);
+void	refresh_images(t_cubed *cubed);
 
 /* utils_2.c */
 float	deg_to_rad(float degrees);
@@ -162,5 +163,12 @@ int		ft_abs(int val);
 
 /* setup_player.c */
 void	setup_player(t_cubed *cubed, int i, int j, char dir);
+
+/* player_move.c */
+void	turn_player(t_cubed *cubed, int key_code);
+void	move_forward(t_cubed *cubed);
+void	move_backward(t_cubed *cubed);
+void	move_right(t_cubed *cubed);
+void	move_left(t_cubed *cubed);
 
 #endif

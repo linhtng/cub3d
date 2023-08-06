@@ -6,52 +6,15 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/06 19:37:09 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:47:18 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "libft.h"
 
-void	refresh_images(t_cubed *cubed)
-{
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->img->img, 0, 0);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
-}
-
-void	turn_player(t_cubed *cubed, int key_code)
-{
-	t_vector temp;
-	printf("player should look some direction...\n");
-	
-	if (key_code == TURN_LEFT)
-	{
-		cubed->player.angle = correct_degrees(cubed->player.angle + 1);//turn 5 deg at a time
-	}
-	else
-	{
-		cubed->player.angle = correct_degrees(cubed->player.angle - 1);//turn 5 deg at a time	
-	}
-	cubed->player.d.x = cos(deg_to_rad(cubed->player.angle)) * 5;
-	cubed->player.d.y = -sin(deg_to_rad(cubed->player.angle)) * 5;
-	//redraw
-	ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
-	my_put_square(cubed->player_img, cubed->player.location, 10);
-	temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
-	temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-	printf("PLAYER ANGLE: %f\n", cubed->player.angle);//
-	cast_rays(cubed);
-	cubed->player.location.color = 0xFFFFFF;
-	ft_bresenham(cubed->player.location, temp, cubed->player_img);
-	refresh_images(cubed);
-}
-
 int	handle_press(int key_code, t_cubed *cubed)
 {
-	t_vector temp;
-
 	printf("KEY PRESSED: %i\n", key_code);
 	if (key_code == ESC)
 		mlx_close(cubed, 0, "Normal exit");
@@ -59,58 +22,20 @@ int	handle_press(int key_code, t_cubed *cubed)
 		turn_player(cubed, key_code);
 	if (key_code == FORWARD)
 	{
-		printf("player whould go forward\n");
-		cubed->player.location.y -= 5;
-		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
-		my_put_square(cubed->player_img, cubed->player.location, 10);
-		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
-		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		cast_rays(cubed);
-		cubed->player.location.color = 0xFFFFFF;
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
-		refresh_images(cubed);
+		move_forward(cubed);
 	}
 	if (key_code == LEFT)
 	{
-		printf("player whould go left\n");
-		cubed->player.location.x -= 5;
-		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
-		my_put_square(cubed->player_img, cubed->player.location, 10);
-		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
-		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		cast_rays(cubed);
-		cubed->player.location.color = 0xFFFFFF;
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
-		refresh_images(cubed);
-
+		move_left(cubed);
 	}
 	if (key_code == BACK)
 	{
-		printf("player whould go backward\n");
-		cubed->player.location.y += 5;
-		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
-		my_put_square(cubed->player_img, cubed->player.location, 10);
-		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
-		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		cubed->player.location.color = 0xFFFFFF;
-		cast_rays(cubed);
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
-		refresh_images(cubed);
-
+		move_backward(cubed);
 	}
 	if (key_code == RIGHT)
 	{
-		printf("player whould go right\n");
-		cubed->player.location.x += 5;
-		ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
-		my_put_square(cubed->player_img, cubed->player.location, 10);
-		temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
-		temp.y = cubed->player.location.y + cubed->player.d.y * 5;
-		cast_rays(cubed);
-		cubed->player.location.color = 0xFFFFFF;
-		ft_bresenham(cubed->player.location, temp, cubed->player_img);
-		refresh_images(cubed);
+		move_right(cubed);
 	}
-	
+	//put check for 'dirty images' and refresh of images here
 	return (0);
 }
