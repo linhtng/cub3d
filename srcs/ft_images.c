@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 19:04:57 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:49:23 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,11 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 	img->width = width;
 	img->height = height;
 	return (img);
+}
+void	refresh_images(t_cubed *cubed)
+{
+	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->img->img, 0, 0);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->player_img->img, 0, 0);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
 }
