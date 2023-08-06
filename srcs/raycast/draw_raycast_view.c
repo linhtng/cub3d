@@ -38,7 +38,7 @@ void	draw_view(t_cubed *cubed, float dist, int x, char side)
 		line_height = PROJECTION_HEIGHT;
 	start.x = x;
 	start.y = cubed->raycast_info->center_of_projection.y - line_height / 2;
-	printf("START XY for wall: %f, %f, center of projection %f\n", start.x, start.y, cubed->raycast_info->center_of_projection.y);
+	// printf("START XY for wall: %f, %f, center of projection %f\n", start.x, start.y, cubed->raycast_info->center_of_projection.y);
 	//draw line
 	my_put_line_v(cubed->raycast_info->r_img, &start, line_height);
 }

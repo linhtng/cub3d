@@ -6,15 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/06 19:13:19 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:50:47 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "libft.h"
 #include "cub3D.h"
-
-
 
 void	draw_minimap(t_cubed *cubed, t_scene *scene)
 {
