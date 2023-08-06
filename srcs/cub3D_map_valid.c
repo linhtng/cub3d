@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/06 20:56:13 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/06 21:07:44 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int	cell_inbound(int i, int j, t_scene *scene)
 
 void	ft_flood(int y, int x, t_scene *scene)
 {
-	if (y < 0 || x < 0 || y >= scene->map.height || x >= (int)ft_strlen(scene->map.flood[y])
+	if (y < 0 || x < 0 || y >= scene->map.height
+		|| x >= (int)ft_strlen(scene->map.flood[y])
 		|| scene->map.flood[y][x] == SPACE
 		|| scene->map.visited[y][x] == VISITED)
 	{
@@ -140,7 +141,7 @@ int	empty_map(t_scene *scene)
 int	check_island(t_scene *scene, char **map)
 {
 	if (!(ft_arrdup(map, scene) == 1
-		&& empty_map(scene) == 1))
+			&& empty_map(scene) == 1))
 		return (ERROR);
 	//print_arr(scene->map.flood);
 	printf("map height: %d\n", scene->map.height);
@@ -161,4 +162,3 @@ int	check_island(t_scene *scene, char **map)
 	//print_arr(map);
 	return (1);
 }
-
