@@ -6,33 +6,11 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/03 20:25:27 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:48:21 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static int	lay_space_holder(char *map_line)
-{
-	int		i;
-	int		len;
-	char	*endl;
-
-	endl = ft_strrchr(map_line, '1');
-	if (!endl)
-		return (err_msg(1, "Encounter map content line without wall."));
-	len = (int)(endl - map_line);
-	i = 0;
-	while (ft_isspace(map_line[i]))
-		i++;
-	while (i < len)
-	{
-		if (map_line[i] == ' ')
-			map_line[i] = SPACE;
-		i++;
-	}
-	return (1);
-}
 
 static int	player_pos_valid(char **map, t_player player, char block)
 {
@@ -48,6 +26,7 @@ static int	create_map(t_scene *scene, char **scene_arr)
 {
 	char	**map;
 	int		line;
+	int		line_len;
 
 	map = (char **) ft_calloc(scene->map.height + 1, sizeof(char *));
 	if (!map)
@@ -59,9 +38,14 @@ static int	create_map(t_scene *scene, char **scene_arr)
 		map[line] = (char *) ft_calloc(scene->map.width + 1, sizeof(char));
 		if (!map[line])
 			return (err_msg(1, "Malloc err when getting the map content."));
-		ft_memmove(map[line], scene_arr[line], ft_strlen(scene_arr[line]));
-		if (lay_space_holder(map[line]) == ERROR)
-			return (ERROR);
+		line_len = ft_strlen(scene_arr[line]);
+		ft_memset(map[line], SPACE, scene->map.width);
+		ft_memmove(map[line], scene_arr[line], line_len);
+		while (line_len-- > 0)
+		{
+			if (map[line][line_len] == ' ')
+				map[line][line_len] = SPACE;
+		}
 		line++;
 	}
 	return (1);
@@ -74,7 +58,7 @@ int	map_valid_characters(t_scene *scene, char *line, int y)
 	index = 0;
 	while (line[index])
 	{
-		if (!ft_strchr("01NSEW\n ", line[index]))
+		if (!ft_strchr("01NSEW ", line[index]))
 			return (err_msg(2, "Map has invalid character in line:", line));
 		if (ft_strchr("NSEW", line[index]))
 		{

@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/03 20:32:09 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:31:16 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 		}
 		init_scene(&scene);
 		if (get_scene_data(fd, &scene) != ERROR)
-			print_scene(&scene);
+			//print_scene(&scene);
 			//print_arr(scene.array);
 		free_arr(scene.array);
 		free_arr(scene.map.array);

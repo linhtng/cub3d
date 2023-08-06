@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/03 20:24:13 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:18:33 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FLOOR 1
 # define CEILING 2
 # define SPACE '_'
+# define VISITED '1'
 
 typedef struct s_elem
 {
