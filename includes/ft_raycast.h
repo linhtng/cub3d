@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 19:44:44 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:14:58 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct s_player
 	// struct s_img_data	*player_img;
 	float				angle;
 	struct s_vector		d;
-	float				distance_to_pane;// calculate based on field of vison and projection pane dimensions
-	float				height;
+	// float				distance_to_pane;// calculate based on field of vison and projection pane dimensions
+	// float				height; removed for now from intialization of player ^ as well
 }				t_player;
 
 typedef struct s_raycast
@@ -159,5 +159,8 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height);
 float	deg_to_rad(float degrees);
 float	correct_degrees(float degrees);
 int		ft_abs(int val);
+
+/* setup_player.c */
+void	setup_player(t_cubed *cubed, int i, int j, char dir);
 
 #endif
