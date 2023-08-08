@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/06 21:07:44 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:59:47 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,17 @@ int	valid_walls(t_scene *scene, char **map)
 	{
 		j = 0;
 		len = ft_strlen(map[i]);
-		while (map[i][len - 1] == SPACE)
+		while (len && (map[i][len - 1] == SPACE))
 			len--;
-		while (map[i][j] == SPACE)
+		if (!len)
+			return (err_msg(1, "Empty line detected in map content."));
+		while (map[i][j] && (map[i][j] == SPACE))
 			j++;
 		if (map[i][j] != '1' || map[i][len - 1] != '1')
-		{
-			printf("map line not closed by wall: %s\n", map[i]); //debug, dell later
 			return (err_msg(1, "The map must be closed/surrounded by walls."));
-		}
 		i++;
 	}
 	return (1);
-}
-
-int	cell_inbound(int i, int j, t_scene *scene)
-{
-	return (i >= 0 && i < scene->map.height && j >= 0 && j < scene->map.width);
 }
 
 void	ft_flood(int y, int x, t_scene *scene)
@@ -74,26 +68,14 @@ void	ft_flood(int y, int x, t_scene *scene)
 		|| x >= (int)ft_strlen(scene->map.flood[y])
 		|| scene->map.flood[y][x] == SPACE
 		|| scene->map.visited[y][x] == VISITED)
-	{
-		//printf("y: %d x: %d\n", y, x);
 		return ;
-	}
-	//printf("map flood current line: %s\n", scene->map.flood[y]);
 	scene->map.visited[y][x] = VISITED;
 	if ((scene->map.flood[y][x] == '0' || scene->map.flood[y][x] == '1'))
 		scene->map.flood[y][x] = '2';
-	//printf("flood start:\n");
-	//printf("map flood current line: %s\n", scene->map.flood[y]);
-	//map[y][x] += 2;
-	//print_arr(map);
 	ft_flood(y + 1, x, scene);
 	ft_flood(y - 1, x, scene);
 	ft_flood(y, x + 1, scene);
 	ft_flood(y, x - 1, scene);
-	ft_flood(y + 1, x + 1, scene);
-	ft_flood(y + 1, x - 1, scene);
-	ft_flood(y - 1, x + 1, scene);
-	ft_flood(y - 1, x - 1, scene);
 }
 
 int	ft_arrdup(char **map, t_scene *scene)
@@ -135,30 +117,5 @@ int	empty_map(t_scene *scene)
 		empty[i][scene->map.width] = '\0';
 		i++;
 	}
-	return (1);
-}
-
-int	check_island(t_scene *scene, char **map)
-{
-	if (!(ft_arrdup(map, scene) == 1
-			&& empty_map(scene) == 1))
-		return (ERROR);
-	//print_arr(scene->map.flood);
-	printf("map height: %d\n", scene->map.height);
-	printf("map flood before flood start:\n");
-	print_arr(scene->map.flood);
-	/* int	i = 0;
-	while (i < scene->map.height)
-		printf("len of each line in flood: %d\n", (int)ft_strlen(scene->map.flood[i++])); */
-	printf("map visited before flood start:\n");
-	print_arr(scene->map.visited);
-	printf("player pos y: %d, pos x: %d\n", scene->player.pos_y, scene->player.pos_x);
-	ft_flood(scene->player.pos_y, scene->player.pos_x, scene);
-	printf("map flooded:\n");
-	print_arr(scene->map.flood);
-	printf("map visited after:\n");
-	print_arr(scene->map.visited);
-	printf("end\n");
-	//print_arr(map);
 	return (1);
 }

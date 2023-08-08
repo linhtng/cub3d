@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/06 20:48:21 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:01:37 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,35 @@ int	map_valid_characters(t_scene *scene, char *line, int y)
 	return (1);
 }
 
+int	check_island(t_scene *scene, char **map)
+{
+	int	island;
+	int	line;
+
+	line = 0;
+	island = 0;
+	if (!(ft_arrdup(map, scene) == 1
+			&& empty_map(scene) == 1))
+		return (ERROR);
+	//print_arr(scene->map.flood);
+	//printf("map height: %d\n", scene->map.height);
+	/* printf("map flood before flood start:\n");
+	print_arr(scene->map.flood); */
+	/* printf("map visited before flood start:\n");
+	print_arr(scene->map.visited); */
+	ft_flood(scene->player.pos_y, scene->player.pos_x, scene);
+	/* printf("map flooded:\n");
+	print_arr(scene->map.flood); */
+	while (line < scene->map.height)
+	{
+		island += count_occurences(scene->map.flood[line], '1');
+		if (island)
+			return (err_msg(1, "Map has isolated island. Invalid."));
+		line++;
+	}
+	return (1);
+}
+
 int	get_map_content(char **scene_arr, t_scene *scene, int i)
 {
 	int	w;
@@ -101,6 +130,5 @@ int	get_map_content(char **scene_arr, t_scene *scene, int i)
 		|| player_pos_valid(scene->map.array, scene->player, '1') == ERROR
 		|| player_pos_valid(scene->map.array, scene->player, SPACE) == ERROR)
 		return (ERROR);
-	check_island(scene, scene->map.array);
-	return (1);
+	return (check_island(scene, scene->map.array));
 }

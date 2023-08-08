@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/27 21:35:38 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:48:32 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_valid_texture(char *texture)
 	int	ret;
 
 	if (!texture)
-		return (ERROR);
+		return (err_msg(1, "Malloc error when getting texture."));
 	fd = open(texture, O_RDONLY);
 	ret = check_input_file(texture, fd, ".xpm");
 	close(fd);
@@ -30,22 +30,22 @@ static int	get_texture(t_scene *scene, char *elem_id, char *texture, int len)
 	int	ret;
 
 	ret = -1;
-	if (!ft_strncmp(elem_id, "NO", len) && !scene->elems.north)
+	if (texture && !ft_strncmp(elem_id, "NO", len) && !scene->elems.north)
 	{
 		scene->elems.north = ft_strdup(texture);
 		ret = check_valid_texture(scene->elems.north);
 	}
-	if (!ft_strncmp(elem_id, "SO", len) && !scene->elems.south)
+	if (texture && !ft_strncmp(elem_id, "SO", len) && !scene->elems.south)
 	{
 		scene->elems.south = ft_strdup(texture);
 		ret = check_valid_texture(scene->elems.south);
 	}
-	if (!ft_strncmp(elem_id, "WE", len) && !scene->elems.west)
+	if (texture && !ft_strncmp(elem_id, "WE", len) && !scene->elems.west)
 	{
 		scene->elems.west = ft_strdup(texture);
 		ret = check_valid_texture(scene->elems.west);
 	}
-	if (!ft_strncmp(elem_id, "EA", len) && !scene->elems.east)
+	if (texture && !ft_strncmp(elem_id, "EA", len) && !scene->elems.east)
 	{
 		scene->elems.east = ft_strdup(texture);
 		ret = check_valid_texture(scene->elems.east);
@@ -117,7 +117,7 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 	if (!single_elem || !ft_strchr("NOSWEAFC", single_elem[0][0]))
 	{
 		scene->err_flag = 1;
-		return (err_msg(1, "Invalid element info."));
+		return (err_msg(1, "Invalid/Missing element info."));
 	}
 	ret = 0;
 	info_num = arr_len(single_elem);

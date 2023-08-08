@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/27 21:30:32 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:56:28 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,18 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 
 	i = 0;
 	if (!ft_strchr("NOSWEAFC", scene_arr[0][0]))
-		return (err_msg(2, "Invalid element info.", scene_arr[i]));
+		return (err_msg(2, "Invalid element info:", scene_arr[i]));
 	while (scene_arr[i])
 	{
-		scene->elems.filled_elem += get_scene_elem(scene, scene_arr[i]);
+		scene->elems.filled_elem += get_scene_elem(scene, scene_arr[i++]);
 		if (scene->elems.filled_elem == 6 || scene->err_flag)
-		{
-			i++;
 			break ;
-		}
-		i++;
 	}
 	if (scene->elems.filled_elem != 6)
-		return (err_msg(1, "Missing element(s) from the scene file."));
+	{
+		printf("Line where error detected: %s\n", scene_arr[i - 1]);
+		return (ERROR);
+	}
 	while (scene_arr[i] && ft_isemptystr(scene_arr[i]))
 		i++;
 	scene->map.height = scene->len - i;

@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/06 21:03:47 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:36:23 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,40 @@ void	init_scene(t_scene *scene)
 	scene->map.visited = NULL;
 }
 
+void	mass_test_maps(int argc, char **argv)
+{
+	int		fd[420];
+	int		index;
+	t_scene	scene[420];
+
+	index = 0;
+	while (index < argc)
+	{
+		printf("\033[0;33mResult of passing file %s: \033[0m\n", argv[index]);
+		fd[index] = open(argv[index], O_RDONLY);
+		if (check_input_file(argv[index], fd[index], ".cub") == ERROR)
+		{
+			close(fd[index]);
+			index++;
+			continue ;
+		}
+		init_scene(&scene[index]);
+		if (get_scene_data(fd[index], &scene[index]) != ERROR)
+			print_scene(&scene[index]);
+		free_arr(scene[index].array);
+		free_arr(scene[index].map.array);
+		free_arr(scene[index].map.flood);
+		free_arr(scene[index].map.visited);
+		index++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	int		fd;
 	t_scene	scene;
 
-	if (argc == 2)
+	if (argc == 2 && !DEBUG)
 	{
 		fd = open(argv[1], O_RDONLY);
 		if (check_input_file(argv[1], fd, ".cub") == ERROR)
@@ -54,13 +82,15 @@ int	main(int argc, char **argv)
 		}
 		init_scene(&scene);
 		if (get_scene_data(fd, &scene) != ERROR)
-			//print_scene(&scene);
+			print_scene(&scene);
 			//print_arr(scene.array);
 		free_arr(scene.array);
 		free_arr(scene.map.array);
 		free_arr(scene.map.flood);
 		free_arr(scene.map.visited);
 	}
+	else if (DEBUG)
+		mass_test_maps(argc - 1, &argv[1]);
 	else
 		printf("Number of parameters must be 1.\n");
 	return (0);
