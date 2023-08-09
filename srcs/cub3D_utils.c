@@ -3,19 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:35:28 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/18 16:35:38 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:44:13 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "cub3D.h"
 
-void	clean_exit(char *message)
+int	err_msg(int n, ...)
 {
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	exit(EXIT_FAILURE);
+	va_list	msg;
+
+	printf("Error\n");
+	va_start(msg, n);
+	while (n-- > 0)
+		printf("%s\n", va_arg(msg, char *));
+	va_end(msg);
+	return (ERROR);
 }
 
 // helper that checks whether the path is a directory
@@ -51,24 +57,23 @@ void	free_arr(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i] != NULL)
+	if (arr)
 	{
-		free(arr[i]);
-		i++;
+		while (arr[i] != NULL)
+		{
+			free(arr[i]);
+			i++;
+		}
+		free(arr);
 	}
-	free(arr);
 }
 
-void	correct_extension(const char *argv, int fd)
+int	arr_len(char **arr)
 {
-	size_t		len;
-	const char	*extension;
+	int	i;
 
-	len = ft_strlen(argv);
-	extension = ft_strnstr(argv, ".cub", len);
-	if (!extension || ft_strlen(extension) != 4)
-	{
-        close(fd);
-        clean_exit("Map must have .cub extension\n");
-    }
+	i = 0;
+	while (arr[i] != NULL)
+		i++;
+	return (i);
 }

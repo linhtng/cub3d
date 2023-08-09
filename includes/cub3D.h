@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/07/19 18:21:24 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:14:52 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,83 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-typedef struct s_texture
+# define ERROR -1
+# define FLOOR 1
+# define CEILING 2
+# define SPACE '_'
+# define VISITED '1'
+# define DEBUG 1
+
+typedef struct s_elem
 {
-	char	*id;
-	char	*path;
-}	t_texture;
+	char				*north;
+	char				*south;
+	char				*east;
+	char				*west;
+	int					fl_rgb[4];
+	int					c_rgb[4];
+	unsigned	long	floor_color;
+	unsigned	long	ceiling_color;
+	int					filled_elem;
+}	t_elem;
+
+typedef struct s_map
+{
+	int			height;
+	int			width;
+	char		**array;
+	char		**flood;
+	char		**visited;
+}	t_map;
+
+typedef struct s_player
+{
+	int			pos_y;
+	int			pos_x;
+	char		spawn;
+}	t_player;
 
 typedef struct s_scene
 {
-	int			lines;
-	int			columns;
-	char		**map;
-	t_texture	*texture;
-	int			*floor_color;
-	int			*ceiling_color;
+	int			len;
+	char		**array;
+	t_map		map;
+	t_elem		elems;
+	t_player	player;
+	int			err_flag;
 }	t_scene;
 
 /* cub3D_utils */
-void	correct_extension(const char *argv, int fd);
-void	clean_exit(char *message);
+int 	check_input_file(char *argv, int fd, char *extension);
+int		err_msg(int n, ...);
 int		count_occurences(char *str, char c);
 int		ft_is_dir(const char *path);
+int		arr_len(char **arr);
+void	free_arr(char **arr);
+
+/* cub3D_parsing_utils */
+int				correct_extension(const char *argv, char *ending);
+unsigned long   convert_rgb_hex(int *rgb);
+int				check_rgb_valid(t_scene *scene, char *line);
+
+/* cub3D_map */
+int		get_scene_data(int fd, t_scene *scene);
+
+/* cub3D_map_elems */
+int		get_scene_elem(t_scene *scene, char *scene_line);
+
+/* cub3D_map_content */
+int		get_map_content(char **scene_arr, t_scene *scene, int i);
+
+/* cub3D_map_valid */
+int		valid_walls(t_scene *scene, char **map);
+void	ft_flood(int y, int x, t_scene *scene);
+int		ft_arrdup(char **map, t_scene *scene);
+int		empty_map(t_scene *scene);
+
+/* cub3D_debug */
+void	print_arr(char **arr);
+void	print_scene(t_scene *scene);
 
 #endif
 

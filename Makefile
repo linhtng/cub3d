@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/09 13:17:53 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/09 18:16:13 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = cub3D
 # RAY_CASTER := raycast_build
@@ -16,6 +17,7 @@ NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
+CDEBUG = -fsanitize=address
 
 DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \
@@ -36,6 +38,14 @@ SRC := ray_cast_main.c \
 		 redraw.c \
 		 setup/setup_cubed.c setup/setup_scene.c setup/setup_raycast.c \
 		 
+SRC = cub3D_main.c \
+	cub3D_utils.c \
+	cub3D_map.c \
+	cub3D_map_elems.c \
+	cub3D_map_content.c \
+	cub3D_map_valid.c \
+	cub3D_parsing_utils.c \
+	debug.c \
 
 SRCFD = srcs/
 OBJSFD = objs/
@@ -63,7 +73,7 @@ $(OBJSFD)%.o: $(SRCFD)%.c
 	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBS) $(LINKS) $^ -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $(LIBS) $(LINKS) $^ -o $@
 
 $(LIBFT) :
 	make -C $(LIBFT_PATH)
