@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/08 21:59:41 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:45:53 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@
 
 typedef struct s_elem
 {
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	int		fl_colors[4];
-	int		c_colors[4];
-	int		filled_elem;
+	char				*north;
+	char				*south;
+	char				*east;
+	char				*west;
+	int					fl_rgb[4];
+	int					c_rgb[4];
+	unsigned	long	floor_color;
+	unsigned	long	ceiling_color;
+	int					filled_elem;
 }	t_elem;
 
 typedef struct s_map
@@ -66,12 +68,16 @@ typedef struct s_scene
 
 /* cub3D_utils */
 int 	check_input_file(char *argv, int fd, char *extension);
-int		correct_extension(const char *argv, char *ending);
 int		err_msg(int n, ...);
 int		count_occurences(char *str, char c);
 int		ft_is_dir(const char *path);
 int		arr_len(char **arr);
 void	free_arr(char **arr);
+
+/* cub3D_parsing_utils */
+int				correct_extension(const char *argv, char *ending);
+unsigned long   convert_rgb_hex(int *rgb);
+int				check_rgb_valid(t_scene *scene, char *line);
 
 /* cub3D_map */
 int		get_scene_data(int fd, t_scene *scene);

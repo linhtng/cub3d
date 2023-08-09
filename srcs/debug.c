@@ -25,8 +25,8 @@ void	print_scene(t_scene *scene)
 	printf("SO: %s\n", scene->elems.south);
 	printf("WE: %s\n", scene->elems.west);
 	printf("EA: %s\n", scene->elems.east);
-	printf("floor color: %d, %d, %d\n", scene->elems.fl_colors[0], scene->elems.fl_colors[1], scene->elems.fl_colors[2]);
-	printf("ceiling color: %d, %d, %d\n", scene->elems.c_colors[0], scene->elems.c_colors[1], scene->elems.c_colors[2]);
+	printf("floor color: %lx\n", scene->elems.floor_color);
+	printf("ceiling color: %lx\n", scene->elems.ceiling_color);
 	printf("player spawn dir is: %c, pos_y is: %d, pos_x is: %d\n", 
 			scene->player.spawn, scene->player.pos_y, scene->player.pos_x);
 }

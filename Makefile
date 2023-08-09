@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/06 15:05:50 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/09 14:50:31 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
-#CDEBUG = -fsanitize=address
+CDEBUG = -fsanitize=address
 
 SRC = cub3D_main.c \
 	cub3D_utils.c \
@@ -23,6 +23,7 @@ SRC = cub3D_main.c \
 	cub3D_map_elems.c \
 	cub3D_map_content.c \
 	cub3D_map_valid.c \
+	cub3D_parsing_utils.c \
 	debug.c \
 
 SRCFD = srcs/

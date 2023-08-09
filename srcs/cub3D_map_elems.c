@@ -6,21 +6,26 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/08 21:48:32 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:56:08 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	check_valid_texture(char *texture)
+static int	check_valid_texture(char **path, char *texture)
 {
 	int	fd;
 	int	ret;
 
-	if (!texture)
-		return (err_msg(1, "Malloc error when getting texture."));
-	fd = open(texture, O_RDONLY);
-	ret = check_input_file(texture, fd, ".xpm");
+	if (!texture || !texture[0])
+		return (err_msg(1, "Empty texture info"));
+	if (*path)
+		return (err_msg(1, "Duplicate texture detected"));
+	*path = ft_strdup(texture);
+	if (!*path)
+		return (err_msg(1, "Malloc error when getting texture path"));
+	fd = open(*path, O_RDONLY);
+	ret = check_input_file(*path, fd, ".xpm");
 	close(fd);
 	return (ret);
 }
@@ -30,56 +35,38 @@ static int	get_texture(t_scene *scene, char *elem_id, char *texture, int len)
 	int	ret;
 
 	ret = -1;
-	if (texture && !ft_strncmp(elem_id, "NO", len) && !scene->elems.north)
-	{
-		scene->elems.north = ft_strdup(texture);
-		ret = check_valid_texture(scene->elems.north);
-	}
-	if (texture && !ft_strncmp(elem_id, "SO", len) && !scene->elems.south)
-	{
-		scene->elems.south = ft_strdup(texture);
-		ret = check_valid_texture(scene->elems.south);
-	}
-	if (texture && !ft_strncmp(elem_id, "WE", len) && !scene->elems.west)
-	{
-		scene->elems.west = ft_strdup(texture);
-		ret = check_valid_texture(scene->elems.west);
-	}
-	if (texture && !ft_strncmp(elem_id, "EA", len) && !scene->elems.east)
-	{
-		scene->elems.east = ft_strdup(texture);
-		ret = check_valid_texture(scene->elems.east);
-	}
+	if (!ft_strncmp(elem_id, "NO", len))
+		ret = check_valid_texture(&scene->elems.north, texture);
+	if (!ft_strncmp(elem_id, "SO", len))
+		ret = check_valid_texture(&scene->elems.south, texture);
+	if (!ft_strncmp(elem_id, "WE", len))
+		ret = check_valid_texture(&scene->elems.west, texture);
+	if (!ft_strncmp(elem_id, "EA", len))
+		ret = check_valid_texture(&scene->elems.east, texture);
 	return (ret);
 }
 
 static int	get_rgb_color(t_scene *scene, char **color, int id, char *line)
 {
-	int	i;
-
-	i = 0;
 	if (id == FLOOR)
 	{
-		scene->elems.fl_colors[0] = ft_atoi(&(color[0])[1]);
-		scene->elems.fl_colors[1] = ft_atoi(color[1]);
-		scene->elems.fl_colors[2] = ft_atoi(color[2]);
-		scene->elems.fl_colors[3]++;
+		if (scene->elems.fl_rgb[3])
+			return (err_msg(1, "Duplicate floor texture detected"));
+		scene->elems.fl_rgb[0] = ft_atoi(&(color[0])[1]);
+		scene->elems.fl_rgb[1] = ft_atoi(color[1]);
+		scene->elems.fl_rgb[2] = ft_atoi(color[2]);
+		scene->elems.fl_rgb[3]++;
 	}
 	if (id == CEILING)
 	{
-		scene->elems.c_colors[0] = ft_atoi(&(color[0])[1]);
-		scene->elems.c_colors[1] = ft_atoi(color[1]);
-		scene->elems.c_colors[2] = ft_atoi(color[2]);
-		scene->elems.c_colors[3]++;
+		if (scene->elems.c_rgb[3])
+			return (err_msg(1, "Duplicate ceiling texture detected"));
+		scene->elems.c_rgb[0] = ft_atoi(&(color[0])[1]);
+		scene->elems.c_rgb[1] = ft_atoi(color[1]);
+		scene->elems.c_rgb[2] = ft_atoi(color[2]);
+		scene->elems.c_rgb[3]++;
 	}
-	while (i < 3)
-	{
-		if (scene->elems.fl_colors[i] < 0 || scene->elems.fl_colors[i] > 255
-			|| scene->elems.c_colors[i] < 0 || scene->elems.c_colors[i] > 255)
-			return (err_msg(2, line, "Floor/ceiling color invalid."));
-		i++;
-	}
-	return (1);
+	return (check_rgb_valid(scene, line));
 }
 
 static int	get_scene_color(t_scene *scene, char *scene_line)
@@ -97,10 +84,15 @@ static int	get_scene_color(t_scene *scene, char *scene_line)
 	color_arr = ft_split(scene_line, ',');
 	if (!color_arr || arr_len(color_arr) != 3)
 		return (err_msg(2, "Invalid color info.", scene_line));
-	if (color_arr[0][0] == 'F' && !scene->elems.fl_colors[3])
+	if (color_arr[0][0] == 'F')
 		ret = get_rgb_color(scene, color_arr, FLOOR, scene_line);
-	else if (color_arr[0][0] == 'C' && !scene->elems.c_colors[3])
+	else if (color_arr[0][0] == 'C')
 		ret = get_rgb_color(scene, color_arr, CEILING, scene_line);
+	if (ret != ERROR)
+	{
+		scene->elems.ceiling_color = convert_rgb_hex(scene->elems.c_rgb);
+		scene->elems.floor_color = convert_rgb_hex(scene->elems.fl_rgb);
+	}
 	free_arr(color_arr);
 	return (ret);
 }
@@ -128,7 +120,7 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 	else if (ft_strchr("FC", single_elem[0][0]))
 		ret = get_scene_color(scene, scene_line);
 	free_arr(single_elem);
-	if (ret == -1)
+	if (ret == ERROR)
 		scene->err_flag = 1;
 	return (ret);
 }
