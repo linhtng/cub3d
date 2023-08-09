@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:43:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 14:23:28 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:36:57 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "libft.h"
 #include "cub3D.h"
 
-//return true / false? setup buffer to + or - based on direction?
+//return true / false? setup buffer to + or - based on direction?  010
+//currently allows movement through small gaps, eg. from 0 to 0 -> 101 
 int	can_move(t_cubed *cubed, t_vector *next)
 {
 	t_vector grid;
