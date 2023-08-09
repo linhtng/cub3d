@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/06 20:44:28 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:01:49 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define PROJECTION_HEIGHT 768
 # define MAX_DOF 8
 # define FOV 60
+# define TRUE 1;
+# define FALSE 0;
 
 enum	e_keys
 {
@@ -91,6 +93,7 @@ typedef struct s_cubed
 	struct s_img_data	*img;//for minimap currently
 	struct s_player		player;
 	struct s_img_data	*player_img;//player and rays drawn to this for minimap
+	unsigned int		dirty_images;
 } 				t_cubed;
 
 typedef	struct s_bham_info
@@ -170,5 +173,9 @@ void	move_forward(t_cubed *cubed);
 void	move_backward(t_cubed *cubed);
 void	move_right(t_cubed *cubed);
 void	move_left(t_cubed *cubed);
+
+/* draw_player.c */
+void	draw_nose(t_cubed *cubed);
+void	draw_mini_player(t_cubed *cubed);
 
 #endif

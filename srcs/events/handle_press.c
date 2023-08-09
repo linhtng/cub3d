@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/06 20:47:18 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:07:17 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	handle_press(int key_code, t_cubed *cubed)
 	{
 		move_right(cubed);
 	}
-	//put check for 'dirty images' and refresh of images here
+	if (cubed->dirty_images)
+		refresh_images(cubed);
 	return (0);
 }
