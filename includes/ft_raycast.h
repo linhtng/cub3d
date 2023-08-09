@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 11:33:29 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:32:59 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ typedef struct s_cubed
 	struct s_raycast	*raycast_info;
 	void				*mlx;
 	void				*window;
-	struct s_img_data	*img;//for minimap currently
+	struct s_img_data	*minimap_img;
 	struct s_player		player;
-	struct s_img_data	*player_img;//player and rays drawn to this for minimap
+	struct s_img_data	*mini_player_img;//player and rays drawn to this for minimap
 	unsigned int		dirty_images;
 } 				t_cubed;
 
@@ -117,8 +117,8 @@ typedef struct s_ray_calc
 	struct s_vector	v_grid;
 	float			tan;
 	float			cotan;
-	float			h_distance;//?
-	float			v_distance;//?
+	float			h_distance;
+	float			v_distance;
 	struct s_vector	vd;
 	struct s_vector	hd;
 }					t_ray_calc;
@@ -176,6 +176,13 @@ void	move_right_left(t_cubed *cubed, int	key_code);
 void	draw_mini_player(t_cubed *cubed);
 
 /* redraw.c */
-void redraw(t_cubed *cubed);
+void	redraw(t_cubed *cubed);
+
+/* setup_cubed.c */
+void	setup_cubed(t_cubed *cubed);
+
+/* setup_scene */
+void	setup_scene(t_cubed *cubed, t_scene *scene);
+void	setup_raycast(t_cubed *cubed, t_raycast *raycast_info);
 
 #endif

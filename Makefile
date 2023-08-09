@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/09 11:16:32 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/09 13:17:53 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC := ray_cast_main.c \
 		 utils_2.c \
 		 player/setup_player.c player/player_move.c player/draw_player.c \
 		 redraw.c \
+		 setup/setup_cubed.c setup/setup_scene.c setup/setup_raycast.c \
 		 
 
 SRCFD = srcs/
