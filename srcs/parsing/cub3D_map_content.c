@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/08 22:01:37 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:40:56 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	player_pos_valid(char **map, t_player player, char block)
 {
-	if (map[player.pos_y][player.pos_x + 1] == block
-		&& map[player.pos_y + 1][player.pos_x] == block
-		&& map[player.pos_y][player.pos_x - 1] == block
-		&& map[player.pos_y - 1][player.pos_x] == block)
+	if (map[(int)player.location.y][(int)player.location.x + 1] == block
+		&& map[(int)player.location.y + 1][(int)player.location.x] == block
+		&& map[(int)player.location.y][(int)player.location.x - 1] == block
+		&& map[(int)player.location.y - 1][(int)player.location.x] == block)
 		return (err_msg(1, "Invalid postion. Player can't moved from here."));
 	return (1);
 }
@@ -65,8 +65,8 @@ int	map_valid_characters(t_scene *scene, char *line, int y)
 			if (!scene->player.spawn)
 			{
 				scene->player.spawn = (char) line[index];
-				scene->player.pos_x = index;
-				scene->player.pos_y = y;
+				scene->player.location.x = index;
+				scene->player.location.y = y;
 			}
 			else
 				return (err_msg(1, "Map must have only 1 player."));
@@ -92,7 +92,7 @@ int	check_island(t_scene *scene, char **map)
 	print_arr(scene->map.flood); */
 	/* printf("map visited before flood start:\n");
 	print_arr(scene->map.visited); */
-	ft_flood(scene->player.pos_y, scene->player.pos_x, scene);
+	ft_flood(scene->player.location.y, scene->player.location.x, scene);
 	/* printf("map flooded:\n");
 	print_arr(scene->map.flood); */
 	while (line < scene->map.height)

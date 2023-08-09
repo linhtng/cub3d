@@ -28,7 +28,7 @@ void	print_scene(t_scene *scene)
 	printf("floor color: %lx\n", scene->elems.floor_color);
 	printf("ceiling color: %lx\n", scene->elems.ceiling_color);
 	printf("player spawn dir is: %c, pos_y is: %d, pos_x is: %d\n", 
-			scene->player.spawn, scene->player.pos_y, scene->player.pos_x);
+			scene->player.spawn, (int)scene->player.location.y, (int)scene->player.location.x);
 }
 
 /* int	check_island(t_scene *scene, char **map)

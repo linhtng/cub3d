@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 14:31:47 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:09:48 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,6 @@ enum	e_keys
 	ESC = 53
 };
 
-//change to floats?
-typedef struct s_vector
-{
-	float	x;
-	float	y;
-	int	color;
-}				t_vector;
-
 typedef struct s_img_data
 {
 	void		*img;
@@ -63,17 +55,6 @@ typedef struct s_img_data
 	int			width;
 	int			height;
 }				t_img_data;
-
-/* struct to track location and direction of player*/
-typedef struct s_player
-{
-	struct s_vector		location;
-	// struct s_img_data	*player_img;
-	float				angle;
-	struct s_vector		d;
-	// float				distance_to_pane;// calculate based on field of vison and projection pane dimensions
-	// float				height; removed for now from intialization of player ^ as well
-}				t_player;
 
 typedef struct s_raycast
 {
@@ -91,7 +72,6 @@ typedef struct s_cubed
 	void				*mlx;
 	void				*window;
 	struct s_img_data	*minimap_img;
-	struct s_player		player;
 	struct s_img_data	*mini_player_img;//player and rays drawn to this for minimap
 	unsigned int		dirty_images;
 } 				t_cubed;
@@ -164,7 +144,7 @@ int		ft_abs(int val);
 float	get_distance(t_vector *player, t_vector *wall_hit);
 
 /* setup_player.c */
-void	setup_player(t_cubed *cubed, int i, int j, char dir);
+void	setup_player(t_cubed *cubed);
 
 /* player_move.c */
 void	turn_player(t_cubed *cubed, int key_code);
@@ -183,5 +163,8 @@ void	setup_cubed(t_cubed *cubed);
 /* setup_scene */
 void	setup_scene(t_cubed *cubed, t_scene *scene);
 void	setup_raycast(t_cubed *cubed, t_raycast *raycast_info);
+
+/* ray_cast_main.c */
+int	raycast_start(t_scene *scene);
 
 #endif

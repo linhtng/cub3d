@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_raycast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:18:06 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 14:40:48 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:04:30 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	draw_background(t_cubed *cubed)
 
 	start.x = 0;
 	start.y = 0;
-	start.color = *cubed->scene->ceiling_color;
+	start.color = cubed->scene->elems.ceiling_color;
 	while ((int) start.y < PROJECTION_HEIGHT)
 	{
 		if ((int) start.y > PROJECTION_HEIGHT / 2)
-			start.color = *cubed->scene->floor_color;
+			start.color = cubed->scene->elems.floor_color;
 		my_put_line_h(cubed->raycast_info->background_img, &start, PROJECTION_WIDTH);
 		(start.y)++;
 	}

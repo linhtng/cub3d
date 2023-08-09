@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 12:46:01 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:53:45 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,15 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	i = 0;
 	start.x = 0;
 	start.y = 0;
-	while (i < scene->lines)
+	while (i < scene->map.height)
 	{
 		j = 0;
-		while (j < scene->columns)
+		while (j < scene->map.width)
 		{
-			if (scene->map[i][j] == '1')
+			if (scene->map.array[i][j] == '1')
 				start.color = 0xFF0000;//red
-			else if (scene->map[i][j] == '0')
-				start.color = 0x666666;
 			else
-			{
-				start.color = 0x666666;//gray
-				printf("PLAYER DRAWN\n");
-				setup_player(cubed, i, j, scene->map[i][j]);//
-			}
+				start.color = 0x666666;
 			my_put_square(cubed->minimap_img, start, CELL_SIZE);
 			j++;
 			start.x += CELL_SIZE;
@@ -50,5 +44,5 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	start.x = 0;
 	start.y = 0;
 	start.color = 0x00FF00;
-	my_put_grid(cubed->minimap_img, &start, scene->columns, scene->lines);
+	my_put_grid(cubed->minimap_img, &start, scene->map.width, scene->map.height);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 13:35:26 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:10:38 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,28 @@
 #include "libft.h"
 #include "cub3D.h"
 
-void	setup_player(t_cubed *cubed, int i, int j, char dir)
+void	setup_player(t_cubed *cubed)
 {
 	t_vector start;
 
 	start.x  = 0;
 	start.y = 0;
 	start.color = 0x00;
-	cubed->player.location.y = i * CELL_SIZE + CELL_SIZE / 2;
-	cubed->player.location.x = j * CELL_SIZE + CELL_SIZE / 2;
-	cubed->player.location.color = 0xFFFF00;//yellow
-	if (dir == 'N')
-		cubed->player.angle = 90.0f;
-	if (dir == 'S')
-		cubed->player.angle = 270.0f;
-	if (dir == 'E')
-		cubed->player.angle = 0.0f;
-	if (dir == 'W')
-		cubed->player.angle = 180.0f;
-	cubed->player.d.x = cos(deg_to_rad(cubed->player.angle)) * 5;
-	cubed->player.d.y = -sin(deg_to_rad(cubed->player.angle)) * 5;
+
+	cubed->scene->player.location.y = cubed->scene->player.location.y * CELL_SIZE + \
+	CELL_SIZE / 2;
+	cubed->scene->player.location.x = cubed->scene->player.location.x * CELL_SIZE + \
+	CELL_SIZE / 2;
+	cubed->scene->player.location.color = 0xFFFF00;//yellow
+	if (cubed->scene->player.spawn == 'N')
+		cubed->scene->player.angle = 90.0f;
+	if (cubed->scene->player.spawn == 'S')
+		cubed->scene->player.angle = 270.0f;
+	if (cubed->scene->player.spawn == 'E')
+		cubed->scene->player.angle = 0.0f;
+	if (cubed->scene->player.spawn == 'W')
+		cubed->scene->player.angle = 180.0f;
+	cubed->scene->player.d.x = cos(deg_to_rad(cubed->scene->player.angle)) * 5;
+	cubed->scene->player.d.y = -sin(deg_to_rad(cubed->scene->player.angle)) * 5;
 	draw_mini_player(cubed);
 }

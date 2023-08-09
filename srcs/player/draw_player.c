@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 13:34:07 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:55:20 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	draw_nose(t_cubed *cubed)
 {
 	t_vector temp;
 	
-	temp.x = cubed->player.location.x + cubed->player.d.x  * 5;
-	temp.y = cubed->player.location.y + cubed->player.d.y * 5;
+	temp.x = cubed->scene->player.location.x + cubed->scene->player.d.x  * 5;
+	temp.y = cubed->scene->player.location.y + cubed->scene->player.d.y * 5;
 	temp.color = 0xff00f3;
-	ft_bresenham(temp, cubed->player.location, cubed->mini_player_img);
+	ft_bresenham(temp, cubed->scene->player.location, cubed->mini_player_img);
 }
 void	draw_mini_player(t_cubed *cubed)
 {
 	// ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
-	my_put_square(cubed->mini_player_img, cubed->player.location, 10);
+	my_put_square(cubed->mini_player_img, cubed->scene->player.location, 10);
 	draw_nose(cubed);
 }

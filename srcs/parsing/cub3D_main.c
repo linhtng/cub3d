@@ -6,11 +6,12 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 14:07:55 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:13:41 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include "ft_raycast.h"
 
 int	check_input_file(char *argv, int fd, char *extension)
 {
@@ -82,7 +83,10 @@ int	main(int argc, char **argv)
 		}
 		init_scene(&scene);
 		if (get_scene_data(fd, &scene) != ERROR)
-			print_scene(&scene);
+		{
+			//print_scene(&scene);
+			raycast_start(&scene);
+		}
 		free_arr(scene.array);
 		free_arr(scene.map.array);
 		free_arr(scene.map.flood);

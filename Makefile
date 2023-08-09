@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/09 18:16:13 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/09 19:06:20 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,16 @@ SRC := ray_cast_main.c \
 		 utils_2.c \
 		 player/setup_player.c player/player_move.c player/draw_player.c \
 		 redraw.c \
-		 setup/setup_cubed.c setup/setup_scene.c setup/setup_raycast.c \
+		 setup/setup_cubed.c setup/setup_raycast.c \
 		 
-SRC = cub3D_main.c \
-	cub3D_utils.c \
-	cub3D_map.c \
-	cub3D_map_elems.c \
-	cub3D_map_content.c \
-	cub3D_map_valid.c \
-	cub3D_parsing_utils.c \
-	debug.c \
+SRC += parsing/cub3D_main.c \
+	parsing/cub3D_utils.c \
+	parsing/cub3D_map.c \
+	parsing/cub3D_map_elems.c \
+	parsing/cub3D_map_content.c \
+	parsing/cub3D_map_valid.c \
+	parsing/cub3D_parsing_utils.c \
+	parsing/debug.c \
 
 SRCFD = srcs/
 OBJSFD = objs/

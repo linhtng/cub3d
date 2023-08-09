@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:43:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 14:36:57 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:57:16 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	can_move(t_cubed *cubed, t_vector *next)
 	grid.y = ((int)next->y) / CELL_SIZE;
 	// printf("[CAN MOVE NEXT] y %f, x %f", next->y, next->x);
 	// printf("[CAN MOVE MAP CONTENT] y cell = %i x cell = %i char = %c\n", (int) grid.y, (int) grid.x, cubed->scene->map[(int) grid.y][(int) grid.x]);
-	if (cubed->scene->map[(int)grid.y][(int)grid.x] && cubed->scene->map[(int) grid.y][(int) grid.x] == '1')
+	if (cubed->scene->map.array[(int)grid.y][(int)grid.x] && cubed->scene->map.array[(int) grid.y][(int) grid.x] == '1')
 		return (0);
 	return (1);
 }
@@ -32,11 +32,11 @@ int	can_move(t_cubed *cubed, t_vector *next)
 void	turn_player(t_cubed *cubed, int key_code)
 {	
 	if (key_code == TURN_LEFT)
-		cubed->player.angle = correct_degrees(cubed->player.angle + 5);
+		cubed->scene->player.angle = correct_degrees(cubed->scene->player.angle + 5);
 	else
-		cubed->player.angle = correct_degrees(cubed->player.angle - 5);
-	cubed->player.d.x = cos(deg_to_rad(cubed->player.angle)) * 5;
-	cubed->player.d.y = -sin(deg_to_rad(cubed->player.angle)) * 5;
+		cubed->scene->player.angle = correct_degrees(cubed->scene->player.angle - 5);
+	cubed->scene->player.d.x = cos(deg_to_rad(cubed->scene->player.angle)) * 5;
+	cubed->scene->player.d.y = -sin(deg_to_rad(cubed->scene->player.angle)) * 5;
 	redraw(cubed);
 	cubed->dirty_images = TRUE;
 }
@@ -47,18 +47,18 @@ void	move_forward_backward(t_cubed *cubed, int key_code)
 
 	if (key_code == FORWARD)
 	{
-		next_loc.x = cubed->player.location.x + cubed->player.d.x;
-		next_loc.y = cubed->player.location.y + cubed->player.d.y;
+		next_loc.x = cubed->scene->player.location.x + cubed->scene->player.d.x;
+		next_loc.y = cubed->scene->player.location.y + cubed->scene->player.d.y;
 	}
 	else
 	{
-		next_loc.x = cubed->player.location.x - cubed->player.d.x;
-		next_loc.y = cubed->player.location.y - cubed->player.d.y;
+		next_loc.x = cubed->scene->player.location.x - cubed->scene->player.d.x;
+		next_loc.y = cubed->scene->player.location.y - cubed->scene->player.d.y;
 	}
 	if (can_move(cubed, &next_loc))
 	{
-		cubed->player.location.x = next_loc.x;
-		cubed->player.location.y = next_loc.y;
+		cubed->scene->player.location.x = next_loc.x;
+		cubed->scene->player.location.y = next_loc.y;
 	}
 	redraw(cubed);
 	cubed->dirty_images = TRUE;
@@ -69,15 +69,15 @@ void	move_right_left(t_cubed *cubed, int	key_code)
 	float		move_angle;
 	
 	if (key_code == RIGHT)
-		move_angle = correct_degrees(cubed->player.angle - 90.0f);
+		move_angle = correct_degrees(cubed->scene->player.angle - 90.0f);
 	else
-		move_angle = correct_degrees(cubed->player.angle + 90.0f);
-	next_loc.x = cubed->player.location.x + cos(deg_to_rad(move_angle)) * 5;
-	next_loc.y = cubed->player.location.y + -sin(deg_to_rad(move_angle)) * 5;
+		move_angle = correct_degrees(cubed->scene->player.angle + 90.0f);
+	next_loc.x = cubed->scene->player.location.x + cos(deg_to_rad(move_angle)) * 5;
+	next_loc.y = cubed->scene->player.location.y + -sin(deg_to_rad(move_angle)) * 5;
 	if (can_move(cubed, &next_loc))
 	{
-		cubed->player.location.x = next_loc.x;
-		cubed->player.location.y = next_loc.y;
+		cubed->scene->player.location.x = next_loc.x;
+		cubed->scene->player.location.y = next_loc.y;
 	}
 	redraw(cubed);
 	cubed->dirty_images = TRUE;

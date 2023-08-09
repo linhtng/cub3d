@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 11:14:09 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 13:33:22 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:08:15 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void redraw(t_cubed *cubed)
 {
 	ft_memset(cubed->mini_player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->mini_player_img->bits_per_pixel / 8));
-	cubed->player.location.color = 0x000FFF;//
+	cubed->scene->player.location.color = 0x000FFF;//
 	ft_memset(cubed->raycast_info->r_img->addr, 0x00FFFFFF, PROJECTION_WIDTH * PROJECTION_HEIGHT * (cubed->raycast_info->r_img->bits_per_pixel / 8));//creates transparent
 	cast_rays(cubed);
 	draw_mini_player(cubed);

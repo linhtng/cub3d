@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 18:14:52 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:14:43 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define CEILING 2
 # define SPACE '_'
 # define VISITED '1'
-# define DEBUG 1
+# define DEBUG 0
 
 typedef struct s_elem
 {
@@ -44,17 +44,30 @@ typedef struct s_map
 {
 	int			height;
 	int			width;
-	char		**array;
+	char		**array;//rename to grid
 	char		**flood;
 	char		**visited;
 }	t_map;
 
+//change to floats?
+typedef struct s_vector
+{
+	float	x;
+	float	y;
+	int	color;
+}				t_vector;
+
+/* struct to track location and direction of player*/
 typedef struct s_player
 {
-	int			pos_y;
-	int			pos_x;
-	char		spawn;
-}	t_player;
+	struct s_vector		location;
+	// struct s_img_data	*player_img;
+	float				angle;
+	struct s_vector		d;
+	char				spawn;
+	// float				distance_to_pane;// calculate based on field of vison and projection pane dimensions
+	// float				height; removed for now from intialization of player ^ as well
+}				t_player;
 
 typedef struct s_scene
 {
