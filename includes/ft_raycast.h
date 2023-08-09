@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 13:32:59 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:37:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ typedef	struct s_bham_info
 	int				decision;
 	int				d2;
 }				t_bham_info;
-
-
 
 typedef struct s_ray_calc
 {
