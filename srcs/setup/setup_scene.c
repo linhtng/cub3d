@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:14:27 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 13:24:48 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:41:09 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	setup_scene(t_cubed *cubed, t_scene *scene)
 {
 	/*  hard coded scene info */
-	scene->columns = 10;
+	scene->columns = 12;
 	scene->lines = 7;
 	//  char *MAP_2[] = {
 	// 	"1111111111",
