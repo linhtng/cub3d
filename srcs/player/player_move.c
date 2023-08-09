@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:43:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 11:22:06 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:32:46 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ void	turn_player(t_cubed *cubed, int key_code)
 	cubed->dirty_images = TRUE;
 }
 
-void	move_forward(t_cubed *cubed)
+void	move_forward_backward(t_cubed *cubed, int key_code)
 {
-	cubed->player.location.x += cubed->player.d.x;
-	cubed->player.location.y += cubed->player.d.y;
-	redraw(cubed);
-	cubed->dirty_images = TRUE;
-}
-void	move_backward(t_cubed *cubed)
-{
-	cubed->player.location.x -= cubed->player.d.x;
-	cubed->player.location.y -= cubed->player.d.y;
+	if (key_code == FORWARD)
+	{
+		cubed->player.location.x += cubed->player.d.x;
+		cubed->player.location.y += cubed->player.d.y;
+	}
+	else
+	{
+		cubed->player.location.x -= cubed->player.d.x;
+		cubed->player.location.y -= cubed->player.d.y;
+	}
 	redraw(cubed);
 	cubed->dirty_images = TRUE;
 }

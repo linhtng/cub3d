@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 11:21:25 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:33:29 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,14 +169,10 @@ void	setup_player(t_cubed *cubed, int i, int j, char dir);
 
 /* player_move.c */
 void	turn_player(t_cubed *cubed, int key_code);
-void	move_forward(t_cubed *cubed);
-void	move_backward(t_cubed *cubed);
-void	move_right(t_cubed *cubed);
-void	move_left(t_cubed *cubed);
+void	move_forward_backward(t_cubed *cubed, int key_code);
 void	move_right_left(t_cubed *cubed, int	key_code);
 
 /* draw_player.c */
-void	draw_nose(t_cubed *cubed);
 void	draw_mini_player(t_cubed *cubed);
 
 /* redraw.c */

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 11:05:25 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:33:23 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "cub3D.h"
 
-void	draw_nose(t_cubed *cubed)
+static void	draw_nose(t_cubed *cubed)
 {
 	t_vector temp;
 	
