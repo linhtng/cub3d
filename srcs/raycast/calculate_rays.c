@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 11:40:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:25:26 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ void	cast_rays(t_cubed *cubed)
 		ray.v_distance = get_distance(&cubed->player.location, &ray.v_map);
 		if (ray.h_distance < ray.v_distance)
 		{
-			ft_bresenham(cubed->player.location, ray.h_map, cubed->player_img);////draw h
+			ft_bresenham(cubed->player.location, ray.h_map, cubed->mini_player_img);////draw h
 			draw_view(cubed, ray.h_distance * cos(deg_to_rad(ray.angle - cubed->player.angle)), PROJECTION_WIDTH - rays_drawn, 'h');
 		}
 		else
 		{
-			ft_bresenham(cubed->player.location, ray.v_map, cubed->player_img);////draw v
+			ft_bresenham(cubed->player.location, ray.v_map, cubed->mini_player_img);////draw v
 			draw_view(cubed, ray.v_distance * cos(deg_to_rad(ray.angle - cubed->player.angle)), PROJECTION_WIDTH - rays_drawn, 'v');
 		}
 		ray.angle += cubed->raycast_info->angle_between_rays;
