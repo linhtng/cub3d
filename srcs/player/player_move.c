@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:43:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 11:32:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:37:09 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 void	turn_player(t_cubed *cubed, int key_code)
 {
 	if (key_code == TURN_LEFT)
-		cubed->player.angle = correct_degrees(cubed->player.angle + 5);//turn 5 deg at a time
+		cubed->player.angle = correct_degrees(cubed->player.angle + 5);
 	else
-		cubed->player.angle = correct_degrees(cubed->player.angle - 5);//turn 5 deg at a time	
+		cubed->player.angle = correct_degrees(cubed->player.angle - 5);
 	cubed->player.d.x = cos(deg_to_rad(cubed->player.angle)) * 5;
 	cubed->player.d.y = -sin(deg_to_rad(cubed->player.angle)) * 5;
 	redraw(cubed);

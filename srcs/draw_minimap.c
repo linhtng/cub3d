@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/06 19:50:47 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:46:01 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 				printf("PLAYER DRAWN\n");
 				setup_player(cubed, i, j, scene->map[i][j]);//
 			}
-			my_put_square(cubed->img, start, CELL_SIZE);
+			my_put_square(cubed->minimap_img, start, CELL_SIZE);
 			j++;
 			start.x += CELL_SIZE;
 		}
@@ -50,5 +50,5 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 	start.x = 0;
 	start.y = 0;
 	start.color = 0x00FF00;
-	my_put_grid(cubed->img, &start, scene->columns, scene->lines);
+	my_put_grid(cubed->minimap_img, &start, scene->columns, scene->lines);
 }

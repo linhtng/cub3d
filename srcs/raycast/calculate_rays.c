@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 19:44:00 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:40:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ void	cast_rays(t_cubed *cubed)
 
 	ray.angle = correct_degrees(cubed->player.angle - FOV / 2);
 	rays_drawn = 0;
-	cubed->player.location.color = 0x000FFF;//
-	ft_memset(cubed->raycast_info->r_img->addr, 0x00FFFFFF, PROJECTION_WIDTH * PROJECTION_HEIGHT * (cubed->raycast_info->r_img->bits_per_pixel / 8));//creates transparent
 	while ( rays_drawn <= PROJECTION_WIDTH ) //
 	{
 		shoot_one_ray_horizontal(cubed, &ray);//
