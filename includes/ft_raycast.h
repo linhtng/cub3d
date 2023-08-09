@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 13:37:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:31:47 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void	refresh_images(t_cubed *cubed);
 float	deg_to_rad(float degrees);
 float	correct_degrees(float degrees);
 int		ft_abs(int val);
+float	get_distance(t_vector *player, t_vector *wall_hit);
 
 /* setup_player.c */
 void	setup_player(t_cubed *cubed, int i, int j, char dir);

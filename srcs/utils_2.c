@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:42:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 19:44:11 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:31:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,15 @@ int		ft_abs(int val)
 	if (val < 0)
 		return (val * -1);
 	return (val);
+}
+float	get_distance(t_vector *player, t_vector *wall_hit)
+{
+	float a;
+	float b;
+	float c;
+
+	a = player->x - wall_hit->x;
+	b = player->y - wall_hit->y;
+	c = sqrt((a * a) + (b * b));
+	return (c);
 }

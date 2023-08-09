@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 14:25:26 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:32:25 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,6 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	}
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
-
-float	get_distance(t_vector *player, t_vector *wall_hit)
-{
-	float a;
-	float b;
-	float c;
-
-	a = player->x - wall_hit->x;
-	b = player->y - wall_hit->y;
-	c = sqrt((a * a) + (b * b));
-	return (c);
-}
 void	cast_rays(t_cubed *cubed)
 {
 	t_ray_calc ray;
@@ -100,20 +88,20 @@ void	cast_rays(t_cubed *cubed)
 
 	ray.angle = correct_degrees(cubed->player.angle - FOV / 2);
 	rays_drawn = 0;
-	while ( rays_drawn <= PROJECTION_WIDTH ) //
+	while ( rays_drawn <= PROJECTION_WIDTH )
 	{
-		shoot_one_ray_horizontal(cubed, &ray);//
-		shoot_one_ray_vertical(cubed, &ray);//
+		shoot_one_ray_horizontal(cubed, &ray);
+		shoot_one_ray_vertical(cubed, &ray);
 		ray.h_distance = get_distance(&cubed->player.location, &ray.h_map);
 		ray.v_distance = get_distance(&cubed->player.location, &ray.v_map);
 		if (ray.h_distance < ray.v_distance)
 		{
-			ft_bresenham(cubed->player.location, ray.h_map, cubed->mini_player_img);////draw h
+			ft_bresenham(cubed->player.location, ray.h_map, cubed->mini_player_img);
 			draw_view(cubed, ray.h_distance * cos(deg_to_rad(ray.angle - cubed->player.angle)), PROJECTION_WIDTH - rays_drawn, 'h');
 		}
 		else
 		{
-			ft_bresenham(cubed->player.location, ray.v_map, cubed->mini_player_img);////draw v
+			ft_bresenham(cubed->player.location, ray.v_map, cubed->mini_player_img);
 			draw_view(cubed, ray.v_distance * cos(deg_to_rad(ray.angle - cubed->player.angle)), PROJECTION_WIDTH - rays_drawn, 'v');
 		}
 		ray.angle += cubed->raycast_info->angle_between_rays;
