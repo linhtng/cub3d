@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 18:40:56 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:26:09 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	player_pos_valid(char **map, t_player player, char block)
 		&& map[(int)player.location.y + 1][(int)player.location.x] == block
 		&& map[(int)player.location.y][(int)player.location.x - 1] == block
 		&& map[(int)player.location.y - 1][(int)player.location.x] == block)
-		return (err_msg(1, "Invalid postion. Player can't moved from here."));
+		return (err_msg("Invalid postion. ", "Player can't moved from here."));
 	return (1);
 }
 
@@ -30,14 +30,14 @@ static int	create_map(t_scene *scene, char **scene_arr)
 
 	map = (char **) ft_calloc(scene->map.height + 1, sizeof(char *));
 	if (!map)
-		return (err_msg(1, "Malloc err when getting the map content."));
-	scene->map.array = map;
+		return (err_msg("Malloc err when getting the map content.", NULL));
+	scene->map.grid = map;
 	line = 0;
 	while (line < scene->map.height)
 	{
 		map[line] = (char *) ft_calloc(scene->map.width + 1, sizeof(char));
 		if (!map[line])
-			return (err_msg(1, "Malloc err when getting the map content."));
+			return (err_msg("Malloc err when getting the map content.", NULL));
 		line_len = ft_strlen(scene_arr[line]);
 		ft_memset(map[line], SPACE, scene->map.width);
 		ft_memmove(map[line], scene_arr[line], line_len);
@@ -59,7 +59,7 @@ int	map_valid_characters(t_scene *scene, char *line, int y)
 	while (line[index])
 	{
 		if (!ft_strchr("01NSEW ", line[index]))
-			return (err_msg(2, "Map has invalid character in line:", line));
+			return (err_msg("Map has invalid character in line: ", line));
 		if (ft_strchr("NSEW", line[index]))
 		{
 			if (!scene->player.spawn)
@@ -69,7 +69,7 @@ int	map_valid_characters(t_scene *scene, char *line, int y)
 				scene->player.location.y = y;
 			}
 			else
-				return (err_msg(1, "Map must have only 1 player."));
+				return (err_msg("Map must have only 1 player.", NULL));
 		}
 		index++;
 	}
@@ -86,20 +86,12 @@ int	check_island(t_scene *scene, char **map)
 	if (!(ft_arrdup(map, scene) == 1
 			&& empty_map(scene) == 1))
 		return (ERROR);
-	//print_arr(scene->map.flood);
-	//printf("map height: %d\n", scene->map.height);
-	/* printf("map flood before flood start:\n");
-	print_arr(scene->map.flood); */
-	/* printf("map visited before flood start:\n");
-	print_arr(scene->map.visited); */
 	ft_flood(scene->player.location.y, scene->player.location.x, scene);
-	/* printf("map flooded:\n");
-	print_arr(scene->map.flood); */
 	while (line < scene->map.height)
 	{
 		island += count_occurences(scene->map.flood[line], '1');
 		if (island)
-			return (err_msg(1, "Map has isolated island. Invalid."));
+			return (err_msg("Map has isolated island. ", "Invalid."));
 		line++;
 	}
 	return (1);
@@ -123,12 +115,12 @@ int	get_map_content(char **scene_arr, t_scene *scene, int i)
 		i++;
 	}
 	if (!empty_space || !scene->player.spawn)
-		return (err_msg(1, "Map missing empty space and/or player."));
+		return (err_msg("Map missing empty space and/or player.", NULL));
 	if (create_map(scene, scene_arr) == ERROR)
 		return (ERROR);
-	if (valid_walls(scene, scene->map.array) == ERROR
-		|| player_pos_valid(scene->map.array, scene->player, '1') == ERROR
-		|| player_pos_valid(scene->map.array, scene->player, SPACE) == ERROR)
+	if (valid_walls(scene, scene->map.grid) == ERROR
+		|| player_pos_valid(scene->map.grid, scene->player, '1') == ERROR
+		|| player_pos_valid(scene->map.grid, scene->player, SPACE) == ERROR)
 		return (ERROR);
-	return (check_island(scene, scene->map.array));
+	return (check_island(scene, scene->map.grid));
 }

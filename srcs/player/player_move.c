@@ -6,7 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:43:43 by jebouche          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/10 10:31:13 by jebouche         ###   ########.fr       */
+=======
+/*   Updated: 2023/08/09 21:27:10 by thuynguy         ###   ########.fr       */
+>>>>>>> b00d8ad679687d3b0f40eabf5ae0d0c6e2cfd2c9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +28,7 @@ int	can_move(t_cubed *cubed, t_vector *next)
 	grid.y = ((int)next->y) / CELL_SIZE;
 	// printf("[CAN MOVE NEXT] y %f, x %f", next->y, next->x);
 	// printf("[CAN MOVE MAP CONTENT] y cell = %i x cell = %i char = %c\n", (int) grid.y, (int) grid.x, cubed->scene->map[(int) grid.y][(int) grid.x]);
-	if (cubed->scene->map.array[(int)grid.y][(int)grid.x] && cubed->scene->map.array[(int) grid.y][(int) grid.x] == '1')
+	if (cubed->scene->map.grid[(int)grid.y][(int)grid.x] && cubed->scene->map.grid[(int) grid.y][(int) grid.x] == '1')
 		return (0);
 	return (1);
 }

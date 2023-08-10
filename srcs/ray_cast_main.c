@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 10:40:31 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:57:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	raycast_start(t_scene *scene)
 
 	setup_cubed(&cubed);
 	cubed.scene = scene;
-	print_scene(cubed.scene);
 	setup_raycast(&cubed, &raycast_info);
 	setup_player(&cubed);
-	//initial render
-	draw_minimap(&cubed, scene);
+
+	//DRAW STUFF initial render
+	draw_minimap(&cubed, scene); //draws base, not called again
 	cubed.scene->player.location.color = 0x000FFF;//
 	redraw(&cubed);//draws the first time
 	draw_background(&cubed);//called once to setup the background

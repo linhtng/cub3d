@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 10:34:30 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:58:28 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vector *offset)
 		grid->y = (int)map->y / CELL_SIZE;
 		if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width \
 			&& grid->y < cubed->scene->map.height \
-			&& cubed->scene->map.array[(int)grid->y][(int)grid->x] == '1')
+			&& cubed->scene->map.grid[(int)grid->y][(int)grid->x] == '1')
 			dof = MAX_DOF;
 		else
 		{

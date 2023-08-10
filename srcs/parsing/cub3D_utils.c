@@ -6,21 +6,20 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:35:28 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 14:44:13 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:02:39 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	err_msg(int n, ...)
+int	err_msg(char *message1, char *message2)
 {
-	va_list	msg;
-
 	printf("Error\n");
-	va_start(msg, n);
-	while (n-- > 0)
-		printf("%s\n", va_arg(msg, char *));
-	va_end(msg);
+	printf("%s", message1);
+	if (message2)
+		printf("%s\n", message2);
+	else
+		printf("\n");
 	return (ERROR);
 }
 

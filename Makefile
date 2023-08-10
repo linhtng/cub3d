@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/09 19:06:20 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/09 21:38:59 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
-CDEBUG = -fsanitize=address
+#CDEBUG = -fsanitize=address
 
 DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \

@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 19:14:43 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:49:17 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define CEILING 2
 # define SPACE '_'
 # define VISITED '1'
-# define DEBUG 0
+# define DEBUG 1
 
 typedef struct s_elem
 {
@@ -44,7 +44,7 @@ typedef struct s_map
 {
 	int			height;
 	int			width;
-	char		**array;//rename to grid
+	char		**grid;
 	char		**flood;
 	char		**visited;
 }	t_map;
@@ -81,7 +81,7 @@ typedef struct s_scene
 
 /* cub3D_utils */
 int 	check_input_file(char *argv, int fd, char *extension);
-int		err_msg(int n, ...);
+int		err_msg(char *message1, char *message2);
 int		count_occurences(char *str, char c);
 int		ft_is_dir(const char *path);
 int		arr_len(char **arr);
@@ -91,6 +91,7 @@ void	free_arr(char **arr);
 int				correct_extension(const char *argv, char *ending);
 unsigned long   convert_rgb_hex(int *rgb);
 int				check_rgb_valid(t_scene *scene, char *line);
+void			free_scene_data(t_scene *scene);
 
 /* cub3D_map */
 int		get_scene_data(int fd, t_scene *scene);

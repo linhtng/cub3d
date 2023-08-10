@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/08 21:59:47 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:09:25 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	valid_walls(t_scene *scene, char **map)
 	int	len;
 
 	if (!wall_only(map[0]) || !wall_only(map[scene->map.height - 1]))
-		return (err_msg(1, "The map must be closed/surrounded by walls."));
+		return (err_msg("The map must be closed/surrounded by walls.", NULL));
 	i = 1;
 	while (i < scene->map.height)
 	{
@@ -52,11 +52,11 @@ int	valid_walls(t_scene *scene, char **map)
 		while (len && (map[i][len - 1] == SPACE))
 			len--;
 		if (!len)
-			return (err_msg(1, "Empty line detected in map content."));
+			return (err_msg("Empty line detected in map content.", NULL));
 		while (map[i][j] && (map[i][j] == SPACE))
 			j++;
 		if (map[i][j] != '1' || map[i][len - 1] != '1')
-			return (err_msg(1, "The map must be closed/surrounded by walls."));
+			return (err_msg("The map must be closed/surrounded by walls.", NULL));
 		i++;
 	}
 	return (1);
@@ -85,14 +85,14 @@ int	ft_arrdup(char **map, t_scene *scene)
 
 	dup = (char **) ft_calloc(scene->map.height + 1, sizeof(char *));
 	if (!dup)
-		return (err_msg(1, "Malloc err when getting the map content."));
+		return (err_msg("Malloc err when getting the map content.", NULL));
 	scene->map.flood = dup;
 	i = 0;
 	while (i < scene->map.height)
 	{
 		dup[i] = ft_strdup(map[i]);
 		if (!dup[i])
-			return (err_msg(1, "Malloc err when getting the map content."));
+			return (err_msg("Malloc err when getting the map content.", NULL));
 		i++;
 	}
 	return (1);
@@ -105,14 +105,14 @@ int	empty_map(t_scene *scene)
 
 	empty = (char **) ft_calloc(scene->map.height + 1, sizeof(char *));
 	if (!empty)
-		return (err_msg(1, "Malloc err when getting the map content."));
+		return (err_msg("Malloc err when getting the map content.", NULL));
 	scene->map.visited = empty;
 	i = 0;
 	while (i < scene->map.height)
 	{
 		empty[i] = (char *) malloc(sizeof(char) * (scene->map.width + 1));
 		if (!empty[i])
-			return (err_msg(1, "Malloc err when getting the map content."));
+			return (err_msg("Malloc err when getting the map content.", NULL));
 		ft_memset(empty[i], '0', scene->map.width);
 		empty[i][scene->map.width] = '\0';
 		i++;

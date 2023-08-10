@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 18:10:32 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:48:18 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_rgb_valid(t_scene *scene, char *line)
 	{
 		if (scene->elems.fl_rgb[i] < 0 || scene->elems.fl_rgb[i] > 255
 			|| scene->elems.c_rgb[i] < 0 || scene->elems.c_rgb[i] > 255)
-			return (err_msg(2, "Floor/ceiling color invalid:", line));
+			return (err_msg("Floor/ceiling color invalid: ", line));
 		i++;
 	}
 	return (1);
@@ -45,4 +45,11 @@ unsigned long	convert_rgb_hex(int *rgb)
 
 	res = ((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + (rgb[2] & 0xff);
 	return (res);
+}
+void	free_scene_data(t_scene *scene)
+{
+	free_arr(scene->array);
+	free_arr(scene->map.grid);
+	free_arr(scene->map.flood);
+	free_arr(scene->map.visited);
 }
