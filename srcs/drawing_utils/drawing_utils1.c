@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/31 11:38:07 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:28:38 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
 	(data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
 void	my_put_line_h(t_img_data *data, t_vector *start, int len)
 {
 	int		i;
@@ -53,9 +54,10 @@ void	my_put_line_v(t_img_data *data, t_vector *start, int len)
 	}
 	start->y = y;
 }
+
 void	my_put_grid(t_img_data *data, t_vector *start, int len, int height)
 {
-	int	i;
+	int			i;
 	t_vector	line_loc;
 
 	i = 0;
@@ -73,13 +75,14 @@ void	my_put_grid(t_img_data *data, t_vector *start, int len, int height)
 	i = 0;
 	line_loc.x = start->x;
 	line_loc.y = start->y;
-	while ( i < len)
+	while (i < len)
 	{
 		line_loc.x += CELL_SIZE;
 		my_put_line_v(data, &line_loc, height * CELL_SIZE);
 		i++;
 	}
 }
+
 void	my_put_square(t_img_data *data, t_vector start, int len)
 {
 	int	i;
@@ -92,6 +95,7 @@ void	my_put_square(t_img_data *data, t_vector start, int len)
 		i++;
 	}
 }
+
 void	my_put_rectangle(t_img_data *data, t_vector start, int len, int height)
 {
 	int	i;

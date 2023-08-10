@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 18:55:20 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:29:51 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 
 static void	draw_nose(t_cubed *cubed)
 {
-	t_vector temp;
-	
+	t_vector	temp;
+
 	temp.x = cubed->scene->player.location.x + cubed->scene->player.d.x  * 5;
 	temp.y = cubed->scene->player.location.y + cubed->scene->player.d.y * 5;
 	temp.color = 0xff00f3;
 	ft_bresenham(temp, cubed->scene->player.location, cubed->mini_player_img);
 }
+
 void	draw_mini_player(t_cubed *cubed)
 {
 	// ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));

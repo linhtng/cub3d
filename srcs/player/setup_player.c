@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 19:10:38 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:32:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@
 
 void	setup_player(t_cubed *cubed)
 {
-	t_vector start;
+	t_vector	start;
 
-	start.x  = 0;
+	start.x = 0;
 	start.y = 0;
 	start.color = 0x00;
-
-	cubed->scene->player.location.y = cubed->scene->player.location.y * CELL_SIZE + \
-	CELL_SIZE / 2;
-	cubed->scene->player.location.x = cubed->scene->player.location.x * CELL_SIZE + \
-	CELL_SIZE / 2;
+	cubed->scene->player.location.y = cubed->scene->player.location.y * \
+	CELL_SIZE + CELL_SIZE / 2;
+	cubed->scene->player.location.x = cubed->scene->player.location.x * \
+	CELL_SIZE + CELL_SIZE / 2;
 	cubed->scene->player.location.color = 0xFFFF00;//yellow
 	if (cubed->scene->player.spawn == 'N')
 		cubed->scene->player.angle = 90.0f;

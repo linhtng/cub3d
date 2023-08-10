@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_rays.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 19:01:23 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:34:30 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "cub3D.h"
 
-void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *offset)
+void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
+t_vector *offset)
 {
-	int dof;
+	int	dof;
 
 	dof = 0;
 	while (dof < MAX_DOF)
 	{
 		grid->x = (int)map->x / CELL_SIZE;
 		grid->y = (int)map->y / CELL_SIZE;
-		if (grid->y >= 0  && grid->x  >= 0 && grid->x < cubed->scene->map.width 
-			&& grid->y < cubed->scene->map.height 
+		if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width \
+			&& grid->y < cubed->scene->map.height \
 			&& cubed->scene->map.array[(int)grid->y][(int)grid->x] == '1')
 			dof = MAX_DOF;
 		else
@@ -34,22 +35,27 @@ void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *off
 		}
 	}
 }
+
 void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 {
 	ray->cotan = 1.0 / tan(deg_to_rad(ray->angle));
 	if (sin(deg_to_rad(ray->angle)) > 0.001) //looking down ray.angle > 180
 	{
-		ray->h_map.y = ((int)cubed->scene->player.location.y / CELL_SIZE) * CELL_SIZE - 0.00001;
-		ray->h_map.x = cubed->scene->player.location.x + ((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
+		ray->h_map.y = ((int)cubed->scene->player.location.y / CELL_SIZE) * \
+		CELL_SIZE - 0.00001;
+		ray->h_map.x = cubed->scene->player.location.x + \
+		((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
 		ray->hd.y = -CELL_SIZE;
 		ray->hd.x = -ray->hd.y * ray->cotan;
 	}
 	else if (sin(deg_to_rad(ray->angle)) < -0.001) //looking up ray.angle < 180
 	{
-		ray->h_map.y = ((int)cubed->scene->player.location.y / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
-		ray->h_map.x = cubed->scene->player.location.x + ((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
+		ray->h_map.y = ((int)cubed->scene->player.location.y / CELL_SIZE) * \
+		CELL_SIZE + CELL_SIZE;
+		ray->h_map.x = cubed->scene->player.location.x + \
+		((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
 		ray->hd.y = CELL_SIZE;
-		ray->hd.x = -ray->hd.y * ray->cotan;		
+		ray->hd.x = -ray->hd.y * ray->cotan;
 	}
 	else //will not hit a horizontal if (ray.angle == 0 || ray.angle == 180)
 	{
@@ -64,17 +70,21 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	ray->tan = tan(deg_to_rad(ray->angle));
 	if (cos(deg_to_rad(ray->angle)) < -0.001) //looking left
 	{
-		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * CELL_SIZE - 0.00001;
-		ray->v_map.y = cubed->scene->player.location.y + ((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
+		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * \
+		CELL_SIZE - 0.00001;
+		ray->v_map.y = cubed->scene->player.location.y + \
+		((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
 		ray->vd.x = -CELL_SIZE;
 		ray->vd.y = -ray->vd.x * ray->tan;
 	}
 	else if (cos(deg_to_rad(ray->angle)) > 0.001) //looking right
 	{
-		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
-		ray->v_map.y = cubed->scene->player.location.y + ((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
+		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * \
+		CELL_SIZE + CELL_SIZE;
+		ray->v_map.y = cubed->scene->player.location.y + \
+		((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
 		ray->vd.x = CELL_SIZE;
-		ray->vd.y = -ray->vd.x * ray->tan;		
+		ray->vd.y = -ray->vd.x * ray->tan;
 	}
 	else //will not hit a horizontal if (ray.angle == 0 || ray.angle == 180)
 	{

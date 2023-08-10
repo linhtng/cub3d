@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 14:25:44 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:36:25 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	setup_cubed(t_cubed *cubed)
 {
 	cubed->mlx = mlx_init();
-	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT,"my minimap");
+	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 	cubed->minimap_img = get_new_image(cubed, WIN_WIDTH, WIN_HEIGHT);
 	cubed->mini_player_img = get_new_image(cubed, WIN_WIDTH, WIN_HEIGHT);
 }

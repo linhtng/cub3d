@@ -6,13 +6,14 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/05 19:43:58 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:29:05 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 
-static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, t_vector *two)
+static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, \
+t_vector *two)
 {
 	line_info->deltas.x = ft_abs((int) two->x - (int) one->x);
 	line_info->deltas.y = ft_abs((int) two->y - (int) one->y) * -1;
@@ -28,7 +29,7 @@ static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, t_vector *tw
 
 void	ft_bresenham(t_vector one, t_vector two, t_img_data *img)
 {
-	t_bham_info line_info;
+	t_bham_info	line_info;
 
 	set_up_bresenham(&line_info, &one, &two);
 	while (42)

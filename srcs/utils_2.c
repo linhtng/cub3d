@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:42:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 19:05:38 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:27:28 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,27 @@ float	correct_degrees(float degrees)
 		degrees -= 360;
 	return (degrees);
 }
+
 float	deg_to_rad(float degrees)
 {
 	float	radians;
 
-	radians  = degrees * (M_PI / 180);
+	radians = degrees * (M_PI / 180);
 	return (radians);
 }
-int		ft_abs(int val)
+
+int	ft_abs(int val)
 {
 	if (val < 0)
 		return (val * -1);
 	return (val);
 }
+
 float	get_distance(t_vector *player, t_vector *wall_hit)
 {
-	float a;
-	float b;
-	float c;
+	float	a;
+	float	b;
+	float	c;
 
 	a = player->x - wall_hit->x;
 	b = player->y - wall_hit->y;

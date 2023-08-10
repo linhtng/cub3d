@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 13:39:57 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:39:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,24 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 		free(img);
 		return (NULL);//close
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
+	&img->line_length, &img->endian);
 	img->width = width;
 	img->height = height;
 	return (img);
 }
+
 void	refresh_images(t_cubed *cubed)
 {
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->minimap_img->img, 0, 0);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->mini_player_img->img, 0, 0);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, \
+	cubed->minimap_img->img, 0, 0);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, \
+	cubed->mini_player_img->img, 0, 0);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, \
+	cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - \
+	PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, \
+	cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, \
+	WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
 	cubed->dirty_images = FALSE;
 }
