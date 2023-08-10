@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 19:01:23 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:31:55 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, t_vector *off
 		grid->y = (int)map->y / CELL_SIZE;
 		if (grid->y >= 0  && grid->x  >= 0 && grid->x < cubed->scene->map.width 
 			&& grid->y < cubed->scene->map.height 
-			&& cubed->scene->map.array[(int)grid->y][(int)grid->x] == '1')
+			&& cubed->scene->map.grid[(int)grid->y][(int)grid->x] == '1')
 			dof = MAX_DOF;
 		else
 		{

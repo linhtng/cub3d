@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 18:53:45 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:27:46 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 		j = 0;
 		while (j < scene->map.width)
 		{
-			if (scene->map.array[i][j] == '1')
+			if (scene->map.grid[i][j] == '1')
 				start.color = 0xFF0000;//red
 			else
 				start.color = 0x666666;

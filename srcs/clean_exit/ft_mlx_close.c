@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_close.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/28 11:00:27 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:46:08 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 		cubed->mlx = NULL;
 	//write exit message prn
 	write(2, exit_msg ,1);//
+	free_scene_data(cubed->scene);
 	exit(exit_code);
 	return (0);
 }

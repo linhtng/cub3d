@@ -20,7 +20,7 @@ void	print_scene(t_scene *scene)
 	i = 0;
 	//print_arr(scene->array);
 	printf("map content:\n");
-	print_arr(scene->map.array);
+	print_arr(scene->map.grid);
 	printf("NO: %s\n", scene->elems.north);
 	printf("SO: %s\n", scene->elems.south);
 	printf("WE: %s\n", scene->elems.west);
