@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 21:48:18 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:41:28 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,19 @@ unsigned long	convert_rgb_hex(int *rgb)
 	res = ((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + (rgb[2] & 0xff);
 	return (res);
 }
+
 void	free_scene_data(t_scene *scene)
 {
 	free_arr(scene->array);
 	free_arr(scene->map.grid);
 	free_arr(scene->map.flood);
 	free_arr(scene->map.visited);
+	if (scene->elems.north)
+		free(scene->elems.north);
+	if (scene->elems.south)
+		free(scene->elems.south);
+	if (scene->elems.east)
+		free(scene->elems.east);
+	if (scene->elems.west)
+		free(scene->elems.west);
 }

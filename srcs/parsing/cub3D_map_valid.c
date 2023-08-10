@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 21:09:25 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:41:06 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	valid_walls(t_scene *scene, char **map)
 		while (map[i][j] && (map[i][j] == SPACE))
 			j++;
 		if (map[i][j] != '1' || map[i][len - 1] != '1')
-			return (err_msg("The map must be closed/surrounded by walls.", NULL));
+			return (err_msg("Map must be closed/surrounded by walls.", NULL));
 		i++;
 	}
 	return (1);

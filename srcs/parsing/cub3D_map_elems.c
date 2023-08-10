@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 22:13:37 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:38:37 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static int	check_valid_texture(char **path, char *texture)
 		return (err_msg("Empty texture info", NULL));
 	if (*path)
 		return (err_msg("Duplicate texture detected", NULL));
-	*path = texture;
+	*path = ft_strdup(texture);
+	if (!*path)
+		return (err_msg("Malloc error when getting texture", NULL));
 	fd = open(*path, O_RDONLY);
 	ret = check_input_file(*path, fd, ".xpm");
 	close(fd);
@@ -113,7 +115,8 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 	}
 	info_num = arr_len(single_elem);
 	if (ft_strchr("NOSWEA", single_elem[0][0]) && info_num == 1)
-		scene->err_flag = get_texture(scene, single_elem[0], &(single_elem[0])[2], 2);
+		scene->err_flag = get_texture(scene, single_elem[0], \
+		&(single_elem[0])[2], 2);
 	else if (ft_strchr("NOSWEA", single_elem[0][0]) && info_num == 2)
 		scene->err_flag = get_texture(scene, single_elem[0], single_elem[1], 3);
 	else if (ft_strchr("FC", single_elem[0][0]))

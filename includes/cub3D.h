@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 21:49:17 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:23:20 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ typedef struct s_scene
 	int			err_flag;
 }	t_scene;
 
+/* cub3D_main */
+void	init_scene(t_scene *scene);
+
 /* cub3D_utils */
 int 	check_input_file(char *argv, int fd, char *extension);
 int		err_msg(char *message1, char *message2);
@@ -111,6 +114,7 @@ int		empty_map(t_scene *scene);
 /* cub3D_debug */
 void	print_arr(char **arr);
 void	print_scene(t_scene *scene);
+void	mass_test_maps(int argc, char **argv);
 
 #endif
 

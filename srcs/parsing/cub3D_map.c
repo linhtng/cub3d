@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 22:04:58 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:39:43 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	get_scene_data(int fd, t_scene *scene)
 	scene_str = get_scene_string(scene, fd);
 	close(fd);
 	if (!scene_str)
-		return (err_msg("Emty map/Malloc err when getting the scene str.", NULL));
+		return (err_msg("Emty map/Malloc err at scene str.", NULL));
 	scene_arr = (char **) ft_calloc(scene->len + 1, sizeof(char *));
 	if (scene_arr)
 	{
@@ -113,7 +113,8 @@ int	get_scene_data(int fd, t_scene *scene)
 		free(scene_str);
 		if (ret == 1)
 		{
-			if (get_map_elems(scene->array, scene) == ERROR || scene->err_flag == ERROR)
+			if (get_map_elems(scene->array, scene) == ERROR
+				|| scene->err_flag == ERROR)
 				return (ERROR);
 		}
 	}
