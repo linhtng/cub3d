@@ -5,12 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 19:43:43 by jebouche          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/08/10 10:31:13 by jebouche         ###   ########.fr       */
-=======
-/*   Updated: 2023/08/09 21:27:10 by thuynguy         ###   ########.fr       */
->>>>>>> b00d8ad679687d3b0f40eabf5ae0d0c6e2cfd2c9
+/*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
+/*   Updated: 2023/08/10 13:03:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +30,7 @@ int	can_move(t_cubed *cubed, t_vector *next)
 }
 
 void	turn_player(t_cubed *cubed, int key_code)
-{	
+{
 	if (key_code == TURN_LEFT)
 		cubed->scene->player.angle = \
 		correct_degrees(cubed->scene->player.angle + 5);
