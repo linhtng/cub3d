@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 10:35:02 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:50:28 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define WIN_HEIGHT 1080
 # define PROJECTION_WIDTH 1366
 # define PROJECTION_HEIGHT 768
-# define MAX_DOF 8
+# define MAX_DOF 10000
 # define FOV 60
 # define TRUE 1;
 # define FALSE 0;
