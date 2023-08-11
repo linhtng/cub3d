@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 21:53:33 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:22:56 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,6 @@ void	init_scene(t_scene *scene)
 	scene->map.grid = NULL;
 	scene->map.flood = NULL;
 	scene->map.visited = NULL;
-}
-
-void	mass_test_maps(int argc, char **argv)
-{
-	int		fd[420];
-	int		index;
-	t_scene	scene[420];
-
-	index = 0;
-	while (index < argc)
-	{
-		printf("\033[0;33mResult of passing file %s: \033[0m\n", argv[index]);
-		fd[index] = open(argv[index], O_RDONLY);
-		if (check_input_file(argv[index], fd[index], ".cub") == ERROR)
-		{
-			close(fd[index]);
-			index++;
-			continue ;
-		}
-		init_scene(&scene[index]);
-		if (get_scene_data(fd[index], &scene[index]) != ERROR)
-			print_scene(&scene[index]);
-		free_scene_data(&scene[index]);
-		system("export MallocStackLogging=1");
-		system("leaks cub3D");
-		index++;
-	}
 }
 
 int	main(int argc, char **argv)
