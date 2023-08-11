@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 19:05:40 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:27:50 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 	&img->line_length, &img->endian);
 	img->width = width;
 	img->height = height;
+	return (img);
+}
+
+t_img_data	*get_new_xpm_image(t_cubed *cubed, char **file_path)
+{
+	t_img_data	*img;
+
+	img = (t_img_data *) malloc(sizeof(t_img_data));
+	if (!img)
+		return (NULL);//close
+	img->img = mlx_xpm_file_to_image(cubed->mlx, file_path, img->width, img->height);
+	if (!img->img)
+	{
+		free(img);
+		return (NULL);//close
+	}
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
+	&img->line_length, &img->endian);
 	return (img);
 }
 
