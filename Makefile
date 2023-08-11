@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/09 21:38:59 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/11 11:10:22 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ DIR_DUP     = mkdir -p $(@D)
 # 	cub3D_utils.c \
 # 	cub3D_map.c \
 
-SRC := ray_cast_main.c \
+SRC := raycast_start.c \
 		 drawing_utils/ft_bresenham.c \
 		 draw_minimap.c \
 		 drawing_utils/drawing_utils1.c \
