@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/11 11:27:50 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:33:15 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 {
 	t_img_data	*img;
 
-	img = (t_img_data *) malloc(sizeof(t_img_data));
+	img = (t_img_data *) calloc(1, sizeof(t_img_data));
 	if (!img)
 		return (NULL);//close
 	img->img = mlx_new_image(cubed->mlx, width, height);
@@ -32,14 +32,14 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 	return (img);
 }
 
-t_img_data	*get_new_xpm_image(t_cubed *cubed, char **file_path)
+t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 {
 	t_img_data	*img;
 
-	img = (t_img_data *) malloc(sizeof(t_img_data));
+	img = (t_img_data *) ft_calloc(1, sizeof(t_img_data));
 	if (!img)
 		return (NULL);//close
-	img->img = mlx_xpm_file_to_image(cubed->mlx, file_path, img->width, img->height);
+	img->img = mlx_xpm_file_to_image(cubed->mlx, file_path, &img->width, &img->height);
 	if (!img->img)
 	{
 		free(img);

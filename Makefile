@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/11 11:13:22 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/11 11:32:42 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC := raycast/raycast_start.c \
 		 events/handle_press.c \
 		 raycast/calculate_rays.c \
 		 raycast/draw_raycast_view.c \
-		 ft_images.c \
+		 images/ft_images.c \
 		 utils_2.c \
 		 player/setup_player.c player/player_move.c player/draw_player.c \
 		 redraw.c \

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/11 11:28:22 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:33:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	draw_view(t_cubed *cubed, float dist, int x, char side);
 
 /* ft_images */
 t_img_data	*get_new_image(t_cubed *cubed, int width, int height);
-t_img_data	*get_new_xpm_image(t_cubed *cubed, char **file_path);
+t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path);
 void		refresh_images(t_cubed *cubed);
 
 /* utils_2.c */
