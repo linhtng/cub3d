@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/09 11:35:10 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:09:30 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	handle_press(int key_code, t_cubed *cubed)
 {
-	printf("KEY PRESSED: %i\n", key_code);
+	// printf("KEY PRESSED: %i\n", key_code);
 	if (key_code == ESC)
 		mlx_close(cubed, 0, "Normal exit");
 	if (key_code == TURN_LEFT || key_code == TURN_RIGHT)
