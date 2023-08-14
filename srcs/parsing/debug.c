@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:42:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/10 13:42:10 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:50:13 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	print_scene(t_scene *scene)
 	printf("SO: %s\n", scene->elems.south);
 	printf("WE: %s\n", scene->elems.west);
 	printf("EA: %s\n", scene->elems.east);
-	printf("floor color: %lx\n", scene->elems.floor_color);
-	printf("ceiling color: %lx\n", scene->elems.ceiling_color);
+	printf("floor color: %x\n", scene->elems.floor_color);
+	printf("ceiling color: %x\n", scene->elems.ceiling_color);
 	printf("player spawn dir is: %c, pos_y is: %d, pos_x is: %d\n", 
 			scene->player.spawn, (int)scene->player.location.y, (int)scene->player.location.x);
 }

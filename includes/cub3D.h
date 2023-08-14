@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/11 10:51:48 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:24:28 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_elem
 	char				*west;
 	int					fl_rgb[4];
 	int					c_rgb[4];
-	unsigned	long	floor_color;
-	unsigned	long	ceiling_color;
+	unsigned	int	floor_color;
+	unsigned	int	ceiling_color;
 	int					filled_elem;
 }	t_elem;
 
@@ -54,7 +54,7 @@ typedef struct s_vector
 {
 	float	x;
 	float	y;
-	int	color;
+	unsigned int	color;
 }				t_vector;
 
 /* struct to track location and direction of player*/
@@ -69,6 +69,17 @@ typedef struct s_player
 	// float				height; removed for now from intialization of player ^ as well
 }				t_player;
 
+typedef struct s_img_data
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img_data;
+
 typedef struct s_scene
 {
 	int			len;
@@ -77,6 +88,7 @@ typedef struct s_scene
 	t_elem		elems;
 	t_player	player;
 	int			err_flag;
+	t_img_data	*dir[4];
 }	t_scene;
 
 /* cub3D_main */
@@ -92,7 +104,7 @@ void	free_arr(char **arr);
 
 /* cub3D_parsing_utils */
 int				correct_extension(const char *argv, char *ending);
-unsigned long   convert_rgb_hex(int *rgb);
+unsigned int   convert_rgb_hex(int *rgb);
 int				check_rgb_valid(t_scene *scene, char *line);
 void			free_scene_data(t_scene *scene);
 
@@ -115,6 +127,7 @@ int		empty_map(t_scene *scene);
 void	print_arr(char **arr);
 void	print_scene(t_scene *scene);
 void	mass_test_maps(int argc, char **argv);
+
 
 #endif
 

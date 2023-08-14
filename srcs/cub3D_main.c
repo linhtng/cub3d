@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/10 13:22:56 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:49:40 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 		init_scene(&scene);
 		if (get_scene_data(fd, &scene) != ERROR)
 		{
-			//print_scene(&scene);
+			print_scene(&scene);
 			raycast_start(&scene);
 		}
 		free_scene_data(&scene);

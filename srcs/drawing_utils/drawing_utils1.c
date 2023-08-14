@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 10:28:38 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:54:29 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 
-void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x >= data->width || x < 0 || y >= data->height || y < 0)
-		return ;
-	dst = data->addr + (y * data->line_length + x * \
-	(data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+//TODO determine which of these needs to go, put grid is used for minimap
 
 void	my_put_line_h(t_img_data *data, t_vector *start, int len)
 {
@@ -32,7 +23,7 @@ void	my_put_line_h(t_img_data *data, t_vector *start, int len)
 	x = start->x;
 	while (i < len)
 	{
-		my_mlx_pixel_put(data, start->x, start->y, start->color);
+		ft_pixel_put(data, start->x, start->y, start->color);
 		start->x++;
 		i++;
 	}
@@ -48,7 +39,7 @@ void	my_put_line_v(t_img_data *data, t_vector *start, int len)
 	y = start->y;
 	while (i < len)
 	{
-		my_mlx_pixel_put(data, start->x, start->y, start->color);
+		ft_pixel_put(data, start->x, start->y, start->color);
 		start->y++;
 		i++;
 	}

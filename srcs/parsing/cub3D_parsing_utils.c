@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/10 13:41:28 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:22:44 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	check_rgb_valid(t_scene *scene, char *line)
 	return (1);
 }
 
-unsigned long	convert_rgb_hex(int *rgb)
+unsigned int	convert_rgb_hex(int *rgb)
 {
-	unsigned long	res;
+	unsigned int	res;
 
 	res = ((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + (rgb[2] & 0xff);
 	return (res);

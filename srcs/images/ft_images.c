@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_images.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/11 11:48:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:09:58 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 	&img->line_length, &img->endian);
 	return (img);
 }
-
+//TODO add if bonus condition
 void	refresh_images(t_cubed *cubed)
 {
 	mlx_put_image_to_window(cubed->mlx, cubed->window, \

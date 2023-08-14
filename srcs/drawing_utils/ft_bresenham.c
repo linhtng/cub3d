@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bresenham.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 10:29:05 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:54:19 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 
+//TODO used for bonus minmap
 static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, \
 t_vector *two)
 {
@@ -34,7 +35,7 @@ void	ft_bresenham(t_vector one, t_vector two, t_img_data *img)
 	set_up_bresenham(&line_info, &one, &two);
 	while (42)
 	{
-		my_mlx_pixel_put(img, one.x, one.y, one.color);
+		ft_pixel_put(img, one.x, one.y, one.color);
 		if ((int) one.x == (int) two.x && (int) one.y == (int) two.y)
 			break ;
 		line_info.d2 = line_info.decision * 2;
@@ -54,27 +55,3 @@ void	ft_bresenham(t_vector one, t_vector two, t_img_data *img)
 		}
 	}
 }
-
-	// //test bresenham
-	// t_vector one;
-	// t_vector two;
-	// one.x = 500;
-	// one.y = 500;
-	// two.x = 200;
-	// two.y = 250;
-	// ft_bresenham(one, two, cubed);
-	// one.x = 500;
-	// one.y = 500;
-	// two.x = 1800;
-	// two.y = 400;
-	// ft_bresenham(one, two, cubed);
-	// one.x = 500;
-	// one.y = 500;
-	// two.x = 1800;
-	// two.y = 800;
-	// ft_bresenham(one, two, cubed);
-	// one.x = 500;
-	// one.y = 500;
-	// two.x = 900;
-	// two.y = 100;
-	// ft_bresenham(one, two, cubed);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/11 11:32:42 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/14 20:23:42 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,9 @@ SRC := raycast/raycast_start.c \
 		 player/setup_player.c player/player_move.c player/draw_player.c \
 		 redraw.c \
 		 setup/setup_cubed.c setup/setup_raycast.c \
+		 texture/cub3D_texture.c \
 		 
-SRC += parsing/cub3D_main.c \
+SRC += cub3D_main.c \
 	parsing/cub3D_utils.c \
 	parsing/cub3D_map.c \
 	parsing/cub3D_map_elems.c \

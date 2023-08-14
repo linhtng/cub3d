@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/14 13:23:15 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:53:50 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@
 # define PROJECTION_HEIGHT 768
 # define MAX_DOF 10000
 # define FOV 60
-# define TRUE 1;
-# define FALSE 0;
+# define TRUE 1
+# define FALSE 0
+# define TRANSPARENT (unsigned int) 0x00ffffff
 
 enum	e_keys
 {
@@ -54,17 +55,6 @@ enum	e_diections
 	WEST
 };
 
-typedef struct s_img_data
-{
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-}				t_img_data;
-
 typedef struct s_raycast
 {
 	struct s_img_data	*r_img;
@@ -74,6 +64,7 @@ typedef struct s_raycast
 	float				distances[PROJECTION_WIDTH];//maybe don't care about this until you are finding the intersections
 }			t_raycast;
 
+//TODO move minimap things to bouus version
 typedef struct s_cubed
 {
 	struct s_scene		*scene;
@@ -117,7 +108,6 @@ void	ft_bresenham(t_vector one, t_vector two, t_img_data *img);
 int		ft_abs(int val);
 
 /* drawing_utils1 */
-void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 void	my_put_line_h(t_img_data *data, t_vector *start, int len);
 void	my_put_line_v(t_img_data *data, t_vector *start, int len);
 void	my_put_grid(t_img_data *data, t_vector *start, int len, int height);//change args
@@ -176,5 +166,11 @@ void	setup_raycast(t_cubed *cubed, t_raycast *raycast_info);
 
 /* ray_cast_main.c */
 int		raycast_start(t_scene *scene);
+
+/* cub3D_texture */
+void			load_texture(t_scene *scene, t_cubed *cubed);
+unsigned int	mlx_pixel_get(t_img_data *data, int x, int y);
+void			ft_pixel_put(t_img_data *data, int x, int y, unsigned int color);
+void			draw_textured_walls(t_cubed *cubed, int x, t_ray_calc *ray, int dir);
 
 #endif
