@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/14 11:24:39 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:23:15 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "cub3D.h"// take out once the combine happens
 
 # define CELL_SIZE 32
+# define TEXTURE_SIZE 64
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define PROJECTION_WIDTH 1366
@@ -97,7 +98,7 @@ typedef struct s_ray_calc
 {
 	float			angle;
 	struct s_vector	h_map;
-	struct s_vector	h_grid; //move to hit check function only?
+	struct s_vector	h_grid;
 	struct s_vector	v_map;
 	struct s_vector	v_grid;
 	float			tan;

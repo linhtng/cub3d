@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/14 11:15:59 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:59:25 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	cast_rays(t_cubed *cubed)
 		shoot_one_ray_vertical(cubed, &ray);
 		get_corrected_shortest(cubed, &ray);
 		draw_view(cubed, &ray, PROJECTION_WIDTH - rays_drawn);
-		ray.angle += cubed->raycast_info->angle_between_rays;
+		ray.angle = correct_degrees(ray.angle + cubed->raycast_info->angle_between_rays);
 		rays_drawn++;
 	}
 }
