@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/11 11:33:24 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:24:39 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ enum	e_keys
 	TURN_LEFT = 123,
 	TURN_RIGHT = 124,
 	ESC = 53
+};
+
+enum	e_diections
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
 };
 
 typedef struct s_img_data
@@ -94,8 +102,8 @@ typedef struct s_ray_calc
 	struct s_vector	v_grid;
 	float			tan;
 	float			cotan;
-	float			h_distance;
-	float			v_distance;
+	char			shortest;
+	float			distance;
 	struct s_vector	vd;
 	struct s_vector	hd;
 }					t_ray_calc;
@@ -130,7 +138,8 @@ void	cast_rays(t_cubed *cubed);
 
 /* draw_raycast_view.c */
 void	draw_background(t_cubed *cubed);
-void	draw_view(t_cubed *cubed, float dist, int x, char side);
+// void	draw_view(t_cubed *cubed, float dist, int x, char side);
+void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x);
 
 /* ft_images */
 t_img_data	*get_new_image(t_cubed *cubed, int width, int height);
