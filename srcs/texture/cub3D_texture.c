@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/14 20:53:11 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:08:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,31 @@ void	load_texture(t_scene *scene, t_cubed *cubed)
 	scene->dir[EAST] = get_new_xpm_image(cubed, scene->elems.east);
 	scene->dir[WEST] = get_new_xpm_image(cubed, scene->elems.west);
 }
-/*
-	need to get wall x, y to determine texture x, y
-*/
 
-/* can possible adjust the x here if the texture is south and east
-	send v OR h coords
+/*TODO check if x is flipped the right way 
+	(test with a non-symmentric texture for example)
+	- north and east are flipped currently
+	- TEXTURE SIZE minus the calc x -2 corrects (why -2????)
 */
-t_vector	get_text_vec(t_vector *hit, int dir, float y_step, float line_size)
+t_vector	get_texture_vec(t_vector *hit, int dir, float y_step, \
+float line_size)
 {
 	t_vector	texture;
 
-	//TODO check if x is flipped the right way (test with a non-symmentric texture for example)
 	texture.y = 0;
 	if (line_size > PROJECTION_HEIGHT)
 		texture.y = ((line_size - PROJECTION_HEIGHT) / 2.0f) * y_step;
-	if (dir == NORTH || dir == SOUTH)
+	if (dir == NORTH)
+		texture.x = TEXTURE_SIZE - 2 - (((int) hit->x * 2) % TEXTURE_SIZE);
+	else if (dir == SOUTH)
 		texture.x = ((int) hit->x * 2) % TEXTURE_SIZE;
+	else if (dir == EAST)
+		texture.x = TEXTURE_SIZE - 2 - (((int) hit->y * 2) % TEXTURE_SIZE);
 	else
 		texture.x = ((int) hit->y * 2) % TEXTURE_SIZE;
 	return (texture);
 }
 
-/* 
-	MAP SIZE * PROJECTION WIDTH / DISTANCE OF PLAYER FROM WALL = LINE HEIGHT
-	center line height in projection pane ...
- */
 void	draw_textured_walls(t_cubed *cubed, int x, t_ray_calc *ray, int dir)
 {
 	float		line_height;
@@ -79,13 +78,13 @@ void	draw_textured_walls(t_cubed *cubed, int x, t_ray_calc *ray, int dir)
 	line_height = CELL_SIZE * PROJECTION_HEIGHT / ray->distance;
 	y_step = TEXTURE_SIZE / line_height;
 	if (ray->shortest == 'v')
-		texture_vec = get_text_vec(&ray->v_map, dir, y_step, line_height);
+		texture_vec = get_texture_vec(&ray->v_map, dir, y_step, line_height);
 	else
-		texture_vec = get_text_vec(&ray->h_map, dir, y_step, line_height);
+		texture_vec = get_texture_vec(&ray->h_map, dir, y_step, line_height);
 	if (line_height > PROJECTION_HEIGHT)
 		line_height = PROJECTION_HEIGHT;
 	start.x = x;
-	start.y = cubed->raycast_info->center_of_projection.y - line_height / 2;// might need to change smth
+	start.y = cubed->raycast_info->center_of_projection.y - line_height / 2;
 	index = 0;
 	while (index < line_height)
 	{
