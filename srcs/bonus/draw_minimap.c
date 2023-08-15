@@ -6,13 +6,13 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/14 19:06:55 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:49:54 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
+#include "ft_raycast_bonus.h"
 #include "libft.h"
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 
 //TODO move to bonus entire file
