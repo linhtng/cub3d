@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/15 17:21:34 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:30:53 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ void	load_texture(t_scene *scene, t_cubed *cubed)
 	scene->dir[WEST] = get_new_xpm_image(cubed, scene->elems.west);
 }
 
-/*TODO check if x is flipped the right way 
-	(test with a non-symmentric texture for example)
-	- north and east are flipped currently
-	- TEXTURE SIZE minus the calc x -2 corrects (why -2????)
-*/
 t_vector	get_texture_vec(t_vector *hit, int dir, float y_step, \
 float line_size)
 {
@@ -66,8 +61,6 @@ float line_size)
 		texture.x = ((int) hit->y * 2) % TEXTURE_SIZE;
 	return (texture);
 }
-
-// void	render_ray(t_cubed *cubed, t_vector *start, t_vector *texture, )
 
 void	draw_textured_walls(t_cubed *cubed, int project_x, t_ray_calc *ray, \
 int dir)
