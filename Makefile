@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/14 20:23:42 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/15 10:47:34 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,17 +24,15 @@ DIR_DUP     = mkdir -p $(@D)
 # 	cub3D_utils.c \
 # 	cub3D_map.c \
 
-SRC := raycast/raycast_start.c \
+SRC := raycast/raycast_start.c raycast/calculate_rays.c raycast/draw_raycast_view.c \
 		 drawing_utils/ft_bresenham.c \
 		 draw_minimap.c \
 		 drawing_utils/drawing_utils1.c \
 		 clean_exit/ft_mlx_close.c \
 		 events/handle_press.c \
-		 raycast/calculate_rays.c \
-		 raycast/draw_raycast_view.c \
 		 images/ft_images.c \
-		 utils_2.c \
 		 player/setup_player.c player/player_move.c player/draw_player.c \
+		 utils_2.c \
 		 redraw.c \
 		 setup/setup_cubed.c setup/setup_raycast.c \
 		 texture/cub3D_texture.c \
@@ -47,6 +45,9 @@ SRC += cub3D_main.c \
 	parsing/cub3D_map_valid.c \
 	parsing/cub3D_parsing_utils.c \
 	parsing/debug.c \
+
+# BOUNUS_SRC
+# BOUNUS_OBJS
 
 SRCFD = srcs/
 OBJSFD = objs/
