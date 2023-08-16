@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_images.c                                        :+:      :+:    :+:   */
+/*   ft_images_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 13:23:10 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:48:00 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
+#include "ft_raycast_bonus.h"
+#include "cub3D_bonus.h"
 
 t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 {
@@ -52,6 +53,10 @@ t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 //TODO add if bonus condition
 void	refresh_images(t_cubed *cubed)
 {
+	mlx_put_image_to_window(cubed->mlx, cubed->window, \
+	cubed->minimap_img->img, 0, 0);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, \
+	cubed->mini_player_img->img, 0, 0);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, \
 	cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - \
 	PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);

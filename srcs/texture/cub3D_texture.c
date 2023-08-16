@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/15 17:30:53 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:20:28 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
 
 void	load_texture(t_scene *scene, t_cubed *cubed)
 {
-	scene->dir[NORTH] = get_new_xpm_image(cubed, scene->elems.north);
-	scene->dir[SOUTH] = get_new_xpm_image(cubed, scene->elems.south);
-	scene->dir[EAST] = get_new_xpm_image(cubed, scene->elems.east);
-	scene->dir[WEST] = get_new_xpm_image(cubed, scene->elems.west);
+	scene->texture[NORTH] = get_new_xpm_image(cubed, scene->elems.north);
+	scene->texture[SOUTH] = get_new_xpm_image(cubed, scene->elems.south);
+	scene->texture[EAST] = get_new_xpm_image(cubed, scene->elems.east);
+	scene->texture[WEST] = get_new_xpm_image(cubed, scene->elems.west);
 }
 
 t_vector	get_texture_vec(t_vector *hit, int dir, float y_step, \
@@ -83,7 +83,7 @@ int dir)
 	index = 0;
 	while (index < line_height)
 	{
-		pane.color = ft_pixel_get(cubed->scene->dir[dir], texture.x, texture.y);
+		pane.color = ft_pixel_get(cubed->scene->texture[dir], texture.x, texture.y);
 		ft_pixel_put(cubed->raycast_info->r_img, project_x, pane.y, pane.color);
 		index++;
 		pane.y++;

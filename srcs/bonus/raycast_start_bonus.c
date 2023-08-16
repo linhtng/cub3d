@@ -6,12 +6,12 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/15 21:18:32 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:48:34 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
-#include "cub3D.h"
+#include "ft_raycast_bonus.h"
+#include "cub3D_bonus.h"
 
 int	raycast_start(t_scene *scene)
 {

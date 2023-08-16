@@ -3,19 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   handle_press.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 14:09:30 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:54:58 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "libft.h"
 
+int close_window(t_cubed *cubed)
+{
+	mlx_close(cubed, 0, "normal exit");
+	return (0);
+}
+
 int	handle_press(int key_code, t_cubed *cubed)
 {
-	// printf("KEY PRESSED: %i\n", key_code);
 	if (key_code == ESC)
 		mlx_close(cubed, 0, "Normal exit");
 	if (key_code == TURN_LEFT || key_code == TURN_RIGHT)

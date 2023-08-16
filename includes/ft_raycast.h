@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/14 20:53:50 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:49:04 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,14 @@ typedef struct s_raycast
 	struct s_img_data	*background_img;
 	struct s_vector		center_of_projection;
 	float				angle_between_rays;
-	float				distances[PROJECTION_WIDTH];//maybe don't care about this until you are finding the intersections
 }			t_raycast;
 
-//TODO move minimap things to bouus version
 typedef struct s_cubed
 {
 	struct s_scene		*scene;
 	struct s_raycast	*raycast_info;
 	void				*mlx;
 	void				*window;
-	struct s_img_data	*minimap_img;
-	struct s_img_data	*mini_player_img;//player and rays drawn to this for minimap
 	unsigned int		dirty_images;
 } 				t_cubed;
 
@@ -100,13 +96,6 @@ typedef struct s_ray_calc
 	struct s_vector	hd;
 }					t_ray_calc;
 
-/* draw minimap */
-void	draw_minimap(t_cubed *cubed, t_scene *scene);
-
-/* ft_bresenham.c */
-void	ft_bresenham(t_vector one, t_vector two, t_img_data *img);
-int		ft_abs(int val);
-
 /* drawing_utils1 */
 void	my_put_line_h(t_img_data *data, t_vector *start, int len);
 void	my_put_line_v(t_img_data *data, t_vector *start, int len);
@@ -116,6 +105,7 @@ void	my_put_rectangle(t_img_data *data, t_vector start, int len, int height);
 
 /* key hook handling */
 int		handle_press(int key_code, t_cubed *cubed);
+int		close_window(t_cubed *cubed);
 
 /* program exit functions */
 int		mlx_close(t_cubed *cubed, int exit_code, char *exit_msg);
@@ -129,7 +119,6 @@ void	cast_rays(t_cubed *cubed);
 
 /* draw_raycast_view.c */
 void	draw_background(t_cubed *cubed);
-// void	draw_view(t_cubed *cubed, float dist, int x, char side);
 void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x);
 
 /* ft_images */
@@ -140,7 +129,6 @@ void		refresh_images(t_cubed *cubed);
 /* utils_2.c */
 float	deg_to_rad(float degrees);
 float	correct_degrees(float degrees);
-int		ft_abs(int val);
 float	get_distance(t_vector *player, t_vector *wall_hit);
 
 /* setup_player.c */
@@ -151,17 +139,13 @@ void	turn_player(t_cubed *cubed, int key_code);
 void	move_forward_backward(t_cubed *cubed, int key_code);
 void	move_right_left(t_cubed *cubed, int	key_code);
 
-/* draw_player.c */
-void	draw_mini_player(t_cubed *cubed);
-
 /* redraw.c */
 void	redraw(t_cubed *cubed);
 
 /* setup_cubed.c */
 void	setup_cubed(t_cubed *cubed);
 
-/* setup_scene */
-void	setup_scene(t_cubed *cubed, t_scene *scene);
+/* setup_raycast */
 void	setup_raycast(t_cubed *cubed, t_raycast *raycast_info);
 
 /* ray_cast_main.c */
@@ -169,7 +153,7 @@ int		raycast_start(t_scene *scene);
 
 /* cub3D_texture */
 void			load_texture(t_scene *scene, t_cubed *cubed);
-unsigned int	mlx_pixel_get(t_img_data *data, int x, int y);
+unsigned int	ft_pixel_get(t_img_data *data, int x, int y);
 void			ft_pixel_put(t_img_data *data, int x, int y, unsigned int color);
 void			draw_textured_walls(t_cubed *cubed, int x, t_ray_calc *ray, int dir);
 

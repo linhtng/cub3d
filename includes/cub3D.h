@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/14 20:24:28 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:19:16 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_scene
 	t_elem		elems;
 	t_player	player;
 	int			err_flag;
-	t_img_data	*dir[4];
+	t_img_data	*texture[4];
 }	t_scene;
 
 /* cub3D_main */

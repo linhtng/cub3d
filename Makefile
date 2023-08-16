@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/15 21:17:23 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/16 14:53:10 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,47 +20,56 @@ CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
 #CDEBUG = -fsanitize=address
 
-DIR_DUP     = mkdir -p $(@D)
+# DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \
 # 	cub3D_utils.c \
 # 	cub3D_map.c \
 
-SRC := raycast/raycast_start.c raycast/calculate_rays.c raycast/draw_raycast_view.c \
-		 drawing_utils/ft_bresenham.c \
-		 drawing_utils/drawing_utils1.c \
-		 clean_exit/ft_mlx_close.c \
-		 events/handle_press.c \
-		 images/ft_images.c \
-		 player/setup_player.c player/player_move.c player/draw_player.c \
-		 utils_2.c \
-		 redraw.c \
-		 setup/setup_cubed.c setup/setup_raycast.c \
-		 texture/cub3D_texture.c \
-		 
-SRC += cub3D_main.c \
-	parsing/cub3D_utils.c \
-	parsing/cub3D_map.c \
-	parsing/cub3D_map_elems.c \
-	parsing/cub3D_map_content.c \
-	parsing/cub3D_map_valid.c \
-	parsing/cub3D_parsing_utils.c \
-	parsing/debug.c \
+RAYCAST_DIR = srcs/raycast/
+DRAWING_DIR = srcs/drawing_utils/
+EXIT_DIR = srcs/clean_exit/
+EVENT_DIR = srcs/events/
+IMG_DIR = srcs/images/
+PLAYER_DIR = srcs/player/
+SETUP_DIR = srcs/setup/
+TEXTURE_DIR = srcs/texture/
+MAIN_DIR = srcs/main/
+PARSE_DIR = srcs/parsing/
+BONUS_DIR = srcs/bonus/
 
-BONUS = draw_minimap.c \
+RAYCAST = raycast_start.c calculate_rays.c draw_raycast_view.c
+DRAWING = drawing_utils1.c
+EXIT = ft_mlx_close.c
+EVENT = handle_press.c
+IMG = ft_images.c
+PLAYER = setup_player.c player_move.c 
+SETUP = setup_cubed.c setup_raycast.c
+TEXTURE = cub3D_texture.c
+MAIN = cub3D_main.c utils_2.c redraw.c
+PARSING = cub3D_utils.c cub3D_map.c cub3D_map_elems.c cub3D_map_content.c cub3D_map_valid.c cub3D_parsing_utils.c debug.c
+ 
+ALL_SRCS = $(RAYCAST) $(DRAWING) $(EXIT) $(EVENT) $(IMG) $(PLAYER) $(SETUP) $(TEXTURE) $(MAIN) $(PARSING)
+
+BONUS = draw_minimap_bonus.c \
+		draw_player_bonus.c \
 		draw_raycast_view_bonus.c \
+		ft_bresenham_bonus.c \
+		ft_images_bonus.c \
+		ft_mlx_close_bonus.c \
 		raycast_start_bonus.c \
-# BOUNUS_SRC
-# BOUNUS_OBJS
+		redraw_bonus.c \
+		setup_cubed_bonus.c \
+		setup_player_bonus.c \
 
 SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/
 OBJSFD = objs/
 OBJSFD_BONUS = objs_bonus/
-SRCS	= $(addprefix $(SRCFD), $(SRC))
-OBJ = $(SRC:.c=.o)
-OBJS = $(addprefix $(OBJSFD),$(OBJ))
+# SRCS	= $(addprefix $(SRCFD), $(SRC))
+OBJ = $(ALL_SRCS:.c=.o)
+OBJS = $(patsubst %, $(OBJSFD)%, $(OBJ))
 
-ALL_BONUS_SRCS := $(filter-out raycast/raycast_start.c raycast/draw_raycast_view.c, $(SRC))
+ALL_BONUS_SRCS := $(filter-out raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c setup_player.c, $(ALL_SRCS))
 ALL_BONUS_SRCS += $(BONUS)
 OBJS_BONUS = $(patsubst %, $(OBJSFD_BONUS)%, $(ALL_BONUS_SRCS:.c=.o))
 # R_SRCS	:= $(addprefix $(SRCFD), $(R_SRC))
@@ -78,23 +87,82 @@ LIBS = -Llibft -lft
 
 all : $(NAME)
 
-$(OBJSFD)%.o: $(SRCFD)%.c
+$(OBJSFD):
 	@mkdir -p $(OBJSFD)
-	$(DIR_DUP)
+
+$(OBJSFD)%.o: $(RAYCAST_DIR)%.c
 	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
-$(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(CDEBUG) $(LIBS) $(LINKS) $^ -o $@
+$(OBJSFD)%.o: $(DRAWING_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(EXIT_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(EVENT_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(IMG_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(PLAYER_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(SETUP_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(TEXTURE_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(MAIN_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD)%.o: $(PARSE_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(NAME) : $(OBJSFD) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) $(LIBS) $(LINKS) -o $@
 
 bonus: $(NAME_BONUS)
-	
-$(OBJSFD_BONUS)%.o: $(SRCFD_BONUS)%.c
+
+$(OBJSFD_BONUS):
 	@mkdir -p $(OBJSFD_BONUS)
-	$(DIR_DUP)
+
+$(OBJSFD_BONUS)%.o: $(RAYCAST_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(DRAWING_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(EXIT_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(EVENT_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(IMG_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(PLAYER_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(SETUP_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(TEXTURE_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(MAIN_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(PARSE_DIR)%.c
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+
+$(OBJSFD_BONUS)%.o: $(BONUS_DIR)%.c
 	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH_BONUS)
 
-$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT)
-	$(CC) $(CFLAGS) $(CDEBUG) $(LIBS) $(LINKS) $^ -o $@
+$(NAME_BONUS) : $(OBJSFD_BONUS) $(OBJS_BONUS) $(LIBFT)
+	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS_BONUS) $(LIBS) $(LINKS) -o $@
 
 $(LIBFT) :
 	make -C $(LIBFT_PATH)

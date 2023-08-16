@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player.c                                      :+:      :+:    :+:   */
+/*   draw_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/14 19:10:58 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:47:51 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
-#include "libft.h"
-#include "cub3D.h"
+#include "ft_raycast_bonus.h"
+#include "cub3D_bonus.h"
 
 //TODO move to bonus entire file
 static void	draw_nose(t_cubed *cubed)

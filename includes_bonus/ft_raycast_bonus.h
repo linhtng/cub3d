@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:21:43 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/15 19:35:20 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:52:05 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene);
 
 /* ft_bresenham.c */
 void	ft_bresenham(t_vector one, t_vector two, t_img_data *img);
-int		ft_abs(int val);
 
 /* drawing_utils1 */
 void	my_put_line_h(t_img_data *data, t_vector *start, int len);
@@ -140,7 +139,6 @@ void		refresh_images(t_cubed *cubed);
 /* utils_2.c */
 float	deg_to_rad(float degrees);
 float	correct_degrees(float degrees);
-int		ft_abs(int val);
 float	get_distance(t_vector *player, t_vector *wall_hit);
 
 /* setup_player.c */

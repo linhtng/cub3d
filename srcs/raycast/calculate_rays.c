@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_rays.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/15 17:34:29 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:13:17 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "cub3D.h"
 
+/*add check if coords match player coords, return if so?*/
 void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
 t_vector *offset)
 {

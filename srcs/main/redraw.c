@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_cubed.c                                      :+:      :+:    :+:   */
+/*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 13:11:44 by thuynguy         ###   ########.fr       */
+/*   Created: 2023/08/09 11:14:09 by jebouche          #+#    #+#             */
+/*   Updated: 2023/08/16 13:18:11 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
+#include "libft.h"
 #include "cub3D.h"
 
-void	setup_cubed(t_cubed *cubed)
+//TODO add bonus condition for miniplayer and minimap
+void	redraw(t_cubed *cubed)
 {
-	cubed->mlx = mlx_init();
-	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
+	ft_memset(cubed->raycast_info->r_img->addr, TRANSPARENT, \
+	PROJECTION_WIDTH * PROJECTION_HEIGHT * \
+	(cubed->raycast_info->r_img->bits_per_pixel / 8));
+	cast_rays(cubed);
 }

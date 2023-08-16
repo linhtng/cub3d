@@ -6,23 +6,12 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/15 19:51:07 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:15:15 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_raycast.h"
 #include "cub3D.h"
-
-//TODO move to bonus
-/* void	draw_minimap_rays(t_cubed *cubed, t_ray_calc *ray_info)
-{
-	if (ray_info->shortest == 'v')
-		ft_bresenham(cubed->scene->player.location, ray_info->v_map, \
-		cubed->mini_player_img);
-	else
-		ft_bresenham(cubed->scene->player.location, ray_info->h_map, \
-		cubed->mini_player_img);
-} */
 
 int	identify_wall_direction(t_ray_calc *ray_info)
 {
@@ -45,7 +34,6 @@ void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x)
 {
 	int	direction;
 
-	//draw_minimap_rays(cubed, ray_info);
 	direction = identify_wall_direction(ray_info);
 	draw_textured_walls(cubed, x, ray_info, direction);
 }

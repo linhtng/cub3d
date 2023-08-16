@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_player.c                                     :+:      :+:    :+:   */
+/*   setup_player_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 13:20:22 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:48:20 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
-#include "libft.h"
-#include "cub3D.h"
+#include "ft_raycast_bonus.h"
+#include "cub3D_bonus.h"
 
 //TODO add bonus condition for draw mini player
 void	setup_player(t_cubed *cubed)
@@ -37,4 +36,5 @@ void	setup_player(t_cubed *cubed)
 		cubed->scene->player.angle = 180.0f;
 	cubed->scene->player.d.x = cos(deg_to_rad(cubed->scene->player.angle)) * 5;
 	cubed->scene->player.d.y = -sin(deg_to_rad(cubed->scene->player.angle)) * 5;
+	draw_mini_player(cubed);
 }

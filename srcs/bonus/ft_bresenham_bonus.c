@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bresenham.c                                     :+:      :+:    :+:   */
+/*   ft_bresenham_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/14 20:54:19 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:48:16 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
+#include "ft_raycast_bonus.h"
+#include "cub3D_bonus.h"
 
-//TODO used for bonus minmap
+
+static int	ft_abs(int val)
+{
+	if (val < 0)
+		return (val * -1);
+	return (val);
+}
+
 static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, \
 t_vector *two)
 {
