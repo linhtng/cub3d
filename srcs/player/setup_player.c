@@ -6,12 +6,10 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 13:20:22 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:46:33 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
-#include "libft.h"
 #include "cub3D.h"
 
 //TODO add bonus condition for draw mini player

@@ -6,12 +6,13 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 11:14:09 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 14:48:29 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:58:56 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast_bonus.h"
-#include "cub3D_bonus.h"
+// #include "ft_raycast_bonus.h"
+// #include "cub3D_bonus.h"
+#include "cub3D.h"
 
 void	redraw(t_cubed *cubed)
 {

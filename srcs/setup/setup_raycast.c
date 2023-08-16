@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   setup_raycast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:18:06 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/10 10:37:18 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:47:08 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
 #include "cub3D.h"
 
 /*only need to do once in the begining reuse the background as lonng as we dont

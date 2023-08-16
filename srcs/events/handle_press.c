@@ -6,12 +6,11 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 14:54:58 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:44:59 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
-#include "libft.h"
+#include "cub3D.h"
 
 int close_window(t_cubed *cubed)
 {

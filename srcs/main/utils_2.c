@@ -6,11 +6,11 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:42:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 14:47:26 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:45:29 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
+#include "cub3D.h"
 
 float	correct_degrees(float degrees)
 {

@@ -6,12 +6,13 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 14:48:00 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:07:35 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast_bonus.h"
-#include "cub3D_bonus.h"
+// #include "ft_raycast_bonus.h"
+// #include "cub3D_bonus.h"
+#include "cub3D.h"
 
 t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 {

@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/16 14:53:10 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/16 18:02:53 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ NAME = cub3D
 NAME_BONUS = cub3D_bonus
 # RAY_CASTER := raycast_build
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes
+BONUS_CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes_bonus
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
-#CDEBUG = -fsanitize=address
+CDEBUG = -fsanitize=address
 
 # DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \
@@ -129,37 +130,37 @@ $(OBJSFD_BONUS):
 	@mkdir -p $(OBJSFD_BONUS)
 
 $(OBJSFD_BONUS)%.o: $(RAYCAST_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(DRAWING_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(EXIT_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(EVENT_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(IMG_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(PLAYER_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(SETUP_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(TEXTURE_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(MAIN_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(PARSE_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(BONUS_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH_BONUS)
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@
 
 $(NAME_BONUS) : $(OBJSFD_BONUS) $(OBJS_BONUS) $(LIBFT)
 	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS_BONUS) $(LIBS) $(LINKS) -o $@
@@ -172,6 +173,6 @@ clean :
 	make fclean -C $(LIBFT_PATH)
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_BONUS)
 
 re : fclean all

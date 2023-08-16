@@ -6,11 +6,11 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 14:23:34 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:44:44 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
+#include "cub3D.h"
 
 static void	ft_destroy_image(void *mlx, t_img_data **img)
 {
@@ -47,7 +47,7 @@ int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 	if (cubed->mlx)
 		cubed->mlx = NULL;
 	if (exit_code)
-		write(STDERR_FILENO, exit_msg , ft_strlen(exit_msg));//
+		ft_putendl_fd(exit_msg, STDERR_FILENO);
 	free_scene_data(cubed->scene);
 	exit(exit_code);
 	return (0);

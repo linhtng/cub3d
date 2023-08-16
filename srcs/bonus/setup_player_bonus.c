@@ -6,12 +6,14 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 14:48:20 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:59:11 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast_bonus.h"
-#include "cub3D_bonus.h"
+// #include "ft_raycast_bonus.h"
+// #include "cub3D_bonus.h"
+
+#include "cub3D.h"
 
 //TODO add bonus condition for draw mini player
 void	setup_player(t_cubed *cubed)

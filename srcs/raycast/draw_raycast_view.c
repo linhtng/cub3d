@@ -6,11 +6,10 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 13:15:15 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:46:09 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
 #include "cub3D.h"
 
 int	identify_wall_direction(t_ray_calc *ray_info)

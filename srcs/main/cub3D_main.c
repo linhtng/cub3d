@@ -6,12 +6,11 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/14 16:49:40 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:46:47 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include "ft_raycast.h"
 
 int	check_input_file(char *argv, int fd, char *extension)
 {

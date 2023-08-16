@@ -6,13 +6,13 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 13:14:41 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:58:05 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast_bonus.h"
-#include "cub3D_bonus.h"
-
+// #include "ft_raycast_bonus.h"
+// #include "cub3D_bonus.h"
+#include "cub3D.h"
 void	draw_minimap_rays(t_cubed *cubed, t_ray_calc *ray_info)
 {
 	if (ray_info->shortest == 'v')

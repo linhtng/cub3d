@@ -6,11 +6,10 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/16 14:20:28 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:45:50 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raycast.h"
 #include "cub3D.h"
 
 void	ft_pixel_put(t_img_data *data, int x, int y, unsigned int color)

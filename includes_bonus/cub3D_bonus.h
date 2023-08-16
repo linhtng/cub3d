@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/15 20:48:45 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:41:09 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,18 @@ typedef struct s_img_data
 	int			width;
 	int			height;
 }				t_img_data;
+
+//TODO move minimap things to bouus version
+typedef struct s_cubed
+{
+	struct s_scene		*scene;
+	struct s_raycast	*raycast_info;
+	void				*mlx;
+	void				*window;
+	struct s_img_data	*minimap_img;
+	struct s_img_data	*mini_player_img;//player and rays drawn to this for minimap
+	unsigned int		dirty_images;
+} 				t_cubed;
 
 typedef struct s_scene
 {

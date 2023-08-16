@@ -1,133 +1,130 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 16:19:29 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/16 14:19:16 by thuynguy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef CUB3D_PROTOTYPES_H
+# define CUB3D_PROTOTYPES_H
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
+/**TODO CHECK IF ALL OF THESE ARE NEEDED **/
+/* for printf */
+# include <stdio.h>
+/* for sin, cos, sqrt, etc*/
+# include <math.h>
+/* for minilibx */
 # include <mlx.h>
-# include "libft.h"
+/* do we need this? */
+# include <stdlib.h>
+/* for write read, open etc*/
+# include <unistd.h> 
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <stdio.h>
 
-# define ERROR -1
-# define FLOOR 1
-# define CEILING 2
-# define SPACE '_'
-# define VISITED '1'
-# define DEBUG 0
-
-typedef struct s_elem
-{
-	char				*north;
-	char				*south;
-	char				*east;
-	char				*west;
-	int					fl_rgb[4];
-	int					c_rgb[4];
-	unsigned	int	floor_color;
-	unsigned	int	ceiling_color;
-	int					filled_elem;
-}	t_elem;
-
-typedef struct s_map
-{
-	int			height;
-	int			width;
-	char		**grid;
-	char		**flood;
-	char		**visited;
-}	t_map;
-
-//change to floats?
-typedef struct s_vector
-{
-	float	x;
-	float	y;
-	unsigned int	color;
-}				t_vector;
-
-/* struct to track location and direction of player*/
-typedef struct s_player
-{
-	struct s_vector		location;
-	// struct s_img_data	*player_img;
-	float				angle;
-	struct s_vector		d;
-	char				spawn;
-	// float				distance_to_pane;// calculate based on field of vison and projection pane dimensions
-	// float				height; removed for now from intialization of player ^ as well
-}				t_player;
-
-typedef struct s_img_data
-{
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-}				t_img_data;
-
-typedef struct s_scene
-{
-	int			len;
-	char		**array;
-	t_map		map;
-	t_elem		elems;
-	t_player	player;
-	int			err_flag;
-	t_img_data	*texture[4];
-}	t_scene;
+# include "cub3D_structs.h"
+# include "cub3D_defines.h"
+# include "libft.h"
 
 /* cub3D_main */
 void	init_scene(t_scene *scene);
 
 /* cub3D_utils */
-int 	check_input_file(char *argv, int fd, char *extension);
-int		err_msg(char *message1, char *message2);
-int		count_occurences(char *str, char c);
-int		ft_is_dir(const char *path);
-int		arr_len(char **arr);
-void	free_arr(char **arr);
+int 			check_input_file(char *argv, int fd, char *extension);
+int				err_msg(char *message1, char *message2);
+int				count_occurences(char *str, char c);
+int				ft_is_dir(const char *path);
+int				arr_len(char **arr);
+void			free_arr(char **arr);
 
 /* cub3D_parsing_utils */
 int				correct_extension(const char *argv, char *ending);
-unsigned int   convert_rgb_hex(int *rgb);
+unsigned int	convert_rgb_hex(int *rgb);
 int				check_rgb_valid(t_scene *scene, char *line);
 void			free_scene_data(t_scene *scene);
 
 /* cub3D_map */
-int		get_scene_data(int fd, t_scene *scene);
+int				get_scene_data(int fd, t_scene *scene);
 
 /* cub3D_map_elems */
-int		get_scene_elem(t_scene *scene, char *scene_line);
+int				get_scene_elem(t_scene *scene, char *scene_line);
 
 /* cub3D_map_content */
-int		get_map_content(char **scene_arr, t_scene *scene, int i);
+int				get_map_content(char **scene_arr, t_scene *scene, int i);
 
 /* cub3D_map_valid */
-int		valid_walls(t_scene *scene, char **map);
-void	ft_flood(int y, int x, t_scene *scene);
-int		ft_arrdup(char **map, t_scene *scene);
-int		empty_map(t_scene *scene);
+int				valid_walls(t_scene *scene, char **map);
+void			ft_flood(int y, int x, t_scene *scene);
+int				ft_arrdup(char **map, t_scene *scene);
+int				empty_map(t_scene *scene);
 
 /* cub3D_debug */
-void	print_arr(char **arr);
-void	print_scene(t_scene *scene);
-void	mass_test_maps(int argc, char **argv);
+void			print_arr(char **arr);
+void			print_scene(t_scene *scene);
+void			mass_test_maps(int argc, char **argv);
 
+/* drawing_utils1 */
+void			my_put_line_h(t_img_data *data, t_vector *start, int len);
+void			my_put_line_v(t_img_data *data, t_vector *start, int len);
+void			my_put_grid(t_img_data *data, t_vector *start, int len, int height);//change args
+void			my_put_square(t_img_data *data, t_vector start, int len);
+void			my_put_rectangle(t_img_data *data, t_vector start, int len, int height);
+
+/* key hook handling */
+int				handle_press(int key_code, t_cubed *cubed);
+int				close_window(t_cubed *cubed);
+
+/* program exit functions */
+int				mlx_close(t_cubed *cubed, int exit_code, char *exit_msg);
+
+/* calculate_rays.c */
+void			shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray);
+void			shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray);
+float			deg_to_rad(float degrees);
+float			correct_degrees(float degrees);
+void			cast_rays(t_cubed *cubed);
+
+/* draw_raycast_view.c */
+void			draw_background(t_cubed *cubed);
+void			draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x);
+
+/* ft_images */
+t_img_data		*get_new_image(t_cubed *cubed, int width, int height);
+t_img_data		*get_new_xpm_image(t_cubed *cubed, char *file_path);
+void			refresh_images(t_cubed *cubed);
+
+/* utils_2.c */
+float			deg_to_rad(float degrees);
+float			correct_degrees(float degrees);
+float			get_distance(t_vector *player, t_vector *wall_hit);
+
+/* setup_player.c */
+void			setup_player(t_cubed *cubed);
+
+/* player_move.c */
+void			turn_player(t_cubed *cubed, int key_code);
+void			move_forward_backward(t_cubed *cubed, int key_code);
+void			move_right_left(t_cubed *cubed, int	key_code);
+
+/* redraw.c */
+void			redraw(t_cubed *cubed);
+
+/* setup_cubed.c */
+void			setup_cubed(t_cubed *cubed);
+
+/* setup_raycast */
+void			setup_raycast(t_cubed *cubed, t_raycast *raycast_info);
+
+/* ray_cast_main.c */
+int				raycast_start(t_scene *scene);
+
+/* cub3D_texture */
+void			load_texture(t_scene *scene, t_cubed *cubed);
+unsigned int	ft_pixel_get(t_img_data *data, int x, int y);
+void			ft_pixel_put(t_img_data *data, int x, int y, unsigned int color);
+void			draw_textured_walls(t_cubed *cubed, int x, t_ray_calc *ray, int dir);
+
+/* ft_bresenham.c */
+void	ft_bresenham(t_vector one, t_vector two, t_img_data *img);
+
+/* draw minimap */
+void	draw_minimap(t_cubed *cubed, t_scene *scene);
+
+/* draw_player.c */
+void	draw_mini_player(t_cubed *cubed);
 
 #endif
-
