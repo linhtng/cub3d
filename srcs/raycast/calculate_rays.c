@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_rays.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 16:46:58 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:13:47 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/*add check if coords match player coords, return if so?*/
 void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
 t_vector *offset)
 {
@@ -99,7 +98,7 @@ void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 	
 	h_distance = get_distance(&cubed->scene->player.location, &ray_info->h_map);
 	v_distance = get_distance(&cubed->scene->player.location, &ray_info->v_map);
-	if (h_distance < v_distance)
+	if (h_distance != 0.0f && (h_distance < v_distance || v_distance == 0.0f))
 	{
 		ray_info->shortest = 'h';
 		ray_info->distance = h_distance * cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
