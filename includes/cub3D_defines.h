@@ -33,6 +33,7 @@
 # define DARK_GREY (unsigned int) 0X585858
 # define PINK (unsigned int) 0XFF9999
 # define NAVY_BLUE (unsigned int) 0X000785
+# define YELLOW (unsigned int) 0X666666
 
 enum	e_keys
 {
