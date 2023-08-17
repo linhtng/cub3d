@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   setup_player_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 17:59:11 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:31:27 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "ft_raycast_bonus.h"
-// #include "cub3D_bonus.h"
-
+#include "cub3D_bonus.h"
 #include "cub3D.h"
 
 //TODO add bonus condition for draw mini player
@@ -38,5 +37,5 @@ void	setup_player(t_cubed *cubed)
 		cubed->scene->player.angle = 180.0f;
 	cubed->scene->player.d.x = cos(deg_to_rad(cubed->scene->player.angle)) * 5;
 	cubed->scene->player.d.y = -sin(deg_to_rad(cubed->scene->player.angle)) * 5;
-	draw_mini_player(cubed);
+	draw_mini_player(cubed);// TODO remove draw mini player, will be done with minimap stuffs
 }

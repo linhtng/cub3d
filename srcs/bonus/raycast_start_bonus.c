@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_start_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 17:58:43 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:30:01 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "ft_raycast_bonus.h"
-// #include "cub3D_bonus.h"
+#include "cub3D_bonus.h"
 #include "cub3D.h"
 
 int	raycast_start(t_scene *scene)
@@ -25,7 +25,7 @@ int	raycast_start(t_scene *scene)
 	setup_player(&cubed);
 	load_texture(scene, &cubed);
 	//DRAW STUFF initial render
-	draw_minimap(&cubed, scene); //draws base, not called again
+	draw_minimap(&cubed, scene); //draws base, not called again //TODO remove when refreshable minimap made
 	cubed.scene->player.location.color = 0x000FFF;//
 	redraw(&cubed);//draws the first time
 	draw_background(&cubed);//called once to setup the background

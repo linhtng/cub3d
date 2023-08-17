@@ -1,5 +1,5 @@
-#ifndef CUB3D_PROTOTYPES_H
-# define CUB3D_PROTOTYPES_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 /**TODO CHECK IF ALL OF THESE ARE NEEDED **/
 /* for printf */

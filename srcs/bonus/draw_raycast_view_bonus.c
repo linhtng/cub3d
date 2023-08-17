@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   draw_raycast_view_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 17:58:05 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:28:07 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "ft_raycast_bonus.h"
-// #include "cub3D_bonus.h"
+#include "cub3D_bonus.h"
 #include "cub3D.h"
 void	draw_minimap_rays(t_cubed *cubed, t_ray_calc *ray_info)
 {
 	if (ray_info->shortest == 'v')
 		ft_bresenham(cubed->scene->player.location, ray_info->v_map, \
-		cubed->mini_player_img);
+		((t_cubed_bonus *)cubed)->mini_player_img);
 	else
 		ft_bresenham(cubed->scene->player.location, ray_info->h_map, \
-		cubed->mini_player_img);
+		((t_cubed_bonus *)cubed)->mini_player_img);
 }
 
 int	identify_wall_direction(t_ray_calc *ray_info)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/16 18:02:53 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/17 09:37:13 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,7 +160,7 @@ $(OBJSFD_BONUS)%.o: $(PARSE_DIR)%.c
 	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(BONUS_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH_BONUS)
 
 $(NAME_BONUS) : $(OBJSFD_BONUS) $(OBJS_BONUS) $(LIBFT)
 	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS_BONUS) $(LIBS) $(LINKS) -o $@

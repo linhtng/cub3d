@@ -3,31 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_close_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 17:58:30 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:54:07 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "ft_raycast_bonus.h"
-// #include "cub3D_bonus.h"
+#include "cub3D_bonus.h"
 #include "cub3D.h"
+
+//TODO destroy and free all images and other allocated stuffs
+static void	ft_destroy_image(void *mlx, t_img_data **img)
+{
+	mlx_destroy_image(mlx, (*img)->img);
+	free(*img);
+	*img = NULL;
+}
+static void	destroy_all_images(t_cubed *cubed)
+{
+	if (cubed->raycast_info->r_img)
+		ft_destroy_image(cubed->mlx, &(cubed->raycast_info->r_img));
+	if (cubed->raycast_info->background_img)
+		ft_destroy_image(cubed->mlx, &(cubed->raycast_info->background_img));
+	if (cubed->scene->texture[NORTH])
+		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[NORTH]));
+	if (cubed->scene->texture[SOUTH])
+		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[SOUTH]));
+	if (cubed->scene->texture[EAST])
+		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[EAST]));
+	if (cubed->scene->texture[WEST])
+		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
+	if (((t_cubed_bonus *)cubed)->mini_player_img)
+		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->mini_player_img));
+	if (((t_cubed_bonus *)cubed)->minimap_img)
+		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->minimap_img));
+}
 
 //TODO destroy and free all images and other allocated stuffs
 int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 {
 	printf("MLX should close...\n");
-	// if (cubed->img) //saying this double frees????wtf
-	// {
-	// 	mlx_destroy_image(cubed->mlx, cubed->img->img);
-	// 	free(cubed->img);
-	// }
-	// if (cubed->player_img)
-	// {
-	// 	mlx_destroy_image(cubed->mlx, cubed->player_img->img);
-	// 	free(cubed->player_img);
-	// }
+	destroy_all_images(cubed);
 	if (cubed->window)
 	{
 		mlx_destroy_window(cubed->mlx, cubed->window);
@@ -35,8 +53,8 @@ int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 	}
 	if (cubed->mlx)
 		cubed->mlx = NULL;
-	//write exit message prn
-	write(2, exit_msg ,1);//
+	if (exit_code)
+		ft_putendl_fd(exit_msg, STDERR_FILENO);
 	free_scene_data(cubed->scene);
 	exit(exit_code);
 	return (0);
