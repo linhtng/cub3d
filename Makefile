@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/17 11:44:44 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/17 14:42:48 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,10 +160,10 @@ $(OBJSFD_BONUS)%.o: $(PARSE_DIR)%.c
 	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(BONUS_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@  $(HEADER_PATH_BONUS)
 
 $(NAME_BONUS) : $(OBJSFD_BONUS) $(OBJS_BONUS) $(LIBFT)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS_BONUS) $(LIBS) $(LINKS) -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS_BONUS) $(LIBS) $(LINKS) -o $@ $(HEADER_PATH_BONUS)
 
 $(LIBFT) :
 	make -C $(LIBFT_PATH)

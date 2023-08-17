@@ -6,12 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 10:21:51 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:37:59 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_raycast_bonus.h"
-// #include "cub3D_bonus.h"
+#include "cub3D_bonus.h"
 #include "cub3D.h"
 
 //TODO destroy and free all images and other allocated stuffs
@@ -35,12 +34,12 @@ static void	destroy_all_images(t_cubed *cubed)
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[EAST]));
 	if (cubed->scene->texture[WEST])
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
-	if (cubed->mini_player_img)
-		ft_destroy_image(cubed->mlx, &(cubed->mini_player_img));
-	if (cubed->minimap_img)
-		ft_destroy_image(cubed->mlx, &(cubed->minimap_img));
-	// if (cubed->frame_img)
-	// 	ft_destroy_image(cubed->mlx, &(cubed->frame_img));
+	if (((t_cubed_bonus *)cubed)->mini_player_img)
+		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->mini_player_img));
+	if (((t_cubed_bonus *)cubed)->minimap_img)
+		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->minimap_img));
+	if (((t_cubed_bonus *)cubed)->frame_img)
+		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->frame_img));
 }
 
 //TODO destroy and free all images and other allocated stuffs

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bresenham_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 17:58:13 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:40:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_raycast_bonus.h"
 // #include "cub3D_bonus.h"
 #include "cub3D.h"
 

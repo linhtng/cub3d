@@ -6,12 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 12:07:29 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:38:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_raycast_bonus.h"
-// #include "cub3D_bonus.h"
+#include "cub3D_bonus.h"
 #include "cub3D.h"
 
 t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
@@ -55,14 +54,11 @@ t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 void	refresh_images(t_cubed *cubed)
 {
 	mlx_put_image_to_window(cubed->mlx, cubed->window, \
-	cubed->minimap_img->img, 0, 0);
+	((t_cubed_bonus *)cubed)->minimap_img->img, 0, 0);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, \
-	cubed->mini_player_img->img, 0, 0);
+	((t_cubed_bonus *)cubed)->mini_player_img->img, 0, 0);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, 58);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, 58);
 	cubed->dirty_images = FALSE;
-	
-	// cubed->frame_img = get_new_xpm_image(cubed, "textures/cub3d_tex/cubed_frame_noshade.xpm");
-	// if (cubed->frame_img->img)
-		mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->frame_img->img, 0, 0);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, ((t_cubed_bonus *)cubed)->frame_img->img, 0, 0);
 }

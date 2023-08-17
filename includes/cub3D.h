@@ -21,7 +21,7 @@
 # include "libft.h"
 
 /* cub3D_main */
-void	init_scene(t_scene *scene);
+void			init_scene(t_scene *scene);
 
 /* cub3D_utils */
 int 			check_input_file(char *argv, int fd, char *extension);
