@@ -9,7 +9,7 @@
 # define DEBUG 0
 
 /* PROGRAM DEFINES */
-# define WIN_WIDTH 1920
+# define WIN_WIDTH 1490 //1920
 # define WIN_HEIGHT 1080
 # define ERROR -1
 # define TRUE 1
@@ -17,8 +17,8 @@
 # define pane_y 1
 
 /* RAY CASTING DEFINES */
-# define PROJECTION_WIDTH 1366
-# define PROJECTION_HEIGHT 768
+# define PROJECTION_WIDTH 1370 //1366
+# define PROJECTION_HEIGHT 770
 # define MAX_DOF 10000
 # define FOV 60
 # define CELL_SIZE 32

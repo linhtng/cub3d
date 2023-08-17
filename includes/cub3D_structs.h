@@ -17,17 +17,11 @@ typedef struct s_cubed
 	struct s_raycast	*raycast_info;
 	void				*mlx;
 	void				*window;
-<<<<<<< Updated upstream
-	struct s_img_data	*minimap_img;
-	struct s_img_data	*mini_player_img;//player and rays drawn to this for minimap
 	unsigned int		dirty_images;
-=======
-	unsigned int		dirty_images;
-	//after this they are for bonus
+	//for bonus after this
 	struct s_img_data	*minimap_img;
-	struct s_img_data	*mini_player_img;//player and rays drawn to this for minimap
+	struct s_img_data	*mini_player_img;
 	struct s_img_data	*frame_img;
->>>>>>> Stashed changes
 } 				t_cubed;
 
 typedef struct s_vector
