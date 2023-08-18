@@ -17,8 +17,8 @@
 # define pane_y 1
 
 /* RAY CASTING DEFINES */
-# define PROJECTION_WIDTH 685//1370 //1366
-# define PROJECTION_HEIGHT 385//770
+# define PROJECTION_WIDTH 1370 //685//1370 //1366
+# define PROJECTION_HEIGHT 770 // 385//770
 # define MAX_DOF 10000
 # define FOV 60
 # define CELL_SIZE 32
@@ -33,6 +33,7 @@
 # define PINK (unsigned int) 0XFF9999
 # define NAVY_BLUE (unsigned int) 0X000785
 # define YELLOW (unsigned int) 0X666666
+# define TRANS_WHITE (unsigned int) 0X99FFFFFF;
 
 enum	e_keys
 {

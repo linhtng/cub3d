@@ -6,12 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 14:37:59 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:01:38 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-#include "cub3D.h"
 
 //TODO destroy and free all images and other allocated stuffs
 static void	ft_destroy_image(void *mlx, t_img_data **img)

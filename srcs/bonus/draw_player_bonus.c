@@ -6,27 +6,29 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 14:40:22 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:03:09 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-#include "cub3D.h"
 
-//TODO move to bonus entire file
-static void	draw_nose(t_cubed *cubed)
+static void	draw_nose(t_cubed_bonus *cubed, t_vector *mini_player)
 {
 	t_vector	temp;
-
-	temp.x = cubed->scene->player.location.x + cubed->scene->player.d.x  * 5;
-	temp.y = cubed->scene->player.location.y + cubed->scene->player.d.y * 5;
-	temp.color = 0xff00f3;
-	ft_bresenham(temp, cubed->scene->player.location, ((t_cubed_bonus *)cubed)->mini_player_img);
+	
+	temp.x = (int)mini_player->x + cubed->scene->player.d.x * 2;
+	temp.y = (int)mini_player->y + cubed->scene->player.d.y * 2;
+	temp.color = LIGHT_GREY;
+	ft_bresenham(temp, *mini_player, cubed->mini_player_img);
 }
 
 void	draw_mini_player(t_cubed *cubed)
 {
-	// ft_memset(cubed->player_img->addr, 0x00ffffff, WIN_WIDTH * WIN_HEIGHT * (cubed->player_img->bits_per_pixel / 8));
-	my_put_square(((t_cubed_bonus *)cubed)->mini_player_img, cubed->scene->player.location, 10);
-	draw_nose(cubed);
+	t_vector	mini_player;
+
+	mini_player.x = MINI_MAP_RADIUS;
+	mini_player.y = MINI_MAP_RADIUS;
+	mini_player.color = RED;
+	my_put_rectangle(((t_cubed_bonus *)cubed)->mini_player_img, mini_player, 10, 10);
+	draw_nose((t_cubed_bonus *)cubed, &mini_player);
 }

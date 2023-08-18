@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 14:35:16 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:05:13 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ int	raycast_start(t_scene *scene)
 	setup_raycast(cubed, &raycast_info);
 	setup_player(cubed);
 	load_texture(scene, cubed);
-	//DRAW STUFF initial render
-	draw_minimap(cubed, scene); //draws base, not called again
-	redraw(cubed);//draws the first time
-	draw_background(cubed);//called once to setup the background
-	refresh_images(cubed);//images to windows
-
+	
+	redraw(cubed);
+	draw_background(cubed);
+	refresh_images(cubed);
 	mlx_hook(cubed->window, 17, 0, &mlx_close, cubed);
 	mlx_hook(cubed->window, 2, 1L << 0, handle_press, cubed);
 	mlx_loop(cubed->mlx);

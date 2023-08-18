@@ -6,20 +6,32 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 14:38:54 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:01:43 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-#include "cub3D.h"
-void	draw_minimap_rays(t_cubed *cubed, t_ray_calc *ray_info)
+
+void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info)
 {
+	t_vector mini_player;
+	t_vector temp;
+
+	mini_player.x = MINI_MAP_RADIUS;
+	mini_player.y = MINI_MAP_RADIUS;
+	mini_player.color = 0X99FFFFFF; //60% transparent white
 	if (ray_info->shortest == 'v')
-		ft_bresenham(cubed->scene->player.location, ray_info->v_map, \
-		((t_cubed_bonus *)cubed)->mini_player_img);
+	{
+		temp.x = ray_info->v_map.x - cubed->scene->player.location.x + MINI_MAP_RADIUS;
+		temp.y = ray_info->v_map.y - cubed->scene->player.location.y + MINI_MAP_RADIUS;
+		ft_bresenham(mini_player, temp, cubed->mini_player_img);
+	}
 	else
-		ft_bresenham(cubed->scene->player.location, ray_info->h_map, \
-		((t_cubed_bonus *)cubed)->mini_player_img);
+	{
+		temp.x = ray_info->h_map.x - cubed->scene->player.location.x + MINI_MAP_RADIUS;
+		temp.y = ray_info->h_map.y - cubed->scene->player.location.y + MINI_MAP_RADIUS;
+		ft_bresenham(mini_player, temp, cubed->mini_player_img);
+	}
 }
 
 int	identify_wall_direction(t_ray_calc *ray_info)
@@ -43,7 +55,7 @@ void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x)
 {
 	int	direction;
 
-	draw_minimap_rays(cubed, ray_info);
+	draw_minimap_rays((t_cubed_bonus *)cubed, ray_info);
 	direction = identify_wall_direction(ray_info);
 	draw_textured_walls(cubed, x, ray_info, direction);
 }

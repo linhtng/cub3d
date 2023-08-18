@@ -10,20 +10,6 @@ typedef struct s_cubed
 	unsigned int		dirty_images;
 } 				t_cubed;
 
-//TODO move minimap things to bouus version
-// typedef struct s_cubed
-// {
-// 	struct s_scene		*scene;
-// 	struct s_raycast	*raycast_info;
-// 	void				*mlx;
-// 	void				*window;
-// 	unsigned int		dirty_images;
-// 	//for bonus after this
-// 	struct s_img_data	*minimap_img;
-// 	struct s_img_data	*mini_player_img;
-// 	struct s_img_data	*frame_img;
-// } 				t_cubed;
-
 typedef struct s_vector
 {
 	float			x;
@@ -31,14 +17,14 @@ typedef struct s_vector
 	unsigned int	color;
 }				t_vector;
 
-typedef	struct s_bham_info
-{
-	struct s_vector	deltas;
-	int				x_slope;
-	int				y_slope;
-	int				decision;
-	int				d2;
-}				t_bham_info;
+// typedef	struct s_bham_info
+// {
+// 	struct s_vector	deltas;
+// 	int				x_slope;
+// 	int				y_slope;
+// 	int				decision;
+// 	int				d2;
+// }				t_bham_info;
 
 typedef struct s_elem
 {

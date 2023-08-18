@@ -6,12 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 14:40:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:01:42 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3D_bonus.h"
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static int	ft_abs(int val)
 {
@@ -35,6 +34,17 @@ t_vector *two)
 	line_info->d2 = line_info->decision * 2;
 }
 
+void	clip_to_minimap(t_img_data *img, t_vector *one)
+{
+	int	delta_y;
+	int	delta_x;
+
+	delta_y = one->y - MINI_MAP_RADIUS;
+	delta_x = one->x - MINI_MAP_RADIUS;
+	if (delta_x * delta_x + delta_y * delta_y <= MINI_MAP_RADIUS * MINI_MAP_RADIUS)
+		ft_pixel_put(img, one->x, one->y, one->color);
+}
+
 void	ft_bresenham(t_vector one, t_vector two, t_img_data *img)
 {
 	t_bham_info	line_info;
@@ -42,7 +52,7 @@ void	ft_bresenham(t_vector one, t_vector two, t_img_data *img)
 	set_up_bresenham(&line_info, &one, &two);
 	while (42)
 	{
-		ft_pixel_put(img, one.x, one.y, one.color);
+		clip_to_minimap(img, &one);
 		if ((int) one.x == (int) two.x && (int) one.y == (int) two.y)
 			break ;
 		line_info.d2 = line_info.decision * 2;

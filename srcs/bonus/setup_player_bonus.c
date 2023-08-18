@@ -6,16 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 14:37:20 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:01:30 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_raycast_bonus.h"
-// #include "cub3D_bonus.h"
-
 #include "cub3D.h"
 
-//TODO add bonus condition for draw mini player
+//TODO remove from bonus completely
 void	setup_player(t_cubed *cubed)
 {
 	t_vector	start;
@@ -27,7 +24,7 @@ void	setup_player(t_cubed *cubed)
 	CELL_SIZE + CELL_SIZE / 2;
 	cubed->scene->player.location.x = cubed->scene->player.location.x * \
 	CELL_SIZE + CELL_SIZE / 2;
-	cubed->scene->player.location.color = 0xFFFF00;//yellow
+	cubed->scene->player.location.color = 0xFFFF00;
 	if (cubed->scene->player.spawn == 'N')
 		cubed->scene->player.angle = 90.0f;
 	if (cubed->scene->player.spawn == 'S')
@@ -38,5 +35,4 @@ void	setup_player(t_cubed *cubed)
 		cubed->scene->player.angle = 180.0f;
 	cubed->scene->player.d.x = cos(deg_to_rad(cubed->scene->player.angle)) * 5;
 	cubed->scene->player.d.y = -sin(deg_to_rad(cubed->scene->player.angle)) * 5;
-	draw_mini_player(cubed);//maybe take out????
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 16:45:16 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:31:17 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	my_put_square(t_img_data *data, t_vector start, int len)
 {
 	int	i;
 
-	i = 0;
+	i = len;
+	// start.x = start.x / 2;
 	while (i < len)
 	{
 		my_put_line_v(data, &start, len);
@@ -92,6 +93,8 @@ void	my_put_rectangle(t_img_data *data, t_vector start, int len, int height)
 	int	i;
 
 	i = 0;
+	start.y = start.y - height / 2;
+	start.x = start.x - len / 2;
 	while (i < height)
 	{
 		my_put_line_h(data, &start, len);

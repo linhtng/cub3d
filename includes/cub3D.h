@@ -118,13 +118,4 @@ unsigned int	ft_pixel_get(t_img_data *data, int x, int y);
 void			ft_pixel_put(t_img_data *data, int x, int y, unsigned int color);
 void			draw_textured_walls(t_cubed *cubed, int x, t_ray_calc *ray, int dir);
 
-/* ft_bresenham.c */
-void	ft_bresenham(t_vector one, t_vector two, t_img_data *img);
-
-/* draw minimap */
-void	draw_minimap(t_cubed *cubed, t_scene *scene);
-
-/* draw_player.c */
-void	draw_mini_player(t_cubed *cubed);
-
 #endif
