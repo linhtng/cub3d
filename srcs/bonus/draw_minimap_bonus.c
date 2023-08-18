@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 17:46:35 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:52:47 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	test_circle(t_cubed *cubed)
 	float		radius;
 	t_vector	center;
 
-	radius = 106;
+	radius = 105;
 	center.x = 300;//set to correct location on image for center
 	center.y = 300;//
 	center.color = RED;
