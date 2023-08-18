@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_images_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/17 16:43:40 by jebouche         ###   ########.fr       */
+=======
+/*   Updated: 2023/08/17 16:16:34 by thuynguy         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +64,9 @@ void	refresh_images(t_cubed *cubed)
 	// mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, 58);
 	// mlx_put_image_to_window(cubed->mlx, cubed->window, cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, 58);
 	cubed->dirty_images = FALSE;
+<<<<<<< HEAD
 	// mlx_put_image_to_window(cubed->mlx, cubed->window, ((t_cubed_bonus *)cubed)->frame_img->img, 0, 0);
+=======
+	//mlx_put_image_to_window(cubed->mlx, cubed->window, ((t_cubed_bonus *)cubed)->frame_img->img, 0, 0);
+>>>>>>> master
 }

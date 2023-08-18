@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/17 14:42:48 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/17 16:04:33 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes
 BONUS_CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes_bonus
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
-# CDEBUG = -fsanitize=address
+ CDEBUG = -fsanitize=address
 
 # DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \

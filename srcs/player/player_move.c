@@ -6,60 +6,74 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 21:54:37 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/17 22:33:03 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-float	collision_dist(int axis, int key_code, t_vector *next)
+/* know opposite vertices of a square, 
+need to work out the coordinates of the other two vertices:
+*	Example:
+*	1-------3
+*	|		|
+*	|		|
+*	4-------2
+*/
+int	collision_detection(char **grid, t_vector center, t_vector half_diagon)
 {
-	int	backward;
+	t_vector	third_corner;
+	t_vector	fourth_corner;
 
-	if (key_code == FORWARD || key_code == RIGHT)
-		backward = 1;
-	else
-		backward = -1;
-	if (axis == pane_y)
-	{
-		if (next->y > 0)
-			return (COLLISION_DISTANCE * backward);
-		else
-			return (-COLLISION_DISTANCE * backward);
-	}
-	else
-	{
-		if (next->x > 0)
-			return (COLLISION_DISTANCE * backward);
-		else
-			return (-COLLISION_DISTANCE * backward);
-	}
+	third_corner.y = center.y - half_diagon.x;
+	third_corner.x = center.x + half_diagon.y;
+	fourth_corner.y = center.y + half_diagon.x;
+	fourth_corner.x = center.x - half_diagon.y;
+	// printf("center point y %f, x %f\n", third_corner.y, third_corner.x);
+	// printf("half_diagonal point y %f, x %f\n", half_diagon.y, half_diagon.x);
+	// printf("3rd corner coor y %f, x %f\n", third_corner.y, third_corner.x);
+	// printf("[3rd corner map content]: char = %c\n", grid[(int)third_corner.y][(int)third_corner.x]);
+	// printf("4th corner coor y %f, x %f\n", fourth_corner.y, fourth_corner.x);
+	// printf("[4th corner map content]: char = %c\n", grid[(int)fourth_corner.y][(int)fourth_corner.x]);
+	if ((grid[(int)third_corner.y][(int)third_corner.x] 
+		&& grid[(int)third_corner.y][(int)third_corner.x] == '1')
+		&& (grid[(int)fourth_corner.y][(int)fourth_corner.x] 
+		&& grid[(int)fourth_corner.y][(int)fourth_corner.x] == '1'))
+		return (0);
+	return (1);
 }
 
 //return true / false? setup buffer to + or - based on direction?  010
 //currently allows movement through small gaps, eg. from 0 to 0 -> 101 
 //TODO decide if for bonus only or not
-int	can_move(t_cubed *cubed, t_vector *next, int key_code)
+
+int	can_move(t_cubed *cubed, t_vector *next)
 {
 	t_vector	grid;
-	t_vector	collision_check;
+	t_vector	player_cell;
+	t_vector	center;
+	t_vector	half_diagon;
 
 	grid.x = ((int)next->x) / CELL_SIZE;
 	grid.y = ((int)next->y) / CELL_SIZE;
-	collision_check.x = collision_dist(0, key_code, next);
-	collision_check.y = collision_dist(1, key_code, next);
+	player_cell.x = ((int)cubed->scene->player.location.x) / CELL_SIZE;
+	player_cell.y = ((int)cubed->scene->player.location.y) / CELL_SIZE;
 	printf("[CAN MOVE NEXT] y %f, x %f", next->y, next->x);
 	printf("[CAN MOVE MAP CONTENT] y cell = %i x cell = %i char = %c\n", (int) grid.y, (int) grid.x, cubed->scene->map.grid[(int) grid.y][(int) grid.x]);
-	if (cubed->scene->map.grid[(int)grid.y][(int)grid.x] && cubed->scene->map.grid[(int) grid.y][(int) grid.x] == '1')
-		return 0;
-	printf("[collision_dist] y cell = %i x cell = %i \n", (int)(grid.y + collision_check.y), (int) grid.x);
-	printf("[Map content at collision_dist check point 1] y %c\n", cubed->scene->map.grid[(int)(grid.y + collision_check.y)][(int)grid.x]);
-	printf("[collision_dist] y cell = %i x cell = %i \n", (int)(grid.y), (int)(grid.x + collision_check.x));
-	printf("[Map content at collision_dist check point 2] y %c\n", cubed->scene->map.grid[(int)(grid.y)][(int)(grid.x + collision_check.x)]);
-	if (cubed->scene->map.grid[(int)(grid.y + collision_check.y)][(int)grid.x] == '1'
-		& cubed->scene->map.grid[(int)(grid.y)][(int)(grid.x + collision_check.x)] == '1')
+	printf("player location y %f, x %f\n", player_cell.y, player_cell.x);
+	if (cubed->scene->map.grid[(int)grid.y][(int)grid.x] 
+		&& cubed->scene->map.grid[(int) grid.y][(int) grid.x] == '1')
 		return (0);
-	return (1);
+	if ((int)grid.y == (int)player_cell.y || (int)grid.x == (int)player_cell.x)
+		return (1);
+	else
+	{
+		center.y = ((int)grid.y + (int)player_cell.y) / 2.0f;
+		center.x = ((int)grid.x + (int)player_cell.x) / 2.0f;
+		half_diagon.y = ((int)grid.y - (int)player_cell.y) / 2.0f;
+		half_diagon.x = ((int)grid.x - (int)player_cell.x) / 2.0f;
+		return (collision_detection(cubed->scene->map.grid, center, half_diagon));
+	}
 }
 
 void	turn_player(t_cubed *cubed, int key_code)
@@ -90,7 +104,7 @@ void	move_forward_backward(t_cubed *cubed, int key_code)
 		next_loc.x = cubed->scene->player.location.x - cubed->scene->player.d.x;
 		next_loc.y = cubed->scene->player.location.y - cubed->scene->player.d.y;
 	}
-	if (can_move(cubed, &next_loc, key_code))
+	if (can_move(cubed, &next_loc))
 	{
 		cubed->scene->player.location.x = next_loc.x;
 		cubed->scene->player.location.y = next_loc.y;
@@ -112,7 +126,7 @@ void	move_right_left(t_cubed *cubed, int key_code)
 	cos(deg_to_rad(move_angle)) * 5;
 	next_loc.y = cubed->scene->player.location.y + \
 	-sin(deg_to_rad(move_angle)) * 5;
-	if (can_move(cubed, &next_loc, key_code))
+	if (can_move(cubed, &next_loc))
 	{
 		cubed->scene->player.location.x = next_loc.x;
 		cubed->scene->player.location.y = next_loc.y;

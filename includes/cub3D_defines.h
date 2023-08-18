@@ -17,13 +17,12 @@
 # define pane_y 1
 
 /* RAY CASTING DEFINES */
-# define PROJECTION_WIDTH 1370 //1366
-# define PROJECTION_HEIGHT 770
+# define PROJECTION_WIDTH 685//1370 //1366
+# define PROJECTION_HEIGHT 385//770
 # define MAX_DOF 10000
 # define FOV 60
 # define CELL_SIZE 32
 # define TEXTURE_SIZE 64
-# define COLLISION_DISTANCE 0.25
 
 /* COLORS */
 # define TRANSPARENT (unsigned int) 0X00FFFFFF
