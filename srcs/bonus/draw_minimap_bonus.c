@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/18 11:37:29 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:39:22 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,34 @@
 
 // }
 
+unsigned int	get_color(t_map *map, int grid_x, int grid_y)
+{
+	if (grid_x < 0 || grid_x >= map->width || grid_y < 0 || grid_y >= map->height)
+		return (BLACK);//black
+	else
+	{
+		if (map->grid[grid_y][grid_x] == '1')
+			return (NAVY_BLUE); //navy blue
+		else
+			return (PINK); //pink
+	}
+}
+
+void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, int x, int y)
+{
+	int	grid_x;
+	int grid_y;
+
+	//translate the center to 'map' player
+	//translate the x, y to the 'map' based on player
+	grid_x = (x - (int)center->x  + (int)cubed->scene->player.location.x) / CELL_SIZE;
+	grid_y = (y - (int)center->y  + (int)cubed->scene->player.location.y) / CELL_SIZE;
+	//check value of grid at those coords
+	center->color = get_color(&cubed->scene->map, grid_x, grid_y);
+	//color pixel accordingly
+	ft_pixel_put(cubed->minimap_img, x, y, center->color);
+}
+
 void	draw_filled_circle(t_cubed *cubed, t_vector *center, int radius)
 {
 	int y = (int)center->y - radius;
@@ -69,7 +97,8 @@ void	draw_filled_circle(t_cubed *cubed, t_vector *center, int radius)
 			if (delta_x * delta_x + delta_y * delta_y <= radius * radius)
 			{
 				drawn = 1;
-				ft_pixel_put(((t_cubed_bonus *)cubed)->minimap_img, x, y, center->color);
+				// ft_pixel_put(((t_cubed_bonus *)cubed)->minimap_img, x, y, center->color);
+				put_minimap_pixel((t_cubed_bonus *)cubed, center, x, y);
 			}
 			else if (drawn == 1)
 				break ;
@@ -89,14 +118,9 @@ void	test_circle(t_cubed *cubed)
 	center.x = 300;//set to correct location on image for center
 	center.y = 300;//
 	center.color = RED;
-	// while (radius > 0)
-	// {
-	// 	ft_bresenham_circle(cubed, &center, radius);
-	// 	radius -= 0.07;
-	// }
 	draw_filled_circle(cubed, &center, radius);
 }
-
+/* not realted to cirlce version */
 t_vector	get_player_cell(t_player *player)
 {
 	t_vector	grid;
@@ -106,18 +130,6 @@ t_vector	get_player_cell(t_player *player)
 	return (grid);
 }
 
-unsigned int	get_color(t_map *map, int grid_x, int grid_y)
-{
-	if (grid_x < 0 || grid_x >= map->width || grid_y < 0 || grid_y >= map->height)
-		return (BLACK);//black
-	else
-	{
-		if (map->grid[grid_y][grid_x] == '1')
-			return (NAVY_BLUE); //navy blue
-		else
-			return (PINK); //pink
-	}
-}
 
 void	draw_minimap(t_cubed *cubed, t_scene *scene)
 {
@@ -184,36 +196,36 @@ void	draw_minimap(t_cubed *cubed, t_scene *scene)
 // }
 
 //TODO move to bonus entire file
-void	draw_minimap(t_cubed *cubed, t_scene *scene)
-{
-	int			i;
-	int			j;
-	t_vector	start;
+// void	draw_minimap(t_cubed *cubed, t_scene *scene)
+// {
+// 	int			i;
+// 	int			j;
+// 	t_vector	start;
 
-	i = 0;
-	start.x = 0;
-	start.y = 0;
-	while (i < scene->map.height)
-	{
-		j = 0;
-		while (j < scene->map.width)
-		{
-			if (scene->map.grid[i][j] == '1')
-				start.color = 0xFF0000;//red
-			else
-				start.color = 0x666666;
-			my_put_square(((t_cubed_bonus *)cubed)->minimap_img, start, CELL_SIZE);
-			j++;
-			start.x += CELL_SIZE;
-		}
-		start.x = 0;
-		start.y += CELL_SIZE;
-		i++;
-	}
-	printf("MAP DRAWN\n");
-	start.x = 0;
-	start.y = 0;
-	start.color = 0x00FF00;
-	my_put_grid(((t_cubed_bonus *)cubed)->minimap_img, &start, scene->map.width, \
-	scene->map.height);
-}
+// 	i = 0;
+// 	start.x = 0;
+// 	start.y = 0;
+// 	while (i < scene->map.height)
+// 	{
+// 		j = 0;
+// 		while (j < scene->map.width)
+// 		{
+// 			if (scene->map.grid[i][j] == '1')
+// 				start.color = 0xFF0000;//red
+// 			else
+// 				start.color = 0x666666;
+// 			my_put_square(((t_cubed_bonus *)cubed)->minimap_img, start, CELL_SIZE);
+// 			j++;
+// 			start.x += CELL_SIZE;
+// 		}
+// 		start.x = 0;
+// 		start.y += CELL_SIZE;
+// 		i++;
+// 	}
+// 	printf("MAP DRAWN\n");
+// 	start.x = 0;
+// 	start.y = 0;
+// 	start.color = 0x00FF00;
+// 	my_put_grid(((t_cubed_bonus *)cubed)->minimap_img, &start, scene->map.width, \
+// 	scene->map.height);
+// }
