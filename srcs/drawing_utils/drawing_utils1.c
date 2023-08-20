@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/18 17:31:17 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:56:47 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	my_put_square(t_img_data *data, t_vector start, int len)
 	int	i;
 
 	i = len;
-	// start.x = start.x / 2;
 	while (i < len)
 	{
 		my_put_line_v(data, &start, len);

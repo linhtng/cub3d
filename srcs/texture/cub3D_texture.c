@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/16 16:45:50 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:49:56 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int dir)
 	index = 0;
 	while (index < line_height)
 	{
-		pane.color = ft_pixel_get(cubed->scene->texture[dir], texture.x, texture.y);
+		pane.color = ft_pixel_get(cubed->scene->texture[dir], \
+		texture.x, texture.y);
 		ft_pixel_put(cubed->raycast_info->r_img, project_x, pane.y, pane.color);
 		index++;
 		pane.y++;

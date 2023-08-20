@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/20 21:05:08 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:51:59 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ need to work out the coordinates of the other two vertices:
 *	|		|
 *	4-------2
 */
-int	collision_detection(char **grid, t_vector center, t_vector half_diagon)
+int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
 {
 	t_vector	third_corner;
 	t_vector	fourth_corner;
@@ -29,9 +29,9 @@ int	collision_detection(char **grid, t_vector center, t_vector half_diagon)
 	third_corner.x = center.x + half_diagon.y;
 	fourth_corner.y = center.y + half_diagon.x;
 	fourth_corner.x = center.x - half_diagon.y;
-	if ((grid[(int)third_corner.y][(int)third_corner.x] 
+	if ((grid[(int)third_corner.y][(int)third_corner.x]
 		&& grid[(int)third_corner.y][(int)third_corner.x] == '1')
-		&& (grid[(int)fourth_corner.y][(int)fourth_corner.x] 
+		&& (grid[(int)fourth_corner.y][(int)fourth_corner.x]
 		&& grid[(int)fourth_corner.y][(int)fourth_corner.x] == '1'))
 		return (0);
 	return (1);
@@ -52,7 +52,7 @@ int	can_move(t_cubed *cubed, t_vector *next)
 	grid.y = ((int)next->y) / CELL_SIZE;
 	player_cell.x = ((int)cubed->scene->player.location.x) / CELL_SIZE;
 	player_cell.y = ((int)cubed->scene->player.location.y) / CELL_SIZE;
-	if (cubed->scene->map.grid[(int)grid.y][(int)grid.x] 
+	if (cubed->scene->map.grid[(int)grid.y][(int)grid.x]
 		&& cubed->scene->map.grid[(int) grid.y][(int) grid.x] == '1')
 		return (0);
 	if ((int)grid.y == (int)player_cell.y || (int)grid.x == (int)player_cell.x)
@@ -63,7 +63,7 @@ int	can_move(t_cubed *cubed, t_vector *next)
 		center.x = ((int)grid.x + (int)player_cell.x) / 2.0f;
 		half_diagon.y = ((int)grid.y - (int)player_cell.y) / 2.0f;
 		half_diagon.x = ((int)grid.x - (int)player_cell.x) / 2.0f;
-		return (collision_detection(cubed->scene->map.grid, center, half_diagon));
+		return (collision_detect(cubed->scene->map.grid, center, half_diagon));
 	}
 }
 

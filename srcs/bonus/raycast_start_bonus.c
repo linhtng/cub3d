@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_start_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/18 18:05:13 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:58:41 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	raycast_start(t_scene *scene)
 	setup_raycast(cubed, &raycast_info);
 	setup_player(cubed);
 	load_texture(scene, cubed);
-	
 	redraw(cubed);
 	draw_background(cubed);
 	refresh_images(cubed);

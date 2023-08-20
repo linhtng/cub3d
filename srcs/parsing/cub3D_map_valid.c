@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/20 20:58:54 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:52:46 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	check_island(t_scene *scene, char **grid)
 	ft_flood(flood_start.y, flood_start.x, scene, SPACE);
 	while (line < scene->map.height + 2)
 	{
-		unfilled += count_occurences(scene->map.flood[line], scene->map.flood_old);
+		unfilled += count_occurences(scene->map.flood[line], \
+		scene->map.flood_old);
 		if (unfilled)
 			return (err_msg("Map has isolated island. ", "Invalid."));
 		line++;
