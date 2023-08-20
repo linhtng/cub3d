@@ -41,11 +41,14 @@ typedef struct s_elem
 
 typedef struct s_map
 {
-	int			height;
-	int			width;
-	char		**grid;
-	char		**flood;
-	char		**visited;
+	int				height;
+	int				width;
+	char			**grid;
+	char			**flood;
+	char			**visited;
+	struct s_vector	start;
+	char			flood_old;
+	char			flood_new;
 }	t_map;
 
 

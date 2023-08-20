@@ -6,6 +6,8 @@
 # define CEILING 2
 # define SPACE '_'
 # define VISITED '1'
+# define FLOODED_WALL '2'
+# define EXPOSED 'I'
 # define DEBUG 0
 
 /* PROGRAM DEFINES */

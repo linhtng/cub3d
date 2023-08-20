@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 21:26:09 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/20 20:59:14 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,27 @@ int	map_valid_characters(t_scene *scene, char *line, int y)
 	return (1);
 }
 
-int	check_island(t_scene *scene, char **map)
+int	map_is_exposed(t_scene *scene)
 {
-	int	island;
-	int	line;
+	int			unfilled;
+	int			line;
 
 	line = 0;
-	island = 0;
-	if (!(ft_arrdup(map, scene) == 1
-			&& empty_map(scene) == 1))
-		return (ERROR);
-	ft_flood(scene->player.location.y, scene->player.location.x, scene);
-	while (line < scene->map.height)
+	unfilled = 0;
+	while (line < scene->map.height + 2)
 	{
-		island += count_occurences(scene->map.flood[line], '1');
-		if (island)
-			return (err_msg("Map has isolated island. ", "Invalid."));
+		ft_memset(scene->map.visited[line], '0', scene->map.width + 2);
+		line++;
+	}
+	scene->map.flood_old = '0';
+	scene->map.flood_new = EXPOSED;
+	ft_flood(0, 0, scene, FLOODED_WALL);
+	line = 0;
+	while (line < scene->map.height + 2)
+	{
+		unfilled += count_occurences(scene->map.flood[line], EXPOSED);
+		if (unfilled)
+			return (err_msg("Map is not entirely closed by walls. ", "Invalid."));
 		line++;
 	}
 	return (1);
@@ -118,9 +123,9 @@ int	get_map_content(char **scene_arr, t_scene *scene, int i)
 		return (err_msg("Map missing empty space and/or player.", NULL));
 	if (create_map(scene, scene_arr) == ERROR)
 		return (ERROR);
-	if (valid_walls(scene, scene->map.grid) == ERROR
-		|| player_pos_valid(scene->map.grid, scene->player, '1') == ERROR
-		|| player_pos_valid(scene->map.grid, scene->player, SPACE) == ERROR)
+	if (player_pos_valid(scene->map.grid, scene->player, '1') == ERROR
+		|| check_island(scene, scene->map.grid) == ERROR
+		|| map_is_exposed(scene) == ERROR)
 		return (ERROR);
-	return (check_island(scene, scene->map.grid));
+	return (1);
 }

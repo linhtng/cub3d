@@ -6,93 +6,97 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/10 13:41:06 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/20 20:58:54 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	wall_only(char *str)
+static void	get_flood_start_point(t_scene *scene, t_vector *start)
 {
-	int	i;
+	int	row;
+	int	col;
 
-	i = 0;
-	while (str[i] == SPACE)
-		i++;
-	while (str[i])
+	row = 0;
+	while (row < scene->map.height)
 	{
-		if (str[i] != '1' && str[i] != SPACE)
-			return (0);
-		i++;
+		col = 0;
+		while (col < scene->map.width)
+		{
+			if (scene->map.flood[row][col] == '1')
+			{
+				start->y = row;
+				start->x = col;
+				return ;
+			}
+			col++;
+		}
+		row++;
+	}
+}
+
+int	check_island(t_scene *scene, char **grid)
+{
+	int			unfilled;
+	int			line;
+	t_vector	flood_start;
+
+	line = 0;
+	unfilled = 0;
+	if (!(big_frame_map(grid, scene) == 1
+			&& empty_map(scene) == 1))
+		return (ERROR);
+	get_flood_start_point(scene, &flood_start);
+	scene->map.flood_old = '1';
+	scene->map.flood_new = FLOODED_WALL;
+	ft_flood(flood_start.y, flood_start.x, scene, SPACE);
+	while (line < scene->map.height + 2)
+	{
+		unfilled += count_occurences(scene->map.flood[line], scene->map.flood_old);
+		if (unfilled)
+			return (err_msg("Map has isolated island. ", "Invalid."));
+		line++;
 	}
 	return (1);
 }
 
-/* valid_walled:
-*	Example:
-*	A-------B
-*	|		|
-*	|		|
-*	D-------C
-*/
-
-int	valid_walls(t_scene *scene, char **map)
+void	ft_flood(int y, int x, t_scene *scene, char block)
 {
-	int	i;
-	int	j;
-	int	len;
-
-	if (!wall_only(map[0]) || !wall_only(map[scene->map.height - 1]))
-		return (err_msg("The map must be closed/surrounded by walls.", NULL));
-	i = 1;
-	while (i < scene->map.height)
-	{
-		j = 0;
-		len = ft_strlen(map[i]);
-		while (len && (map[i][len - 1] == SPACE))
-			len--;
-		if (!len)
-			return (err_msg("Empty line detected in map content.", NULL));
-		while (map[i][j] && (map[i][j] == SPACE))
-			j++;
-		if (map[i][j] != '1' || map[i][len - 1] != '1')
-			return (err_msg("Map must be closed/surrounded by walls.", NULL));
-		i++;
-	}
-	return (1);
-}
-
-void	ft_flood(int y, int x, t_scene *scene)
-{
-	if (y < 0 || x < 0 || y >= scene->map.height
+	if (y < 0 || x < 0 || y >= (scene->map.height + 2)
 		|| x >= (int)ft_strlen(scene->map.flood[y])
-		|| scene->map.flood[y][x] == SPACE
+		|| scene->map.flood[y][x] == block
 		|| scene->map.visited[y][x] == VISITED)
 		return ;
 	scene->map.visited[y][x] = VISITED;
-	if ((scene->map.flood[y][x] == '0' || scene->map.flood[y][x] == '1'))
-		scene->map.flood[y][x] = '2';
-	ft_flood(y + 1, x, scene);
-	ft_flood(y - 1, x, scene);
-	ft_flood(y, x + 1, scene);
-	ft_flood(y, x - 1, scene);
+	if (scene->map.flood[y][x] == scene->map.flood_old)
+		scene->map.flood[y][x] = scene->map.flood_new;
+	if (scene->map.flood[y][x] == scene->player.spawn
+		&& scene->map.flood_new == EXPOSED)
+		scene->map.flood[y][x] = scene->map.flood_new;
+	ft_flood(y + 1, x, scene, block);
+	ft_flood(y - 1, x, scene, block);
+	ft_flood(y, x + 1, scene, block);
+	ft_flood(y, x - 1, scene, block);
 }
 
-int	ft_arrdup(char **map, t_scene *scene)
+int	big_frame_map(char **map, t_scene *scene)
 {
 	char	**dup;
 	int		i;
 
-	dup = (char **) ft_calloc(scene->map.height + 1, sizeof(char *));
+	dup = (char **) ft_calloc(scene->map.height + 3, sizeof(char *));
 	if (!dup)
 		return (err_msg("Malloc err when getting the map content.", NULL));
 	scene->map.flood = dup;
 	i = 0;
-	while (i < scene->map.height)
+	while (i < scene->map.height + 2)
 	{
-		dup[i] = ft_strdup(map[i]);
+		dup[i] = (char *) calloc(scene->map.width + 3, sizeof(char));
 		if (!dup[i])
 			return (err_msg("Malloc err when getting the map content.", NULL));
+		ft_memset(dup[i], SPACE, scene->map.width + 2);
+		if (i && i < (scene->map.height + 1))
+			ft_memmove(&(dup[i][1]), map[i - 1], ft_strlen(map[i - 1]));
 		i++;
 	}
 	return (1);
@@ -103,18 +107,17 @@ int	empty_map(t_scene *scene)
 	char	**empty;
 	int		i;
 
-	empty = (char **) ft_calloc(scene->map.height + 1, sizeof(char *));
+	empty = (char **) ft_calloc(scene->map.height + 3, sizeof(char *));
 	if (!empty)
 		return (err_msg("Malloc err when getting the map content.", NULL));
 	scene->map.visited = empty;
 	i = 0;
-	while (i < scene->map.height)
+	while (i < scene->map.height + 2)
 	{
-		empty[i] = (char *) malloc(sizeof(char) * (scene->map.width + 1));
+		empty[i] = (char *) calloc(scene->map.width + 3, sizeof(char));
 		if (!empty[i])
 			return (err_msg("Malloc err when getting the map content.", NULL));
-		ft_memset(empty[i], '0', scene->map.width);
-		empty[i][scene->map.width] = '\0';
+		ft_memset(empty[i], '0', scene->map.width + 2);
 		i++;
 	}
 	return (1);

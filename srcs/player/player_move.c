@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/17 22:33:03 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:05:08 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ int	collision_detection(char **grid, t_vector center, t_vector half_diagon)
 	third_corner.x = center.x + half_diagon.y;
 	fourth_corner.y = center.y + half_diagon.x;
 	fourth_corner.x = center.x - half_diagon.y;
-	// printf("center point y %f, x %f\n", third_corner.y, third_corner.x);
-	// printf("half_diagonal point y %f, x %f\n", half_diagon.y, half_diagon.x);
-	// printf("3rd corner coor y %f, x %f\n", third_corner.y, third_corner.x);
-	// printf("[3rd corner map content]: char = %c\n", grid[(int)third_corner.y][(int)third_corner.x]);
-	// printf("4th corner coor y %f, x %f\n", fourth_corner.y, fourth_corner.x);
-	// printf("[4th corner map content]: char = %c\n", grid[(int)fourth_corner.y][(int)fourth_corner.x]);
 	if ((grid[(int)third_corner.y][(int)third_corner.x] 
 		&& grid[(int)third_corner.y][(int)third_corner.x] == '1')
 		&& (grid[(int)fourth_corner.y][(int)fourth_corner.x] 
@@ -58,9 +52,6 @@ int	can_move(t_cubed *cubed, t_vector *next)
 	grid.y = ((int)next->y) / CELL_SIZE;
 	player_cell.x = ((int)cubed->scene->player.location.x) / CELL_SIZE;
 	player_cell.y = ((int)cubed->scene->player.location.y) / CELL_SIZE;
-	printf("[CAN MOVE NEXT] y %f, x %f", next->y, next->x);
-	printf("[CAN MOVE MAP CONTENT] y cell = %i x cell = %i char = %c\n", (int) grid.y, (int) grid.x, cubed->scene->map.grid[(int) grid.y][(int) grid.x]);
-	printf("player location y %f, x %f\n", player_cell.y, player_cell.x);
 	if (cubed->scene->map.grid[(int)grid.y][(int)grid.x] 
 		&& cubed->scene->map.grid[(int) grid.y][(int) grid.x] == '1')
 		return (0);

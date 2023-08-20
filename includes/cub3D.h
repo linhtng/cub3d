@@ -47,9 +47,9 @@ int				get_scene_elem(t_scene *scene, char *scene_line);
 int				get_map_content(char **scene_arr, t_scene *scene, int i);
 
 /* cub3D_map_valid */
-int				valid_walls(t_scene *scene, char **map);
-void			ft_flood(int y, int x, t_scene *scene);
-int				ft_arrdup(char **map, t_scene *scene);
+int	            check_island(t_scene *scene, char **grid);
+void	        ft_flood(int y, int x, t_scene *scene, char block);
+int				big_frame_map(char **map, t_scene *scene);
 int				empty_map(t_scene *scene);
 
 /* cub3D_debug */
