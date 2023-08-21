@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/20 21:53:53 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:19:53 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	map_is_exposed(t_scene *scene)
 	scene->map.flood_old = '0';
 	scene->map.flood_new = EXPOSED;
 	ft_flood(0, 0, scene, FLOODED_WALL);
+	printf("map after map_is_exposed flood filled:\n");
+	print_arr(scene->map.flood);
 	line = 0;
 	while (line < scene->map.height + 2)
 	{

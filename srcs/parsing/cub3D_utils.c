@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:35:28 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/09 21:02:39 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:46:37 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ int	err_msg(char *message1, char *message2)
 	else
 		printf("\n");
 	return (ERROR);
-}
-
-// helper that checks whether the path is a directory
-int	ft_is_dir(const char *path)
-{
-	struct stat	stat_buf;
-
-	if (stat(path, &stat_buf) != 0)
-		return (0);
-	return (S_ISDIR(stat_buf.st_mode));
 }
 
 int	count_occurences(char *str, char c)
