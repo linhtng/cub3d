@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 10:49:43 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:34:13 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # define MINI_MAP_CELL 16
 # define MINI_MAP_RADIUS 112
 # define MINI_MAP_DIAMETER 224
+# define MINIMAP_POS_X 60
+# define MINIMAP_POS_Y 763
+# define RAYCAST_Y 58
 
 # include "../includes/cub3D.h"
 

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 10:46:59 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:23:16 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	clip_to_minimap(t_img_data *img, t_vector *one)
 
 	delta_y = one->y - MINI_MAP_RADIUS;
 	delta_x = one->x - MINI_MAP_RADIUS;
-	if (delta_x * delta_x + delta_y * delta_y <= MINI_MAP_RADIUS * MINI_MAP_RADIUS)
+	if (delta_x * delta_x + delta_y * delta_y <= \
+	MINI_MAP_RADIUS * MINI_MAP_RADIUS)
+	{
 		ft_pixel_put(img, one->x, one->y, one->color);
+	}
 }
 
 void	ft_bresenham_clipped(t_vector one, t_vector two, t_img_data *img)

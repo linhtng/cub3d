@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 10:47:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:22:40 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	draw_nose(t_cubed_bonus *cubed, t_vector *mini_player)
 {
 	t_vector	temp;
-	
+
 	temp.x = (int)mini_player->x + cubed->scene->player.d.x * 2;
 	temp.y = (int)mini_player->y + cubed->scene->player.d.y * 2;
 	temp.color = LIGHT_GREY;
@@ -29,6 +29,7 @@ void	draw_mini_player(t_cubed *cubed)
 	mini_player.x = MINI_MAP_RADIUS;
 	mini_player.y = MINI_MAP_RADIUS;
 	mini_player.color = RED;
-	my_put_rectangle(((t_cubed_bonus *)cubed)->mini_player_img, mini_player, 10, 10);
+	my_put_rectangle(((t_cubed_bonus *)cubed)->mini_player_img, \
+	mini_player, 10, 10);
 	draw_nose((t_cubed_bonus *)cubed, &mini_player);
 }

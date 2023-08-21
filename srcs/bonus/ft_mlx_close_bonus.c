@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 11:32:48 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:29:26 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_destroy_image(void *mlx, t_img_data **img)
 	*img = NULL;
 }
 
-static void	destroy_all_images(t_cubed *cubed)
+static void	destroy_all_images(t_cubed_bonus *cubed)
 {
 	if (cubed->raycast_info->r_img)
 		ft_destroy_image(cubed->mlx, &(cubed->raycast_info->r_img));
@@ -33,19 +33,18 @@ static void	destroy_all_images(t_cubed *cubed)
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[EAST]));
 	if (cubed->scene->texture[WEST])
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
-	if (((t_cubed_bonus *)cubed)->mini_player_img)
-		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->mini_player_img));
-	if (((t_cubed_bonus *)cubed)->minimap_img)
-		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->minimap_img));
-	if (((t_cubed_bonus *)cubed)->frame_img)
-		ft_destroy_image(cubed->mlx, &(((t_cubed_bonus *)cubed)->frame_img));
+	if (cubed->mini_player_img)
+		ft_destroy_image(cubed->mlx, &(cubed->mini_player_img));
+	if (cubed->minimap_img)
+		ft_destroy_image(cubed->mlx, &(cubed->minimap_img));
+	if (cubed->frame_img)
+		ft_destroy_image(cubed->mlx, &(cubed->frame_img));
 }
 
-//TODO destroy and free all images and other allocated stuffs
 int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 {
 	printf("MLX should close...\n");
-	destroy_all_images(cubed);
+	destroy_all_images((t_cubed_bonus *)cubed);
 	if (cubed->window)
 	{
 		mlx_destroy_window(cubed->mlx, cubed->window);
