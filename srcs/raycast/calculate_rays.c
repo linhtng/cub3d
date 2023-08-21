@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/18 17:10:57 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:51:45 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 	{
 		ray->h_map.x = cubed->scene->player.location.x;
 		ray->h_map.y = cubed->scene->player.location.y;
+		return ;
 	}
 	check_hit_wall(cubed, &ray->h_grid, &ray->h_map, &ray->hd);
 }
@@ -88,6 +89,7 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	{
 		ray->v_map.x = cubed->scene->player.location.x;
 		ray->v_map.y = cubed->scene->player.location.y;
+		return ;
 	}
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
