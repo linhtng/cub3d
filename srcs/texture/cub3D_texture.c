@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/20 21:49:56 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:14:05 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ float line_size)
 	if (line_size > PROJECTION_HEIGHT)
 		texture.y = ((line_size - PROJECTION_HEIGHT) / 2.0f) * y_step;
 	if (dir == NORTH)
-		texture.x = TEXTURE_SIZE - 2 - (((int) hit->x * 2) % TEXTURE_SIZE);
+		texture.x = TEXTURE_SIZE - 1 - (((int) hit->x) % TEXTURE_SIZE);
 	else if (dir == SOUTH)
-		texture.x = ((int) hit->x * 2) % TEXTURE_SIZE;
+		texture.x = ((int) hit->x) % TEXTURE_SIZE;
 	else if (dir == EAST)
-		texture.x = TEXTURE_SIZE - 2 - (((int) hit->y * 2) % TEXTURE_SIZE);
+		texture.x = TEXTURE_SIZE - 1 - (((int) hit->y) % TEXTURE_SIZE);
 	else
-		texture.x = ((int) hit->y * 2) % TEXTURE_SIZE;
+		texture.x = ((int) hit->y) % TEXTURE_SIZE;
+	if (texture.x >= 64 || texture.x < 0 || texture.y >= 64 || texture.y < 0)
+		printf("[GET TEXTURE VECTOR] tex.x: %f , tex.y: %f\n", texture.x, texture.y);
 	return (texture);
 }
 

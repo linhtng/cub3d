@@ -23,7 +23,7 @@
 # define PROJECTION_HEIGHT 770 // 385//770
 # define MAX_DOF 10000
 # define FOV 60
-# define CELL_SIZE 32
+# define CELL_SIZE 64
 # define TEXTURE_SIZE 64
 
 /* COLORS */
