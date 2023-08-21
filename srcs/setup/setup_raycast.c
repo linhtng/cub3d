@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   setup_raycast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:18:06 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 16:47:08 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:55:56 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/*only need to do once in the begining reuse the background as lonng as we dont
- raycast anything to it*/
 void	draw_background(t_cubed *cubed)
 {
 	t_vector	start;
@@ -33,6 +31,8 @@ void	draw_background(t_cubed *cubed)
 
 void	setup_raycast(t_cubed *cubed, t_raycast *raycast_info)
 {
+	raycast_info->background_img = NULL;
+	raycast_info->r_img = NULL;
 	raycast_info->r_img = \
 	get_new_image(cubed, PROJECTION_WIDTH, PROJECTION_HEIGHT);
 	raycast_info->background_img = \

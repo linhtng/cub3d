@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:29:26 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:57:46 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static void	ft_destroy_image(void *mlx, t_img_data **img)
 
 static void	destroy_all_images(t_cubed_bonus *cubed)
 {
-	if (cubed->raycast_info->r_img)
+	if (cubed->raycast_info && cubed->raycast_info->r_img)
 		ft_destroy_image(cubed->mlx, &(cubed->raycast_info->r_img));
-	if (cubed->raycast_info->background_img)
+	if (cubed->raycast_info && cubed->raycast_info->background_img)
 		ft_destroy_image(cubed->mlx, &(cubed->raycast_info->background_img));
-	if (cubed->scene->texture[NORTH])
+	if (cubed->scene && cubed->scene->texture[NORTH])
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[NORTH]));
-	if (cubed->scene->texture[SOUTH])
+	if (cubed->scene && cubed->scene->texture[SOUTH])
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[SOUTH]));
-	if (cubed->scene->texture[EAST])
+	if (cubed->scene && cubed->scene->texture[EAST])
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[EAST]));
-	if (cubed->scene->texture[WEST])
+	if (cubed->scene && cubed->scene->texture[WEST])
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
 	if (cubed->mini_player_img)
 		ft_destroy_image(cubed->mlx, &(cubed->mini_player_img));
@@ -54,7 +54,8 @@ int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 		cubed->mlx = NULL;
 	if (exit_code)
 		ft_putendl_fd(exit_msg, STDERR_FILENO);
-	free_scene_data(cubed->scene);
+	if (cubed->scene)
+		free_scene_data(cubed->scene);
 	exit(exit_code);
 	return (0);
 }
