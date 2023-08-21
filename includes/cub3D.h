@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:45:45 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:47:05 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void			init_scene(t_scene *scene);
 int				check_input_file(char *argv, int fd, char *extension);
 int				err_msg(char *message1, char *message2);
 int				count_occurences(char *str, char c);
-int				ft_is_dir(const char *path);
 int				arr_len(char **arr);
 void			free_arr(char **arr);
 

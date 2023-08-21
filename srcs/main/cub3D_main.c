@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/19 21:08:57 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:42:20 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	check_input_file(char *argv, int fd, char *extension)
 {
 	if (fd == -1)
 		return (err_msg("File cannot be opened: ", argv));
-	if (ft_is_dir(argv))
-		return (err_msg("Expected file but found dir: ", argv));
 	if (!correct_extension(argv, extension))
 		return (err_msg(argv, " has invalid file extension"));
 	return (1);

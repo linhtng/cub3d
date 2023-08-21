@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/20 21:52:46 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:19:28 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	check_island(t_scene *scene, char **grid)
 	scene->map.flood_old = '1';
 	scene->map.flood_new = FLOODED_WALL;
 	ft_flood(flood_start.y, flood_start.x, scene, SPACE);
+	printf("map after check_island flood filled:\n");
+	print_arr(scene->map.flood);
 	while (line < scene->map.height + 2)
 	{
 		unfilled += count_occurences(scene->map.flood[line], \

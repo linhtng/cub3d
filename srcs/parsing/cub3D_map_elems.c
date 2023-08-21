@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/10 13:38:37 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:40:48 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_valid_texture(char **path, char *texture)
 	*path = ft_strdup(texture);
 	if (!*path)
 		return (err_msg("Malloc error when getting texture", NULL));
-	fd = open(*path, O_RDONLY);
+	fd = open(*path, O_RDWR);
 	ret = check_input_file(*path, fd, ".xpm");
 	close(fd);
 	return (ret);
