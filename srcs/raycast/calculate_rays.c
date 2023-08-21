@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 11:28:06 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:37:43 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ t_vector *offset)
 	int	dof;
 
 	dof = 0;
+	if (map->x == cubed->scene->player.location.x && \
+	map->y == cubed->scene->player.location.x)
+		return ;
 	while (dof < MAX_DOF)
 	{
 		grid->x = (int)map->x / CELL_SIZE;
