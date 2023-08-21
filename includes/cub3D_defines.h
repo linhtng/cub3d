@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D_defines.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
+/*   Updated: 2023/08/21 12:47:17 by jebouche         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_DEFINES_H
 # define CUB3D_DEFINES_H
 
@@ -16,7 +28,7 @@
 # define ERROR -1
 # define TRUE 1
 # define FALSE 0
-# define pane_y 1
+# define PANE_Y 1 //was this used, had to capitalize
 
 /* RAY CASTING DEFINES */
 # define PROJECTION_WIDTH 1370 //685//1370 //1366

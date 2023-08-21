@@ -1,5 +1,17 @@
-#ifndef CUB3D_PROTOTYPES_H
-# define CUB3D_PROTOTYPES_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
+/*   Updated: 2023/08/21 12:45:45 by jebouche         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 /**TODO CHECK IF ALL OF THESE ARE NEEDED **/
 /* for printf */
@@ -24,7 +36,7 @@
 void			init_scene(t_scene *scene);
 
 /* cub3D_utils */
-int 			check_input_file(char *argv, int fd, char *extension);
+int				check_input_file(char *argv, int fd, char *extension);
 int				err_msg(char *message1, char *message2);
 int				count_occurences(char *str, char c);
 int				ft_is_dir(const char *path);
@@ -47,8 +59,8 @@ int				get_scene_elem(t_scene *scene, char *scene_line);
 int				get_map_content(char **scene_arr, t_scene *scene, int i);
 
 /* cub3D_map_valid */
-int	            check_island(t_scene *scene, char **grid);
-void	        ft_flood(int y, int x, t_scene *scene, char block);
+int				check_island(t_scene *scene, char **grid);
+void			ft_flood(int y, int x, t_scene *scene, char block);
 int				big_frame_map(char **map, t_scene *scene);
 int				empty_map(t_scene *scene);
 
@@ -58,11 +70,12 @@ void			print_scene(t_scene *scene);
 void			mass_test_maps(int argc, char **argv);
 
 /* drawing_utils1 */
-void			my_put_line_h(t_img_data *data, t_vector *start, int len);
-void			my_put_line_v(t_img_data *data, t_vector *start, int len);
-void			my_put_grid(t_img_data *data, t_vector *start, int len, int height);//change args
-void			my_put_square(t_img_data *data, t_vector start, int len);
-void			my_put_rectangle(t_img_data *data, t_vector start, int len, int height);
+void			my_put_line_h(t_img_data *data, t_vector *start, int len);//used for background
+void			my_put_rectangle(t_img_data *data, t_vector start, int len, int height);//for miniplayer
+//TODO remove these if they aren't used again
+void			my_put_line_v(t_img_data *data, t_vector *start, int len);//used for grid
+void			my_put_grid(t_img_data *data, t_vector *start, int len, int height);//not used
+void			my_put_square(t_img_data *data, t_vector start, int len);//not used
 
 /* key hook handling */
 int				handle_press(int key_code, t_cubed *cubed);
@@ -98,7 +111,7 @@ void			setup_player(t_cubed *cubed);
 /* player_move.c */
 void			turn_player(t_cubed *cubed, int key_code);
 void			move_forward_backward(t_cubed *cubed, int key_code);
-void			move_right_left(t_cubed *cubed, int	key_code);
+void			move_right_left(t_cubed *cubed, int key_code);
 
 /* redraw.c */
 void			redraw(t_cubed *cubed);
@@ -115,7 +128,9 @@ int				raycast_start(t_scene *scene);
 /* cub3D_texture */
 void			load_texture(t_scene *scene, t_cubed *cubed);
 unsigned int	ft_pixel_get(t_img_data *data, int x, int y);
-void			ft_pixel_put(t_img_data *data, int x, int y, unsigned int color);
-void			draw_textured_walls(t_cubed *cubed, int x, t_ray_calc *ray, int dir);
+void			ft_pixel_put(t_img_data *data, int x, int y, \
+				unsigned int color);
+void			draw_textured_walls(t_cubed *cubed, int x, \
+				t_ray_calc *ray, int dir);
 
 #endif

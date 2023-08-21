@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D_structs.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/21 12:48:10 by jebouche          #+#    #+#             */
+/*   Updated: 2023/08/21 12:49:15 by jebouche         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_STRUCTS_H
 # define CUB3D_STRUCTS_H
 
@@ -8,23 +20,14 @@ typedef struct s_cubed
 	void				*mlx;
 	void				*window;
 	unsigned int		dirty_images;
-} 				t_cubed;
+}						t_cubed;
 
 typedef struct s_vector
 {
 	float			x;
 	float			y;
 	unsigned int	color;
-}				t_vector;
-
-// typedef	struct s_bham_info
-// {
-// 	struct s_vector	deltas;
-// 	int				x_slope;
-// 	int				y_slope;
-// 	int				decision;
-// 	int				d2;
-// }				t_bham_info;
+}					t_vector;
 
 typedef struct s_elem
 {
@@ -34,8 +37,8 @@ typedef struct s_elem
 	char				*west;
 	int					fl_rgb[4];
 	int					c_rgb[4];
-	unsigned	int	floor_color;
-	unsigned	int	ceiling_color;
+	unsigned int		floor_color;
+	unsigned int		ceiling_color;
 	int					filled_elem;
 }	t_elem;
 
@@ -49,9 +52,7 @@ typedef struct s_map
 	struct s_vector	start;
 	char			flood_old;
 	char			flood_new;
-}	t_map;
-
-
+}					t_map;
 
 typedef struct s_player
 {
@@ -90,7 +91,6 @@ typedef struct s_raycast
 	struct s_vector		center_of_projection;
 	float				angle_between_rays;
 }			t_raycast;
-
 
 typedef struct s_ray_calc
 {
