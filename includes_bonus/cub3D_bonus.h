@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 15:24:48 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:22:55 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info);
 void	draw_mini_player(t_cubed *cubed);
 
 /* minimap_grid_bonus */
-void    get_bonus_grid(t_scene *scene);
+void	get_bonus_grid(t_scene *scene);
 
 #endif
