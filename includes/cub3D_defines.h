@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:47:17 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:12:16 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define PINK (unsigned int) 0XFF9999
 # define NAVY_BLUE (unsigned int) 0X000785
 # define YELLOW (unsigned int) 0X666666
-# define TRANS_WHITE (unsigned int) 0X99FFFFFF;
+# define TRANS_WHITE (unsigned int) 0X99FFFFFF
 
 enum	e_keys
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/21 10:18:18 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/21 15:26:43 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ BONUS = draw_minimap_bonus.c \
 		raycast_start_bonus.c \
 		redraw_bonus.c \
 		setup_cubed_bonus.c \
+		minimap_grid_bonus.c \
 
 SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/
