@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/18 18:01:42 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:46:59 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	clip_to_minimap(t_img_data *img, t_vector *one)
 		ft_pixel_put(img, one->x, one->y, one->color);
 }
 
-void	ft_bresenham(t_vector one, t_vector two, t_img_data *img)
+void	ft_bresenham_clipped(t_vector one, t_vector two, t_img_data *img)
 {
 	t_bham_info	line_info;
 
