@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_start_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/20 21:58:41 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:31:50 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	raycast_start(t_scene *scene)
 	redraw(cubed);
 	draw_background(cubed);
 	refresh_images(cubed);
-	mlx_hook(cubed->window, 17, 0, &mlx_close, cubed);
+	mlx_hook(cubed->window, 17, 0, close_window, cubed);
 	mlx_hook(cubed->window, 2, 1L << 0, handle_press, cubed);
 	mlx_loop(cubed->mlx);
 	return (0);

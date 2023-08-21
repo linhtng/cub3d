@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_close.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/20 22:00:23 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:31:22 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	destroy_all_images(t_cubed *cubed)
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
 }
 
-//TODO destroy and free all images and other allocated stuffs
 int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 {
 	printf("MLX should close...\n");

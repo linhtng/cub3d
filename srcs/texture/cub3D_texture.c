@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/21 10:14:05 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:35:22 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ float line_size)
 		texture.x = TEXTURE_SIZE - 1 - (((int) hit->y) % TEXTURE_SIZE);
 	else
 		texture.x = ((int) hit->y) % TEXTURE_SIZE;
-	if (texture.x >= 64 || texture.x < 0 || texture.y >= 64 || texture.y < 0)
-		printf("[GET TEXTURE VECTOR] tex.x: %f , tex.y: %f\n", texture.x, texture.y);
 	return (texture);
 }
 

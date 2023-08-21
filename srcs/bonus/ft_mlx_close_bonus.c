@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_close_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/20 22:00:07 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:32:48 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-//TODO destroy and free all images and other allocated stuffs
 static void	ft_destroy_image(void *mlx, t_img_data **img)
 {
 	mlx_destroy_image(mlx, (*img)->img);

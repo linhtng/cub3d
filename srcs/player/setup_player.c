@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 16:46:33 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:34:49 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	setup_player(t_cubed *cubed)
 	CELL_SIZE + CELL_SIZE / 2;
 	cubed->scene->player.location.x = cubed->scene->player.location.x * \
 	CELL_SIZE + CELL_SIZE / 2;
-	cubed->scene->player.location.color = 0xFFFF00;//yellow
+	cubed->scene->player.location.color = YELLOW;
 	if (cubed->scene->player.spawn == 'N')
 		cubed->scene->player.angle = 90.0f;
 	if (cubed->scene->player.spawn == 'S')
