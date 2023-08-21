@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/18 18:03:09 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:47:46 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	draw_nose(t_cubed_bonus *cubed, t_vector *mini_player)
 	temp.x = (int)mini_player->x + cubed->scene->player.d.x * 2;
 	temp.y = (int)mini_player->y + cubed->scene->player.d.y * 2;
 	temp.color = LIGHT_GREY;
-	ft_bresenham(temp, *mini_player, cubed->mini_player_img);
+	ft_bresenham_clipped(temp, *mini_player, cubed->mini_player_img);
 }
 
 void	draw_mini_player(t_cubed *cubed)

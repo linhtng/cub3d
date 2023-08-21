@@ -6,12 +6,38 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/18 18:15:11 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:49:25 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 #include "cub3D.h"
+
+void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info)
+{
+	t_vector mini_player;
+	t_vector temp;
+
+	mini_player.x = MINI_MAP_RADIUS;
+	mini_player.y = MINI_MAP_RADIUS;
+	mini_player.color = TRANS_WHITE;
+	if (ray_info->shortest == 'v')
+	{
+		temp.x = (((ray_info->v_map.x - cubed->scene->player.location.x) \
+		/ (float) CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
+		temp.y = (((ray_info->v_map.y - cubed->scene->player.location.y) \
+		/ (float) CELL_SIZE) * MINI_MAP_CELL)+ MINI_MAP_RADIUS;
+		ft_bresenham_clipped(mini_player, temp, cubed->mini_player_img);
+	}
+	else
+	{
+		temp.x = (((ray_info->h_map.x - cubed->scene->player.location.x) \
+		/ (float) CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
+		temp.y = (((ray_info->h_map.y - cubed->scene->player.location.y) \
+		/ (float) CELL_SIZE) * MINI_MAP_CELL)+ MINI_MAP_RADIUS;
+		ft_bresenham_clipped(mini_player, temp, cubed->mini_player_img);
+	}
+}
 
 unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 {
@@ -32,11 +58,10 @@ void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, int x, int y)
 	int	grid_x;
 	int grid_y;
 
-	grid_x = (x - (int)center->x  + \
-	(int)cubed->scene->player.location.x) / CELL_SIZE;
-	grid_y = (y - (int)center->y  + \
-	(int)cubed->scene->player.location.y) / CELL_SIZE;
+	grid_x = (x - (int)center->x  + (cubed->scene->player.location.x / CELL_SIZE) * MINI_MAP_CELL) / MINI_MAP_CELL;
+	grid_y = (y - (int)center->y  + (cubed->scene->player.location.y / CELL_SIZE) * MINI_MAP_CELL) / MINI_MAP_CELL;
 	center->color = get_color(&cubed->scene->map, grid_x, grid_y);
+	
 	ft_pixel_put(cubed->minimap_img, x, y, center->color);
 }
 

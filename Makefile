@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/17 16:04:33 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/21 10:18:18 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,6 @@ BONUS = draw_minimap_bonus.c \
 		raycast_start_bonus.c \
 		redraw_bonus.c \
 		setup_cubed_bonus.c \
-		setup_player_bonus.c \
 
 SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/
@@ -70,7 +69,7 @@ OBJSFD_BONUS = objs_bonus/
 OBJ = $(ALL_SRCS:.c=.o)
 OBJS = $(patsubst %, $(OBJSFD)%, $(OBJ))
 
-ALL_BONUS_SRCS := $(filter-out raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c setup_player.c, $(ALL_SRCS))
+ALL_BONUS_SRCS := $(filter-out raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c , $(ALL_SRCS))
 ALL_BONUS_SRCS += $(BONUS)
 OBJS_BONUS = $(patsubst %, $(OBJSFD_BONUS)%, $(ALL_BONUS_SRCS:.c=.o))
 # R_SRCS	:= $(addprefix $(SRCFD), $(R_SRC))
