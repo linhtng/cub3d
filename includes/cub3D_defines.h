@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/22 16:25:59 by thuynguy         ###   ########.fr       */
+=======
+/*   Updated: 2023/08/22 16:59:19 by jebouche         ###   ########.fr       */
+>>>>>>> 5872943ac729730c9bf748ee506c6eb8e6978f5b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,13 @@
 # define FLOODED_WALL '2'
 # define EXPOSED 'I'
 # define DEBUG 0
+<<<<<<< HEAD
 # define VALID_CHARS "01NSEW "
+=======
+# ifndef VALID_CHARS
+#  define VALID_CHARS "01NSEW "
+# endif
+>>>>>>> 5872943ac729730c9bf748ee506c6eb8e6978f5b
 
 /* PROGRAM DEFINES */
 # define WIN_WIDTH 1490 //1920
