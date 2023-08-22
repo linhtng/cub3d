@@ -6,13 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 12:29:44 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:07:10 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void draw_floor_ceiling(t_cubed *cubed, float ray_angle, t_draw_info *d_info)
+void	draw_floor_ceiling(t_cubed *cubed, float ray_angle, t_draw_info *d_info)
 {
 	float		delta_y;
 	float		ray_fix;
@@ -23,18 +23,18 @@ void draw_floor_ceiling(t_cubed *cubed, float ray_angle, t_draw_info *d_info)
 	while (d_info->project_y >= d_info->floor_start)
 	{
 		delta_y = d_info->project_y - PROJECTION_HEIGHT / 2;
-		d_info->texture.x = (cubed->scene->player.location.x + \
+		d_info->tex.x = (cubed->scene->player.location.x + \
 		cos(deg_to_rad(ray_angle)) * 370 * TEXTURE_SIZE / delta_y / ray_fix);
-		d_info->texture.y = (cubed->scene->player.location.y - \
+		d_info->tex.y = (cubed->scene->player.location.y - \
 		sin(deg_to_rad(ray_angle)) * 370 * TEXTURE_SIZE / delta_y / ray_fix);
-		d_info->texture.color = ft_pixel_get(cubed->scene->texture[0], \
-		(int)d_info->texture.x&63, (int)d_info->texture.y&63);//choose floor texture here
+		d_info->tex.color = ft_pixel_get(cubed->scene->texture[0], \
+		(int)d_info->tex.x & 63, (int)d_info->tex.y & 63);//choose floor texture here
 		ft_pixel_put(cubed->raycast_info->r_img, d_info->project_x, \
-		d_info->project_y, d_info->texture.color);
-		d_info->texture.color = ft_pixel_get(cubed->scene->texture[1], \
-		(int)d_info->texture.x&63, (int)d_info->texture.y&63);//choose ceiling texture here
+		d_info->project_y, d_info->tex.color);
+		d_info->tex.color = ft_pixel_get(cubed->scene->texture[1], \
+		(int)d_info->tex.x & 63, (int)d_info->tex.y & 63);//choose ceiling texture here
 		ft_pixel_put(cubed->raycast_info->r_img, d_info->project_x, \
-		PROJECTION_HEIGHT - d_info->project_y, d_info->texture.color);
+		PROJECTION_HEIGHT - d_info->project_y, d_info->tex.color);
 		d_info->project_y--;
 	}
 }
@@ -62,11 +62,11 @@ void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x)
 
 	draw_minimap_rays((t_cubed_bonus *)cubed, ray_info);
 	draw_info.dir = identify_wall_direction(ray_info);
-	draw_info.line_height = CELL_SIZE * PROJECTION_HEIGHT / ray_info->distance;
+	draw_info.height = CELL_SIZE * PROJECTION_HEIGHT / ray_info->distance;
 	draw_info.project_x = x;
 	draw_info.floor_start = cubed->raycast_info->center_of_projection.y - \
-	draw_info.line_height / 2 + draw_info.line_height;
+	draw_info.height / 2 + draw_info.height;
 	b_draw_textured_walls(cubed, ray_info, &draw_info);
-	if (draw_info.line_height < PROJECTION_HEIGHT)
+	if (draw_info.height < PROJECTION_HEIGHT)
 		draw_floor_ceiling(cubed, ray_info->angle, &draw_info);
 }

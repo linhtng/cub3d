@@ -6,22 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/21 11:35:22 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:12:59 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	ft_pixel_put(t_img_data *data, int x, int y, unsigned int color)
-{
-	char	*dst;
-
-	if (x >= data->width || x < 0 || y >= data->height || y < 0)
-		return ;
-	dst = data->addr + (y * data->line_length + x * \
-	(data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
 
 unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
 {
@@ -61,14 +50,25 @@ float line_size)
 	return (texture);
 }
 
+static float	clip_line_height(float to_clip)
+{
+	float	line_height;
+
+	if (to_clip > PROJECTION_HEIGHT)
+		line_height = PROJECTION_HEIGHT;
+	else
+		line_height = round(to_clip);
+	return (line_height);
+}
+
 void	draw_textured_walls(t_cubed *cubed, int project_x, t_ray_calc *ray, \
 int dir)
 {
-	float		line_height;
-	t_vector	pane;
-	float		y_step;
-	t_vector	texture;
-	int			index;
+	float			line_height;
+	unsigned int	pane_y_color[2];
+	float			y_step;
+	t_vector		texture;
+	int				index;
 
 	line_height = CELL_SIZE * PROJECTION_HEIGHT / ray->distance;
 	y_step = TEXTURE_SIZE / line_height;
@@ -76,17 +76,16 @@ int dir)
 		texture = get_texture_vec(&ray->v_map, dir, y_step, line_height);
 	else
 		texture = get_texture_vec(&ray->h_map, dir, y_step, line_height);
-	if (line_height > PROJECTION_HEIGHT)
-		line_height = PROJECTION_HEIGHT;
-	pane.y = cubed->raycast_info->center_of_projection.y - line_height / 2;
+	line_height = clip_line_height(line_height);
+	pane_y_color[0] = (PROJECTION_HEIGHT - line_height) / 2;
 	index = 0;
-	while (index < line_height)
+	while (index++ < line_height)
 	{
-		pane.color = ft_pixel_get(cubed->scene->texture[dir], \
+		pane_y_color[1] = ft_pixel_get(cubed->scene->texture[dir], \
 		texture.x, texture.y);
-		ft_pixel_put(cubed->raycast_info->r_img, project_x, pane.y, pane.color);
-		index++;
-		pane.y++;
+		ft_pixel_put(cubed->raycast_info->r_img, project_x, \
+		pane_y_color[0], pane_y_color[1]);
+		pane_y_color[0]++;
 		texture.y += y_step;
 	}
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D_map_valid.c                                  :+:      :+:    :+:   */
+/*   cub3D_map_valid_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 17:14:03 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:18:10 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static void	get_flood_start_point(t_scene *scene, t_vector *start)
 {
@@ -71,8 +71,10 @@ void	ft_flood(int y, int x, t_scene *scene, char block)
 	scene->map.visited[y][x] = VISITED;
 	if (scene->map.flood[y][x] == scene->map.flood_old)
 		scene->map.flood[y][x] = scene->map.flood_new;
-	if (scene->map.flood[y][x] == scene->player.spawn
-		&& scene->map.flood_new == EXPOSED)
+	// if (ft_strchr(MAP_CONTENT, scene->map.flood[y][x]))
+	// 	scene->map.flood[y][x] = scene->map.flood_new;
+	if (scene->map.flood_new == EXPOSED
+		&& ft_strchr(MAP_CONTENT, scene->map.flood[y][x]))
 		scene->map.flood[y][x] = scene->map.flood_new;
 	ft_flood(y + 1, x, scene, block);
 	ft_flood(y - 1, x, scene, block);

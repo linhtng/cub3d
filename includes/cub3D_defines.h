@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 16:25:59 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:34:01 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # define FLOODED_WALL '2'
 # define EXPOSED 'I'
 # define DEBUG 0
-# define VALID_CHARS "01NSEW "
+# ifndef VALID_CHARS
+#  define VALID_CHARS "01NSEW "
+# endif
 
 /* PROGRAM DEFINES */
 # define WIN_WIDTH 1490 //1920
