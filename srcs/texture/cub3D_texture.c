@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 15:44:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:11:35 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,12 @@ float line_size)
 		texture.x = TEXTURE_SIZE - 1 - (((int) hit->y) % TEXTURE_SIZE);
 	else
 		texture.x = ((int) hit->y) % TEXTURE_SIZE;
-	// if (dir == WEST)
-	// 	printf("[get texture vec] texture.x: %d, hit y: %d\n",(int) texture.x, (int) hit->y);
 	return (texture);
 }
 
 static float	clip_line_height(float to_clip)
 {
-	float line_height;
+	float	line_height;
 
 	if (to_clip > PROJECTION_HEIGHT)
 		line_height = PROJECTION_HEIGHT;
