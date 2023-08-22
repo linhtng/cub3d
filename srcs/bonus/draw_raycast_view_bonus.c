@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 11:05:56 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:54:41 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void draw_floor_ceiling(t_cubed *cubed, float ray_angle, t_draw_info *d_info)
 		sin(deg_to_rad(ray_angle)) * 370 * TEXTURE_SIZE / delta_y / ray_fix);
 		d_info->texture.color = ft_pixel_get(cubed->scene->texture[0], \
 		(int)d_info->texture.x&63, (int)d_info->texture.y&63);//choose floor texture here
-		// if (((int)d_info->texture.x&63) >= 64 || ((int)d_info->texture.x&63) < 0 || ((int)d_info->texture.y&63) >= 64 || ((int)d_info->texture.y&63) < 0)//
-		// 	printf("[DRAW FLOOR AND CEILING] tex.x %i, tex.y %i \n", (int)d_info->texture.x&63, (int)d_info->texture.x&63);//
 		ft_pixel_put(cubed->raycast_info->r_img, d_info->project_x, \
 		d_info->project_y, d_info->texture.color);
 		d_info->texture.color = ft_pixel_get(cubed->scene->texture[1], \
