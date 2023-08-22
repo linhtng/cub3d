@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/22 12:32:59 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/22 17:18:55 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,8 @@ BONUS = draw_minimap_bonus.c \
 		setup_cubed_bonus.c \
 		cub3D_texture_bonus.c \
 		minimap_grid_bonus.c \
+		cub3D_map_content_bonus.c \
+		cub3D_map_valid_bonus.c \
 
 SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/
@@ -71,7 +73,7 @@ OBJSFD_BONUS = objs_bonus/
 OBJ = $(ALL_SRCS:.c=.o)
 OBJS = $(patsubst %, $(OBJSFD)%, $(OBJ))
 
-ALL_BONUS_SRCS := $(filter-out raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c cub3D_texture.c, $(ALL_SRCS))
+ALL_BONUS_SRCS := $(filter-out raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c cub3D_texture.c cub3D_map_content.c cub3D_map_valid.c, $(ALL_SRCS))
 ALL_BONUS_SRCS += $(BONUS)
 OBJS_BONUS = $(patsubst %, $(OBJSFD_BONUS)%, $(ALL_BONUS_SRCS:.c=.o))
 # R_SRCS	:= $(addprefix $(SRCFD), $(R_SRC))
