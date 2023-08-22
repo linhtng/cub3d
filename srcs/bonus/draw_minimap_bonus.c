@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 16:03:22 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:32:44 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info)
 	}
 }
 
+//TODO color minimap for doors and collectables etc...
 unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 {
 	if (grid_x < 0 || grid_x >= map->width || grid_y < 0 || \

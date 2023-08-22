@@ -1,0 +1,12 @@
+NO texture_src/brick_1_moss.xpm
+SO texture_src/brick_1.xpm
+WE texture_src/brick_2.xpm
+EA texture_src/brick_1.xpm
+
+F 20,20,150
+C 200,0,200
+
+11111111
+1E00D011
+10001011
+11111111

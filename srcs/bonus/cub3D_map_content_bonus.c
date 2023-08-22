@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 17:04:11 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:28:38 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static int	create_map(t_scene *scene, char **scene_arr)
 
 int	map_valid_characters(t_scene *scene, char *line, int y)
 {
-	printf("VALID CHARS: %s\n", VALID_CHARS);
 	int	index;
 
 	index = 0;
