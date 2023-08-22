@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_valid_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 17:18:10 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:49:25 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	ft_flood(int y, int x, t_scene *scene, char block)
 	scene->map.visited[y][x] = VISITED;
 	if (scene->map.flood[y][x] == scene->map.flood_old)
 		scene->map.flood[y][x] = scene->map.flood_new;
-	// if (ft_strchr(MAP_CONTENT, scene->map.flood[y][x]))
-	// 	scene->map.flood[y][x] = scene->map.flood_new;
 	if (scene->map.flood_new == EXPOSED
 		&& ft_strchr(MAP_CONTENT, scene->map.flood[y][x]))
 		scene->map.flood[y][x] = scene->map.flood_new;

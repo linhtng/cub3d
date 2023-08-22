@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_rays.c                                   :+:      :+:    :+:   */
+/*   calculate_rays_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 21:36:24 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:47:40 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
+
+void	check_hit_objects(t_cubed_bonus *cubed, t_vector *grid, t_vector *map)
+{
+	int	dof;
+
+	dof = 0;
+	if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width \
+			&& grid->y < cubed->scene->map.height \
+			&& cubed->scene->map.grid[(int)grid->y][(int)grid->x] == 'C')
+	{
+		cubed->reward.grid_coor.y = (int)grid->y;
+		cubed->reward.grid_coor.x = (int)grid->x;
+		cubed->reward.map_coor.y = (int)map->y;
+		cubed->reward.map_coor.x = (int)map->x;
+		cubed->reward.seen = 1;
+	}
+
+}
 
 void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
 t_vector *offset)
@@ -25,6 +43,7 @@ t_vector *offset)
 	{
 		grid->x = (int)map->x / CELL_SIZE;
 		grid->y = (int)map->y / CELL_SIZE;
+		check_hit_objects((t_cubed_bonus *)cubed, grid, map);
 		if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width \
 			&& grid->y < cubed->scene->map.height \
 			&& cubed->scene->map.grid[(int)grid->y][(int)grid->x] == '1')
@@ -98,6 +117,29 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
 
+void	get_object_shortest(t_cubed *arg, t_ray_calc *ray_info)
+{
+	float	h_distance;
+	t_cubed_bonus	*cubed;
+	//float	v_distance;
+
+	cubed = (t_cubed_bonus *)arg;
+	h_distance = get_distance(&cubed->scene->player.location, &cubed->reward.map_coor);
+	//v_distance = get_distance(&cubed->scene->player.location, &ray_info->v_map);
+	if (h_distance != 0.0f) //&& (h_distance < v_distance || v_distance == 0.0f))
+	{
+		//ray_info->shortest = 'h';
+		cubed->reward.distance = h_distance * \
+		cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
+	}
+	// else
+	// {
+	// 	ray_info->shortest = 'v';
+	// 	ray_info->distance = v_distance * \
+	// 	cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
+	// }
+}
+
 void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 {
 	float	h_distance;
@@ -128,9 +170,12 @@ void	cast_rays(t_cubed *cubed)
 	rays_drawn = 0;
 	while (rays_drawn <= PROJECTION_WIDTH)
 	{
+		((t_cubed_bonus *)cubed)->reward.seen = 0;
 		shoot_one_ray_horizontal(cubed, &ray);
+		//compare the h vs v distance of the object and save to the ray struct
 		shoot_one_ray_vertical(cubed, &ray);
 		get_corrected_shortest(cubed, &ray);
+		get_object_shortest(cubed, &ray);
 		draw_view(cubed, &ray, PROJECTION_WIDTH - rays_drawn);
 		ray.angle = \
 		correct_degrees(ray.angle + cubed->raycast_info->angle_between_rays);

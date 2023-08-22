@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 19:35:22 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:25:30 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	setup_cubed(t_cubed *cubed)
 	close(reward_fd);
 	((t_cubed_bonus *)cubed)->reward_img = \
 	get_new_xpm_image(cubed, "texture_src/reward.xpm");
-	((t_cubed_bonus *)cubed)->reward.pos.y = (PROJECTION_HEIGHT - ((t_cubed_bonus *)cubed)->reward_img->height) / 2;
-	((t_cubed_bonus *)cubed)->reward.pos.x = (PROJECTION_WIDTH - ((t_cubed_bonus *)cubed)->reward_img->width) / 2;
+	// ((t_cubed_bonus *)cubed)->reward.pos.y = (PROJECTION_HEIGHT - ((t_cubed_bonus *)cubed)->reward_img->height) / 2;
+	// ((t_cubed_bonus *)cubed)->reward.pos.x = (PROJECTION_WIDTH - ((t_cubed_bonus *)cubed)->reward_img->width) / 2;
 }

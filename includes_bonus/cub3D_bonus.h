@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 19:38:07 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:41:55 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@
 
 typedef struct s_reward
 {
-	struct s_vector		pos;
+	struct s_vector		grid_coor;
+	struct s_vector		map_coor;
 	int					animated_frame;
+	int					seen;
+	float				distance;
 }					t_reward;
 
 typedef struct s_cubed_bonus

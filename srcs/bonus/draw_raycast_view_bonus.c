@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_raycast_view_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 16:07:10 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 22:05:30 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,17 @@ int	identify_wall_direction(t_ray_calc *ray_info)
 		return (WEST);
 	return (-1);
 }
+void	draw_object(t_cubed *cubed, t_ray_calc *ray_info, int x)
+{
+	//how big to draw the object
+	//get what color to draw from the texture
+	//get initial x value of the texture to draw from based on draw height and y_step
+	//scaling object size
+	t_draw_info	draw_info;
+
+	draw_info.height = CELL_SIZE * PROJECTION_HEIGHT / cubed->reward.distance;
+	
+}
 
 void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x)
 {
@@ -69,4 +80,11 @@ void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x)
 	b_draw_textured_walls(cubed, ray_info, &draw_info);
 	if (draw_info.height < PROJECTION_HEIGHT)
 		draw_floor_ceiling(cubed, ray_info->angle, &draw_info);
+	if (((t_cubed_bonus *)cubed)->reward.seen)
+	{
+		printf("[reward distance] %f\n", ((t_cubed_bonus *)cubed)->reward.distance);
+		printf("[reward info] grid coor y: %f, x: %f, map_coor: y %f, x %f\n", \
+	((t_cubed_bonus *)cubed)->reward.grid_coor.y, ((t_cubed_bonus *)cubed)->reward.grid_coor.x, \
+	((t_cubed_bonus *)cubed)->reward.map_coor.y, ((t_cubed_bonus *)cubed)->reward.map_coor.x);
+	}
 }

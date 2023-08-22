@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 18:58:51 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:01:28 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	animate_reward(void *param)
 {
 	t_cubed_bonus	*cubed;
-	//static int		frame;
 
 	cubed = (t_cubed_bonus *)param;
 	cubed->reward.animated_frame++;
@@ -26,11 +25,7 @@ int	animate_reward(void *param)
 		cubed->reward.pos.y -= 10;
 		cubed->reward.animated_frame = 0;
 	}
-	//printf("[animate reward] pos y: %f, pos x: %f\n", cubed->reward_pos.y, cubed->reward_pos.x);
-	// mlx_put_image_to_window(cubed->mlx, cubed->window, \
-	// cubed->reward_img->img, cubed->reward.pos.y, cubed->reward.pos.x);
-	refresh_images(((t_cubed *)cubed));
-	//cubed->dirty_images = TRUE;
+	refresh_images(param);
 	return (0);
 }
 
