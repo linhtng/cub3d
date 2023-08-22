@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 12:34:54 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:56:56 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@
 # define MINIMAP_POS_Y 763
 # define RAYCAST_Y 58
 # define BONUS_CHAR 'B'
+# define VALID_CHARS "01NSEW "
+# define ANIMATION_FRAME 100
 
 # include "../includes/cub3D.h"
+
+typedef struct s_reward
+{
+	struct s_vector		pos;
+	int					animated_frame;
+}					t_reward;
 
 typedef struct s_cubed_bonus
 {
@@ -33,6 +41,8 @@ typedef struct s_cubed_bonus
 	struct s_img_data	*minimap_img;
 	struct s_img_data	*mini_player_img;
 	struct s_img_data	*frame_img;
+	struct s_img_data	*reward_img;
+	struct s_reward		reward;
 }						t_cubed_bonus;
 
 typedef struct s_bham_info
