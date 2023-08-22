@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:50:00 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 10:44:01 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ typedef struct s_bham_info
 	int				d2;
 }					t_bham_info;
 
+typedef struct s_draw_info
+{
+	float		line_height;
+	int			dir;
+	int			project_x;
+	int			project_y;
+	int			floor_start;
+	t_vector	texture;
+}				t_draw_info;
+
 /* ft_bresenham.c */
 void	ft_bresenham_clipped(t_vector one, t_vector two, t_img_data *img);
 
@@ -52,5 +62,8 @@ void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info);
 
 /* draw_player.c */
 void	draw_mini_player(t_cubed *cubed);
+
+/* cub3D_texture_bonus.c */
+void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, t_draw_info *d_info);
 
 #endif
