@@ -6,12 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 16:05:20 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:13:25 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
+
 
 # define MINI_MAP_CELL 16
 # define MINI_MAP_RADIUS 112
@@ -20,6 +21,8 @@
 # define MINIMAP_POS_Y 763
 # define RAYCAST_Y 58
 # define BONUS_CHAR 'B'
+# define VALID_CHARS "01NSEWCDO "
+# define MAP_CONTENT "0NSEWCDO"
 
 # include "../includes/cub3D.h"
 
@@ -53,6 +56,16 @@ typedef struct s_draw_info
 	int			floor_start;
 	t_vector	tex;
 }				t_draw_info;
+
+enum	e_legend
+{
+	OPEN_SPACE = 0,
+	NO_VALUE = ' ',
+	WALL = 1,
+	// FLOODED_WALL = 'B',
+	DOOR_OPEN = 'O',
+	DOOR_CLOSED = 'D'
+};
 
 /* ft_bresenham.c */
 void	ft_bresenham_clipped(t_vector one, t_vector two, t_img_data *img);

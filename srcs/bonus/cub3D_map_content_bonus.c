@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D_map_content.c                                :+:      :+:    :+:   */
+/*   cub3D_map_content_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 17:04:47 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:04:11 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static int	player_pos_valid(char **map, t_player player, char block)
 {
@@ -53,6 +53,7 @@ static int	create_map(t_scene *scene, char **scene_arr)
 
 int	map_valid_characters(t_scene *scene, char *line, int y)
 {
+	printf("VALID CHARS: %s\n", VALID_CHARS);
 	int	index;
 
 	index = 0;
