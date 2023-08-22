@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 12:34:54 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:05:20 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ typedef struct s_bham_info
 
 typedef struct s_draw_info
 {
-	float		line_height;
+	float		height;
 	int			dir;
 	int			project_x;
 	int			project_y;
 	int			floor_start;
-	t_vector	texture;
+	t_vector	tex;
 }				t_draw_info;
 
 /* ft_bresenham.c */
