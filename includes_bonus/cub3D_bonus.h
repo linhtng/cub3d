@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/22 10:44:01 by jebouche         ###   ########.fr       */
+=======
+/*   Updated: 2023/08/21 17:22:55 by thuynguy         ###   ########.fr       */
+>>>>>>> 134c85677719083361a47c2d9fea47d16abdf87e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +23,7 @@
 # define MINIMAP_POS_X 60
 # define MINIMAP_POS_Y 763
 # define RAYCAST_Y 58
+# define BONUS_CHAR 'B'
 
 # include "../includes/cub3D.h"
 
@@ -65,5 +70,9 @@ void	draw_mini_player(t_cubed *cubed);
 
 /* cub3D_texture_bonus.c */
 void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, t_draw_info *d_info);
+
+#endif
+/* minimap_grid_bonus */
+void	get_bonus_grid(t_scene *scene);
 
 #endif

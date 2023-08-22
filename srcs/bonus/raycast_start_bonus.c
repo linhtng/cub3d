@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_start_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 11:31:50 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:12:08 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-#include "cub3D.h"
 
 int	raycast_start(t_scene *scene)
 {
@@ -21,6 +20,7 @@ int	raycast_start(t_scene *scene)
 
 	cubed = (t_cubed *) &cubed_bonus;
 	setup_cubed(cubed);
+	get_bonus_grid(scene);
 	cubed->scene = scene;
 	setup_raycast(cubed, &raycast_info);
 	setup_player(cubed);

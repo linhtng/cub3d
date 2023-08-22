@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:42:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/14 16:50:13 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:32:43 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	print_arr(char **arr)
 	while (arr[i] != NULL)
 	{
 		printf("%s\n", arr[i]);
-		//free(arr[i]);
 		i++;
 	}
 }
@@ -30,7 +29,6 @@ void	print_scene(t_scene *scene)
 	int	i;
 
 	i = 0;
-	//print_arr(scene->array);
 	printf("map content:\n");
 	print_arr(scene->map.grid);
 	printf("NO: %s\n", scene->elems.north);
@@ -39,9 +37,11 @@ void	print_scene(t_scene *scene)
 	printf("EA: %s\n", scene->elems.east);
 	printf("floor color: %x\n", scene->elems.floor_color);
 	printf("ceiling color: %x\n", scene->elems.ceiling_color);
-	printf("player spawn dir is: %c, pos_y is: %d, pos_x is: %d\n", 
-			scene->player.spawn, (int)scene->player.location.y, (int)scene->player.location.x);
+	printf("player spawn dir is: %c, pos_y is: %d, pos_x is: %d\n", \
+			scene->player.spawn, (int)scene->player.location.y, \
+			(int)scene->player.location.x);
 }
+
 void	mass_test_maps(int argc, char **argv)
 {
 	int		fd[420];
@@ -68,28 +68,3 @@ void	mass_test_maps(int argc, char **argv)
 		index++;
 	}
 }
-
-/* int	check_island(t_scene *scene, char **map)
-{
-	if (!(ft_arrdup(map, scene) == 1
-			&& empty_map(scene) == 1))
-		return (ERROR);
-	//print_arr(scene->map.flood);
-	//printf("map height: %d\n", scene->map.height);
-	printf("map flood before flood start:\n");
-	print_arr(scene->map.flood);
-	 int	i = 0;
-	while (i < scene->map.height)
-		printf("len of each line in flood: %d\n", (int)ft_strlen(scene->map.flood[i++]));
-	printf("map visited before flood start:\n");
-	print_arr(scene->map.visited);
-	//printf("player pos y: %d, pos x: %d\n", scene->player.pos_y, scene->player.pos_x);
-	ft_flood(scene->player.pos_y, scene->player.pos_x, scene);
-	printf("map flooded:\n");
-	print_arr(scene->map.flood);
-	printf("map visited after:\n");
-	print_arr(scene->map.visited);
-	printf("end\n");
-	//print_arr(map);
-	return (1);
-} */

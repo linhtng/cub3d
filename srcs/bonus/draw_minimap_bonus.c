@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:22:17 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:03:22 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 	}
 	else
 	{
-		if (map->grid[grid_y][grid_x] == '1')
+		if (map->flood[grid_y + 1][grid_x + 1] == FLOODED_WALL)
 			return (NAVY_BLUE);
+		else if (map->flood[grid_y + 1][grid_x + 1] == BONUS_CHAR)
+			return (YELLOW);
 		else
 			return (PINK);
 	}

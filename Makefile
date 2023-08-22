@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/22 11:58:02 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/22 12:32:59 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ BONUS = draw_minimap_bonus.c \
 		redraw_bonus.c \
 		setup_cubed_bonus.c \
 		cub3D_texture_bonus.c \
+		minimap_grid_bonus.c \
 
 SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/
