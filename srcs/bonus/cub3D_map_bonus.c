@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D_map.c                                        :+:      :+:    :+:   */
+/*   cub3D_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 13:00:43 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:04:53 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static char	*get_scene_string(t_scene *scene, int fd)
 {
@@ -75,15 +75,15 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 	int		i;
 
 	i = 0;
-	if (!ft_strchr("NOSWEAFC", scene_arr[0][0]))
+	if (!ft_strchr("NOSWEAFCD", scene_arr[0][0]))
 		return (err_msg("Invalid element info: ", scene_arr[i]));
 	while (scene_arr[i])
 	{
 		scene->elems.filled_elem += get_scene_elem(scene, scene_arr[i++]);
-		if (scene->elems.filled_elem == 6 || scene->err_flag == ERROR)
+		if (scene->elems.filled_elem == 7 || scene->err_flag == ERROR)
 			break ;
 	}
-	if (scene->elems.filled_elem != 6)
+	if (scene->elems.filled_elem != 7)
 		return (ERROR);
 	while (scene_arr[i] && ft_isemptystr(scene_arr[i]))
 		i++;

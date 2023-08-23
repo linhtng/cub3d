@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D_main.c                                       :+:      :+:    :+:   */
+/*   cub3D_main_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 12:08:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:04:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int	check_input_file(char *argv, int fd, char *extension)
 {
@@ -23,9 +23,11 @@ int	check_input_file(char *argv, int fd, char *extension)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	t_scene	scene;
+	int				fd;
+	t_scene_bonus	b_scene;
+	t_scene			*scene;
 
+	scene = (t_scene *) &b_scene;
 	if (argc == 2 && !DEBUG)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -34,13 +36,12 @@ int	main(int argc, char **argv)
 			close(fd);
 			return (EXIT_FAILURE);
 		}
-		init_scene(&scene);
-		if (get_scene_data(fd, &scene) != ERROR)
+		init_scene(scene);
+		if (get_scene_data(fd, scene) != ERROR)
 		{
-			//print_scene(&scene);
-			raycast_start(&scene);
+			raycast_start(scene);
 		}
-		free_scene_data(&scene);
+		free_scene_data(scene);
 	}
 	else if (DEBUG)
 		mass_test_maps(argc - 1, &argv[1]);
