@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/23 18:53:41 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/23 19:48:19 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

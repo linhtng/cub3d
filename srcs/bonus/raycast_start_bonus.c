@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:39:12 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 20:21:43 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@
 
 int	key_press(int key_code, t_cubed_bonus *cubed)
 {
-	if (key_code == ESC)
-		cubed->keys[ESC_PRESSED] = 1;
 	if (key_code == TURN_LEFT)
 		cubed->keys[LEFT_PRESSED] = 1;
 	if (key_code == TURN_RIGHT)
@@ -50,7 +48,7 @@ int	key_press(int key_code, t_cubed_bonus *cubed)
 		cubed->keys[A_PRESSED] = 1;
 	if (key_code == RIGHT)
 		cubed->keys[D_PRESSED] = 1;
-	if (key_code == OPEN_DOOR)
+	if (key_code == INTERACT)
 		cubed->keys[SPACE_BAR] = 1;
 	cubed->key_pressed = key_code;
 	return (0);
@@ -59,7 +57,7 @@ int	key_press(int key_code, t_cubed_bonus *cubed)
 int	key_release(int key_code, t_cubed_bonus *cubed)
 {
 	if (key_code == ESC)
-		cubed->keys[ESC_PRESSED] = 0;
+		mlx_close((t_cubed *)cubed, 0, "Normal exit");
 	if (key_code == TURN_LEFT)
 		cubed->keys[LEFT_PRESSED] = 0;
 	if (key_code == TURN_RIGHT)
@@ -72,7 +70,7 @@ int	key_release(int key_code, t_cubed_bonus *cubed)
 		cubed->keys[A_PRESSED] = 0;
 	if (key_code == RIGHT)
 		cubed->keys[D_PRESSED] = 0;
-	if (key_code == OPEN_DOOR)
+	if (key_code == INTERACT)
 		cubed->keys[SPACE_BAR] = 0;
 	return (0);
 }
@@ -82,7 +80,7 @@ int	game_update(void *param)
 	t_cubed_bonus	*cubed;
 
 	cubed = (t_cubed_bonus *)param;
-	handle_press(cubed->key_pressed, param);
+	handle_press_bonus(cubed->key_pressed, param);
 	return (0);
 }
 

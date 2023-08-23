@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:37:15 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:49:50 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # define INTERACTABLE_NEARBY "DO"
 # define ANIMATION_FRAME 100
 # define NUM_KEY 8
-# define OPEN_DOOR 49
 
 # include "../includes/cub3D.h"
 
@@ -142,5 +141,8 @@ void	get_bonus_grid(t_scene *scene);
 
 /* interact_bonus.c */
 void	check_interaction(t_cubed_bonus *cubed);
+
+/* handle_press_bonus.c */
+int		handle_press_bonus(int key_code, t_cubed *cubed);
 
 #endif
