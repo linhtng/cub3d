@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_cubed_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 15:56:16 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:19:48 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	zero_cubed(t_cubed_bonus *cubed)
 
 void	setup_cubed(t_cubed *cubed)
 {
-	int	frame_fd;
-
+	int frame_fd;
+	
 	zero_cubed((t_cubed_bonus *) cubed);
 	cubed->mlx = mlx_init();
 	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
@@ -37,7 +37,10 @@ void	setup_cubed(t_cubed *cubed)
 	get_new_image(cubed, MINI_MAP_DIAMETER, MINI_MAP_DIAMETER);
 	frame_fd = open("texture_src/cubed_frame.xpm", O_RDWR);
 	if (frame_fd == ERROR)
+	{
+		close(frame_fd);
 		mlx_close(cubed, 1, "Cub3d: Error: No frame texture detected");
+	}
 	close(frame_fd);
 	((t_cubed_bonus *)cubed)->frame_img = \
 	get_new_xpm_image(cubed, "texture_src/cubed_frame.xpm");

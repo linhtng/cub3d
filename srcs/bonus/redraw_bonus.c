@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 11:14:09 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:38:11 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:19:00 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

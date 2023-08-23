@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_images_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:36:31 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:18:27 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 16:59:19 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:51:24 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

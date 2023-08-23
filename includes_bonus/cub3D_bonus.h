@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 17:50:31 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:06:50 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,15 @@
 # define INTERACTION_DISTANCE 13
 # define INTERACTABLE_HERE "D"
 # define INTERACTABLE_NEARBY "DO"
+# define ANIMATION_FRAME 100
 
 # include "../includes/cub3D.h"
+
+typedef struct s_reward
+{
+	struct s_vector		pos;
+	int					animated_frame;
+}					t_reward;
 
 typedef struct s_cubed_bonus
 {
@@ -44,6 +51,8 @@ typedef struct s_cubed_bonus
 	struct s_img_data	*minimap_img;
 	struct s_img_data	*mini_player_img;
 	struct s_img_data	*frame_img;
+	struct s_img_data	*reward_img;
+	struct s_reward		reward;
 }						t_cubed_bonus;
 
 typedef struct s_elem_bonus
