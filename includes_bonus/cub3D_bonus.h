@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 20:29:21 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:58:23 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,26 @@ typedef struct s_cubed_bonus
 	struct s_img_data	*mini_player_img;
 	struct s_img_data	*frame_img;
 }						t_cubed_bonus;
+
+typedef struct s_elem_bonus
+{
+	char	*floor;
+	char	*ceiling;
+	char	*door;
+}	t_elem_bonus;
+
+typedef struct s_scene_bonus
+{
+	int				len;
+	char			**array;
+	t_map			map;
+	t_elem			elems;
+	t_player		player;
+	int				err_flag;
+	t_img_data		*texture[4];
+	t_elem_bonus	bonus_elems;
+	t_img_data		*bonus_textures[3];//add all bonus textures here
+}					t_scene_bonus;
 
 typedef struct s_bham_info
 {

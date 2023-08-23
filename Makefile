@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/22 19:59:06 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/23 12:17:48 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes
 BONUS_CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes_bonus
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
- CDEBUG = -fsanitize=address
+#  CDEBUG = -fsanitize=address
 
 # DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \
@@ -44,7 +44,7 @@ EXIT = ft_mlx_close.c
 EVENT = handle_press.c
 IMG = ft_images.c
 PLAYER = setup_player.c player_move.c 
-SETUP = setup_cubed.c setup_raycast.c
+SETUP = setup_cubed.c setup_raycast.c init_scene.c
 TEXTURE = cub3D_texture.c
 MAIN = cub3D_main.c utils_2.c redraw.c
 PARSING = cub3D_utils.c cub3D_map.c cub3D_map_elems.c cub3D_map_content.c cub3D_map_valid.c cub3D_parsing_utils.c debug.c
@@ -68,6 +68,8 @@ BONUS = draw_minimap_bonus.c \
 		handle_press_bonus.c \
 		player_move_bonus.c \
 		interact_bonus.c \
+		cub3D_map_elems_bonus.c \
+		init_scene_bonus.c \
 
 SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/
@@ -77,7 +79,7 @@ OBJSFD_BONUS = objs_bonus/
 OBJ = $(ALL_SRCS:.c=.o)
 OBJS = $(patsubst %, $(OBJSFD)%, $(OBJ))
 
-ALL_BONUS_SRCS := $(filter-out raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c cub3D_texture.c cub3D_map_content.c cub3D_map_valid.c calculate_rays.c handle_press.c player_move.c, $(ALL_SRCS))
+ALL_BONUS_SRCS := $(filter-out init_scene.c cub3D_map_elems.c raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c cub3D_texture.c cub3D_map_content.c cub3D_map_valid.c calculate_rays.c handle_press.c player_move.c, $(ALL_SRCS))
 ALL_BONUS_SRCS += $(BONUS)
 OBJS_BONUS = $(patsubst %, $(OBJSFD_BONUS)%, $(ALL_BONUS_SRCS:.c=.o))
 # R_SRCS	:= $(addprefix $(SRCFD), $(R_SRC))
