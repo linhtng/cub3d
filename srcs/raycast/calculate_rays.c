@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_rays.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:17:04 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:36:24 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

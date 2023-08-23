@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_cubed_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 16:19:48 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:22:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	zero_cubed(t_cubed_bonus *cubed)
 void	setup_cubed(t_cubed *cubed)
 {
 	int frame_fd;
+	int reward_fd;
 	
 	zero_cubed((t_cubed_bonus *) cubed);
 	cubed->mlx = mlx_init();
@@ -47,4 +48,13 @@ void	setup_cubed(t_cubed *cubed)
 	ft_memset(((t_cubed_bonus *)cubed)->minimap_img->addr, TRANSPARENT, \
 	MINI_MAP_DIAMETER * MINI_MAP_DIAMETER * \
 	(((t_cubed_bonus *)cubed)->mini_player_img->bits_per_pixel / 8));
+	//try out the reward img to be animated
+	reward_fd = open("texture_src/reward.xpm", O_RDWR);
+	if (reward_fd == ERROR)
+		mlx_close(cubed, 1, "Cub3d: Error: No reward texture detected");
+	close(reward_fd);
+	((t_cubed_bonus *)cubed)->reward_img = \
+	get_new_xpm_image(cubed, "texture_src/reward.xpm");
+	// ((t_cubed_bonus *)cubed)->reward.pos.y = (PROJECTION_HEIGHT - ((t_cubed_bonus *)cubed)->reward_img->height) / 2;
+	// ((t_cubed_bonus *)cubed)->reward.pos.x = (PROJECTION_WIDTH - ((t_cubed_bonus *)cubed)->reward_img->width) / 2;
 }

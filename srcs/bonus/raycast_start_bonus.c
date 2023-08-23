@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:07:26 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:20:13 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // int	animate_reward(void *param)
 // {
 // 	t_cubed_bonus	*cubed;
-// 	//static int		frame;
 
 // 	cubed = (t_cubed_bonus *)param;
 // 	cubed->reward.animated_frame++;

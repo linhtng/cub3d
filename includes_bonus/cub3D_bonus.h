@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:06:50 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:23:21 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@
 
 typedef struct s_reward
 {
-	struct s_vector		pos;
+	struct s_vector		grid_coor;
+	struct s_vector		map_coor;
 	int					animated_frame;
+	int					seen;
+	float				distance;
 }					t_reward;
 
 typedef struct s_cubed_bonus
@@ -92,6 +95,7 @@ typedef struct s_draw_info
 	int			project_y;
 	int			floor_start;
 	int			material_hit;
+	int			y_step;
 	t_vector	tex;
 }				t_draw_info;
 
@@ -122,6 +126,9 @@ void	draw_mini_player(t_cubed *cubed);
 
 /* cub3D_texture_bonus.c */
 void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, t_draw_info *d_info);
+
+/* draw_objects.c */
+void	draw_object(t_cubed *cubed, int x);
 
 /* minimap_grid_bonus */
 void	get_bonus_grid(t_scene *scene);

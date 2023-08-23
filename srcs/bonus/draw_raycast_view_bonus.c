@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:00:16 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:19:38 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,12 @@ void	draw_view(t_cubed *cubed, t_ray_calc *ray_info, int x)
 	b_draw_textured_walls(cubed, ray_info, &draw_info);
 	if (draw_info.height < PROJECTION_HEIGHT)
 		draw_floor_ceiling(cubed, ray_info->angle, &draw_info);
+	if (((t_cubed_bonus *)cubed)->reward.seen)
+	{
+	// 	printf("[reward distance] %f\n", ((t_cubed_bonus *)cubed)->reward.distance);
+	// 	printf("[reward info] grid coor y: %f, x: %f, map_coor: y %f, x %f\n", \
+	// ((t_cubed_bonus *)cubed)->reward.grid_coor.y, ((t_cubed_bonus *)cubed)->reward.grid_coor.x, \
+	// ((t_cubed_bonus *)cubed)->reward.map_coor.y, ((t_cubed_bonus *)cubed)->reward.map_coor.x);
+		draw_object(cubed, x);
+	}
 }
