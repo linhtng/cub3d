@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 18:44:39 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:04:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 		init_scene(scene);
 		if (get_scene_data(fd, scene) != ERROR)
 		{
-			//print_scene(&scene);
 			raycast_start(scene);
 		}
 		free_scene_data(scene);
