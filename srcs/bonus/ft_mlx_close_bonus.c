@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 14:57:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:52:21 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,19 @@ static void	ft_destroy_image(void *mlx, t_img_data **img)
 	free(*img);
 	*img = NULL;
 }
-
+void	destroy_bonus_images(t_cubed_bonus *cubed, t_scene_bonus *scene)
+{
+	if (cubed->mini_player_img)
+		ft_destroy_image(cubed->mlx, &(cubed->mini_player_img));
+	if (cubed->minimap_img)
+		ft_destroy_image(cubed->mlx, &(cubed->minimap_img));
+	if (scene && scene->bonus_textures[0])
+		ft_destroy_image(cubed->mlx, &scene->bonus_textures[0]);
+	if (scene && scene->bonus_textures[1])
+		ft_destroy_image(cubed->mlx, &scene->bonus_textures[1]);
+	if (scene && scene->bonus_textures[2])
+		ft_destroy_image(cubed->mlx, &scene->bonus_textures[2]);
+}
 static void	destroy_all_images(t_cubed_bonus *cubed)
 {
 	if (cubed->raycast_info && cubed->raycast_info->r_img)
@@ -33,12 +45,7 @@ static void	destroy_all_images(t_cubed_bonus *cubed)
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[EAST]));
 	if (cubed->scene && cubed->scene->texture[WEST])
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
-	if (cubed->mini_player_img)
-		ft_destroy_image(cubed->mlx, &(cubed->mini_player_img));
-	if (cubed->minimap_img)
-		ft_destroy_image(cubed->mlx, &(cubed->minimap_img));
-	if (cubed->frame_img)
-		ft_destroy_image(cubed->mlx, &(cubed->frame_img));
+	destroy_bonus_images((t_cubed_bonus *)cubed, (t_scene_bonus *)cubed->scene);
 }
 
 int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)

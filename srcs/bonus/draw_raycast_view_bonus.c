@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 20:37:32 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:38:52 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	draw_floor_ceiling(t_cubed *cubed, float ray_angle, t_draw_info *d_info)
 		cos(deg_to_rad(ray_angle)) * 370 * TEXTURE_SIZE / delta_y / ray_fix);
 		d_info->tex.y = (cubed->scene->player.location.y - \
 		sin(deg_to_rad(ray_angle)) * 370 * TEXTURE_SIZE / delta_y / ray_fix);
-		d_info->tex.color = ft_pixel_get(cubed->scene->texture[0], \
+		d_info->tex.color = ft_pixel_get(((t_scene_bonus *)cubed->scene)->bonus_textures[1], \
 		(int)d_info->tex.x & 63, (int)d_info->tex.y & 63);//choose floor texture here
 		ft_pixel_put(cubed->raycast_info->r_img, d_info->project_x, \
 		d_info->project_y, d_info->tex.color);
-		d_info->tex.color = ft_pixel_get(cubed->scene->texture[1], \
+		d_info->tex.color = ft_pixel_get(((t_scene_bonus *)cubed->scene)->bonus_textures[2], \
 		(int)d_info->tex.x & 63, (int)d_info->tex.y & 63);//choose ceiling texture here
 		ft_pixel_put(cubed->raycast_info->r_img, d_info->project_x, \
 		PROJECTION_HEIGHT - d_info->project_y, d_info->tex.color);

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 20:31:49 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:39:38 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@ unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
 	return (dst);
 }
 
-void	load_texture(t_scene *scene, t_cubed *cubed)
+void	load_texture(t_scene *normal_scene, t_cubed *cubed)
 {
+	t_scene_bonus *scene;
+
+	scene = (t_scene_bonus *)normal_scene;
 	scene->texture[NORTH] = get_new_xpm_image(cubed, scene->elems.north);
 	scene->texture[SOUTH] = get_new_xpm_image(cubed, scene->elems.south);
 	scene->texture[EAST] = get_new_xpm_image(cubed, scene->elems.east);
 	scene->texture[WEST] = get_new_xpm_image(cubed, scene->elems.west);
+	scene->bonus_textures[0] = get_new_xpm_image(cubed, scene->bonus_elems.door);//door texture
+	scene->bonus_textures[1] = get_new_xpm_image(cubed, scene->bonus_elems.floor);//floor texture
+	scene->bonus_textures[2] = get_new_xpm_image(cubed, scene->bonus_elems.ceiling);//ceiling texture
 }
 
 static t_vector	get_tex_vec(t_vector *hit, int dir, float y_step, \
@@ -63,7 +69,10 @@ static unsigned int	choose_from_texture(t_scene *scene, t_draw_info *draw)
 	unsigned int	color;
 
 	if (draw->material_hit == DOOR_CLOSED)
-		color = ft_pixel_get(scene->texture[0], draw->tex.x, draw->tex.y);//select from door texture
+	{
+		// color = ft_pixel_get(scene->texture[0], draw->tex.x, draw->tex.y);//select from door texture
+		color = ft_pixel_get(((t_scene_bonus *)scene)->bonus_textures[0], draw->tex.x, draw->tex.y);//select door texture
+	}
 	else
 	{
 		color = \

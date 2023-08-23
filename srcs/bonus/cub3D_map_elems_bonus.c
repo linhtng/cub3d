@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 12:02:09 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:37:08 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static int	get_texture(t_scene_bonus *scene, char *elem_id, char *texture, int l
 	if (!ft_strncmp(elem_id, "DO", len))
 		ret = check_valid_texture(&scene->bonus_elems.door, texture);
 	if (!ft_strncmp(elem_id, "F", len))
-		ret = check_valid_texture(&scene->bonus_elems.ceiling, texture);
-	if (!ft_strncmp(elem_id, "C", len))
 		ret = check_valid_texture(&scene->bonus_elems.floor, texture);
+	if (!ft_strncmp(elem_id, "C", len))
+		ret = check_valid_texture(&scene->bonus_elems.ceiling, texture);
 	return (ret);
 }
 
@@ -125,7 +125,7 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 		&(single_elem[0])[2], 2);
 	else if (ft_strchr("NOSWEADFC", single_elem[0][0]) && info_num == 2)//add DFC for door, floor and ceiling
 		scene->err_flag = get_texture((t_scene_bonus *)scene, single_elem[0], single_elem[1], 3);
-	// else if (ft_strchr("FC", single_elem[0][0]))
+	// else if (ft_strchr("C", single_elem[0][0]))
 	// 	scene->err_flag = get_scene_color(scene, scene_line);// remove color portion?
 	free_arr(single_elem);
 	return (scene->err_flag);
