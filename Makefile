@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/22 21:22:40 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/23 14:56:45 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ BONUS = draw_minimap_bonus.c \
 		cub3D_map_content_bonus.c \
 		cub3D_map_valid_bonus.c \
 		calculate_rays_bonus.c \
+		draw_objects.c \
 
 SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/

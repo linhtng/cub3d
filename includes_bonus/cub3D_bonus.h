@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 21:41:55 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:20:32 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_draw_info
 	int			project_x;
 	int			project_y;
 	int			floor_start;
+	int			y_step;
 	t_vector	tex;
 }				t_draw_info;
 
@@ -91,6 +92,9 @@ void	draw_mini_player(t_cubed *cubed);
 
 /* cub3D_texture_bonus.c */
 void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, t_draw_info *d_info);
+
+/* draw_objects.c */
+void	draw_object(t_cubed *cubed, int x);
 
 /* minimap_grid_bonus */
 void	get_bonus_grid(t_scene *scene);

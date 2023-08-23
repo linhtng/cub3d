@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 21:47:40 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:41:36 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,27 +117,27 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
 
-void	get_object_shortest(t_cubed *arg, t_ray_calc *ray_info)
+void	get_object_shortest(t_cubed *arg, t_ray_calc *ray_info, t_ray_calc *object_ray)
 {
-	float	h_distance;
+	float			h_distance;
 	t_cubed_bonus	*cubed;
-	//float	v_distance;
+	float			v_distance;
 
 	cubed = (t_cubed_bonus *)arg;
-	h_distance = get_distance(&cubed->scene->player.location, &cubed->reward.map_coor);
-	//v_distance = get_distance(&cubed->scene->player.location, &ray_info->v_map);
-	if (h_distance != 0.0f) //&& (h_distance < v_distance || v_distance == 0.0f))
+	h_distance = get_distance(&cubed->scene->player.location, &object_ray->h_map);
+	v_distance = get_distance(&cubed->scene->player.location, &object_ray->v_map);
+	if (h_distance != 0.0f && (h_distance < v_distance || v_distance == 0.0f))
 	{
 		//ray_info->shortest = 'h';
 		cubed->reward.distance = h_distance * \
 		cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
 	}
-	// else
-	// {
-	// 	ray_info->shortest = 'v';
-	// 	ray_info->distance = v_distance * \
-	// 	cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
-	// }
+	else
+	{
+		// ray_info->shortest = 'v';
+		cubed->reward.distance = v_distance * \
+		cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
+	}
 }
 
 void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
@@ -161,9 +161,26 @@ void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 	}
 }
 
+void	set_object_hits(t_reward *reward, t_ray_calc *obj_ray, int hit)
+{
+	if (hit == 'v' && reward->seen)
+	{
+		obj_ray->v_grid = reward->grid_coor;
+		obj_ray->v_map = reward->map_coor;
+	}
+	else if (hit == 'h' && reward->seen)
+	{
+		obj_ray->h_grid = reward->grid_coor;
+		obj_ray->h_map = reward->map_coor;
+	}
+	else
+		ft_memset(obj_ray, 0, sizeof(obj_ray));
+}
+
 void	cast_rays(t_cubed *cubed)
 {
 	t_ray_calc	ray;
+	t_ray_calc	object_ray;
 	int			rays_drawn;
 
 	ray.angle = correct_degrees(cubed->scene->player.angle - FOV / 2);
@@ -172,10 +189,12 @@ void	cast_rays(t_cubed *cubed)
 	{
 		((t_cubed_bonus *)cubed)->reward.seen = 0;
 		shoot_one_ray_horizontal(cubed, &ray);
-		//compare the h vs v distance of the object and save to the ray struct
+		set_object_hits(&((t_cubed_bonus *)cubed)->reward, &object_ray, 'h');
 		shoot_one_ray_vertical(cubed, &ray);
+		set_object_hits(&((t_cubed_bonus *)cubed)->reward, &object_ray, 'v');
 		get_corrected_shortest(cubed, &ray);
-		get_object_shortest(cubed, &ray);
+		//compare the h vs v distance of the object and save to the ray struct
+		get_object_shortest(cubed, &ray, &object_ray);
 		draw_view(cubed, &ray, PROJECTION_WIDTH - rays_drawn);
 		ray.angle = \
 		correct_degrees(ray.angle + cubed->raycast_info->angle_between_rays);

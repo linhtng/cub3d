@@ -6,28 +6,28 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 20:01:28 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:16:38 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	animate_reward(void *param)
-{
-	t_cubed_bonus	*cubed;
+// int	animate_reward(void *param)
+// {
+// 	t_cubed_bonus	*cubed;
 
-	cubed = (t_cubed_bonus *)param;
-	cubed->reward.animated_frame++;
-	if (cubed->reward.animated_frame == ANIMATION_FRAME)
-		cubed->reward.pos.y += 10;
-	else if (cubed->reward.animated_frame == ANIMATION_FRAME * 2)
-	{
-		cubed->reward.pos.y -= 10;
-		cubed->reward.animated_frame = 0;
-	}
-	refresh_images(param);
-	return (0);
-}
+// 	cubed = (t_cubed_bonus *)param;
+// 	cubed->reward.animated_frame++;
+// 	if (cubed->reward.animated_frame == ANIMATION_FRAME)
+// 		cubed->reward.pos.y += 10;
+// 	else if (cubed->reward.animated_frame == ANIMATION_FRAME * 2)
+// 	{
+// 		cubed->reward.pos.y -= 10;
+// 		cubed->reward.animated_frame = 0;
+// 	}
+// 	refresh_images(param);
+// 	return (0);
+// }
 
 int	raycast_start(t_scene *scene)
 {
@@ -47,7 +47,7 @@ int	raycast_start(t_scene *scene)
 	refresh_images(cubed);
 	mlx_hook(cubed->window, 17, 0, close_window, cubed);
 	mlx_hook(cubed->window, 2, 1L << 0, handle_press, cubed);
-	mlx_loop_hook(cubed->mlx, animate_reward, cubed);
+	//mlx_loop_hook(cubed->mlx, animate_reward, cubed);
 	mlx_loop(cubed->mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 18:59:03 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:16:07 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	refresh_images(t_cubed *cubed)
 	MINIMAP_POS_X, MINIMAP_POS_Y);
 	mlx_put_image_to_window(cubed->mlx, cubed->window, \
 	((t_cubed_bonus *)cubed)->frame_img->img, 0, 0);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, \
-	((t_cubed_bonus *)cubed)->reward_img->img,((t_cubed_bonus *)cubed)->reward.pos.y, ((t_cubed_bonus *)cubed)->reward.pos.x);
+	// mlx_put_image_to_window(cubed->mlx, cubed->window, \
+	// ((t_cubed_bonus *)cubed)->reward_img->img,((t_cubed_bonus *)cubed)->reward.pos.y, ((t_cubed_bonus *)cubed)->reward.pos.x);
 	cubed->dirty_images = FALSE;
 }
