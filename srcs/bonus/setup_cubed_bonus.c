@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 16:19:48 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:15:34 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	zero_cubed(t_cubed_bonus *cubed)
 	cubed->frame_img = NULL;
 	cubed->mini_player_img = NULL;
 	cubed->minimap_img = NULL;
+	ft_memset(cubed->keys, 0, NUM_KEY);
 }
 
 void	setup_cubed(t_cubed *cubed)

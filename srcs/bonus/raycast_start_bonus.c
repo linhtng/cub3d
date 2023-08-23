@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 16:29:30 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:23:40 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,58 @@
 // 	return (0);
 // }
 
+int	key_press(int key_code, t_cubed_bonus *cubed)
+{
+	if (key_code == ESC)
+		cubed->keys[ESC_PRESSED] = 1;
+	if (key_code == TURN_LEFT)
+		cubed->keys[LEFT_PRESSED] = 1;
+	if (key_code == TURN_RIGHT)
+		cubed->keys[RIGHT_PRESSED] = 1;
+	if (key_code == FORWARD)
+		cubed->keys[W_PRESSED] = 1;
+	if (key_code == BACK)
+		cubed->keys[S_PRESSED] = 1;
+	if (key_code == LEFT)
+		cubed->keys[A_PRESSED] = 1;
+	if (key_code == RIGHT)
+		cubed->keys[D_PRESSED] = 1;
+	if (key_code == OPEN_DOOR)
+		cubed->keys[SPACE_BAR] = 1;
+	cubed->key_pressed = key_code;
+	return (0);
+}
+
+int	key_release(int key_code, t_cubed_bonus *cubed)
+{
+	if (key_code == ESC)
+		cubed->keys[ESC_PRESSED] = 0;
+	if (key_code == TURN_LEFT)
+		cubed->keys[LEFT_PRESSED] = 0;
+	if (key_code == TURN_RIGHT)
+		cubed->keys[RIGHT_PRESSED] = 0;
+	if (key_code == FORWARD)
+		cubed->keys[W_PRESSED] = 0;
+	if (key_code == BACK)
+		cubed->keys[S_PRESSED] = 0;
+	if (key_code == LEFT)
+		cubed->keys[A_PRESSED] = 0;
+	if (key_code == RIGHT)
+		cubed->keys[D_PRESSED] = 0;
+	if (key_code == OPEN_DOOR)
+		cubed->keys[SPACE_BAR] = 0;
+	return (0);
+}
+
+int	game_update(void *param)
+{
+	t_cubed_bonus	*cubed;
+
+	cubed = (t_cubed_bonus *)param;
+	handle_press(cubed->key_pressed, param);
+	return (0);
+}
+
 int	raycast_start(t_scene *scene)
 {
 	t_cubed_bonus	cubed_bonus;
@@ -51,8 +103,9 @@ int	raycast_start(t_scene *scene)
 	draw_background(cubed);
 	refresh_images(cubed);
 	mlx_hook(cubed->window, 17, 0, close_window, cubed);
-	mlx_hook(cubed->window, 2, 1L << 0, handle_press, cubed);
-	//mlx_loop_hook(cubed->mlx, animate_reward, cubed);
+	mlx_hook(cubed->window, 2, 1L << 0, key_press, cubed);
+	mlx_hook(cubed->window, 3, 1L << 1, key_release, cubed);
+	mlx_loop_hook(cubed->mlx, game_update, cubed);
 	mlx_loop(cubed->mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 19:45:21 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:17:31 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define VALID_CHARS "01NSEWCDO "
 # define MAP_CONTENT "0NSEWCDO"
 # define ANIMATION_FRAME 100
+# define NUM_KEY 8
+# define OPEN_DOOR 49
 
 # include "../includes/cub3D.h"
 
@@ -32,6 +34,18 @@ typedef struct s_reward
 	struct s_vector		pos;
 	int					animated_frame;
 }					t_reward;
+
+enum	e_keys_pressed
+{
+	W_PRESSED,
+	S_PRESSED,
+	A_PRESSED,
+	D_PRESSED,
+	LEFT_PRESSED,
+	RIGHT_PRESSED,
+	ESC_PRESSED,
+	SPACE_BAR
+};
 
 typedef struct s_cubed_bonus
 {
@@ -43,8 +57,8 @@ typedef struct s_cubed_bonus
 	struct s_img_data	*minimap_img;
 	struct s_img_data	*mini_player_img;
 	struct s_img_data	*frame_img;
-	struct s_img_data	*reward_img;
-	struct s_reward		reward;
+	int					keys[NUM_KEY];
+	int					key_pressed;
 }						t_cubed_bonus;
 
 typedef struct s_bham_info
