@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 20:27:44 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:36:16 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	handle_press_bonus(int key_code, t_cubed *param)
 	{
 		move_right_left(param, key_code);
 	}
-	else if (cubed->keys[SPACE_BAR] == INTERACT)
+	else if (cubed->keys[SPACE_BAR])
 		check_interaction((t_cubed_bonus *)cubed);
 	if (cubed->dirty_images)
 		refresh_images(param);
