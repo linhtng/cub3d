@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_texture_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 19:02:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:49:40 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
 void	load_texture(t_scene *normal_scene, t_cubed *cubed)
 {
 	t_scene_bonus	*scene;
+	int				i;
 
 	scene = (t_scene_bonus *)normal_scene;
 	scene->texture[NORTH] = get_new_xpm_image(cubed, scene->elems.north);
@@ -36,8 +37,16 @@ void	load_texture(t_scene *normal_scene, t_cubed *cubed)
 	get_new_xpm_image(cubed, scene->bonus_elems.door);
 	scene->bonus_textures[1] = \
 	get_new_xpm_image(cubed, scene->bonus_elems.floor);
-	scene->bonus_textures[2] = \
-	get_new_xpm_image(cubed, scene->bonus_elems.ceiling);
+	// scene->bonus_textures[2] = \
+	// get_new_xpm_image(cubed, scene->bonus_elems.ceiling);
+	i = 0;
+	while (i < 3)
+	{
+		scene->bonus_ceiling[i] = \
+		get_new_xpm_image(cubed, scene->bonus_elems.ceiling[i]);
+		i++;
+	}
+	scene->bonus_textures[2] = scene->bonus_ceiling[0];
 }
 
 static t_vector	get_tex_vec(t_vector *hit, int dir, float y_step, \

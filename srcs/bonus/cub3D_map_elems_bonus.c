@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_elems_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 19:04:08 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:48:28 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	check_valid_texture(char **path, char *texture)
 
 	if (!texture || !texture[0])
 		return (err_msg("Empty texture info", NULL));
-	if (*path)
-		return (err_msg("Duplicate texture detected", NULL));
 	*path = ft_strdup(texture);
 	if (!*path)
 		return (err_msg("Malloc error when getting texture", NULL));
@@ -33,9 +31,11 @@ static int	check_valid_texture(char **path, char *texture)
 static int	get_texture(t_scene_bonus *scene, char *elem_id, \
 char *texture, int len)
 {
-	int	ret;
+	int			ret;
+	static int	i;
 
 	ret = -1;
+	i = 0;
 	if (!ft_strncmp(elem_id, "NO", len))
 		ret = check_valid_texture(&scene->elems.north, texture);
 	if (!ft_strncmp(elem_id, "SO", len))
@@ -49,7 +49,11 @@ char *texture, int len)
 	if (!ft_strncmp(elem_id, "F", len))
 		ret = check_valid_texture(&scene->bonus_elems.floor, texture);
 	if (!ft_strncmp(elem_id, "C", len))
-		ret = check_valid_texture(&scene->bonus_elems.ceiling, texture);
+	{
+		while (scene->bonus_elems.ceiling[i])
+			i++;
+		ret = check_valid_texture(&(scene->bonus_elems.ceiling[i]), texture);
+	}
 	return (ret);
 }
 

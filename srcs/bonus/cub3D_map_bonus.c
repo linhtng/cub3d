@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 19:04:53 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:03:32 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 	while (scene_arr[i])
 	{
 		scene->elems.filled_elem += get_scene_elem(scene, scene_arr[i++]);
-		if (scene->elems.filled_elem == 7 || scene->err_flag == ERROR)
+		if (scene->elems.filled_elem == NUM_ELEMS || scene->err_flag == ERROR)
 			break ;
 	}
-	if (scene->elems.filled_elem != 7)
+	if (scene->elems.filled_elem != NUM_ELEMS)
 		return (ERROR);
 	while (scene_arr[i] && ft_isemptystr(scene_arr[i]))
 		i++;
