@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/24 18:33:12 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:33:03 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int	main(int argc, char **argv)
 		}
 		init_scene(scene);
 		if (get_scene_data(fd, scene) != ERROR)
-		{
-			//print_scene_bonus(((t_scene_bonus *)scene));
 			raycast_start(scene);
-		}
 		free_scene_data(scene);
 	}
 	else if (DEBUG)

@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/24 21:58:36 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:11:01 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,22 @@ int	key_release(int key_code, t_cubed_bonus *cubed)
 		cubed->keys[SPACE_BAR] = 0;
 	return (0);
 }
+
 void	update_animation(t_cubed_bonus *cubed, t_scene_bonus *scene)
 {
-	if ((cubed->animated_frame % ANIMATION_FRAME))
+	if (cubed->animated_frame == ANIMATION_FRAME)
 	{
-		if ((cubed->animated_frame % ANIMATION_FRAME) == 3)
-		{
-			scene->bonus_textures[2] = scene->bonus_ceiling[1];
-			redraw((t_cubed *)cubed);
-			refresh_images((t_cubed *)cubed);
-		}
-		if ((cubed->animated_frame % ANIMATION_FRAME) == 6)
-		{
-			scene->bonus_textures[2] = scene->bonus_ceiling[2];
-			redraw((t_cubed *)cubed);
-			refresh_images((t_cubed *)cubed);
-		}
+		scene->bonus_textures[2] = scene->bonus_ceiling[1];
+		redraw((t_cubed *)cubed);
+		refresh_images((t_cubed *)cubed);
 	}
-	else if ((cubed->animated_frame % ANIMATION_FRAME) == 0)
+	if (cubed->animated_frame == ANIMATION_FRAME * 2)
+	{
+		scene->bonus_textures[2] = scene->bonus_ceiling[2];
+		redraw((t_cubed *)cubed);
+		refresh_images((t_cubed *)cubed);
+	}
+	else if (cubed->animated_frame == ANIMATION_FRAME * 3)
 	{
 		scene->bonus_textures[2] = scene->bonus_ceiling[0];
 		redraw((t_cubed *)cubed);

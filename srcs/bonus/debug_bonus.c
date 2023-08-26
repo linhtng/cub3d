@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:42:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/24 18:16:48 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:13:12 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ void	print_scene_bonus(t_scene_bonus *scene)
 	printf("SO: %s\n", scene->elems.south);
 	printf("WE: %s\n", scene->elems.west);
 	printf("EA: %s\n", scene->elems.east);
-	//printf("floor color: %x\n", scene->elems.floor_color);
 	while (i < 3)
 	{
-		printf("ceiling texture %d: %s\n",i, scene->bonus_elems.ceiling[i]);
+		printf("ceiling texture %d: %s\n", i, scene->bonus_elems.ceiling[i]);
 		i++;
 	}
 	printf("player spawn dir is: %c, pos_y is: %d, pos_x is: %d\n", \

@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/24 20:14:47 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:11:26 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	zero_cubed(t_cubed_bonus *cubed)
 
 void	setup_cubed(t_cubed *cubed)
 {
-	int frame_fd;
-	
+	int	frame_fd;
+
 	zero_cubed((t_cubed_bonus *) cubed);
 	cubed->mlx = mlx_init();
 	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");

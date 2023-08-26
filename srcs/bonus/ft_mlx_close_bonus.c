@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_close_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:01:06 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:39:16 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ void	destroy_bonus_images(t_cubed_bonus *cubed, t_scene_bonus *scene)
 		ft_destroy_image(cubed->mlx, &scene->bonus_textures[0]);
 	if (scene && scene->bonus_textures[1])
 		ft_destroy_image(cubed->mlx, &scene->bonus_textures[1]);
-	if (scene && scene->bonus_textures[2])
-		ft_destroy_image(cubed->mlx, &scene->bonus_textures[2]);
+	if (scene && scene->bonus_ceiling[0])
+		ft_destroy_image(cubed->mlx, &scene->bonus_ceiling[0]);
+	if (scene && scene->bonus_ceiling[1])
+		ft_destroy_image(cubed->mlx, &scene->bonus_ceiling[1]);
+	if (scene && scene->bonus_ceiling[2])
+		ft_destroy_image(cubed->mlx, &scene->bonus_ceiling[2]);
 }
 
 static void	destroy_all_images(t_cubed_bonus *cubed)
