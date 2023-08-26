@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/26 18:11:01 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/26 19:46:17 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	raycast_start(t_scene *scene)
 	mlx_hook(cubed->window, 17, 0, close_window, cubed);
 	mlx_hook(cubed->window, 2, 1L << 0, key_press, cubed);
 	mlx_hook(cubed->window, 3, 1L << 1, key_release, cubed);
+	mlx_hook(cubed->window, 6, 1L << 6, mouse_move, cubed);
 	mlx_loop_hook(cubed->mlx, game_update, cubed);
 	mlx_loop(cubed->mlx);
 	return (0);

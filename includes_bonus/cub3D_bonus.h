@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/26 18:30:50 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/26 19:17:41 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_cubed_bonus
 	int					keys[NUM_KEY];
 	int					key_pressed;
 	int					animated_frame;
+	int					mouse_x;
 }						t_cubed_bonus;
 
 typedef struct s_elem_bonus
@@ -147,6 +148,9 @@ void	check_interaction(t_cubed_bonus *cubed);
 
 /* handle_press_bonus.c */
 int		handle_press_bonus(int key_code, t_cubed *cubed);
+
+/* mouse_bonus.c */
+int 	mouse_move(int x, int y, void *param);
 
 /* debug */
 void	print_scene_bonus(t_scene_bonus *scene);

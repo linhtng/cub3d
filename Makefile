@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/26 18:35:35 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/26 19:19:09 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes
 BONUS_CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes_bonus
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
-#CDEBUG = -fsanitize=address
+CDEBUG = -fsanitize=address
 
 # DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \
@@ -73,6 +73,7 @@ BONUS = draw_minimap_bonus.c \
 		cub3D_map_bonus.c \
 		cub3D_main_bonus.c \
 		cub3D_parsing_utils_bonus.c \
+		mouse_bonus.c \
 		debug_bonus.c \
 
 SRCFD = srcs/
