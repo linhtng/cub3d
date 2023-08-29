@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:21:05 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:35:01 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ void	turn_player(t_cubed *cubed, int key_code)
 	else
 		cubed->scene->player.angle = \
 		correct_degrees(cubed->scene->player.angle - 5);
-	cubed->scene->player.d.x = cos(deg_to_rad(cubed->scene->player.angle)) * 5;
-	cubed->scene->player.d.y = -sin(deg_to_rad(cubed->scene->player.angle)) * 5;
+	cubed->scene->player.d.x = \
+	cos(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
+	cubed->scene->player.d.y = \
+	-sin(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
 	redraw(cubed);
 	cubed->dirty_images = TRUE;
 }
@@ -114,9 +116,9 @@ void	move_right_left(t_cubed *cubed, int key_code)
 	else
 		move_angle = correct_degrees(cubed->scene->player.angle + 90.0f);
 	next_loc.x = cubed->scene->player.location.x + \
-	cos(deg_to_rad(move_angle)) * 5;
+	cos(deg_to_rad(move_angle)) * PLAYER_SPEED;
 	next_loc.y = cubed->scene->player.location.y + \
-	-sin(deg_to_rad(move_angle)) * 5;
+	-sin(deg_to_rad(move_angle)) * PLAYER_SPEED;
 	if (can_move(cubed, &next_loc))
 	{
 		cubed->scene->player.location.x = next_loc.x;

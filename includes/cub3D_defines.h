@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 19:51:24 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:32:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define TRUE 1
 # define FALSE 0
 # define PANE_Y 1 //was this used, had to capitalize
+# define PLAYER_SPEED 15
 
 /* RAY CASTING DEFINES */
 # define PROJECTION_WIDTH 1370 //685//1370 //1366
