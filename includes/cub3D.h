@@ -6,22 +6,19 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 16:43:45 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:33:14 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-/**TODO CHECK IF ALL OF THESE ARE NEEDED **/
 /* for printf */
 # include <stdio.h>
 /* for sin, cos, sqrt, etc*/
 # include <math.h>
 /* for minilibx */
 # include <mlx.h>
-/* do we need this? */
-# include <stdlib.h>
 /* for write read, open etc*/
 # include <unistd.h> 
 # include <sys/types.h>
