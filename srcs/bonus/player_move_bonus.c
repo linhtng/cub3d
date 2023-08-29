@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 15:58:40 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:21:05 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	move_forward_backward(t_cubed *cubed, int key_code)
 {
 	t_vector	next_loc;
 
-	printf("[move forward backward] key code: %d\n", key_code);
 	if (key_code == FORWARD)
 	{
 		next_loc.x = cubed->scene->player.location.x + cubed->scene->player.d.x;

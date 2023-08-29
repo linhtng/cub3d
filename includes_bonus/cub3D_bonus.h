@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 14:34:52 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:19:08 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@
 # define NUM_ELEMS 9
 
 # include "../includes/cub3D.h"
-
-typedef struct s_reward
-{
-	struct s_vector		pos;
-	int					animated_frame;
-}					t_reward;
 
 enum	e_keys_pressed
 {
@@ -88,7 +82,7 @@ typedef struct s_scene_bonus
 	int				err_flag;
 	t_img_data		*texture[4];
 	t_elem_bonus	bonus_elems;
-	t_img_data		*bonus_textures[3];//add all bonus textures here, 0 texture is door, 1 is floor, 2 is ceiling
+	t_img_data		*bonus_textures[3];
 	t_img_data		*bonus_ceiling[4];
 }					t_scene_bonus;
 
@@ -105,7 +99,7 @@ typedef struct s_draw_info
 {
 	float		height;
 	int			dir;
-	int			project_x;          
+	int			project_x;
 	int			project_y;
 	int			floor_start;
 	int			material_hit;
@@ -115,9 +109,7 @@ typedef struct s_draw_info
 enum	e_legend
 {
 	OPEN_SPACE = 0,
-	NO_VALUE = ' ',
 	WALL = 1,
-	// FLOODED_WALL = 'B',
 	DOOR_OPEN = 'O',
 	DOOR_CLOSED = 'D'
 };
@@ -138,7 +130,8 @@ void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info);
 void	draw_mini_player(t_cubed *cubed);
 
 /* cub3D_texture_bonus.c */
-void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, t_draw_info *d_info);
+void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, \
+		t_draw_info *d_info);
 
 /* minimap_grid_bonus */
 void	get_bonus_grid(t_scene *scene);
@@ -147,10 +140,10 @@ void	get_bonus_grid(t_scene *scene);
 void	check_interaction(t_cubed_bonus *cubed);
 
 /* handle_press_bonus.c */
-int		handle_press_bonus(int key_code, t_cubed *cubed);
+int		handle_press_bonus(t_cubed *cubed);
 
 /* mouse_bonus.c */
-int 	mouse_move(int x, int y, void *param);
+int		mouse_move(int x, int y, void *param);
 
 /* debug */
 void	print_scene_bonus(t_scene_bonus *scene);

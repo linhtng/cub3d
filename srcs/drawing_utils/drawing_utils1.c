@@ -6,13 +6,11 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 15:32:20 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:18:49 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-//TODO determine which of these needs to go, put grid is used for minimap
 
 void	ft_pixel_put(t_img_data *data, int x, int y, unsigned int color)
 {
