@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_start_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 20:21:43 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:06:20 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ int	key_release(int key_code, t_cubed_bonus *cubed)
 		cubed->keys[A_PRESSED] = 0;
 	if (key_code == RIGHT)
 		cubed->keys[D_PRESSED] = 0;
-	if (key_code == INTERACT)
-		cubed->keys[SPACE_BAR] = 0;
 	return (0);
 }
 

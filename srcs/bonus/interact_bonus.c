@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:44:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/22 22:09:32 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:06:27 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	check_interaction(t_cubed_bonus *cubed)
 	char	player_cell;
 	char	in_range;
 
+	cubed->keys[SPACE_BAR] = 0;
 	player_cell = get_player_cell_content(cubed);
 	in_range = get_in_range_content(cubed);
 	if (ft_strchr(INTERACTABLE_HERE, player_cell))
