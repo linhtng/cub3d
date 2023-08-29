@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:19:08 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:50:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define VALID_CHARS "01NSEWCDO "
 # define MAP_CONTENT "0NSEWCDO"
 # define HITABLE_MAP_VAL "1D"
-# define INTERACTION_DISTANCE 13
+# define INTERACTION_DISTANCE 14
 # define INTERACTABLE_HERE "D"
 # define INTERACTABLE_NEARBY "DO"
 # define ANIMATION_FRAME 20

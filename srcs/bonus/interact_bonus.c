@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:44:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/28 15:06:27 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:52:16 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ char	get_in_range_content(t_cubed_bonus *cubed)
 	int	x;
 	int	y;
 
-	x = (int)(cubed->scene->player.location.x + cubed->scene->player.d.x * \
-	INTERACTION_DISTANCE) / CELL_SIZE;
-	y = (int)(cubed->scene->player.location.y + cubed->scene->player.d.y * \
-	INTERACTION_DISTANCE) / CELL_SIZE;
+	x = (int)(cubed->scene->player.location.x + \
+	(cubed->scene->player.d.x / 3.0f) * \
+	(float)INTERACTION_DISTANCE) / CELL_SIZE;
+	y = (int)(cubed->scene->player.location.y + \
+	(cubed->scene->player.d.y / 3.0f) * \
+	(float)INTERACTION_DISTANCE) / CELL_SIZE;
 	return (cubed->scene->map.grid[y][x]);
 }
 
@@ -59,10 +61,11 @@ void	change_grid_value(t_cubed_bonus *cubed, char found, int player_or_range)
 	else
 	{
 		cubed->scene->map.grid \
-		[(int)(cubed->scene->player.location.y + cubed->scene->player.d.y * \
-		INTERACTION_DISTANCE) / CELL_SIZE][(int) \
-		(cubed->scene->player.location.x + cubed->scene->player.d.x * \
-		INTERACTION_DISTANCE) / CELL_SIZE] = new_value;
+		[(int)(cubed->scene->player.location.y + \
+		(cubed->scene->player.d.y / 3.0f) * \
+		(float)INTERACTION_DISTANCE) / CELL_SIZE][(int) \
+		(cubed->scene->player.location.x + (cubed->scene->player.d.x / 3.0f) * \
+		(float)INTERACTION_DISTANCE) / CELL_SIZE] = new_value;
 	}
 }
 
