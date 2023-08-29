@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/26 19:17:41 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:34:52 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define INTERACTION_DISTANCE 13
 # define INTERACTABLE_HERE "D"
 # define INTERACTABLE_NEARBY "DO"
-# define ANIMATION_FRAME 10
+# define ANIMATION_FRAME 20
 # define NUM_KEY 8
 # define NUM_ELEMS 9
 

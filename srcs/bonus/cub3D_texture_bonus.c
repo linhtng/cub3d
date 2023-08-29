@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/26 18:29:13 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:15:41 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static unsigned int	choose_from_texture(t_scene *scene, t_draw_info *draw)
 	}
 	else
 	{
+		if (!scene->texture[draw->dir])
+			printf("choose_from texture, draw dir: %d\n", draw->dir);
 		color = \
 		ft_pixel_get(scene->texture[draw->dir], draw->tex.x, draw->tex.y);
 	}

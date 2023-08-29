@@ -6,13 +6,12 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 11:14:09 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 16:47:02 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:59:33 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-//TODO add bonus condition for miniplayer and minimap
 void	redraw(t_cubed *cubed)
 {
 	ft_memset(cubed->raycast_info->r_img->addr, TRANSPARENT, \
