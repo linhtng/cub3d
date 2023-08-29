@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 15:07:38 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:47:15 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	game_update(void *param)
 	scene = (t_scene_bonus *)cubed->scene;
 	cubed->animated_frame++;
 	update_animation(cubed, scene);
-	handle_press_bonus(cubed->key_pressed, param);
+	handle_press_bonus(param);
 	return (0);
 }
 
