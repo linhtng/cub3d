@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 20:26:02 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/26 19:13:49 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ static void	zero_cubed(t_cubed_bonus *cubed)
 	cubed->minimap_img = NULL;
 	ft_memset(cubed->keys, 0, sizeof(cubed->keys));
 	cubed->key_pressed = -1;
+	cubed->animated_frame = 0;
+	cubed->mouse_x = 0;
 }
 
 void	setup_cubed(t_cubed *cubed)
 {
-	int frame_fd;
-	
+	int	frame_fd;
+
 	zero_cubed((t_cubed_bonus *) cubed);
 	cubed->mlx = mlx_init();
 	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");

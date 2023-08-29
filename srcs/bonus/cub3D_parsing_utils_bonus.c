@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_parsing_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 18:46:38 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:37:36 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,14 @@ void	free_scene_data(t_scene *scene)
 		free(scene->elems.east);
 	if (scene->elems.west)
 		free(scene->elems.west);
-	if (((t_scene_bonus *)scene)->bonus_elems.ceiling)
-		free(((t_scene_bonus *)scene)->bonus_elems.ceiling);
 	if (((t_scene_bonus *)scene)->bonus_elems.floor)
 		free(((t_scene_bonus *)scene)->bonus_elems.floor);
 	if (((t_scene_bonus *)scene)->bonus_elems.door)
 		free(((t_scene_bonus *)scene)->bonus_elems.door);
+	if (((t_scene_bonus *)scene)->bonus_elems.ceiling[0])
+		free(((t_scene_bonus *)scene)->bonus_elems.ceiling[0]);
+	if (((t_scene_bonus *)scene)->bonus_elems.ceiling[1])
+		free(((t_scene_bonus *)scene)->bonus_elems.ceiling[1]);
+	if (((t_scene_bonus *)scene)->bonus_elems.ceiling[2])
+		free(((t_scene_bonus *)scene)->bonus_elems.ceiling[2]);
 }

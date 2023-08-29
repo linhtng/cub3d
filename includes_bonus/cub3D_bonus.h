@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:49:50 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:34:52 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@
 # define INTERACTION_DISTANCE 13
 # define INTERACTABLE_HERE "D"
 # define INTERACTABLE_NEARBY "DO"
-# define ANIMATION_FRAME 100
+# define ANIMATION_FRAME 20
 # define NUM_KEY 8
+# define NUM_ELEMS 9
 
 # include "../includes/cub3D.h"
 
@@ -66,12 +67,14 @@ typedef struct s_cubed_bonus
 	struct s_img_data	*frame_img;
 	int					keys[NUM_KEY];
 	int					key_pressed;
+	int					animated_frame;
+	int					mouse_x;
 }						t_cubed_bonus;
 
 typedef struct s_elem_bonus
 {
 	char	*floor;
-	char	*ceiling;
+	char	*ceiling[3];
 	char	*door;
 }	t_elem_bonus;
 
@@ -85,7 +88,8 @@ typedef struct s_scene_bonus
 	int				err_flag;
 	t_img_data		*texture[4];
 	t_elem_bonus	bonus_elems;
-	t_img_data		*bonus_textures[3];//add all bonus textures here
+	t_img_data		*bonus_textures[3];//add all bonus textures here, 0 texture is door, 1 is floor, 2 is ceiling
+	t_img_data		*bonus_ceiling[4];
 }					t_scene_bonus;
 
 typedef struct s_bham_info
@@ -101,7 +105,7 @@ typedef struct s_draw_info
 {
 	float		height;
 	int			dir;
-	int			project_x;
+	int			project_x;          
 	int			project_y;
 	int			floor_start;
 	int			material_hit;
@@ -144,5 +148,11 @@ void	check_interaction(t_cubed_bonus *cubed);
 
 /* handle_press_bonus.c */
 int		handle_press_bonus(int key_code, t_cubed *cubed);
+
+/* mouse_bonus.c */
+int 	mouse_move(int x, int y, void *param);
+
+/* debug */
+void	print_scene_bonus(t_scene_bonus *scene);
 
 #endif

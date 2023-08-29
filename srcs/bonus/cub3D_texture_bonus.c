@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_texture_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 19:02:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:15:41 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@ void	load_texture(t_scene *normal_scene, t_cubed *cubed)
 	get_new_xpm_image(cubed, scene->bonus_elems.door);
 	scene->bonus_textures[1] = \
 	get_new_xpm_image(cubed, scene->bonus_elems.floor);
-	scene->bonus_textures[2] = \
-	get_new_xpm_image(cubed, scene->bonus_elems.ceiling);
+	scene->bonus_ceiling[0] = \
+		get_new_xpm_image(cubed, scene->bonus_elems.ceiling[0]);
+	scene->bonus_ceiling[1] = \
+		get_new_xpm_image(cubed, scene->bonus_elems.ceiling[1]);
+	scene->bonus_ceiling[2] = \
+		get_new_xpm_image(cubed, scene->bonus_elems.ceiling[2]);
+	scene->bonus_textures[2] = scene->bonus_ceiling[0];
 }
 
 static t_vector	get_tex_vec(t_vector *hit, int dir, float y_step, \
@@ -78,6 +83,8 @@ static unsigned int	choose_from_texture(t_scene *scene, t_draw_info *draw)
 	}
 	else
 	{
+		if (!scene->texture[draw->dir])
+			printf("choose_from texture, draw dir: %d\n", draw->dir);
 		color = \
 		ft_pixel_get(scene->texture[draw->dir], draw->tex.x, draw->tex.y);
 	}

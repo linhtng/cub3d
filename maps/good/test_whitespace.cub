@@ -19,8 +19,12 @@ SO textures/test/south.xpm
                         WE textures/test/west.xpm
         EA textures/test/east.xpm            
 
-        F 20,           20,             20
-C 200,          200,200
+DO texture_src/cat_tree.xpm
+
+F texture_src/gre_wp.xpm
+C texture_src/animation_test/a_test1.xpm
+C texture_src/animation_test/a_test2.xpm
+C texture_src/animation_test/a_test3.xpm
 
 11111
 10001
