@@ -6,22 +6,11 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/29 14:15:41 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:32:39 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-
-unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
-{
-	unsigned int	dst;
-
-	if (x >= data->width || x < 0 || y >= data->height || y < 0)
-		return (RED);
-	dst = *(unsigned int *)(data->addr + (y * data->line_length + x * \
-	(data->bits_per_pixel / 8)));
-	return (dst);
-}
 
 void	load_texture(t_scene *normal_scene, t_cubed *cubed)
 {

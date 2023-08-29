@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 16:12:59 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:32:33 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
-{
-	unsigned int	dst;
-
-	if (x >= data->width || x < 0 || y >= data->height || y < 0)
-		return (0XFF0000);
-	dst = *(unsigned int *)(data->addr + (y * data->line_length + x * \
-	(data->bits_per_pixel / 8)));
-	return (dst);
-}
 
 void	load_texture(t_scene *scene, t_cubed *cubed)
 {

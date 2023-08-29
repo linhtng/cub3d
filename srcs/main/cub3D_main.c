@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 12:08:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:39:36 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int	main(int argc, char **argv)
 		}
 		init_scene(&scene);
 		if (get_scene_data(fd, &scene) != ERROR)
-		{
-			//print_scene(&scene);
 			raycast_start(&scene);
-		}
 		free_scene_data(&scene);
 	}
 	else if (DEBUG)
