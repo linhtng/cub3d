@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thuynguy <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 14:59:41 by thuynguy          #+#    #+#              #
-#    Updated: 2022/10/24 15:00:34 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/29 18:20:49 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,14 @@ BOBJS = $(BSRC:%.c=%.o)
 all: $(NAME)
 
 $(NAME):
-	cc -c $(CFLAGS) $(SRC)
-	ar rcs $(NAME) $(OBJS)
+	@cc -c $(CFLAGS) $(SRC)
+	@ar rcs $(NAME) $(OBJS)
 	
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	@rm -f $(OBJS) $(BOBJS)
 
 fclean: clean
-	rm -f $(NAME) $(BONUS)
+	@rm -f $(NAME) $(BONUS)
 
 re: fclean all
 

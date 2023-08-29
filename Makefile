@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/26 19:19:09 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/08/29 18:59:53 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,18 @@ NAME = cub3D
 NAME_BONUS = cub3D_bonus
 # RAY_CASTER := raycast_build
 
+# Color Aliases
+NONE='\033[0m'
+GREEN='\033[32m'
+GRAY='\033[2;37m'
+CURSIVE='\033[3m'
+YELLOW = '\033[0;93m'
+
 CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes
 BONUS_CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes_bonus
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
-CDEBUG = -fsanitize=address
+# CDEBUG = -fsanitize=address
 
 # DIR_DUP     = mkdir -p $(@D)
 # SRC = cub3D_main.c \
@@ -106,37 +113,39 @@ $(OBJSFD):
 	@mkdir -p $(OBJSFD)
 
 $(OBJSFD)%.o: $(RAYCAST_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(DRAWING_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(EXIT_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(EVENT_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(IMG_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(PLAYER_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(SETUP_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(TEXTURE_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(MAIN_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(OBJSFD)%.o: $(PARSE_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ $(HEADER_PATH)
 
 $(NAME) : $(OBJSFD) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) $(LIBS) $(LINKS) -o $@
+	@echo $(CURSIVE)$(GRAY) "     - Compiling $@..." $(NONE)
+	@$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) $(LIBS) $(LINKS) -o $@
+	@echo $(GREEN)"- Compiled $@ -"$(NONE)
 
 bonus: $(NAME_BONUS)
 
@@ -144,49 +153,59 @@ $(OBJSFD_BONUS):
 	@mkdir -p $(OBJSFD_BONUS)
 
 $(OBJSFD_BONUS)%.o: $(RAYCAST_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(DRAWING_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(EXIT_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(EVENT_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(IMG_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(PLAYER_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(SETUP_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(TEXTURE_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(MAIN_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(PARSE_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@ 
 
 $(OBJSFD_BONUS)%.o: $(BONUS_DIR)%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@  $(HEADER_PATH_BONUS)
+	@$(CC) $(CFLAGS) -I $(LIBFT_PATH) -c $< -o $@  $(HEADER_PATH_BONUS)
 
 $(NAME_BONUS) : $(OBJSFD_BONUS) $(OBJS_BONUS) $(LIBFT)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS_BONUS) $(LIBS) $(LINKS) -o $@ $(HEADER_PATH_BONUS)
+	@echo $(CURSIVE)$(GRAY) "     - Compiling $@..." $(NONE)
+	@$(CC) $(CFLAGS) $(CDEBUG) $(OBJS_BONUS) $(LIBS) $(LINKS) -o $@ $(HEADER_PATH_BONUS)
+	@echo $(GREEN)"- Compiled $@ -"$(NONE)
 
 $(LIBFT) :
-	make -C $(LIBFT_PATH)
+	@echo $(CURSIVE)$(GRAY) "     - Compiling libft..." $(NONE)
+	@make -C $(LIBFT_PATH)
+	@echo $(GREEN)"- Compiled libft -"$(NONE)
 
 clean :
-	rm -rf $(OBJSFD) $(OBJSFD_BONUS)
-	make fclean -C $(LIBFT_PATH)
+	@rm -rf $(OBJSFD) $(OBJSFD_BONUS)
+	@make fclean -C $(LIBFT_PATH)
+	@echo $(CURSIVE)$(GRAY) "     - Deleted libft" $(NONE)
+	@echo $(CURSIVE)$(GRAY) "     - Deleted object files" $(NONE)
 
 fclean : clean
-	rm -f $(NAME) $(NAME_BONUS)
+	@rm -f $(NAME)
+	@echo $(CURSIVE)$(GRAY) "     - Deleted $(NAME)" $(NONE)
+	@rm -f $(NAME_BONUS)
+	@echo $(CURSIVE)$(GRAY) "     - Deleted $(NAME_BONUS)" $(NONE)
+	@echo $(CURSIVE)$(YELLOW)"- fclean done "$(NONE)
 
 re : fclean all
