@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:32:24 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:56:27 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # define ERROR -1
 # define TRUE 1
 # define FALSE 0
-# define PANE_Y 1 //was this used, had to capitalize
 # define PLAYER_SPEED 15
 
 /* RAY CASTING DEFINES */
