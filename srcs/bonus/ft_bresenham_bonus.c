@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:23:16 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:24:17 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_vector *two)
 	line_info->d2 = line_info->decision * 2;
 }
 
-void	clip_to_minimap(t_img_data *img, t_vector *one)
+static void	clip_to_minimap(t_img_data *img, t_vector *one)
 {
 	int	delta_y;
 	int	delta_x;
