@@ -1,16 +1,25 @@
 NO texture_src/brick_1_moss.xpm
 SO texture_src/brick_1.xpm
 WE texture_src/brick_2.xpm
-EA texture_src/brick_1.xpm
+EA texture_src/brick_2_moss.xpm
 
-DO texture_src/cat_tree.xpm
+DO texture_src/brick_door.xpm
 
-F texture_src/gre_wp.xpm
-C texture_src/animation_test/a_test1.xpm
-C texture_src/animation_test/a_test2.xpm
-C texture_src/animation_test/a_test3.xpm
+F texture_src/grass.xpm
+C texture_src/sky_1.xpm
+C texture_src/sky_2.xpm
+C texture_src/sky_3.xpm
 
-11111111
-1E00D011
-10001011
-11111111
+11111111111111                111111   111111111
+1000D0000000011111111111      100001   100000001
+1000100000000D0000000001      100001   100000001
+111111111111110001000001111111111D1111111111D111
+             1000010000D0E000000000000D0000001
+             100000000011111111111111111111D11
+             11111111111             100000001
+                                  111100000001
+                                  100D00000001
+                                  111100000001
+                                     111111111
+                                     100000001
+                                     111111111
