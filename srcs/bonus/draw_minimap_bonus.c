@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:47:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:08:56 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int x, int y)
  * draw_circle_minimap() circular minimap based on the set minimap macros
  * using a box bounding method.
 */
-static void	draw_circle_minmap(t_cubed_bonus *cubed, t_vector *center)
+static void	draw_circle_minimap(t_cubed_bonus *cubed, t_vector *center)
 {
 	t_vector	image;
 	t_vector	delta;
