@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/29 15:39:36 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:00:42 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int	main(int argc, char **argv)
 	else if (DEBUG)
 		mass_test_maps(argc - 1, &argv[1]);
 	else
-		printf("Number of parameters must be 1.\n");
+		ft_putendl_fd("Number of parameters must be 1.\n", STDERR_FILENO);
 	return (0);
 }

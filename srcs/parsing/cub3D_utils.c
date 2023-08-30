@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:35:28 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/21 14:46:37 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:04:57 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,25 @@
 
 int	err_msg(char *message1, char *message2)
 {
-	printf("Error\n");
-	printf("%s", message1);
+	ft_putendl_fd("Error", STDERR_FILENO);
+	ft_putstr_fd(message1, STDERR_FILENO);
 	if (message2)
-		printf("%s\n", message2);
+		ft_putendl_fd(message1, STDERR_FILENO);
 	else
-		printf("\n");
+		ft_putchar_fd('\n', STDERR_FILENO);
 	return (ERROR);
 }
+
+// int	err_msg(char *message1, char *message2)
+// {
+// 	printf("Error\n");
+// 	printf("%s", message1);
+// 	if (message2)
+// 		printf("%s\n", message2);
+// 	else
+// 		printf("\n");
+// 	return (ERROR);
+// }
 
 int	count_occurences(char *str, char c)
 {
