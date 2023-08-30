@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_parsing_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 14:49:13 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:48:05 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * correct_extension() checks if the given file has the correct extension.
+ * If it does, it returns 1. Otherwise, it returns 0.
+ */
 int	correct_extension(const char *argv, char *ending)
 {
 	size_t		len;
@@ -24,6 +28,10 @@ int	correct_extension(const char *argv, char *ending)
 	return (1);
 }
 
+/*
+ * check_rgb_valid() checks if the given rgb color is valid. If it is, 
+ * it returns 1. Otherwise, it returns -1 and print an explicit error message.
+ */
 int	check_rgb_valid(t_scene *scene, char *line)
 {
 	int	i;
@@ -39,6 +47,9 @@ int	check_rgb_valid(t_scene *scene, char *line)
 	return (1);
 }
 
+/*
+ * convert_rgb_hex() converts the given rgb color to hexadecimal.
+ */
 unsigned int	convert_rgb_hex(int *rgb)
 {
 	unsigned int	res;
@@ -47,6 +58,9 @@ unsigned int	convert_rgb_hex(int *rgb)
 	return (res);
 }
 
+/*
+ * free_scene_data() frees the all the data saved in the scene struct.
+ */
 void	free_scene_data(t_scene *scene)
 {
 	free_arr(scene->array);
@@ -63,6 +77,11 @@ void	free_scene_data(t_scene *scene)
 		free(scene->elems.west);
 }
 
+/*
+ * check_input_file() checks if the given file can be opened and if it has
+ * the correct extension. If it does, it returns 1. Otherwise, it returns -1
+ * and print an explicit error message.
+ */
 int	check_input_file(char *argv, int fd, char *extension)
 {
 	if (fd == -1)

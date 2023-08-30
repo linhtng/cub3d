@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_content.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/22 17:04:47 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:13:27 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/* 
+ * player_pos_valid() checks if the player is stucked surrounded by walls 
+*/
 static int	player_pos_valid(char **map, t_player player, char block)
 {
 	if (map[(int)player.location.y][(int)player.location.x + 1] == block
@@ -22,6 +25,11 @@ static int	player_pos_valid(char **map, t_player player, char block)
 	return (1);
 }
 
+/* 
+ * create_map() creates a 2D array of the map, copy the corresponding line
+ * from the scene array to the map array.The area outside the map is filled 
+ * with spaces. The spaces inside the map are filled with '_'.
+*/
 static int	create_map(t_scene *scene, char **scene_arr)
 {
 	char	**map;
@@ -51,6 +59,11 @@ static int	create_map(t_scene *scene, char **scene_arr)
 	return (1);
 }
 
+/* 
+ * map_valid_characters() checks if the map contains only valid characters,
+ * and if there is only one player. 
+ * It also saves the player's spawn location. 
+*/
 int	map_valid_characters(t_scene *scene, char *line, int y)
 {
 	int	index;
@@ -76,6 +89,12 @@ int	map_valid_characters(t_scene *scene, char *line, int y)
 	return (1);
 }
 
+/*
+ * check_island() checks if the map is entirely surrounded by walls. 
+ * If there is any map content that get exposed instead of 
+ * surrounded by walls, flood fill algorithm will fill it with 'I'.
+ * Any detected 'I' means the map is not entirely surrounded by walls.
+*/
 int	map_is_exposed(t_scene *scene)
 {
 	int			unfilled;
@@ -103,6 +122,13 @@ int	map_is_exposed(t_scene *scene)
 	return (1);
 }
 
+/*
+ * get_map_content() gets the map content from the scene array.
+ * It checks if any misconfiguration of any kind is encountered 
+ * in the file, including invalid characters, missing map components,
+ * invalid player position, isolated island, and exposed map content
+ * instead of surrounded by walls.
+*/
 int	get_map_content(char **scene_arr, t_scene *scene, int i)
 {
 	int	w;

@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 13:00:43 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:49:35 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * get_scene_string reads the file descriptor fd and returns a string
+ * containing the whole file. The string is trimmed of all leading and
+ * trailing whitespaces.
+*/
 static char	*get_scene_string(t_scene *scene, int fd)
 {
 	char	*buf;
@@ -41,6 +46,11 @@ static char	*get_scene_string(t_scene *scene, int fd)
 	return (trimmed_str);
 }
 
+/*
+ * get_scene_arr() splits the scene string str into an array of strings
+ * using the newline character as a delimiter. The array is stored in
+ * scene->array and all empty lines (if any) are preserved.
+*/
 static int	get_scene_arr(t_scene *scene, char *str, int len)
 {
 	char	*endl;
@@ -70,6 +80,12 @@ static int	get_scene_arr(t_scene *scene, char *str, int len)
 	return (1);
 }
 
+/*
+ * get_map_elems() go through the scene_arr and save the elements
+ * into the scene struct. The function returns 1 if all the elements
+ * are found and no error happened. After the elements are saved,
+ * the function calls get_map_content() to save the map content.
+*/
 static int	get_map_elems(char **scene_arr, t_scene *scene)
 {
 	int		i;
@@ -93,6 +109,12 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 	return (get_map_content(&scene_arr[i], scene, i));
 }
 
+/*
+ * get_scene_data() got the scene string from the given file, 
+ * then transfer it into a 2D array of strings. The function returns 1 
+ * if all the elements is found and no error happened. 
+ * Otherwise, it returns -1.
+*/
 int	get_scene_data(int fd, t_scene *scene)
 {
 	char	*scene_str;

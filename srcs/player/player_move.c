@@ -3,22 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:03:08 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:57:12 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/* know opposite vertices of a square, 
-need to work out the coordinates of the other two vertices:
-*	Example:
-*	1-------3
-*	|		|
-*	|		|
-*	4-------2
+/*
+ * collision_detect() checks if the player is going to move though a gap
+ * between two walls. It does this by checking if the two corners of the
+ * player's target cell are empty. If they are, the player can move through 
+ * the gap. It finds the location of the two corner the same way we find the 
+ * coordinates of the two vertices 3 and 4 of a square given the 1 and 2
+ * vertices. Example:
+ * 1-------3
+ * |	   |
+ * |	   |
+ * 4-------2
 */
 int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
 {

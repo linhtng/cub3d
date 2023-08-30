@@ -6,12 +6,17 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/21 14:40:48 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:55:20 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * check_valid_texture() checks if the given texture path is a valid xpm file,
+ * and if it is duplicated. If valid, saved the path in the struct and 
+ * returns 1. Otherwise, it returns -1 and print an explicit error message.
+*/
 static int	check_valid_texture(char **path, char *texture)
 {
 	int	fd;
@@ -30,6 +35,10 @@ static int	check_valid_texture(char **path, char *texture)
 	return (ret);
 }
 
+/*
+ * get_texture() checks if the given texture path is found and if it is valid.
+ * If valid, returns 1. Otherwise, it returns -1.
+*/
 static int	get_texture(t_scene *scene, char *elem_id, char *texture, int len)
 {
 	int	ret;
@@ -46,6 +55,11 @@ static int	get_texture(t_scene *scene, char *elem_id, char *texture, int len)
 	return (ret);
 }
 
+/*
+ * get_rgb_color() use ft_atoi to convert the given string to integer, 
+ * which represents the color. If the color is not duplicated, 
+ * it is saved in the struct. Passed the color to check_rgb_valid() to check.
+*/
 static int	get_rgb_color(t_scene *scene, char **color, int id, char *line)
 {
 	if (id == FLOOR)
@@ -69,6 +83,12 @@ static int	get_rgb_color(t_scene *scene, char **color, int id, char *line)
 	return (check_rgb_valid(scene, line));
 }
 
+/*
+ * get_scene_color() takes the string of color info, split it into 
+ * a string of array with the ',' as delimiter. This array is then passed
+ * to get_rgb_color() to get the colors as integers. If the 
+ * integer colors are valid, they will be converted to hexadecimal.
+*/
 static int	get_scene_color(t_scene *scene, char *scene_line)
 {
 	char	**color_arr;
@@ -97,6 +117,11 @@ static int	get_scene_color(t_scene *scene, char *scene_line)
 	return (scene->err_flag);
 }
 
+/*
+ * get_scene_elem() takes the string of scene element info, split it into 
+ * a string of array with the ' ' as delimiter. This array is then passed
+ * to get_texture() or get_scene_color() to get the elements.
+*/
 int	get_scene_elem(t_scene *scene, char *scene_line)
 {
 	int		info_num;
