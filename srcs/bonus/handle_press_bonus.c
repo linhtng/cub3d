@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 16:45:30 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:43:46 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	handle_press_bonus(t_cubed *param)
 		move_right_left(param, LEFT);
 	if (cubed->keys[D_PRESSED])
 		move_right_left(param, RIGHT);
-	else if (cubed->keys[SPACE_BAR])
+	if (cubed->keys[SPACE_BAR])
 		check_interaction((t_cubed_bonus *)cubed);
 	if (cubed->dirty_images)
 		refresh_images(param);
