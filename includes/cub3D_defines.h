@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:56:27 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:37:20 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@
 
 /* COLORS */
 # define TRANSPARENT (unsigned int) 0X00FFFFFF
-# define BLACK (unsigned int) 0X000000
 # define RED (unsigned int) 0XFF0000
 # define LIGHT_GREY (unsigned int) 0XA9A9A9
 # define DARK_GREY (unsigned int) 0X585858
 # define PINK (unsigned int) 0XFF9999
 # define NAVY_BLUE (unsigned int) 0X000785
-# define YELLOW (unsigned int) 0X666666
+# define DIM_GRAY (unsigned int) 0X666666
 # define TRANS_WHITE (unsigned int) 0X99FFFFFF
 
 enum	e_keys

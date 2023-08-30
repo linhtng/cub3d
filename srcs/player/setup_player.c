@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:53:53 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:34:22 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	setup_player(t_cubed *cubed)
 	CELL_SIZE + CELL_SIZE / 2;
 	cubed->scene->player.location.x = cubed->scene->player.location.x * \
 	CELL_SIZE + CELL_SIZE / 2;
-	cubed->scene->player.location.color = YELLOW;
+	cubed->scene->player.location.color = RED;
 	if (cubed->scene->player.spawn == 'N')
 		cubed->scene->player.angle = 90.0f;
 	if (cubed->scene->player.spawn == 'S')
