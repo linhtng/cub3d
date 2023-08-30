@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:17:04 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 11:18:13 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 	if (sin(deg_to_rad(ray->angle)) > 0.001f)
 	{
 		ray->h_map.y = ((int)cubed->scene->player.location.y / CELL_SIZE) * \
-		CELL_SIZE - 0.0001f;
+		CELL_SIZE - 0.001f;
 		ray->h_map.x = cubed->scene->player.location.x + \
 		((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
 		ray->hd.y = (float)-CELL_SIZE;
@@ -75,7 +75,7 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	if (cos(deg_to_rad(ray->angle)) < -0.001)
 	{
 		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * \
-		CELL_SIZE - 0.0001;
+		CELL_SIZE - 0.001f;
 		ray->v_map.y = cubed->scene->player.location.y + \
 		((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
 		ray->vd.x = -CELL_SIZE;
