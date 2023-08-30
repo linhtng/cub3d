@@ -6,12 +6,15 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:35:58 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:48:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * draw_nose() draws the direction indicator of the player on the minimap.
+ */
 static void	draw_nose(t_cubed_bonus *cubed, t_vector *mini_player)
 {
 	t_vector	temp;
@@ -22,6 +25,10 @@ static void	draw_nose(t_cubed_bonus *cubed, t_vector *mini_player)
 	ft_bresenham_clipped(temp, *mini_player, cubed->mini_player_img);
 }
 
+/*
+ * draw_mini_player() draws the player on the middle of the minimap with the
+ * direction indicator nose.
+ */
 void	draw_mini_player(t_cubed *cubed)
 {
 	t_vector	mini_player;

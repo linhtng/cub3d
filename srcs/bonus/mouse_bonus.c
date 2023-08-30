@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 19:10:01 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 14:32:04 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:02:35 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * mouse_move() checks if the mouse is moved within the projection pane bounds
+ * and updates the player angle and direction accordingly.
+*/
 int	mouse_move(int x, int y, void *param)
 {
 	t_cubed_bonus	*cubed;

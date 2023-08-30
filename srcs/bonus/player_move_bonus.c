@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 15:28:56 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:03:42 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ static int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
 	return (1);
 }
 
+/*
+ * can_move() checks if the player can move to the next location. It checks 
+ * if the next location is the same as the current cell, if not it will check
+ * surrounding cells for walls and doors and return 0 if there is a wall. 
+*/
 static int	can_move(t_cubed *cubed, t_vector *next)
 {
 	t_vector	grid;
@@ -63,6 +68,10 @@ static int	can_move(t_cubed *cubed, t_vector *next)
 	}
 }
 
+/*
+ * turn_player() turns the player left or right by 5 degrees. It then updates
+ * the player's direction vector and calls redraw() to redraw the scene.
+*/
 void	turn_player(t_cubed *cubed, int key_code)
 {
 	if (key_code == TURN_LEFT)
@@ -79,6 +88,11 @@ void	turn_player(t_cubed *cubed, int key_code)
 	cubed->dirty_images = TRUE;
 }
 
+/*
+ * move_forward_backward() moves the player forward or backward by PLAYER_SPEED
+ * by referencing the player directions. It then calls redraw() to redraw 
+ * the scene.
+*/
 void	move_forward_backward(t_cubed *cubed, int key_code)
 {
 	t_vector	next_loc;
@@ -102,6 +116,11 @@ void	move_forward_backward(t_cubed *cubed, int key_code)
 	cubed->dirty_images = TRUE;
 }
 
+/*
+ * move_right_left() moves the player right or left by PLAYER_SPEED by 
+ * calclating the perpendicular angle to the player's direction, 
+ * either +/- 90 degrees. It then calls redraw() to redraw the scene.
+*/
 void	move_right_left(t_cubed *cubed, int key_code)
 {
 	t_vector	next_loc;

@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:22:28 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:56:11 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * ft_destroy_image() frees the memory of a single mlx image, img->img the 
+ * struct allocated for the image data, img.
+*/
 static void	ft_destroy_image(void *mlx, t_img_data **img)
 {
 	mlx_destroy_image(mlx, (*img)->img);
@@ -19,6 +23,9 @@ static void	ft_destroy_image(void *mlx, t_img_data **img)
 	*img = NULL;
 }
 
+/*
+ * destroy_bonus_images() frees the memory of the bonus images if htey exist.
+*/
 static void	destroy_bonus_images(t_cubed_bonus *cubed, t_scene_bonus *scene)
 {
 	if (cubed->mini_player_img)
@@ -37,6 +44,10 @@ static void	destroy_bonus_images(t_cubed_bonus *cubed, t_scene_bonus *scene)
 		ft_destroy_image(cubed->mlx, &scene->bonus_ceiling[2]);
 }
 
+/*
+ * destroy_all_images() frees all the allocated memory for the images 
+ * for the program and calls for bonus images to be destroyed.
+*/
 static void	destroy_all_images(t_cubed_bonus *cubed)
 {
 	if (cubed->raycast_info && cubed->raycast_info->r_img)
@@ -54,6 +65,12 @@ static void	destroy_all_images(t_cubed_bonus *cubed)
 	destroy_bonus_images((t_cubed_bonus *)cubed, (t_scene_bonus *)cubed->scene);
 }
 
+/*
+ * mlx_close() is called when the user presses the ESC key or closes the window
+ * with the red X button or there is an allocation failure during setup. 
+ * It frees all the allocated memory and exits the program, printing an error
+ * message if necessary.
+*/
 int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 {
 	printf("MLX should close...\n");

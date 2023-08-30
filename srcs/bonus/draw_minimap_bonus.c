@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:51:00 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:08:56 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 #include "cub3D.h"
 
+/*
+ * draw_minimap_rays() draws the cast rays on the minimap. It converts the ray
+ * distance to the minimap scall before drawing the line.
+*/
 void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info)
 {
 	t_vector	mini_player;
@@ -39,6 +43,16 @@ void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info)
 	}
 }
 
+/*
+ * get_color returns the color of the minimap pixel based on the corrosponding
+ * grid value. 
+ * WALL = NAVY_BLUE
+ * FLOOR = PINK
+ * DOOR_OPEN = LIGHT_GREY
+ * DOOR_CLOSED = DARK_GREY
+ * BONUS_CHAR from flooded map = DIM_GREY
+ * FLOODED_WALL = NAVY_BLUE
+*/
 static unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 {
 	if (grid_x < 0 || grid_x >= map->width || grid_y < 0 || \
@@ -61,6 +75,10 @@ static unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 	}
 }
 
+/*
+ * put_minimap_pixel() puts the pixel on the minimap based on the grid location
+ * and the player location.
+*/
 static void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, \
 int x, int y)
 {
@@ -77,7 +95,11 @@ int x, int y)
 	ft_pixel_put(cubed->minimap_img, x, y, center->color);
 }
 
-static void	draw_filled_circle(t_cubed_bonus *cubed, t_vector *center)
+/*
+ * draw_circle_minimap() circular minimap based on the set minimap macros
+ * using a box bounding method.
+*/
+static void	draw_circle_minimap(t_cubed_bonus *cubed, t_vector *center)
 {
 	t_vector	image;
 	t_vector	delta;
@@ -106,6 +128,10 @@ static void	draw_filled_circle(t_cubed_bonus *cubed, t_vector *center)
 	}
 }
 
+/*
+ * draw_minimap() sets the minimap center based on the minmap macros and draws
+ * the minimap circle and the player on the minimap.
+*/
 void	draw_minimap(t_cubed *cubed)
 {
 	t_vector	center;
@@ -113,6 +139,6 @@ void	draw_minimap(t_cubed *cubed)
 	center.x = MINI_MAP_RADIUS;
 	center.y = MINI_MAP_RADIUS;
 	center.color = RED;
-	draw_filled_circle((t_cubed_bonus *)cubed, &center);
+	draw_circle_minimap((t_cubed_bonus *)cubed, &center);
 	draw_mini_player(cubed);
 }

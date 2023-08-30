@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   redraw_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 11:14:09 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 16:19:00 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:06:20 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * redraw() clears the image data for the minimap and the projection image
+ * and calls cast_rays() and draw_minimap() to redraw the images.
+*/
 void	redraw(t_cubed *cubed)
 {
 	ft_memset(((t_cubed_bonus *)cubed)->mini_player_img->addr, TRANSPARENT, \
