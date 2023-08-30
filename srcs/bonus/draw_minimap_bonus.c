@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 09:31:03 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:48:40 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 	if (grid_x < 0 || grid_x >= map->width || grid_y < 0 || \
 	grid_y >= map->height)
 	{
-		return (YELLOW);
+		return (DIM_GRAY);
 	}
 	else
 	{
 		if (map->flood[grid_y + 1][grid_x + 1] == FLOODED_WALL)
 			return (NAVY_BLUE);
 		else if (map->flood[grid_y + 1][grid_x + 1] == BONUS_CHAR)
-			return (YELLOW);
+			return (DIM_GRAY);
 		else if (map->grid[grid_y][grid_x] == DOOR_OPEN)
 			return (LIGHT_GREY);
 		else if (map->flood[grid_y + 1][grid_x + 1] == DOOR_CLOSED)

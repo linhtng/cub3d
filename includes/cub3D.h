@@ -3,26 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:33:14 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:52:02 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
+//TODO write what each are for, do we want printf still?
 /* for printf */
 # include <stdio.h>
 /* for sin, cos, sqrt, etc*/
 # include <math.h>
 /* for minilibx */
 # include <mlx.h>
-/* for write read, open etc*/
+/* for write, read, etc*/
 # include <unistd.h> 
+/* for  ? */
 # include <sys/types.h>
+/* for  ? */
 # include <sys/stat.h>
+/* for open */
 # include <fcntl.h>
 
 # include "cub3D_structs.h"

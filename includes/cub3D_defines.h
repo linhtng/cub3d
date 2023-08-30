@@ -6,13 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 09:37:20 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:48:58 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_DEFINES_H
 # define CUB3D_DEFINES_H
-
+//TODO rmove debug?
 /* PARSING DEFINES */
 # define FLOOR 1
 # define CEILING 2
