@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   setup_cubed_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 15:41:33 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:07:35 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * zero_cubed() initializes all the cubed variables to 0 or NULL.
+*/
 static void	zero_cubed(t_cubed_bonus *cubed)
 {
 	cubed->mlx = NULL;
@@ -28,6 +31,9 @@ static void	zero_cubed(t_cubed_bonus *cubed)
 	cubed->mouse_x = 0;
 }
 
+/*
+ * setup_cubed_images() initializes the bonus images for the minimap and frame.
+*/
 static void	setup_cubed_images(t_cubed *cubed)
 {
 	((t_cubed_bonus *)cubed)->minimap_img = \
@@ -38,6 +44,11 @@ static void	setup_cubed_images(t_cubed *cubed)
 	get_new_xpm_image(cubed, "texture_src/cubed_frame.xpm");
 }
 
+/*
+ * setup_cubed() initializes the cubed variables and calls setup_cubed_images().
+ * If any of the mlx functions fail, the program exits with an error message.
+ * If the frame texture is not found, the program exits with an error message.
+*/
 void	setup_cubed(t_cubed *cubed)
 {
 	int	frame_fd;

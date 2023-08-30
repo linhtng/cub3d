@@ -6,18 +6,27 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:22:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 10:43:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:57:58 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * close_window() closes the window if the red  x is pressed. It calls 
+ * mlx_close() with an exit code of 0 for a normal exit.
+*/
 int	close_window(t_cubed *cubed)
 {
 	mlx_close(cubed, 0, "normal exit");
 	return (0);
 }
 
+/*
+ * handle_press() checks if any program keys are pressed and calls the
+ * appropriate function to handle the key press. If the images are dirty, it
+ * calls refresh_images() to refresh the images.
+*/
 int	handle_press_bonus(t_cubed *param)
 {
 	t_cubed_bonus	*cubed;

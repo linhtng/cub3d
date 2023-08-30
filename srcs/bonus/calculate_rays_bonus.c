@@ -6,12 +6,18 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:14:24 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:36:53 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * check_hit_wall() checks if the ray hit a wall by checking if the grid
+ * coordinates are within the map and if the grid value is a hitable value.
+ * If the ray hit a wall or door, the dof is set to MAX_DOF to stop the ray from
+ * continuing.
+*/
 static void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
 t_vector *offset)
 {
@@ -40,6 +46,13 @@ t_vector *offset)
 	}
 }
 
+/*
+ * shoot_one_ray_horizontal() set inital values to shoot one ray horizontally,
+ * It calculates the cotangent of the angle to get the slope of the ray. It
+ * checks if the ray is going up or down and sets the map coordinates
+ * accordingly. It then calculates the vector used for each additionl check and 
+ * calls check_hit_wall() to check if the ray hits a wall.
+*/
 static void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 {
 	ray->cotan = 1.0f / tan(deg_to_rad(ray->angle));
@@ -69,6 +82,13 @@ static void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 	check_hit_wall(cubed, &ray->h_grid, &ray->h_map, &ray->hd);
 }
 
+/*
+ * shoot_one_ray_vertically() set inital values to shoot one ray vertically,
+ * It calculates the tangent of the angle to get the slope of the ray. It
+ * checks if the ray is going left or right and sets the map coordinates
+ * accordingly. It then calculates the vector used for each additionl check and 
+ * calls check_hit_wall() to check if the ray hits a wall.
+*/
 static void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 {
 	ray->tan = tan(deg_to_rad(ray->angle));
@@ -98,6 +118,11 @@ static void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
 
+/*
+ * get_corrected_shortest() checks if the horizontal or vertical distance is
+ * shorter and sets the shortest distance and shortest direction accordingly.
+ * Zero is not a valid distance so it is ignored.
+*/
 static void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 {
 	float	h_distance;
@@ -119,6 +144,11 @@ static void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 	}
 }
 
+/*
+ * cast_rays() shoots the vertical and horizontal rays for each vertical 
+ * stripe of the projection height and checks which one is shorter. 
+ * It then draws the view based on the shortest distance.
+*/
 void	cast_rays(t_cubed *cubed)
 {
 	t_ray_calc	ray;

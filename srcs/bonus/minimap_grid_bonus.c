@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_grid_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 15:03:50 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/21 17:15:06 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:02:09 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * get_bonus_grid() initializes the flood grid to 0 and the flood values to
+ * SPACE and BONUS_CHAR. It then calls ft_flood() to flood the grid with
+ * FLOODED_WALL.
+*/
 void	get_bonus_grid(t_scene *scene)
 {
 	int	line;

@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:44:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:23:44 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:01:40 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * get_player_cell_content() returns the content of the cell the player is
+ * standing on.
+*/
 static char	get_player_cell_content(t_cubed_bonus *cubed)
 {
 	int	x;
@@ -22,6 +26,10 @@ static char	get_player_cell_content(t_cubed_bonus *cubed)
 	return (cubed->scene->map.grid[y][x]);
 }
 
+/*
+ * get_in_range_content() returns the content of the cell in range of the
+ * player. The range is defined by the INTERACTION_DISTANCE macro.
+*/
 static char	get_in_range_content(t_cubed_bonus *cubed)
 {
 	int	x;
@@ -36,7 +44,11 @@ static char	get_in_range_content(t_cubed_bonus *cubed)
 	return (cubed->scene->map.grid[y][x]);
 }
 
-//default to remove interactable character
+/*
+ * get_new_grid_value() returns the new value of the grid based on the found
+ * character. By default if the interactable is not a door the value is set to
+ * OPEN_SPACE.
+*/
 static char	get_new_grid_value(char found)
 {
 	if (found == DOOR_CLOSED)
@@ -47,6 +59,10 @@ static char	get_new_grid_value(char found)
 		return (OPEN_SPACE);
 }
 
+/*
+ * change_grid_value() changes the value of the grid based on the found
+ * character.
+*/
 static void	change_grid_value(t_cubed_bonus *cubed, \
 char found, int player_or_range)
 {
@@ -70,6 +86,12 @@ char found, int player_or_range)
 	}
 }
 
+/*
+ * check_interaction() checks if the player is in range of an interactable
+ * object. If the player is in range of an interactable object, the object is
+ * changed to the next state. If the player is standing on an interactable
+ * object, the object is changed to the next state.
+*/
 void	check_interaction(t_cubed_bonus *cubed)
 {
 	char	player_cell;

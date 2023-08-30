@@ -6,12 +6,15 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 10:24:17 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:53:47 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * ft_abs() returns the absolute value of the given integer.
+ */
 static int	ft_abs(int val)
 {
 	if (val < 0)
@@ -19,6 +22,10 @@ static int	ft_abs(int val)
 	return (val);
 }
 
+/*
+ * set_up_bresenham() sets up the bresenham algorithm. It calculates the
+ * deltas, the slopes and the decision.
+*/
 static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, \
 t_vector *two)
 {
@@ -34,6 +41,11 @@ t_vector *two)
 	line_info->d2 = line_info->decision * 2;
 }
 
+/*
+ * clip_to_minimap() clips the line to the minimap radius. It calculates the
+ * distance between the point and the center of the minimap. If the distance is
+ * less than the radius, the point is drawn.
+ */
 static void	clip_to_minimap(t_img_data *img, t_vector *one)
 {
 	int	delta_y;
@@ -48,6 +60,11 @@ static void	clip_to_minimap(t_img_data *img, t_vector *one)
 	}
 }
 
+/*
+ * ft_bresenham_clipped() draws a line between two points. It uses the
+ * bresenham algorithm to calculate the points between the two points. It
+ * clips the line to the minimap radius.
+ */
 void	ft_bresenham_clipped(t_vector one, t_vector two, t_img_data *img)
 {
 	t_bham_info	line_info;

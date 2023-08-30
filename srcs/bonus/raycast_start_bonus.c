@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:25:18 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:06:02 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * key_press() checks if any program keys are pressed and sets the appropriate
+ * cubed->key tracker to 1.
+ */
 static int	key_press(int key_code, t_cubed_bonus *cubed)
 {
 	if (key_code == TURN_LEFT)
@@ -32,6 +36,10 @@ static int	key_press(int key_code, t_cubed_bonus *cubed)
 	return (0);
 }
 
+/*
+ * key_release() checks if any program keys are released and sets the
+ * appropriate cubed->key tracker to 0.
+ */
 static int	key_release(int key_code, t_cubed_bonus *cubed)
 {
 	if (key_code == ESC)
@@ -51,6 +59,9 @@ static int	key_release(int key_code, t_cubed_bonus *cubed)
 	return (0);
 }
 
+/*
+ * update_animation() updates the ceiling texture to create an animated effect.
+*/
 static void	update_animation(t_cubed_bonus *cubed, t_scene_bonus *scene)
 {
 	if (cubed->animated_frame == ANIMATION_FRAME)
@@ -74,6 +85,10 @@ static void	update_animation(t_cubed_bonus *cubed, t_scene_bonus *scene)
 	}
 }
 
+/*
+ * game_update() is the main game loop. It updates the animation, handles
+ * key presses, and returns 0.
+*/
 static int	game_update(void *param)
 {
 	t_cubed_bonus	*cubed;
@@ -87,6 +102,12 @@ static int	game_update(void *param)
 	return (0);
 }
 
+/*
+ * raycast_start() is the main function for the raycasting. It sets up the 
+ * cubed struct and the raycast_info struct. It sets up the player struct, 
+ * loads the textures, and renders the intial view. It then
+ * sets up the mlx hooks and starts the mlx loop. 
+*/
 int	raycast_start(t_scene *scene)
 {
 	t_cubed_bonus	cubed_bonus;

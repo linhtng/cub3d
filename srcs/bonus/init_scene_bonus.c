@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 16:07:25 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:58:56 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * init_scene() initializes the scene struct to 0 and the bonus elements to NULL.
+*/
 void	init_scene(t_scene *scene)
 {
 	ft_memset(scene, 0, sizeof(t_scene));
