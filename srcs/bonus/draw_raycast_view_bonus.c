@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:52:28 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:16:32 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static int	identify_wall_direction(t_ray_calc *ray_info)
 
 /*
  * identify_material_hit() identifies the material hit by the raycast is a wall
- * or a door. If the material hit is a door, the DOOR_CLOSED is returned, otherwise
- * WALL is returned.
+ * or a door. If the material hit is a door, the DOOR_CLOSED is returned, 
+ * otherwise WALL is returned.
 */
 static int	identify_material_hit(t_cubed *cubed, t_ray_calc *ray_info)
 {
