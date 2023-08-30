@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 09:34:22 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:07:04 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void	setup_player(t_cubed *cubed)
 {
-	t_vector	start;
-
-	start.x = 0;
-	start.y = 0;
-	start.color = 0x00;
 	cubed->scene->player.location.y = cubed->scene->player.location.y * \
 	CELL_SIZE + CELL_SIZE / 2;
 	cubed->scene->player.location.x = cubed->scene->player.location.x * \
