@@ -6,13 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:44:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:52:16 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:23:44 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-char	get_player_cell_content(t_cubed_bonus *cubed)
+static char	get_player_cell_content(t_cubed_bonus *cubed)
 {
 	int	x;
 	int	y;
@@ -22,7 +22,7 @@ char	get_player_cell_content(t_cubed_bonus *cubed)
 	return (cubed->scene->map.grid[y][x]);
 }
 
-char	get_in_range_content(t_cubed_bonus *cubed)
+static char	get_in_range_content(t_cubed_bonus *cubed)
 {
 	int	x;
 	int	y;
@@ -37,7 +37,7 @@ char	get_in_range_content(t_cubed_bonus *cubed)
 }
 
 //default to remove interactable character
-char	get_new_grid_value(char found)
+static char	get_new_grid_value(char found)
 {
 	if (found == DOOR_CLOSED)
 		return (DOOR_OPEN);
@@ -47,7 +47,8 @@ char	get_new_grid_value(char found)
 		return (OPEN_SPACE);
 }
 
-void	change_grid_value(t_cubed_bonus *cubed, char found, int player_or_range)
+static void	change_grid_value(t_cubed_bonus *cubed, \
+char found, int player_or_range)
 {
 	char	new_value;
 

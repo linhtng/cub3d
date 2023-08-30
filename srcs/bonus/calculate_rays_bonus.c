@@ -6,13 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 11:18:48 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:14:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
+static void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
 t_vector *offset)
 {
 	int	dof;
@@ -40,7 +40,7 @@ t_vector *offset)
 	}
 }
 
-void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
+static void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 {
 	ray->cotan = 1.0f / tan(deg_to_rad(ray->angle));
 	if (sin(deg_to_rad(ray->angle)) > 0.001f)
@@ -69,7 +69,7 @@ void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 	check_hit_wall(cubed, &ray->h_grid, &ray->h_map, &ray->hd);
 }
 
-void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
+static void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 {
 	ray->tan = tan(deg_to_rad(ray->angle));
 	if (cos(deg_to_rad(ray->angle)) < -0.001)
@@ -98,7 +98,7 @@ void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
 
-void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
+static void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 {
 	float	h_distance;
 	float	v_distance;

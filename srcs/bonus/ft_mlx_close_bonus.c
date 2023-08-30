@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_close_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/26 18:39:16 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:22:28 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_destroy_image(void *mlx, t_img_data **img)
 	*img = NULL;
 }
 
-void	destroy_bonus_images(t_cubed_bonus *cubed, t_scene_bonus *scene)
+static void	destroy_bonus_images(t_cubed_bonus *cubed, t_scene_bonus *scene)
 {
 	if (cubed->mini_player_img)
 		ft_destroy_image(cubed->mlx, &(cubed->mini_player_img));

@@ -6,13 +6,14 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/23 19:00:16 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:16:22 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	draw_floor_ceiling(t_cubed *cubed, float ray_angle, t_draw_info *d_info)
+static void	draw_floor_ceiling(t_cubed *cubed, float ray_angle, \
+t_draw_info *d_info)
 {
 	float		delta_y;
 	float		ray_fix;
@@ -39,7 +40,7 @@ void	draw_floor_ceiling(t_cubed *cubed, float ray_angle, t_draw_info *d_info)
 	}
 }
 
-int	identify_wall_direction(t_ray_calc *ray_info)
+static int	identify_wall_direction(t_ray_calc *ray_info)
 {
 	if (ray_info->shortest == 'h' && \
 	(ray_info->angle >= 0 && ray_info->angle < 180))
@@ -56,7 +57,7 @@ int	identify_wall_direction(t_ray_calc *ray_info)
 	return (-1);
 }
 
-int	identify_material_hit(t_cubed *cubed, t_ray_calc *ray_info)
+static int	identify_material_hit(t_cubed *cubed, t_ray_calc *ray_info)
 {
 	char	map_char;
 	int		y;

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 09:48:40 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:15:45 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info)
 	}
 }
 
-unsigned int	get_color(t_map *map, int grid_x, int grid_y)
+static unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 {
 	if (grid_x < 0 || grid_x >= map->width || grid_y < 0 || \
 	grid_y >= map->height)
@@ -61,7 +61,7 @@ unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 	}
 }
 
-void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, int x, int y)
+static void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, int x, int y)
 {
 	int	grid_x;
 	int	grid_y;
@@ -76,7 +76,7 @@ void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, int x, int y)
 	ft_pixel_put(cubed->minimap_img, x, y, center->color);
 }
 
-void	draw_filled_circle(t_cubed_bonus *cubed, t_vector *center)
+static void	draw_filled_circle(t_cubed_bonus *cubed, t_vector *center)
 {
 	t_vector	image;
 	t_vector	delta;

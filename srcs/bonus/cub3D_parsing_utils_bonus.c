@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_parsing_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/26 18:37:36 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:05:54 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,6 @@ int	correct_extension(const char *argv, char *ending)
 		return (0);
 	return (1);
 }
-
-// int	check_rgb_valid(t_scene *scene, char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < 3)
-// 	{
-// 		if (scene->elems.fl_rgb[i] < 0 || scene->elems.fl_rgb[i] > 255
-// 			|| scene->elems.c_rgb[i] < 0 || scene->elems.c_rgb[i] > 255)
-// 			return (err_msg("Floor/ceiling color invalid: ", line));
-// 		i++;
-// 	}
-// 	return (1);
-// }
-
-// unsigned int	convert_rgb_hex(int *rgb)
-// {
-// 	unsigned int	res;
-
-// 	res = ((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + (rgb[2] & 0xff);
-// 	return (res);
-// }
 
 void	free_scene_data(t_scene *scene)
 {
@@ -71,4 +48,13 @@ void	free_scene_data(t_scene *scene)
 		free(((t_scene_bonus *)scene)->bonus_elems.ceiling[1]);
 	if (((t_scene_bonus *)scene)->bonus_elems.ceiling[2])
 		free(((t_scene_bonus *)scene)->bonus_elems.ceiling[2]);
+}
+
+int	check_input_file(char *argv, int fd, char *extension)
+{
+	if (fd == -1)
+		return (err_msg("File cannot be opened: ", argv));
+	if (!correct_extension(argv, extension))
+		return (err_msg(argv, " has invalid file extension"));
+	return (1);
 }

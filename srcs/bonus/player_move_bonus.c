@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:35:01 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:24:13 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ need to work out the coordinates of the other two vertices:
 *	|		|
 *	4-------2
 */
-int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
+static int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
 {
 	t_vector	third_corner;
 	t_vector	fourth_corner;
@@ -41,7 +41,7 @@ int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
 //currently allows movement through small gaps, eg. from 0 to 0 -> 101 
 //TODO decide if for bonus only or not
 
-int	can_move(t_cubed *cubed, t_vector *next)
+static int	can_move(t_cubed *cubed, t_vector *next)
 {
 	t_vector	grid;
 	t_vector	player_cell;

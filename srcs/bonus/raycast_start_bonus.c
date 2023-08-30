@@ -6,13 +6,13 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 16:47:15 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:25:18 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	key_press(int key_code, t_cubed_bonus *cubed)
+static int	key_press(int key_code, t_cubed_bonus *cubed)
 {
 	if (key_code == TURN_LEFT)
 		cubed->keys[LEFT_PRESSED] = 1;
@@ -32,7 +32,7 @@ int	key_press(int key_code, t_cubed_bonus *cubed)
 	return (0);
 }
 
-int	key_release(int key_code, t_cubed_bonus *cubed)
+static int	key_release(int key_code, t_cubed_bonus *cubed)
 {
 	if (key_code == ESC)
 		mlx_close((t_cubed *)cubed, 0, "Normal exit");
@@ -51,7 +51,7 @@ int	key_release(int key_code, t_cubed_bonus *cubed)
 	return (0);
 }
 
-void	update_animation(t_cubed_bonus *cubed, t_scene_bonus *scene)
+static void	update_animation(t_cubed_bonus *cubed, t_scene_bonus *scene)
 {
 	if (cubed->animated_frame == ANIMATION_FRAME)
 	{
@@ -74,7 +74,7 @@ void	update_animation(t_cubed_bonus *cubed, t_scene_bonus *scene)
 	}
 }
 
-int	game_update(void *param)
+static int	game_update(void *param)
 {
 	t_cubed_bonus	*cubed;
 	t_scene_bonus	*scene;
