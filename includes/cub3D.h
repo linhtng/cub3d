@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:10:41 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:26:55 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@
 /* for minilibx */
 # include <mlx.h>
 /* for write, read, etc*/
-# include <unistd.h> 
-/* for  ? */
-# include <sys/types.h>
-/* for  ? */
-# include <sys/stat.h>
+# include <unistd.h>
 /* for open */
 # include <fcntl.h>
 

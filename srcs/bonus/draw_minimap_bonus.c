@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:15:45 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:51:00 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static unsigned int	get_color(t_map *map, int grid_x, int grid_y)
 	}
 }
 
-static void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, int x, int y)
+static void	put_minimap_pixel(t_cubed_bonus *cubed, t_vector *center, \
+int x, int y)
 {
 	int	grid_x;
 	int	grid_y;

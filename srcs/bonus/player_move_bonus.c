@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:24:13 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:28:56 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ static int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
 		return (0);
 	return (1);
 }
-
-//return true / false? setup buffer to + or - based on direction?  010
-//currently allows movement through small gaps, eg. from 0 to 0 -> 101 
-//TODO decide if for bonus only or not
 
 static int	can_move(t_cubed *cubed, t_vector *next)
 {

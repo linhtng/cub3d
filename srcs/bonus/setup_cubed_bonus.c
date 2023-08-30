@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_cubed_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 10:35:03 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:47:45 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	setup_cubed(t_cubed *cubed)
 	cubed->mlx = mlx_init();
 	if (!cubed->mlx)
 		mlx_close(cubed, 1, "intialization of mlx failed");
-	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
+	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, NAME);
 	if (!cubed->window)
 		mlx_close(cubed, 1, "intialization of mlx window failed");
 	((t_cubed_bonus *)cubed)->minimap_img = \

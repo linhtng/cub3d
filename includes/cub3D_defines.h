@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 09:48:58 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:00:17 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@
 /* PARSING DEFINES */
 # define FLOOR 1
 # define CEILING 2
-# define SPACE '_'
-# define VISITED '1'
-# define FLOODED_WALL '2'
-# define EXPOSED 'I'
 # define DEBUG 0
 # ifndef VALID_CHARS
 #  define VALID_CHARS "01NSEW "
 # endif
 
 /* PROGRAM DEFINES */
-# define WIN_WIDTH 1490 //1920
+# define WIN_WIDTH 1490
 # define WIN_HEIGHT 1080
 # define ERROR -1
 # define TRUE 1
@@ -34,22 +30,22 @@
 # define PLAYER_SPEED 15
 
 /* RAY CASTING DEFINES */
-# define PROJECTION_WIDTH 1370 //685//1370 //1366
-# define PROJECTION_HEIGHT 770 // 385//770
+# define PROJECTION_WIDTH 1370
+# define PROJECTION_HEIGHT 770
 # define MAX_DOF 10000
 # define FOV 60
 # define CELL_SIZE 64
 # define TEXTURE_SIZE 64
 
 /* COLORS */
-# define TRANSPARENT (unsigned int) 0X00FFFFFF
-# define RED (unsigned int) 0XFF0000
-# define LIGHT_GREY (unsigned int) 0XA9A9A9
-# define DARK_GREY (unsigned int) 0X585858
-# define PINK (unsigned int) 0XFF9999
-# define NAVY_BLUE (unsigned int) 0X000785
-# define DIM_GRAY (unsigned int) 0X666666
-# define TRANS_WHITE (unsigned int) 0X99FFFFFF
+# define TRANSPARENT 0X00FFFFFF
+# define RED 0XFF0000
+# define LIGHT_GREY 0XA9A9A9
+# define DARK_GREY 0X585858
+# define PINK 0XFF9999
+# define NAVY_BLUE 0X000785
+# define DIM_GRAY 0X666666
+# define TRANS_WHITE 0X99FFFFFF
 
 enum	e_keys
 {
@@ -68,6 +64,14 @@ enum	e_directions
 	SOUTH,
 	EAST,
 	WEST
+};
+
+enum	e_map_chars
+{
+	SPACE = '_',
+	VISITED = '1',
+	FLOODED_WALL = '2',
+	EXPOSED = 'I'
 };
 
 #endif
