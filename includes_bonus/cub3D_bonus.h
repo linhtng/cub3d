@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 15:44:26 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:59:02 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_cubed_bonus
 typedef struct s_elem_bonus
 {
 	char	*floor;
-	char	*ceiling[3];
+	char	*ceiling[4];
 	char	*door;
 }	t_elem_bonus;
 
