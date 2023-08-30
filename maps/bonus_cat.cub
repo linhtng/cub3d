@@ -3,12 +3,12 @@ SO texture_src/robo_cat.xpm
 WE texture_src/cat_shelf.xpm
 EA texture_src/grey_cat.xpm
 
-DO texture_src/cube.xpm
+DO texture_src/cat_door.xpm
 
-F texture_src/gre_wp.xpm
-C texture_src/animation_test/a_test1.xpm
-C texture_src/animation_test/a_test2.xpm
-C texture_src/animation_test/a_test3.xpm
+F texture_src/floor2.xpm
+C texture_src/sky_1.xpm
+C texture_src/sky_2.xpm
+C texture_src/sky_3.xpm
 
        111         111
       11011       11011
