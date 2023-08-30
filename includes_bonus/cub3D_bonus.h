@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:50:24 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:59:02 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define RAYCAST_Y 58
 
 /* BONUS MAP CHARACTERS */
-# define BONUS_CHAR 'B'
 # define VALID_CHARS "01NSEWCDO "
 # define MAP_CONTENT "0NSEWCDO"
 # define HITABLE_MAP_VAL "1D"
@@ -68,7 +67,7 @@ typedef struct s_cubed_bonus
 typedef struct s_elem_bonus
 {
 	char	*floor;
-	char	*ceiling[3];
+	char	*ceiling[4];
 	char	*door;
 }	t_elem_bonus;
 
@@ -106,12 +105,13 @@ typedef struct s_draw_info
 	t_vector	tex;
 }				t_draw_info;
 
-enum	e_legend
+enum	e_map_char_bonus
 {
 	OPEN_SPACE = 0,
 	WALL = 1,
 	DOOR_OPEN = 'O',
-	DOOR_CLOSED = 'D'
+	DOOR_CLOSED = 'D',
+	BONUS_CHAR = 'B'
 };
 
 enum	e_bonus_keys
