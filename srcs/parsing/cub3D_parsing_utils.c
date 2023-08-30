@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_parsing_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/14 16:22:44 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:04:34 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,13 @@ void	free_scene_data(t_scene *scene)
 		free(scene->elems.east);
 	if (scene->elems.west)
 		free(scene->elems.west);
+}
+
+int	check_input_file(char *argv, int fd, char *extension)
+{
+	if (fd == -1)
+		return (err_msg("File cannot be opened: ", argv));
+	if (!correct_extension(argv, extension))
+		return (err_msg(argv, " has invalid file extension"));
+	return (1);
 }

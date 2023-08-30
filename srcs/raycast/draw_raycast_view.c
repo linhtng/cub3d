@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_raycast_view.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 16:46:09 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:11:27 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	identify_wall_direction(t_ray_calc *ray_info)
+static int	identify_wall_direction(t_ray_calc *ray_info)
 {
 	if (ray_info->shortest == 'h' && \
 	(ray_info->angle >= 0 && ray_info->angle < 180))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/29 15:32:33 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:12:20 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	load_texture(t_scene *scene, t_cubed *cubed)
 	scene->texture[WEST] = get_new_xpm_image(cubed, scene->elems.west);
 }
 
-t_vector	get_texture_vec(t_vector *hit, int dir, float y_step, \
+static t_vector	get_texture_vec(t_vector *hit, int dir, float y_step, \
 float line_size)
 {
 	t_vector	texture;

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 09:57:33 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:03:16 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ static void	destroy_all_images(t_cubed *cubed)
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
 }
 
-//TODO remove or change closing message
 int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 {
-	printf("MLX should close...\n");
 	destroy_all_images(cubed);
 	if (cubed->window)
 	{
@@ -51,6 +49,7 @@ int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 		ft_putendl_fd(exit_msg, STDERR_FILENO);
 	if (cubed->scene)
 		free_scene_data(cubed->scene);
+	ft_putstr_fd("Thanks for playin' cub3D!\n", STDOUT_FILENO);
 	exit(exit_code);
 	return (0);
 }

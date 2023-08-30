@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 10:06:17 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:09:07 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	collision_detect(char **grid, t_vector center, t_vector half_diagon)
 	return (1);
 }
 
-//return true / false? setup buffer to + or - based on direction?  010
-//currently allows movement through small gaps, eg. from 0 to 0 -> 101 
 int	can_move(t_cubed *cubed, t_vector *next)
 {
 	t_vector	grid;

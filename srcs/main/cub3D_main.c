@@ -6,20 +6,11 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 10:00:42 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:04:43 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	check_input_file(char *argv, int fd, char *extension)
-{
-	if (fd == -1)
-		return (err_msg("File cannot be opened: ", argv));
-	if (!correct_extension(argv, extension))
-		return (err_msg(argv, " has invalid file extension"));
-	return (1);
-}
 
 int	main(int argc, char **argv)
 {
