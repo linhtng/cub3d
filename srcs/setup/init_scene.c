@@ -6,12 +6,15 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 12:07:45 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:14:05 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * init_scene() initializes the scene struct and zeros all of it's sub structs.
+ */
 void	init_scene(t_scene *scene)
 {
 	ft_memset(scene, 0, sizeof(t_scene));

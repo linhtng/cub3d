@@ -6,12 +6,19 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 14:04:43 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:53:01 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * main() is the entry point of the program. If the parameter is not valid it 
+ * will exit with EXIT_FAILURE. If the parameter is valid, it will initialize
+ * the scene and call raycast_start() to start the raycasting. If the map 
+ * contents are not valid the program free the allocated date and end. Otherwise
+ * it will call raycast_start() to start the raycasting.
+ */
 int	main(int argc, char **argv)
 {
 	int		fd;

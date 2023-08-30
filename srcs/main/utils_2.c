@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:42:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/16 16:45:29 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:56:51 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * correct_degrees() corrects the float degrees to be between 0 and 360.
+ */
 float	correct_degrees(float degrees)
 {
 	if (degrees < 0)
@@ -21,6 +24,9 @@ float	correct_degrees(float degrees)
 	return (degrees);
 }
 
+/*
+ * deg_to_rad() converts the float degrees to radians.
+ */
 float	deg_to_rad(float degrees)
 {
 	float	radians;
@@ -29,6 +35,10 @@ float	deg_to_rad(float degrees)
 	return (radians);
 }
 
+/*
+ * get_distance() returns the distance between the t_vecotrs player and 
+ * wall_hit using the Pythagorean theorem.
+ */
 float	get_distance(t_vector *player, t_vector *wall_hit)
 {
 	float	a;

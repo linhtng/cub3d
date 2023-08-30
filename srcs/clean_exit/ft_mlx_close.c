@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 14:03:16 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:40:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * ft_destroy_image() frees the memory of a single mlx image, img->img the 
+ * struct allocated for the image data, img.
+*/
 static void	ft_destroy_image(void *mlx, t_img_data **img)
 {
 	mlx_destroy_image(mlx, (*img)->img);
@@ -19,6 +23,10 @@ static void	ft_destroy_image(void *mlx, t_img_data **img)
 	*img = NULL;
 }
 
+/*
+ * destroy_all_images() frees all the allocated memory for the images 
+ * for the program.
+*/
 static void	destroy_all_images(t_cubed *cubed)
 {
 	if (cubed->raycast_info && cubed->raycast_info->r_img)
@@ -35,6 +43,12 @@ static void	destroy_all_images(t_cubed *cubed)
 		ft_destroy_image(cubed->mlx, &(cubed->scene->texture[WEST]));
 }
 
+/*
+ * mlx_close() is called when the user presses the ESC key or closes the window
+ * with the red X button or there is an allocation failure during setup. 
+ * It frees all the allocated memory and exits the program, printing an error
+ * message if necessary.
+*/
 int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 {
 	destroy_all_images(cubed);

@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 10:07:04 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:03:43 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * setup_player() sets the player's location, color, angle and direction based
+ * on the parsed map values.
+*/
 void	setup_player(t_cubed *cubed)
 {
 	cubed->scene->player.location.y = cubed->scene->player.location.y * \

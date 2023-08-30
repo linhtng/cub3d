@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:30:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/29 17:18:49 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:43:54 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * ft_pixel_put() puts a pixel on the t_img_data *data held in data at the given
+ * int x, int y coordinates. If the coordinates are outside the image, it does 
+ * nothing.
+*/
 void	ft_pixel_put(t_img_data *data, int x, int y, unsigned int color)
 {
 	char	*dst;
@@ -23,6 +28,11 @@ void	ft_pixel_put(t_img_data *data, int x, int y, unsigned int color)
 	*(unsigned int *)dst = color;
 }
 
+/*
+ * ft_pixel_get() returns the color of the pixel at the given x, y coordinates
+ * in the img held in data. If the coordinates are outside the image, it
+ * returns the color RED.
+*/
 unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
 {
 	unsigned int	dst;
@@ -34,6 +44,11 @@ unsigned int	ft_pixel_get(t_img_data *data, int x, int y)
 	return (dst);
 }
 
+/*
+ * my_put_line_v() draws a vertical line of length int len starting at the given
+ * coordinates in t_vector *start. The color of the line is the color of the
+ * start vector.
+*/
 void	my_put_line_h(t_img_data *data, t_vector *start, int len)
 {
 	int		i;
@@ -50,6 +65,11 @@ void	my_put_line_h(t_img_data *data, t_vector *start, int len)
 	start->x = x;
 }
 
+/*
+ * my_put_line_v() draws a vertical line of length int len starting at the given
+ * coordinates in t_vector *start. The color of the line is the color of the
+ * start vector.
+*/
 void	my_put_rectangle(t_img_data *data, t_vector start, int len, int height)
 {
 	int	i;

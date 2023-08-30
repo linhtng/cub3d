@@ -6,12 +6,17 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 11:33:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:48:30 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * get_new_image() allocates memory for a new t_img_data struct and a new mlx
+ * image. It returns a pointer to the new t_img_data struct. If the allocation
+ * fails, it calls mlx_close() with an exit code of 1.
+*/
 t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 {
 	t_img_data	*img;
@@ -32,6 +37,11 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 	return (img);
 }
 
+/*
+ * get_new_xpm_image() allocates memory for a new t_img_data struct and a new
+ * mlx image from the given xpm file. It returns a pointer to the new t_img_data
+ * struct. If the allocation fails, it calls mlx_close() with an exit code of 1.
+*/
 t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 {
 	t_img_data	*img;
@@ -51,6 +61,10 @@ t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 	return (img);
 }
 
+/*
+ * refresh_images() puts the background image and the raycast image to the
+ * window.
+*/
 void	refresh_images(t_cubed *cubed)
 {
 	mlx_put_image_to_window(cubed->mlx, cubed->window, \

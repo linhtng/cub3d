@@ -6,12 +6,15 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 10:35:10 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:14:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * zero_cubed() zeros all the values in the cubed struct.
+ */
 static void	zero_cubed(t_cubed *cubed)
 {
 	cubed->mlx = NULL;
@@ -21,6 +24,10 @@ static void	zero_cubed(t_cubed *cubed)
 	cubed->scene = NULL;
 }
 
+/*
+ * setup_cubed() initializes the cubed struct and calls mlx_init() and
+ * mlx_new_window() to initialize the mlx and window.
+ */
 void	setup_cubed(t_cubed *cubed)
 {
 	zero_cubed(cubed);

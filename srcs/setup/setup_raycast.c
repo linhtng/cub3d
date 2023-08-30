@@ -6,12 +6,17 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:18:06 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 14:55:56 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:16:22 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * draw_background() draws the background of the projection with the parsed 
+ * colors. The top half of the screen is the ceiling color and the bottom half
+ * is the floor color.
+ */
 void	draw_background(t_cubed *cubed)
 {
 	t_vector	start;
@@ -29,6 +34,11 @@ void	draw_background(t_cubed *cubed)
 	}
 }
 
+/*
+ * setup_raycast() initializes the raycast_info struct and sets the values for
+ * the raycast_info struct. It calls get_new_image() to initialize the 
+ * background_img and r_img used for raycast drawing
+ */
 void	setup_raycast(t_cubed *cubed, t_raycast *raycast_info)
 {
 	raycast_info->background_img = NULL;

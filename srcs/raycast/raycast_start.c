@@ -6,12 +6,18 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:22:07 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 11:30:47 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:13:24 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+ * raycast_start() is the main function for the raycasting. It sets up the 
+ * cubed struct and the raycast_info struct. It sets up the player struct, 
+ * loads the textures, draws the bacground and renders the intial view. It then
+ * sets up the mlx hooks and starts the mlx loop. 
+*/
 int	raycast_start(t_scene *scene)
 {
 	t_cubed		cubed;
