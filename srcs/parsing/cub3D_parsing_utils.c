@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_parsing_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 19:48:05 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:25:13 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/23 19:07:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:27:59 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * get_flood_start_point() finds the first '1' in the flood map and stores its
+ * coordinates in the t_vector *start.
+*/
 static void	get_flood_start_point(t_scene *scene, t_vector *start)
 {
 	int	row;
@@ -35,6 +39,13 @@ static void	get_flood_start_point(t_scene *scene, t_vector *start)
 	}
 }
 
+/*
+ * check_island() flood the map starting from the 1st wall, 
+ * up to the point it encounters space. So, if there is any part of the map
+ * that is not connected to the rest of the map, it won't be flooded.
+ * If such island it exists, function returns -1 and print an explicit 
+ * error message. Otherwise, it returns 1.
+*/
 int	check_island(t_scene *scene, char **grid)
 {
 	int			unfilled;
@@ -61,6 +72,14 @@ int	check_island(t_scene *scene, char **grid)
 	return (1);
 }
 
+/*
+ * ft_flood() flood the map starting from the given coordinates,
+ * up to the point it encounters the given block. If the block is found,
+ * it returns. If the coordinates are outside the map, it returns.
+ * If the coordinates are already visited, it returns.
+ * Otherwise, it changes the value of the current coordinates to the given
+ * new value, and recursively calls itself for the 4 directions.
+*/
 void	ft_flood(int y, int x, t_scene *scene, char block)
 {
 	if (y < 0 || x < 0 || y >= (scene->map.height + 2)
@@ -80,6 +99,13 @@ void	ft_flood(int y, int x, t_scene *scene, char block)
 	ft_flood(y, x - 1, scene, block);
 }
 
+/*
+ * big_frame_map() creates a big frame around the map, 
+ * so that the flood function can start from the first space.
+ * This frame map is one line bigger than the map in each direction.
+ * The function returns 1 if the frame is created successfully.
+ * Otherwise, it returns -1.
+*/
 int	big_frame_map(char **map, t_scene *scene)
 {
 	char	**dup;
@@ -103,6 +129,11 @@ int	big_frame_map(char **map, t_scene *scene)
 	return (1);
 }
 
+/*
+ * empty_map() creates a 2D array of the map, filled with '0'.
+ * The size is the same as the big frame map. It is used for the flood fill
+ * algorithm, to keep track of the visited coordinates.
+*/
 int	empty_map(t_scene *scene)
 {
 	char	**empty;

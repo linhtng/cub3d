@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_valid.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 21:09:07 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 19:38:28 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:28:00 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

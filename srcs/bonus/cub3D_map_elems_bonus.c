@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_elems_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/24 19:48:28 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:20:45 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * check_valid_texture() checks if the given texture path is a valid xpm file,
+ * and if it is duplicated. If valid, saved the path in the struct and 
+ * returns 1. Otherwise, it returns -1 and print an explicit error message.
+*/
 static int	check_valid_texture(char **path, char *texture)
 {
 	int	fd;
@@ -28,6 +33,10 @@ static int	check_valid_texture(char **path, char *texture)
 	return (ret);
 }
 
+/*
+ * get_texture() checks if the given texture path is found and if it is valid.
+ * If valid, returns 1. Otherwise, it returns -1.
+*/
 static int	get_texture(t_scene_bonus *scene, char *elem_id, \
 char *texture, int len)
 {
@@ -57,6 +66,11 @@ char *texture, int len)
 	return (ret);
 }
 
+/*
+ * get_scene_elem() takes the string of scene element info, split it into 
+ * a string of array with the ' ' as delimiter. This array is then passed
+ * to get_texture() or get_scene_color() to get the elements.
+*/
 int	get_scene_elem(t_scene *scene, char *scene_line)
 {
 	int		info_num;

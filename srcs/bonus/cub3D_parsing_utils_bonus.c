@@ -6,12 +6,16 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:43:34 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 14:50:09 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:25:10 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+/*
+ * correct_extension() checks if the given file has the correct extension.
+ * If it does, it returns 1. Otherwise, it returns 0.
+ */
 int	correct_extension(const char *argv, char *ending)
 {
 	size_t		len;
@@ -24,6 +28,10 @@ int	correct_extension(const char *argv, char *ending)
 	return (1);
 }
 
+/*
+ * free_scene_data() frees the all the data saved in the bounus scene 
+ * struct.
+ */
 void	free_scene_data(t_scene *scene)
 {
 	free_arr(scene->array);
@@ -50,6 +58,11 @@ void	free_scene_data(t_scene *scene)
 		free(((t_scene_bonus *)scene)->bonus_elems.ceiling[2]);
 }
 
+/*
+ * check_input_file() checks if the given file can be opened and if it has
+ * the correct extension. If it does, it returns 1. Otherwise, it returns -1
+ * and print an explicit error message.
+ */
 int	check_input_file(char *argv, int fd, char *extension)
 {
 	if (fd == -1)
