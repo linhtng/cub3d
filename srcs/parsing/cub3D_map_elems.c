@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 18:55:20 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/31 21:02:31 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,14 @@ static int	get_texture(t_scene *scene, char *elem_id, char *texture, int len)
 	ret = -1;
 	if (!ft_strncmp(elem_id, "NO", len))
 		ret = check_valid_texture(&scene->elems.north, texture);
-	if (!ft_strncmp(elem_id, "SO", len))
+	else if (!ft_strncmp(elem_id, "SO", len))
 		ret = check_valid_texture(&scene->elems.south, texture);
-	if (!ft_strncmp(elem_id, "WE", len))
+	else if (!ft_strncmp(elem_id, "WE", len))
 		ret = check_valid_texture(&scene->elems.west, texture);
-	if (!ft_strncmp(elem_id, "EA", len))
+	else if (!ft_strncmp(elem_id, "EA", len))
 		ret = check_valid_texture(&scene->elems.east, texture);
+	else
+		ret = err_msg("Invalid element info: ", elem_id);
 	return (ret);
 }
 

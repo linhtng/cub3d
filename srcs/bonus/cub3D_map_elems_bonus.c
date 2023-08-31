@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_elems_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/31 10:20:45 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 21:20:47 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,49 @@ static int	check_valid_texture(char **path, char *texture)
  * get_texture() checks if the given texture path is found and if it is valid.
  * If valid, returns 1. Otherwise, it returns -1.
 */
-static int	get_texture(t_scene_bonus *scene, char *elem_id, \
+static int	get_bonus_texture(t_scene_bonus *scene, char *elem_id, \
 char *texture, int len)
 {
 	int			ret;
-	static int	i;
+	int			i;
 
 	ret = -1;
 	i = 0;
-	if (!ft_strncmp(elem_id, "NO", len))
-		ret = check_valid_texture(&scene->elems.north, texture);
-	if (!ft_strncmp(elem_id, "SO", len))
-		ret = check_valid_texture(&scene->elems.south, texture);
-	if (!ft_strncmp(elem_id, "WE", len))
-		ret = check_valid_texture(&scene->elems.west, texture);
-	if (!ft_strncmp(elem_id, "EA", len))
-		ret = check_valid_texture(&scene->elems.east, texture);
 	if (!ft_strncmp(elem_id, "DO", len))
 		ret = check_valid_texture(&scene->bonus_elems.door, texture);
-	if (!ft_strncmp(elem_id, "F", len))
+	else if (!ft_strncmp(elem_id, "F", len))
 		ret = check_valid_texture(&scene->bonus_elems.floor, texture);
-	if (!ft_strncmp(elem_id, "C", len))
+	else if (!ft_strncmp(elem_id, "C", len))
 	{
 		while (scene->bonus_elems.ceiling[i])
 			i++;
 		ret = check_valid_texture(&(scene->bonus_elems.ceiling[i]), texture);
 	}
+	else
+		ret = err_msg("Invalid element info: ", elem_id);
+	return (ret);
+}
+
+/*
+ * get_texture() checks if the given texture path is found and if it is valid.
+ * If valid, returns 1. Otherwise, it returns -1.
+*/
+static int	get_texture(t_scene_bonus *scene, char *elem_id, \
+char *texture, int len)
+{
+	int			ret;
+
+	ret = -1;
+	if (!ft_strncmp(elem_id, "NO", len))
+		ret = check_valid_texture(&scene->elems.north, texture);
+	else if (!ft_strncmp(elem_id, "SO", len))
+		ret = check_valid_texture(&scene->elems.south, texture);
+	else if (!ft_strncmp(elem_id, "WE", len))
+		ret = check_valid_texture(&scene->elems.west, texture);
+	else if (!ft_strncmp(elem_id, "EA", len))
+		ret = check_valid_texture(&scene->elems.east, texture);
+	else
+		ret = get_bonus_texture(scene, elem_id, texture, len);
 	return (ret);
 }
 
