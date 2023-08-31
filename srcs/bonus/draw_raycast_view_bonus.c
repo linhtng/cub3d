@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:35:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 17:16:32 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:01:41 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
  * delta y. delta_y depends on the project_y that decrements as the loop 
  * iterates.
 */
-static void	draw_floor_ceiling(t_cubed *cubed, float ray_angle, \
+static void	draw_floor_ceiling(t_cubed *cubed, double ray_angle, \
 t_draw_info *d_info)
 {
-	float		delta_y;
-	float		ray_fix;
+	double		delta_y;
+	double		ray_fix;
 
 	ray_fix = correct_degrees(cubed->scene->player.angle - ray_angle);
 	ray_fix = cos(deg_to_rad(ray_fix));

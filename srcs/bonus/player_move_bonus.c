@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:03:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/31 10:18:51 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:01:39 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	move_forward_backward(t_cubed *cubed, int key_code)
 void	move_right_left(t_cubed *cubed, int key_code)
 {
 	t_vector	next_loc;
-	float		move_angle;
+	double		move_angle;
 
 	if (key_code == RIGHT)
 		move_angle = correct_degrees(cubed->scene->player.angle - 90.0f);

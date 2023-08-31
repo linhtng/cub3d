@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 16:41:19 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:58:45 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	load_texture(t_scene *normal_scene, t_cubed *cubed)
  * line size and the projection height. The x is calculated by the direction 
  * of the ray and the position of the hit. 
 */
-static t_vector	get_tex_vec(t_vector *hit, int dir, float y_step, \
-float line_size)
+static t_vector	get_tex_vec(t_vector *hit, int dir, double y_step, \
+double line_size)
 {
 	t_vector	texture;
 
@@ -110,7 +110,7 @@ void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, \
 t_draw_info *draw)
 {
 	unsigned int	color;
-	float			y_step;
+	double			y_step;
 	int				index;
 
 	y_step = TEXTURE_SIZE / draw->height;

@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:59:46 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 17:08:56 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:01:46 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	draw_minimap_rays(t_cubed_bonus *cubed, t_ray_calc *ray_info)
 	if (ray_info->shortest == 'v')
 	{
 		temp.x = (((ray_info->v_map.x - cubed->scene->player.location.x) / \
-		(float)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
+		(double)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
 		temp.y = (((ray_info->v_map.y - cubed->scene->player.location.y) / \
-		(float)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
+		(double)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
 		ft_bresenham_clipped(mini_player, temp, cubed->mini_player_img);
 	}
 	else
 	{
 		temp.x = (((ray_info->h_map.x - cubed->scene->player.location.x) \
-		/ (float)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
+		/ (double)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
 		temp.y = (((ray_info->h_map.y - cubed->scene->player.location.y) \
-		/ (float)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
+		/ (double)CELL_SIZE) * MINI_MAP_CELL) + MINI_MAP_RADIUS;
 		ft_bresenham_clipped(mini_player, temp, cubed->mini_player_img);
 	}
 }

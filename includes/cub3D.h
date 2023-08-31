@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 15:26:55 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:01:43 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ t_img_data		*get_new_xpm_image(t_cubed *cubed, char *file_path);
 void			refresh_images(t_cubed *cubed);
 
 /* utils_2.c */
-float			deg_to_rad(float degrees);
-float			correct_degrees(float degrees);
-float			get_distance(t_vector *player, t_vector *wall_hit);
+double			deg_to_rad(double degrees);
+double			correct_degrees(double degrees);
+double			get_distance(t_vector *player, t_vector *wall_hit);
 
 /* setup_player.c */
 void			setup_player(t_cubed *cubed);

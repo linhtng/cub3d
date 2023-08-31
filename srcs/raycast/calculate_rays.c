@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:36:25 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:05:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ t_vector *offset)
 */
 static void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 {
-	ray->cotan = 1.0f / tan(deg_to_rad(ray->angle));
-	if (sin(deg_to_rad(ray->angle)) > 0.001f)
+	ray->cotan = 1.0 / tan(deg_to_rad(ray->angle));
+	if (sin(deg_to_rad(ray->angle)) > 0.001)
 	{
 		ray->h_map.y = ((int)cubed->scene->player.location.y / CELL_SIZE) * \
-		CELL_SIZE - 0.001f;
+		CELL_SIZE - 0.0001;
 		ray->h_map.x = cubed->scene->player.location.x + \
 		((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
-		ray->hd.y = (float)-CELL_SIZE;
+		ray->hd.y = (double)-CELL_SIZE;
 		ray->hd.x = -ray->hd.y * ray->cotan;
 	}
 	else if (sin(deg_to_rad(ray->angle)) < -0.001)
@@ -70,7 +70,7 @@ static void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 		CELL_SIZE + CELL_SIZE;
 		ray->h_map.x = cubed->scene->player.location.x + \
 		((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
-		ray->hd.y = (float)CELL_SIZE;
+		ray->hd.y = (double)CELL_SIZE;
 		ray->hd.x = -ray->hd.y * ray->cotan;
 	}
 	else
@@ -94,7 +94,7 @@ static void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 	if (cos(deg_to_rad(ray->angle)) < -0.001)
 	{
 		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * \
-		CELL_SIZE - 0.001f;
+		CELL_SIZE - 0.0001;
 		ray->v_map.y = cubed->scene->player.location.y + \
 		((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
 		ray->vd.x = -CELL_SIZE;
@@ -124,8 +124,8 @@ static void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 */
 static void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 {
-	float	h_distance;
-	float	v_distance;
+	double	h_distance;
+	double	v_distance;
 
 	h_distance = get_distance(&cubed->scene->player.location, &ray_info->h_map);
 	v_distance = get_distance(&cubed->scene->player.location, &ray_info->v_map);

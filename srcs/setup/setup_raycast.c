@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:18:06 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:16:22 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:01:39 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	setup_raycast(t_cubed *cubed, t_raycast *raycast_info)
 	get_new_image(cubed, PROJECTION_WIDTH, PROJECTION_HEIGHT);
 	raycast_info->background_img = \
 	get_new_image(cubed, PROJECTION_WIDTH, PROJECTION_HEIGHT);
-	raycast_info->angle_between_rays = (float) FOV / (float) PROJECTION_WIDTH;
+	raycast_info->angle_between_rays = (double) FOV / (double) PROJECTION_WIDTH;
 	raycast_info->center_of_projection.x = PROJECTION_WIDTH / 2;
 	raycast_info->center_of_projection.y = PROJECTION_HEIGHT / 2;
 	cubed->raycast_info = raycast_info;

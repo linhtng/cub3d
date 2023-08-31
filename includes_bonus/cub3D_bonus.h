@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 15:59:02 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:58:46 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_bham_info
 
 typedef struct s_draw_info
 {
-	float		height;
+	double		height;
 	int			dir;
 	int			project_x;
 	int			project_y;

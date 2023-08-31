@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:48:10 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/21 12:49:15 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:00:31 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_cubed
 
 typedef struct s_vector
 {
-	float			x;
-	float			y;
+	double			x;
+	double			y;
 	unsigned int	color;
 }					t_vector;
 
@@ -57,7 +57,7 @@ typedef struct s_map
 typedef struct s_player
 {
 	struct s_vector		location;
-	float				angle;
+	double				angle;
 	struct s_vector		d;
 	char				spawn;
 }				t_player;
@@ -89,20 +89,20 @@ typedef struct s_raycast
 	struct s_img_data	*r_img;
 	struct s_img_data	*background_img;
 	struct s_vector		center_of_projection;
-	float				angle_between_rays;
+	double				angle_between_rays;
 }			t_raycast;
 
 typedef struct s_ray_calc
 {
-	float			angle;
+	double			angle;
 	struct s_vector	h_map;
 	struct s_vector	h_grid;
 	struct s_vector	v_map;
 	struct s_vector	v_grid;
-	float			tan;
-	float			cotan;
+	double			tan;
+	double			cotan;
 	char			shortest;
-	float			distance;
+	double			distance;
 	struct s_vector	vd;
 	struct s_vector	hd;
 }					t_ray_calc;
