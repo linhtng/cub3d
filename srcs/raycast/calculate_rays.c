@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/31 18:05:06 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/01 10:26:21 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
  * coordinates are within the map and if the map grid value is 1. It adds the
  * map vector to assess the next hit vertical or horizontal grid line.
 */
-static void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
+static void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, 
 t_vector *offset)
 {
 	int	dof;
 
 	dof = 0;
-	if (map->x == cubed->scene->player.location.x && \
-	map->y == cubed->scene->player.location.x)
+	if (map->x == cubed->scene->player.location.x && 
+		map->y == cubed->scene->player.location.x)
 		return ;
 	while (dof < MAX_DOF)
 	{
 		grid->x = (int)map->x / CELL_SIZE;
 		grid->y = (int)map->y / CELL_SIZE;
-		if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width \
-			&& grid->y < cubed->scene->map.height \
+		if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width 
+			&& grid->y < cubed->scene->map.height 
 			&& cubed->scene->map.grid[(int)grid->y][(int)grid->x] == '1')
 		{
 			dof = MAX_DOF;
@@ -54,29 +54,28 @@ t_vector *offset)
 */
 static void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 {
+	t_vector	*player;
+
+	player = &cubed->scene->player.location;
 	ray->cotan = 1.0 / tan(deg_to_rad(ray->angle));
 	if (sin(deg_to_rad(ray->angle)) > 0.001)
 	{
-		ray->h_map.y = ((int)cubed->scene->player.location.y / CELL_SIZE) * \
-		CELL_SIZE - 0.0001;
-		ray->h_map.x = cubed->scene->player.location.x + \
-		((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
+		ray->h_map.y = ((int)player->y / CELL_SIZE) * CELL_SIZE - 0.0001;
+		ray->h_map.x = player->x + ((player->y - ray->h_map.y) * ray->cotan);
 		ray->hd.y = (double)-CELL_SIZE;
 		ray->hd.x = -ray->hd.y * ray->cotan;
 	}
 	else if (sin(deg_to_rad(ray->angle)) < -0.001)
 	{
-		ray->h_map.y = (int)cubed->scene->player.location.y / CELL_SIZE * \
-		CELL_SIZE + CELL_SIZE;
-		ray->h_map.x = cubed->scene->player.location.x + \
-		((cubed->scene->player.location.y - ray->h_map.y) * ray->cotan);
+		ray->h_map.y = (int)player->y / CELL_SIZE * CELL_SIZE + CELL_SIZE;
+		ray->h_map.x = player->x + ((player->y - ray->h_map.y) * ray->cotan);
 		ray->hd.y = (double)CELL_SIZE;
 		ray->hd.x = -ray->hd.y * ray->cotan;
 	}
 	else
 	{
-		ray->h_map.x = cubed->scene->player.location.x;
-		ray->h_map.y = cubed->scene->player.location.y;
+		ray->h_map.x = player->x;
+		ray->h_map.y = player->y;
 	}
 	check_hit_wall(cubed, &ray->h_grid, &ray->h_map, &ray->hd);
 }
@@ -90,29 +89,28 @@ static void	shoot_one_ray_horizontal(t_cubed *cubed, t_ray_calc *ray)
 */
 static void	shoot_one_ray_vertical(t_cubed *cubed, t_ray_calc *ray)
 {
+	t_vector	*player;
+
+	player = &cubed->scene->player.location;
 	ray->tan = tan(deg_to_rad(ray->angle));
 	if (cos(deg_to_rad(ray->angle)) < -0.001)
 	{
-		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * \
-		CELL_SIZE - 0.0001;
-		ray->v_map.y = cubed->scene->player.location.y + \
-		((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
+		ray->v_map.x = ((int)player->x / CELL_SIZE) * CELL_SIZE - 0.0001;
+		ray->v_map.y = player->y + ((player->x - ray->v_map.x) * ray->tan);
 		ray->vd.x = -CELL_SIZE;
 		ray->vd.y = -ray->vd.x * ray->tan;
 	}
 	else if (cos(deg_to_rad(ray->angle)) > 0.001)
 	{
-		ray->v_map.x = ((int)cubed->scene->player.location.x / CELL_SIZE) * \
-		CELL_SIZE + CELL_SIZE;
-		ray->v_map.y = cubed->scene->player.location.y + \
-		((cubed->scene->player.location.x - ray->v_map.x) * ray->tan);
+		ray->v_map.x = ((int)player->x / CELL_SIZE) * CELL_SIZE + CELL_SIZE;
+		ray->v_map.y = player->y + ((player->x - ray->v_map.x) * ray->tan);
 		ray->vd.x = CELL_SIZE;
 		ray->vd.y = -ray->vd.x * ray->tan;
 	}
 	else
 	{
-		ray->v_map.x = cubed->scene->player.location.x;
-		ray->v_map.y = cubed->scene->player.location.y;
+		ray->v_map.x = player->x;
+		ray->v_map.y = player->y;
 	}
 	check_hit_wall(cubed, &ray->v_grid, &ray->v_map, &ray->vd);
 }
@@ -132,14 +130,14 @@ static void	get_corrected_shortest(t_cubed *cubed, t_ray_calc *ray_info)
 	if (h_distance != 0.0f && (h_distance < v_distance || v_distance == 0.0f))
 	{
 		ray_info->shortest = 'h';
-		ray_info->distance = h_distance * \
-		cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
+		ray_info->distance = h_distance * 
+			cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
 	}
 	else
 	{
 		ray_info->shortest = 'v';
-		ray_info->distance = v_distance * \
-		cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
+		ray_info->distance = v_distance * 
+			cos(deg_to_rad(ray_info->angle - cubed->scene->player.angle));
 	}
 }
 
@@ -161,8 +159,8 @@ void	cast_rays(t_cubed *cubed)
 		shoot_one_ray_vertical(cubed, &ray);
 		get_corrected_shortest(cubed, &ray);
 		draw_view(cubed, &ray, PROJECTION_WIDTH - rays_drawn);
-		ray.angle = \
-		correct_degrees(ray.angle + cubed->raycast_info->angle_between_rays);
+		ray.angle += cubed->raycast_info->angle_between_rays;
+		ray.angle = correct_degrees(ray.angle);
 		rays_drawn++;
 	}
 }
