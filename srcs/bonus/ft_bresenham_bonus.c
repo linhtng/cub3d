@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:15:20 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:53:47 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:29:19 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_abs(int val)
  * set_up_bresenham() sets up the bresenham algorithm. It calculates the
  * deltas, the slopes and the decision.
 */
-static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, \
+static void	set_up_bresenham(t_bham_info *line_info, t_vector *one, 
 t_vector *two)
 {
 	line_info->deltas.x = ft_abs((int) two->x - (int) one->x);
@@ -53,8 +53,8 @@ static void	clip_to_minimap(t_img_data *img, t_vector *one)
 
 	delta_y = one->y - MINI_MAP_RADIUS;
 	delta_x = one->x - MINI_MAP_RADIUS;
-	if (delta_x * delta_x + delta_y * delta_y <= \
-	MINI_MAP_RADIUS * MINI_MAP_RADIUS)
+	if (delta_x * delta_x + delta_y * delta_y <= 
+		MINI_MAP_RADIUS * MINI_MAP_RADIUS)
 	{
 		ft_pixel_put(img, one->x, one->y, one->color);
 	}

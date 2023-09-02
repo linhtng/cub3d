@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/31 17:58:45 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:17:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	load_texture(t_scene *normal_scene, t_cubed *cubed)
 	scene->texture[SOUTH] = get_new_xpm_image(cubed, scene->elems.south);
 	scene->texture[EAST] = get_new_xpm_image(cubed, scene->elems.east);
 	scene->texture[WEST] = get_new_xpm_image(cubed, scene->elems.west);
-	scene->bonus_textures[0] = \
-	get_new_xpm_image(cubed, scene->bonus_elems.door);
-	scene->bonus_textures[1] = \
-	get_new_xpm_image(cubed, scene->bonus_elems.floor);
-	scene->bonus_ceiling[0] = \
+	scene->bonus_textures[0] = 
+		get_new_xpm_image(cubed, scene->bonus_elems.door);
+	scene->bonus_textures[1] = 
+		get_new_xpm_image(cubed, scene->bonus_elems.floor);
+	scene->bonus_ceiling[0] = 
 		get_new_xpm_image(cubed, scene->bonus_elems.ceiling[0]);
-	scene->bonus_ceiling[1] = \
+	scene->bonus_ceiling[1] = 
 		get_new_xpm_image(cubed, scene->bonus_elems.ceiling[1]);
-	scene->bonus_ceiling[2] = \
+	scene->bonus_ceiling[2] = 
 		get_new_xpm_image(cubed, scene->bonus_elems.ceiling[2]);
 	scene->bonus_textures[2] = scene->bonus_ceiling[0];
 }
@@ -44,7 +44,7 @@ void	load_texture(t_scene *normal_scene, t_cubed *cubed)
  * line size and the projection height. The x is calculated by the direction 
  * of the ray and the position of the hit. 
 */
-static t_vector	get_tex_vec(t_vector *hit, int dir, double y_step, \
+static t_vector	get_tex_vec(t_vector *hit, int dir, double y_step, 
 double line_size)
 {
 	t_vector	texture;
@@ -86,15 +86,15 @@ static unsigned int	choose_from_texture(t_scene *scene, t_draw_info *draw)
 
 	if (draw->material_hit == DOOR_CLOSED)
 	{
-		color = ft_pixel_get(((t_scene_bonus *)scene)->bonus_textures[0], \
-		draw->tex.x, draw->tex.y);
+		color = ft_pixel_get(((t_scene_bonus *)scene)->bonus_textures[0], 
+				draw->tex.x, draw->tex.y);
 	}
 	else
 	{
 		if (!scene->texture[draw->dir])
 			printf("choose_from texture, draw dir: %d\n", draw->dir);
-		color = \
-		ft_pixel_get(scene->texture[draw->dir], draw->tex.x, draw->tex.y);
+		color = 
+			ft_pixel_get(scene->texture[draw->dir], draw->tex.x, draw->tex.y);
 	}
 	return (color);
 }
@@ -106,7 +106,7 @@ static unsigned int	choose_from_texture(t_scene *scene, t_draw_info *draw)
  * texture is traversed.
  * The color to be drawn is selected from the appropriate texture.
 */
-void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, \
+void	b_draw_textured_walls(t_cubed *cubed, t_ray_calc *ray, 
 t_draw_info *draw)
 {
 	unsigned int	color;
@@ -124,8 +124,8 @@ t_draw_info *draw)
 	while (index++ < draw->height)
 	{
 		color = choose_from_texture(cubed->scene, draw);
-		ft_pixel_put(cubed->raycast_info->r_img, \
-		draw->project_x, draw->project_y, color);
+		ft_pixel_put(cubed->raycast_info->r_img, 
+			draw->project_x, draw->project_y, color);
 		draw->project_y++;
 		draw->tex.y += y_step;
 	}

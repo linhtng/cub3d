@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:01:42 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 15:48:30 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:11:50 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_img_data	*get_new_image(t_cubed *cubed, int width, int height)
 		free(img);
 		mlx_close(cubed, 1, "cub3D: error: image allocation failed");
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
-	&img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, 
+			&img->line_length, &img->endian);
 	img->width = width;
 	img->height = height;
 	return (img);
@@ -56,8 +56,8 @@ t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 		free(img);
 		mlx_close(cubed, 1, "cub3D: error: image allocation failed");
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
-	&img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, 
+			&img->line_length, &img->endian);
 	return (img);
 }
 
@@ -67,11 +67,11 @@ t_img_data	*get_new_xpm_image(t_cubed *cubed, char *file_path)
 */
 void	refresh_images(t_cubed *cubed)
 {
-	mlx_put_image_to_window(cubed->mlx, cubed->window, \
-	cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - \
-	PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
-	mlx_put_image_to_window(cubed->mlx, cubed->window, \
-	cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, \
-	WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, 
+		cubed->raycast_info->background_img->img, WIN_WIDTH / 2 - 
+		PROJECTION_WIDTH / 2, WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
+	mlx_put_image_to_window(cubed->mlx, cubed->window, 
+		cubed->raycast_info->r_img->img, WIN_WIDTH / 2 - PROJECTION_WIDTH / 2, 
+		WIN_HEIGHT / 2 - PROJECTION_HEIGHT / 2);
 	cubed->dirty_images = FALSE;
 }

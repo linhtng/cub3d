@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:12:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:03:43 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:06:05 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 */
 void	setup_player(t_cubed *cubed)
 {
-	cubed->scene->player.location.y = cubed->scene->player.location.y * \
-	CELL_SIZE + CELL_SIZE / 2;
-	cubed->scene->player.location.x = cubed->scene->player.location.x * \
-	CELL_SIZE + CELL_SIZE / 2;
+	cubed->scene->player.location.y = cubed->scene->player.location.y * 
+		CELL_SIZE + CELL_SIZE / 2;
+	cubed->scene->player.location.x = cubed->scene->player.location.x * 
+		CELL_SIZE + CELL_SIZE / 2;
 	cubed->scene->player.location.color = RED;
 	if (cubed->scene->player.spawn == 'N')
 		cubed->scene->player.angle = 90.0f;
@@ -31,8 +31,8 @@ void	setup_player(t_cubed *cubed)
 		cubed->scene->player.angle = 0.0f;
 	if (cubed->scene->player.spawn == 'W')
 		cubed->scene->player.angle = 180.0f;
-	cubed->scene->player.d.x = \
-	cos(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
-	cubed->scene->player.d.y = \
-	-sin(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
+	cubed->scene->player.d.x = 
+		cos(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
+	cubed->scene->player.d.y = 
+		-sin(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
 }

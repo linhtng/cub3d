@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_elems.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/31 21:02:31 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:08:54 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 	}
 	info_num = arr_len(single_elem);
 	if (ft_strchr("NOSWEA", single_elem[0][0]) && info_num == 1)
-		scene->err_flag = get_texture(scene, single_elem[0], \
-		&(single_elem[0])[2], 2);
+		scene->err_flag = get_texture(scene, single_elem[0], 
+				&(single_elem[0])[2], 2);
 	else if (ft_strchr("NOSWEA", single_elem[0][0]) && info_num == 2)
 		scene->err_flag = get_texture(scene, single_elem[0], single_elem[1], 3);
 	else if (ft_strchr("FC", single_elem[0][0]))

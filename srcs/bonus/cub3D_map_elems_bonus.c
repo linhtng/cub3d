@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_elems_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/31 21:20:47 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:15:44 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_valid_texture(char **path, char *texture)
  * get_texture() checks if the given texture path is found and if it is valid.
  * If valid, returns 1. Otherwise, it returns -1.
 */
-static int	get_bonus_texture(t_scene_bonus *scene, char *elem_id, \
+static int	get_bonus_texture(t_scene_bonus *scene, char *elem_id, 
 char *texture, int len)
 {
 	int			ret;
@@ -64,7 +64,7 @@ char *texture, int len)
  * get_texture() checks if the given texture path is found and if it is valid.
  * If valid, returns 1. Otherwise, it returns -1.
 */
-static int	get_texture(t_scene_bonus *scene, char *elem_id, \
+static int	get_texture(t_scene_bonus *scene, char *elem_id, 
 char *texture, int len)
 {
 	int			ret;
@@ -106,11 +106,11 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 	}
 	info_num = arr_len(single_elem);
 	if (ft_strchr("NOSWEADFC", single_elem[0][0]) && info_num == 1)
-		scene->err_flag = get_texture((t_scene_bonus *)scene, single_elem[0], \
-		&(single_elem[0])[2], 2);
+		scene->err_flag = get_texture((t_scene_bonus *)scene, single_elem[0], 
+				&(single_elem[0])[2], 2);
 	else if (ft_strchr("NOSWEADFC", single_elem[0][0]) && info_num == 2)
-		scene->err_flag = get_texture((t_scene_bonus *)scene, \
-		single_elem[0], single_elem[1], 3);
+		scene->err_flag = get_texture((t_scene_bonus *)scene, 
+				single_elem[0], single_elem[1], 3);
 	free_arr(single_elem);
 	return (scene->err_flag);
 }

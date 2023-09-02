@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 20:10:04 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/31 18:02:37 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:01:49 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	load_texture(t_scene *scene, t_cubed *cubed)
  * line size and the projection height. The x is calculated by the direction 
  * of the ray and the position of the hit. 
 */
-static t_vector	get_texture_vec(t_vector *hit, int dir, double y_step, \
+static t_vector	get_texture_vec(t_vector *hit, int dir, double y_step, 
 double line_size)
 {
 	t_vector	texture;
@@ -96,10 +96,10 @@ int dir)
 	drawn_count = 0;
 	while (drawn_count++ < line_height)
 	{
-		pane_y_color[1] = ft_pixel_get(cubed->scene->texture[dir], \
-		texture.x, texture.y);
-		ft_pixel_put(cubed->raycast_info->r_img, project_x, \
-		pane_y_color[0], pane_y_color[1]);
+		pane_y_color[1] = 
+			ft_pixel_get(cubed->scene->texture[dir], texture.x, texture.y);
+		ft_pixel_put(cubed->raycast_info->r_img, project_x, 
+			pane_y_color[0], pane_y_color[1]);
 		pane_y_color[0]++;
 		texture.y += y_step;
 	}

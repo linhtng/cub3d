@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:28:05 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/31 10:24:19 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:14:59 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ int	map_is_exposed(t_scene *scene)
 	{
 		unfilled += count_occurences(scene->map.flood[line], EXPOSED);
 		if (unfilled)
-			return (err_msg("Map is not entirely closed by walls. ", \
-			"Invalid."));
+			return (err_msg("Map is not entirely closed by walls. ", 
+					"Invalid."));
 		line++;
 	}
 	return (1);

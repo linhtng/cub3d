@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:34:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 17:07:35 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:41:51 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static void	zero_cubed(t_cubed_bonus *cubed)
 */
 static void	setup_cubed_images(t_cubed *cubed)
 {
-	((t_cubed_bonus *)cubed)->minimap_img = \
-	get_new_image(cubed, MINI_MAP_DIAMETER, MINI_MAP_DIAMETER);
-	((t_cubed_bonus *)cubed)->mini_player_img = \
-	get_new_image(cubed, MINI_MAP_DIAMETER, MINI_MAP_DIAMETER);
-	((t_cubed_bonus *)cubed)->frame_img = \
-	get_new_xpm_image(cubed, "texture_src/cubed_frame.xpm");
+	((t_cubed_bonus *)cubed)->minimap_img = 
+		get_new_image(cubed, MINI_MAP_DIAMETER, MINI_MAP_DIAMETER);
+	((t_cubed_bonus *)cubed)->mini_player_img = 
+		get_new_image(cubed, MINI_MAP_DIAMETER, MINI_MAP_DIAMETER);
+	((t_cubed_bonus *)cubed)->frame_img = 
+		get_new_xpm_image(cubed, "texture_src/cubed_frame.xpm");
 }
 
 /*
@@ -57,8 +57,8 @@ void	setup_cubed(t_cubed *cubed)
 	cubed->mlx = mlx_init();
 	if (!cubed->mlx)
 		mlx_close(cubed, 1, "intialization of mlx failed");
-	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, \
-	"Cubikat");
+	cubed->window = mlx_new_window(cubed->mlx, WIN_WIDTH, WIN_HEIGHT, 
+			"The Cubikat Chronicles");
 	if (!cubed->window)
 		mlx_close(cubed, 1, "intialization of mlx window failed");
 	frame_fd = open("texture_src/cubed_frame.xpm", O_RDWR);
@@ -69,7 +69,7 @@ void	setup_cubed(t_cubed *cubed)
 	}
 	close(frame_fd);
 	setup_cubed_images(cubed);
-	ft_memset(((t_cubed_bonus *)cubed)->minimap_img->addr, TRANSPARENT, \
-	MINI_MAP_DIAMETER * MINI_MAP_DIAMETER * \
-	(((t_cubed_bonus *)cubed)->mini_player_img->bits_per_pixel / 8));
+	ft_memset(((t_cubed_bonus *)cubed)->minimap_img->addr, TRANSPARENT, 
+		MINI_MAP_DIAMETER * MINI_MAP_DIAMETER * 
+		(((t_cubed_bonus *)cubed)->mini_player_img->bits_per_pixel / 8));
 }

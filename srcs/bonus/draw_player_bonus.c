@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:50:41 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/30 16:48:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:22:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_mini_player(t_cubed *cubed)
 	mini_player.x = MINI_MAP_RADIUS;
 	mini_player.y = MINI_MAP_RADIUS;
 	mini_player.color = RED;
-	my_put_rectangle(((t_cubed_bonus *)cubed)->mini_player_img, \
-	mini_player, 5, 5);
+	my_put_rectangle(((t_cubed_bonus *)cubed)->mini_player_img, 
+		mini_player, 5, 5);
 	draw_nose((t_cubed_bonus *)cubed, &mini_player);
 }

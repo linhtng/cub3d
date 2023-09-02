@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 16:58:56 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:31:14 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	init_scene(t_scene *scene)
 	scene->map.grid = NULL;
 	scene->map.flood = NULL;
 	scene->map.visited = NULL;
-	ft_memset(((t_scene_bonus *)scene)->bonus_elems.ceiling, '\0', \
-	sizeof(((t_scene_bonus *)scene)->bonus_elems.ceiling));
+	ft_memset(((t_scene_bonus *)scene)->bonus_elems.ceiling, '\0', 
+		sizeof(((t_scene_bonus *)scene)->bonus_elems.ceiling));
 	((t_scene_bonus *)scene)->bonus_elems.floor = NULL;
 	((t_scene_bonus *)scene)->bonus_elems.door = NULL;
 }

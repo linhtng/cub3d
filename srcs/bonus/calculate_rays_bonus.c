@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:49:54 by jebouche          #+#    #+#             */
-/*   Updated: 2023/09/02 15:54:15 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:14:27 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@
  * If the ray hit a wall or door, the dof is set to MAX_DOF to stop the ray from
  * continuing.
 */
-static void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, \
-t_vector *offset)
+static void	check_hit_wall(t_cubed *cubed, t_vector *grid, t_vector *map, 
+	t_vector *offset)
 {
 	int	dof;
 
 	dof = 0;
-	if (map->x == cubed->scene->player.location.x && \
-	map->y == cubed->scene->player.location.x)
+	if (map->x == cubed->scene->player.location.x && 
+		map->y == cubed->scene->player.location.x)
 		return ;
 	while (dof < MAX_DOF)
 	{
 		grid->x = (int)map->x / CELL_SIZE;
 		grid->y = (int)map->y / CELL_SIZE;
-		if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width \
-			&& grid->y < cubed->scene->map.height && ft_strchr(HITABLE_MAP_VAL, \
-			cubed->scene->map.grid[(int)grid->y][(int)grid->x]))
+		if (grid->y >= 0 && grid->x >= 0 && grid->x < cubed->scene->map.width 
+			&& grid->y < cubed->scene->map.height && ft_strchr(HITABLE_MAP_VAL, 
+				cubed->scene->map.grid[(int)grid->y][(int)grid->x]))
 		{
 			dof = MAX_DOF;
 		}

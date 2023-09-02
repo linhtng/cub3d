@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 19:10:01 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 17:02:35 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:39:15 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	mouse_move(int x, int y, void *param)
 	cubed = (t_cubed_bonus *)param;
 	if (y >= 0 && y < PROJECTION_HEIGHT && x >= 0 && x < PROJECTION_WIDTH)
 	{
-		cubed->scene->player.angle = correct_degrees(cubed->scene->player.angle \
-		- (x - cubed->mouse_x) / 3);
-		cubed->scene->player.d.x = \
-		cos(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
-		cubed->scene->player.d.y = \
-		-sin(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
+		cubed->scene->player.angle = correct_degrees(cubed->scene->player.angle 
+				- (x - cubed->mouse_x) / 3);
+		cubed->scene->player.d.x = 
+			cos(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
+		cubed->scene->player.d.y = 
+			-sin(deg_to_rad(cubed->scene->player.angle)) * PLAYER_SPEED;
 	}
 	cubed->mouse_x = x;
 	return (0);
