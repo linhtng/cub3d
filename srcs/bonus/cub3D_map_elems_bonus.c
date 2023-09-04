@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_elems_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:10:18 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/09/02 16:15:44 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:03:37 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ int	get_scene_elem(t_scene *scene, char *scene_line)
 		scene->err_flag = get_texture((t_scene_bonus *)scene, 
 				single_elem[0], single_elem[1], 3);
 	free_arr(single_elem);
+	if (info_num > 2)
+		scene->err_flag = err_msg("Invalid element info: ", scene_line);
 	return (scene->err_flag);
 }

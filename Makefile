@@ -6,7 +6,7 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/08/29 18:59:53 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/09/04 19:06:10 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ PLAYER = setup_player.c player_move.c
 SETUP = setup_cubed.c setup_raycast.c init_scene.c
 TEXTURE = cub3D_texture.c
 MAIN = cub3D_main.c utils_2.c redraw.c
-PARSING = cub3D_utils.c cub3D_map.c cub3D_map_elems.c cub3D_map_content.c cub3D_map_valid.c cub3D_parsing_utils.c debug.c
+PARSING = valid_texture_utils.c cub3D_utils.c cub3D_map.c cub3D_map_elems.c cub3D_map_content.c cub3D_map_valid.c cub3D_parsing_utils.c debug.c
  
 ALL_SRCS = $(RAYCAST) $(DRAWING) $(EXIT) $(EVENT) $(IMG) $(PLAYER) $(SETUP) $(TEXTURE) $(MAIN) $(PARSING)
 
@@ -91,7 +91,7 @@ OBJSFD_BONUS = objs_bonus/
 OBJ = $(ALL_SRCS:.c=.o)
 OBJS = $(patsubst %, $(OBJSFD)%, $(OBJ))
 
-ALL_BONUS_SRCS := $(filter-out debug.c cub3D_parsing_utils.c cub3D_main.c cub3D_map.c init_scene.c cub3D_map_elems.c raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c cub3D_texture.c cub3D_map_content.c cub3D_map_valid.c calculate_rays.c handle_press.c player_move.c, $(ALL_SRCS))
+ALL_BONUS_SRCS := $(filter-out valid_texture_utils.c debug.c cub3D_parsing_utils.c cub3D_main.c cub3D_map.c init_scene.c cub3D_map_elems.c raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c cub3D_texture.c cub3D_map_content.c cub3D_map_valid.c calculate_rays.c handle_press.c player_move.c, $(ALL_SRCS))
 ALL_BONUS_SRCS += $(BONUS)
 OBJS_BONUS = $(patsubst %, $(OBJSFD_BONUS)%, $(ALL_BONUS_SRCS:.c=.o))
 # R_SRCS	:= $(addprefix $(SRCFD), $(R_SRC))

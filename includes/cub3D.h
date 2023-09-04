@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/31 18:01:43 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:08:09 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int				get_scene_data(int fd, t_scene *scene);
 
 /* cub3D_map_elems */
 int				get_scene_elem(t_scene *scene, char *scene_line);
+
+/* valid_texture_utils.c */
+int				valid_texture_form(t_scene *scene, char *scene_line, 
+					char **single_elem);
 
 /* cub3D_map_content */
 int				get_map_content(char **scene_arr, t_scene *scene, int i);

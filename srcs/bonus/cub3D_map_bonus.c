@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:15:59 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/31 10:29:51 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:24:59 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 	int		i;
 
 	i = 0;
+	if (scene->len < 12)
+		return (err_msg("Map array min length is 12.", NULL));
 	if (!ft_strchr("NOSWEAFCD", scene_arr[0][0]))
 		return (err_msg("Invalid element info: ", scene_arr[i]));
 	while (scene_arr[i])
@@ -109,6 +111,28 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 	return (get_map_content(&scene_arr[i], scene, i));
 }
 
+int	scene_array_prep(char *scene_str, t_scene *scene)
+{
+	int		ret;
+	char	**scene_arr;
+
+	ret = -1;
+	scene_arr = (char **) ft_calloc(scene->len + 1, sizeof(char *));
+	if (!scene_arr)
+		return (err_msg("Malloc err at scene array.", NULL));
+	scene->array = scene_arr;
+	scene->len = 0;
+	ret = get_scene_arr(scene, scene_str, ft_strlen(scene_str));
+	free(scene_str);
+	if (ret == 1)
+	{
+		if (get_map_elems(scene->array, scene) == ERROR
+			|| scene->len <= 1 || scene->err_flag == ERROR)
+			return (ERROR);
+	}
+	return (ret);
+}
+
 /*
  * get_scene_data() got the scene string from the given file, 
  * then transfer it into a 2D array of strings. The function returns 1 
@@ -118,27 +142,18 @@ static int	get_map_elems(char **scene_arr, t_scene *scene)
 int	get_scene_data(int fd, t_scene *scene)
 {
 	char	*scene_str;
-	char	**scene_arr;
 	int		ret;
 
 	ret = -1;
 	scene_str = get_scene_string(scene, fd);
 	close(fd);
 	if (!scene_str)
-		return (err_msg("Emty map/Malloc err at scene str.", NULL));
-	scene_arr = (char **) ft_calloc(scene->len + 1, sizeof(char *));
-	if (scene_arr)
+		return (err_msg("Empty map/Malloc err at scene str.", NULL));
+	if (!ft_strlen(scene_str))
 	{
-		scene->array = scene_arr;
-		scene->len = 0;
-		ret = get_scene_arr(scene, scene_str, ft_strlen(scene_str));
 		free(scene_str);
-		if (ret == 1)
-		{
-			if (get_map_elems(scene->array, scene) == ERROR
-				|| scene->err_flag == ERROR)
-				return (ERROR);
-		}
+		return (err_msg("Empty map file.", NULL));
 	}
+	ret = scene_array_prep(scene_str, scene);
 	return (ret);
 }
