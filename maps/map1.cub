@@ -1,7 +1,7 @@
-NO textures/cub3d_tex/cat.xpm
-SO textures/cub3d_tex/linh.xpm
-WE textures/cub3d_tex/jen.xpm
-EA textures/cub3d_tex/cube.xpm
+NO texture_src/cat.xpm
+SO texture_src/linh.xpm
+WE texture_src/jen.xpm
+EA texture_src/cube.xpm
 
 F 18,53,25
 C 153,204,255

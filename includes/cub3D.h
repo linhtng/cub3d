@@ -6,15 +6,13 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:39:58 by jebouche          #+#    #+#             */
-/*   Updated: 2023/09/04 19:08:09 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:22:51 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-//TODO write what each are for, do we want printf still?
-/* for printf */
-# include <stdio.h>
+
 /* for sin, cos, sqrt, etc*/
 # include <math.h>
 /* for minilibx */
@@ -62,11 +60,6 @@ int				check_island(t_scene *scene, char **grid);
 void			ft_flood(int y, int x, t_scene *scene, char block);
 int				big_frame_map(char **map, t_scene *scene);
 int				empty_map(t_scene *scene);
-
-/* cub3D_debug */
-void			print_arr(char **arr);
-void			print_scene(t_scene *scene);
-void			mass_test_maps(int argc, char **argv);
 
 /* drawing_utils1 */
 void			my_put_line_h(t_img_data *data, t_vector *start, int len);

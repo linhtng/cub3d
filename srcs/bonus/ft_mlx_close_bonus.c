@@ -6,7 +6,7 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:24:40 by jebouche          #+#    #+#             */
-/*   Updated: 2023/09/04 19:14:10 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:27:07 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ int	mlx_close(t_cubed *cubed, int exit_code, char *exit_msg)
 		ft_putstr_fd("Thanks for playin' cub3D!\n", STDOUT_FILENO);
 	if (cubed->scene)
 		free_scene_data(cubed->scene);
-	system("export MallocStackLogging=1");
-	system("leaks cub3D_bonus");
 	exit(exit_code);
 	return (0);
 }

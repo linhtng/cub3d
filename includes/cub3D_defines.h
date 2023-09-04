@@ -6,17 +6,15 @@
 /*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:46:17 by jebouche          #+#    #+#             */
-/*   Updated: 2023/09/04 19:12:47 by thuynguy         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:21:51 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_DEFINES_H
 # define CUB3D_DEFINES_H
-//TODO rmove debug?
 /* PARSING DEFINES */
 # define FLOOR 1
 # define CEILING 2
-# define DEBUG 0
 # ifndef VALID_CHARS
 #  define VALID_CHARS "01NSEW "
 # endif

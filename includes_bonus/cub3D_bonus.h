@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:44:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/31 17:58:46 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:21:45 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,5 @@ int		handle_press_bonus(t_cubed *cubed);
 
 /* mouse_bonus.c */
 int		mouse_move(int x, int y, void *param);
-
-/* debug */
-void	print_scene_bonus(t_scene_bonus *scene);
 
 #endif

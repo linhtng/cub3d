@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_main_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:18:00 by thuynguy          #+#    #+#             */
-/*   Updated: 2023/08/30 16:37:56 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:21:23 by thuynguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	t_scene			*scene;
 
 	scene = (t_scene *) &b_scene;
-	if (argc == 2 && !DEBUG)
+	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
 		if (check_input_file(argv[1], fd, ".cub") == ERROR)
@@ -39,8 +39,6 @@ int	main(int argc, char **argv)
 			raycast_start(scene);
 		free_scene_data(scene);
 	}
-	else if (DEBUG)
-		mass_test_maps(argc - 1, &argv[1]);
 	else
 		ft_putendl_fd("Number of parameters must be 1.\n", STDERR_FILENO);
 	return (0);
