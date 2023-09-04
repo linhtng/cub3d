@@ -6,14 +6,13 @@
 #    By: thuynguy <thuynguy@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 15:30:29 by thuynguy          #+#    #+#              #
-#    Updated: 2023/09/04 19:21:44 by thuynguy         ###   ########.fr        #
+#    Updated: 2023/09/04 19:35:57 by thuynguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
-# RAY_CASTER := raycast_build
 
 # Color Aliases
 NONE='\033[0m'
@@ -27,11 +26,6 @@ BONUS_CFLAGS = -Wall -Wextra -Werror -g3 -I ./includes_bonus
 CC = cc
 LINKS = -lmlx -framework OpenGL -framework AppKit
 # CDEBUG = -fsanitize=address
-
-# DIR_DUP     = mkdir -p $(@D)
-# SRC = cub3D_main.c \
-# 	cub3D_utils.c \
-# 	cub3D_map.c \
 
 RAYCAST_DIR = srcs/raycast/
 DRAWING_DIR = srcs/drawing_utils/
@@ -86,16 +80,13 @@ SRCFD = srcs/
 SRCFD_BONUS = srcs/bonus/
 OBJSFD = objs/
 OBJSFD_BONUS = objs_bonus/
-# SRCS	= $(addprefix $(SRCFD), $(SRC))
+
 OBJ = $(ALL_SRCS:.c=.o)
 OBJS = $(patsubst %, $(OBJSFD)%, $(OBJ))
 
 ALL_BONUS_SRCS := $(filter-out valid_texture_utils.c cub3D_parsing_utils.c cub3D_main.c cub3D_map.c init_scene.c cub3D_map_elems.c raycast_start.c draw_raycast_view.c ft_images.c ft_mlx_close.c redraw.c setup_cubed.c cub3D_texture.c cub3D_map_content.c cub3D_map_valid.c calculate_rays.c handle_press.c player_move.c, $(ALL_SRCS))
 ALL_BONUS_SRCS += $(BONUS)
 OBJS_BONUS = $(patsubst %, $(OBJSFD_BONUS)%, $(ALL_BONUS_SRCS:.c=.o))
-# R_SRCS	:= $(addprefix $(SRCFD), $(R_SRC))
-# R_OBJ := $(R_SRCS:.c=.o)
-# R_OBJS = $(addprefix $(OBJSFD),$(R_OBJ))
 
 HEADER_PATH = -I ./includes
 HEADER_PATH_BONUS = -I ./includes_bonus
