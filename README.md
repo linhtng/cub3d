@@ -5,12 +5,13 @@
 
 ## Collaborators
 
-@jboucher154
-@linhtng
+[Jenny Boucher] (https://github.com/jboucher154)
+
+[Thuy Linh Nguyen] (https://github.com/linhtng)
 
 ## Description
 
-cub3D is a walking simulator that uses ray-casting similar to Wolfensterin 3D. This project was completed as part of the 42-School Core Curriculum.
+cub3D is a walking simulator that uses ray-casting similar to Wolfensterin 3D. This project was completed as part of the 42-School Core Curriculum. We chose to keep a cute pixel quality to the images and created some of our own textures to use.
 
 ### Technologies
 
@@ -45,6 +46,8 @@ cub3D is written in C and uses MiniLibX, a small graphics library maintained by 
 
 ### requirements
 - Compatible with MacOS and Linux
+
+/* Project is currenlty being updated to work with M1 processor and key codes */
 
 You will need a gcc compiler and the [minilibx library](https://github.com/42Paris/minilibx-linux)
  
