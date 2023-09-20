@@ -1,8 +1,6 @@
 
 # cub3D
 
-/* Project is currently being updated to work with M1 processor and key codes */
-
 ## Collaborators
 
 [Jenny Boucher](https://github.com/jboucher154)
