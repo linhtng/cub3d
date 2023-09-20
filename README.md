@@ -5,9 +5,9 @@
 
 ## Collaborators
 
-[Jenny Boucher] (https://github.com/jboucher154)
+[Jenny Boucher](https://github.com/jboucher154)
 
-[Thuy Linh Nguyen] (https://github.com/linhtng)
+[Thuy Linh Nguyen](https://github.com/linhtng)
 
 ## Description
 
@@ -33,7 +33,8 @@ cub3D is written in C and uses MiniLibX, a small graphics library maintained by 
 - Map validation
 - Rendering and walking through raycast maze
 - Collision detection
-
+  
+![View of Mandatory Part](readme_images/mandatory_view)
 ### Bonus Part:
 
 - Minimap system
@@ -47,7 +48,7 @@ cub3D is written in C and uses MiniLibX, a small graphics library maintained by 
 ### requirements
 - Compatible with MacOS and Linux
 
-/* Project is currenlty being updated to work with M1 processor and key codes */
+/* Project is currenlty being updated to work with M1 processor and key codes and cannot be used currently unless you have a system installation of minilibx*/
 
 You will need a gcc compiler and the [minilibx library](https://github.com/42Paris/minilibx-linux)
  
