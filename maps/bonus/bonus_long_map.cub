@@ -3,7 +3,7 @@ SO texture_src/jen.xpm
 WE texture_src/cat.xpm
 EA texture_src/linh.xpm
 
-DO texture_src/rainbow_door.xpm EXTRA
+DO texture_src/rainbow_door.xpm
 
 F texture_src/floor1.xpm
 C texture_src/night_1.xpm
