@@ -34,7 +34,7 @@ cub3D is written in C and uses MiniLibX, a small graphics library maintained by 
 - Rendering and walking through raycast maze
 - Collision detection
   
-![View of Mandatory Part](readme_images/mandatory_view)
+![View of Mandatory Part](readme_images/mandatory_view.png)
 ### Bonus Part:
 
 - Minimap system
