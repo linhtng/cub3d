@@ -42,7 +42,7 @@ cub3D is written in C and uses MiniLibX, a small graphics library maintained by 
 - Raycast floor and ceiling
 - Animated ceiling
 - Doors that can be opened and closed
-
+![View of Bonus Part](readme_images/Bonus_view.png)
 ## How to Use
 
 ### requirements
