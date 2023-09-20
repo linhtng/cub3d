@@ -1,7 +1,7 @@
 
 # cub3D
 
-/* Project is currenlty being updated to work with M1 processor and key codes */
+/* Project is currently being updated to work with M1 processor and key codes */
 
 ## Collaborators
 
@@ -45,26 +45,11 @@ cub3D is written in C and uses MiniLibX, a small graphics library maintained by 
 ![View of Bonus Part](readme_images/Bonus_view.png)
 ## How to Use
 
-### requirements
-- Compatible with MacOS and Linux
+### Requirements
 
-/* Project is currenlty being updated to work with M1 processor and key codes and cannot be used currently unless you have a system installation of minilibx*/
+/* Project is currenlty being updated to work with M1 processor and key codes and cannot be used currently unless you have a system installation of minilibx and your system has linux key codes */
 
 You will need a gcc compiler and the [minilibx library](https://github.com/42Paris/minilibx-linux)
- 
- To run mandatory part:
-``` 
-$ git clone https://github.com/linhtng/cub3d
-$ cd cub3d
-$ make && ./cub3D ./maps/[select map]
-```
-Replace 'select map'  with a map fromt he maps folder /good to see the program run /bad to see error handling for map files.
-
-To run bonus part:
-
-``` 
-$ make bonus && ./cub3D_bonus ./maps/bonus/[select map]
-```
 
 ## Controls
 
@@ -80,3 +65,15 @@ $ make bonus && ./cub3D_bonus ./maps/bonus/[select map]
 | Mouse  | Turn      |
 | ESC  | Close window      |
 <br><br>
+
+System Compatibility:
+
+These hard-coded key codes have been designed to work within the context of a specific graphics program. They are mapped as follows:
+
+- 'w' = 13
+- 's' = 1
+- 'a' = 0
+- 'd' = 2
+- 'esc' = 53
+- 'left arrow' = 123
+- 'right arrow' = 124
